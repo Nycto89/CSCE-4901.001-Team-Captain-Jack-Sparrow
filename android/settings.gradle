@@ -1,0 +1,3 @@
+rootProject.name = 'esrd_app'
+
+include ':app'
