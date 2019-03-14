@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-               BuildableName = "esrd_app-tvOS.app"
-               BlueprintName = "esrd_app-tvOS"
-               ReferencedContainer = "container:esrd_app.xcodeproj">
+               BuildableName = "app-tvOS.app"
+               BlueprintName = "app-tvOS"
+               ReferencedContainer = "container:app.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -43,9 +43,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E48F1E0B4A5D006451C7"
-               BuildableName = "esrd_app-tvOSTests.xctest"
-               BlueprintName = "esrd_app-tvOSTests"
-               ReferencedContainer = "container:esrd_app.xcodeproj">
+               BuildableName = "app-tvOSTests.xctest"
+               BlueprintName = "app-tvOSTests"
+               ReferencedContainer = "container:app.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -61,9 +61,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E48F1E0B4A5D006451C7"
-               BuildableName = "esrd_app-tvOSTests.xctest"
-               BlueprintName = "esrd_app-tvOSTests"
-               ReferencedContainer = "container:esrd_app.xcodeproj">
+               BuildableName = "app-tvOSTests.xctest"
+               BlueprintName = "app-tvOSTests"
+               ReferencedContainer = "container:app.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -71,9 +71,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "esrd_app-tvOS.app"
-            BlueprintName = "esrd_app-tvOS"
-            ReferencedContainer = "container:esrd_app.xcodeproj">
+            BuildableName = "app-tvOS.app"
+            BlueprintName = "app-tvOS"
+            ReferencedContainer = "container:app.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -94,9 +94,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "esrd_app-tvOS.app"
-            BlueprintName = "esrd_app-tvOS"
-            ReferencedContainer = "container:esrd_app.xcodeproj">
+            BuildableName = "app-tvOS.app"
+            BlueprintName = "app-tvOS"
+            ReferencedContainer = "container:app.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -113,9 +113,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "esrd_app-tvOS.app"
-            BlueprintName = "esrd_app-tvOS"
-            ReferencedContainer = "container:esrd_app.xcodeproj">
+            BuildableName = "app-tvOS.app"
+            BlueprintName = "app-tvOS"
+            ReferencedContainer = "container:app.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
