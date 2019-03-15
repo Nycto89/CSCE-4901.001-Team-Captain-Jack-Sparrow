@@ -1,28 +1,85 @@
 /**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- * @lint-ignore-every XPLATJSCOPYRIGHT1
+CURRENTLY ACTS AS ROUTER BETWEEN MODALITIES AND HAS DRAWER FEATURE!!!
  */
 
 import React, {Component} from 'react';
-import {Animated, Dimensions, Platform, StyleSheet, Text, View, Image, PanResponder} from 'react-native';
-import {Container, Content} from 'native-base';
+import {Animated, TouchableHighlight, Dimensions, 
+Platform, StyleSheet, Text, 
+View, Image, PanResponder } from 'react-native';
 import Swiper from 'react-native-swiper';
-import Splash from './splashScreen/index';
-
+import SplashScreen from './splashScreen/index';
+import HomeScreen from './home';
+import Transplant from './modalities/transplant';
+import Peritoneal from './modalities/peritoneal';
+import Incenter from './modalities/incenter';
+import Overnight from './modalities/overnight';
+import HomeHemo from './modalities/homehemo';
+import Therapy from './modalities/ctherapy';
+import DrawerMenu from './drawers'
+import {createStackNavigator, createDrawerNavigator, 
+createAppContainer, DrawerItems, DrawerActions,
+CardStackStyleInterpolator} from 'react-navigation';
+import {Router, Scene} from 'react-native-router-flux';
 
 const SCREEN_WIDTH = Dimensions.get("window").width
 
+export default class App extends Component {
+
+  render() {
+    return(
+      <Router>
+        <Scene key= "root">
+          <Scene key="mainScreen" 
+          component={HomeScreen} 
+          title="Welcome!"
+          initial 
+          />
+
+          <Scene 
+          key="drawer"
+          drawer
+          contentComponent={DrawerMenu}
+          drawerWidth={300}
+          hideNavBar>
+
+            <Scene
+                key="drawer1"
+                title="Transplant"
+                component={Transplant}/>
+            <Scene
+                key="drawer2"
+                title="Peritoneal"
+                component={Peritoneal}/>
+            <Scene
+                key="drawer3"
+                title="In-Center Hemo"
+                component={Incenter}/>
+            <Scene
+                key="drawer4"
+                title="Nocturnal"
+                component={Overnight}/>
+            <Scene
+                key="drawer5"
+                title="Home Hemo"
+                component={HomeHemo}/>
+            <Scene
+                key="drawer6"
+                title="Conservative Therapy"
+                component={Therapy}/>
+          </Scene>
+        </Scene>
+      </Router>
+      //<AppNav />
+    );
+  }
 
 
-type Props = {};
-export default class App extends Component<Props> {
 
-  constructor(){
-    super()
+
+
+  /*constructor(props){
+    super(props)
+
     this.position = new Animated.ValueXY()
     this.state = {
 
@@ -55,63 +112,7 @@ export default class App extends Component<Props> {
 
   }
 
-
-
-  render() {
-    return (
-      <Container>
-          <Content>
-            <Swiper
-            showsPagination={false}>
-              <View style={styles.slideDefault}>
-                <Animated.View {...this.PanResponder.panHandlers} style={[{backgroundColor: 'transparent'}, {position: 'absolute'},this.rotateAndTranslate]}>
-                  <View style = {styles.circle} >
-                    <Text style = {styles.instructions}>Slide 1</Text>
-                    </View>
-                </Animated.View>
-                {/*<View style={styles.slideDefault}>
-                  <Text>Slide 2</Text>
-                </View>
-                <View style={styles.slideDefault}>
-                  <Text>Slide 3</Text>
-                </View>*/}
-              </View>
-            </Swiper>
-          </Content>
-      </Container>
-    );
-  }
+  onPress = (id) => {
+    console.log(id)
+  }*/
 }
-
-const styles = StyleSheet.create({
-  circle: {
-      width: 300,
-      height: 300,
-      borderRadius: 300/2,
-      backgroundColor: 'white',
-  },
-  slideDefault: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#9DD6EB'
-  },
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#9DD6EB',
-    fontSize: 50,
-    fontFamily: 'Helvetica',
-    marginTop: 70
-  },
-});
