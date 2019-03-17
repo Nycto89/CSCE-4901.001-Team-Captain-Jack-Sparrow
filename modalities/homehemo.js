@@ -7,13 +7,46 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, ScrollView, Dimensions, ListView} from 'react-native';
+import {Platform, StyleSheet, Text, View, ScrollView, Dimensions, ListView, SectionList} from 'react-native';
 import {Button} from 'native-base';
 import {DrawerActions} from 'react-navigation';
 import HomeScreen from '../home';
 import {Action} from 'react-native-router-flux';
 import {Content, List, ListItem} from 'native-base';
+import {HomeData} from '../modalityData/modality_pros_n_cons';
 
+class SectionListItem extends Component {
+  render() {
+
+      return (
+        <View>
+          <Text style={styles.data_txt}>
+            {this.props.item.description}
+          </Text>
+          <View style= {{
+          backgroundColor: 'white',
+          height: 1,
+          marginRight: 4
+        }}></View>
+        </View>
+      );
+  }
+}
+
+class SectionHeader extends Component {
+  render() {
+
+      return (
+        <View>
+          <Text style={styles.header}>
+            {this.props.section.title}
+          </Text>
+        </View>
+      )
+
+  }
+
+}
 
 class HomeHemo extends Component {
 
@@ -41,6 +74,21 @@ class HomeHemo extends Component {
           fistula, graft or catheter. Fistula is considered the best option for people because it is your own blood vessels 
           and has less risk of infection and clotting issues. Using a dialysis machine at home, you’ll perform treatments 
           usually 4 to 5 times per week.  </Text>
+          {/*SECTION LIST*/}
+        <SectionList
+                    renderItem={({item, index}) => {
+                          return(<SectionListItem item={item} index={index}>
+                            
+                            </SectionListItem>);
+                    }}
+                    renderSectionHeader={({section}) => {
+                        return(<SectionHeader section={section} />);
+                    }}
+                    sections={HomeData}
+                    keyExtractor={(item, index) => item.name}
+          >
+
+          </SectionList> 
        </View>
       </ScrollView>
       </View>
@@ -72,6 +120,13 @@ const styles = StyleSheet.create({
     color: 'white',
     textAlign: 'left',
     paddingRight: 10
+  },
+  data_txt: {
+    fontSize: 15,
+    paddingTop: 20,
+    paddingBottom: 20,
+    fontFamily: 'Arial',
+    color: 'white'
   }
 });
 
