@@ -38,6 +38,7 @@ export default class App extends Component {
           component={HomeScreen} 
           title="Welcome!"
           renderBackButton={()=>(null)}
+          panHandlers = {null}
           initial 
           />
 
@@ -46,6 +47,7 @@ export default class App extends Component {
           drawer
           contentComponent={DrawerMenu}
           drawerWidth={300}
+          panHandlers = {null}
           hideNavBar>
 
             <Scene
