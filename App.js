@@ -24,9 +24,20 @@ import DrawerMenu from './drawers'
 import {createStackNavigator, createDrawerNavigator, 
 createAppContainer, DrawerItems, DrawerActions,
 CardStackStyleInterpolator} from 'react-navigation';
-import {Router, Scene} from 'react-native-router-flux';
+import {Router, Scene, Actions} from 'react-native-router-flux';
 
 const SCREEN_WIDTH = Dimensions.get("window").width
+
+//Home icon
+var HomeButton = function() {
+    return (
+          <View>
+            <TouchableHighlight onPress={() => Actions.mainScreen()}>
+              <Image style={{height: 30, width: 30, marginRight: 20}} source={require('./images/HOME.png')}/>
+            </TouchableHighlight>
+          </View>
+    )
+}
 
 export default class App extends Component {
 
@@ -52,28 +63,34 @@ export default class App extends Component {
 
             <Scene
                 key="drawer1"
-                title="Transplant"
-                component={Transplant}/>
+                title="Kidney Transplant"
+                component={Transplant}
+                renderRightButton = {HomeButton}/>
             <Scene
                 key="drawer2"
-                title="Peritoneal"
-                component={Peritoneal}/>
+                title="Peritoneal Dialysis"
+                component={Peritoneal}
+                renderRightButton = {HomeButton}/>
             <Scene
                 key="drawer3"
-                title="In-Center Hemo"
-                component={Incenter}/>
+                title="In-Center Hemodialysis"
+                component={Incenter}
+                renderRightButton = {HomeButton}/>
             <Scene
                 key="drawer4"
-                title="Nocturnal"
-                component={Overnight}/>
+                title="Nocturnal Dialysis"
+                component={Overnight}
+                renderRightButton = {HomeButton}/>
             <Scene
                 key="drawer5"
-                title="Home Hemo"
-                component={HomeHemo}/>
+                title="Home Hemodialysis"
+                component={HomeHemo}
+                renderRightButton = {HomeButton}/>
             <Scene
                 key="drawer6"
                 title="Conservative Therapy"
-                component={Therapy}/>
+                component={Therapy}
+                renderRightButton = {HomeButton}/>
           </Scene>
         </Scene>
       </Router>

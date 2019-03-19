@@ -1,5 +1,5 @@
 {
-  "name": "esrd_app",
+  "name": "dialysisApp",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -7,11 +7,16 @@
     "test": "jest"
   },
   "dependencies": {
+    "native-base": "^2.12.0",
     "react": "16.6.3",
-    "react-native": "0.58.5"
+    "react-native": "0.58.5",
+    "react-native-router-flux": "^4.0.6",
+    "react-native-swiper": "^1.5.14",
+    "react-navigation": "^3.3.2",
+    "react-router-dom": "^4.3.1"
   },
   "devDependencies": {
-    "babel-core": "7.0.0-bridge.0",
+    "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "24.1.0",
     "jest": "24.1.0",
     "metro-react-native-babel-preset": "0.52.0",
