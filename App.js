@@ -21,18 +21,6 @@ export default class App extends Component{
     )
   }
 }
-const SCREEN_WIDTH = Dimensions.get("window").width
-
-//Home icon
-var HomeButton = function() {
-    return (
-          <View>
-            <TouchableHighlight onPress={() => Actions.mainScreen()}>
-              <Image style={{height: 30, width: 30, marginRight: 20}} source={require('./images/HOME.png')}/>
-            </TouchableHighlight>
-          </View>
-    )
-}
 
 const styles = StyleSheet.create({
   container: {
