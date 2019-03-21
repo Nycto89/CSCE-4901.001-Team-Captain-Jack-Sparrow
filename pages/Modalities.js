@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet} from 'react-native';
 // import Swiper from 'react-native-swiper';
 // import SplashScreen from './splashScreen/index';
 import HomeScreen from './home';
@@ -9,7 +9,8 @@ import Incenter from './modalities/incenter';
 import Overnight from './modalities/overnight';
 import HomeHemo from './modalities/homehemo';
 import Therapy from './modalities/ctherapy';
-import DrawerMenu from './drawers'
+import DrawerMenu from './drawers';
+import { Router, Scene, Actions } from 'react-native-router-flux';
 // import {
 //   createStackNavigator, createDrawerNavigator,
 //   createAppContainer, DrawerItems, DrawerActions,
