@@ -8,11 +8,11 @@ export default class ScrollViewTEST extends Component{
     <View key={item.id} style={styles.rowStyle}>
       <View style={styles.listStyle}>
         <Text style={styles.nameStyle}>{item.name}</Text>
-        <Text>{item.addr}</Text>
+        <Text style={styles.addrStyle}>{item.addr}</Text>
       </View>
       <View style={styles.buttonStyle}>
         <Button
-          color={'#0000ff'}
+          color={'#0077bb'}
           title="Map"
           onPress={createOpenLink({query:(item.addr)})}
         />
@@ -23,7 +23,6 @@ export default class ScrollViewTEST extends Component{
   render(){
     return(
       <View /*style={styles.mainViewStyle}*/>
-        <Text>Dallas Clinic List</Text>
         <ScrollView>{clinicLst.map(this.makeList)}</ScrollView>
       </View>
     );
@@ -34,10 +33,10 @@ const styles = StyleSheet.create({
   rowStyle:{
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'center',
-    borderColor: '#2a4944',
+    justifyContent: 'space-between',
+    borderColor: '#111111',
     borderWidth: 1,
-    backgroundColor: '#d2f7f1'
+    backgroundColor: '#222222'
   },
   
   listStyle:{
@@ -58,7 +57,7 @@ const styles = StyleSheet.create({
   buttonStyle:{
     flexDirection: 'column',
     justifyContent: 'center',
-    alignItems: 'flex-end',
+    alignItems: 'center',
     paddingTop: 20,
     paddingBottom: 20,
     paddingLeft: 5,
@@ -69,7 +68,12 @@ const styles = StyleSheet.create({
   },
   
   nameStyle:{
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    color: '#ffffff'
+  },
+
+  addrStyle:{
+    color: '#bbbbbb'
   }/*,
 
   mainViewStyle:{

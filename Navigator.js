@@ -10,10 +10,23 @@ const MainNavigator = createStackNavigator({
     Home: {screen: HomeScreen},
     Modalities: {screen: Modalities},
     Calendar : { screen: CalendarPage},
-    ClinicFinder : { screen: ClinicFinder },
+    ClinicFinder : {
+      screen: ClinicFinder,
+      navigationOptions: ()=>({
+                               title:'Clinic Finder',
+                               headerStyle: {
+                                 backgroundColor: '#000000'
+                               },
+                               headerTitleStyle:{
+                                 color: '#ffffff'
+                               },
+                               headerTintColor: '#ffffff'
+                              })
+    },
     InfoPage : { screen: InfoPage }
   } , {
-    headerMode: 'screen'
+    headerMode: 'screen',
+    headerLayoutPreset: 'center'
   });
 
 const AppContainer = createAppContainer(MainNavigator);
