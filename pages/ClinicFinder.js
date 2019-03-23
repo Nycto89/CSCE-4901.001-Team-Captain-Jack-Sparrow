@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Text, Button, StyleSheet, ScrollView, View} from 'react-native';
 import {createOpenLink} from 'react-native-open-maps';
-import Icon from 'react-native-vector-icons/FontAwesome';//maybe delete?
 import {IconButton, Colors} from 'react-native-paper';
 import {clinicLst} from '../clinicData/clinicLookupData';
 
@@ -25,7 +24,7 @@ export default class ScrollViewTEST extends Component{
 
   render(){
     return(
-      <View /*style={styles.mainViewStyle}*/>
+      <View>
         <ScrollView>{clinicLst.map(this.makeList)}</ScrollView>
       </View>
     );
@@ -53,9 +52,6 @@ const styles = StyleSheet.create({
     paddingRight: 5,
     marginTop: 20,
     width: 300
-    //borderColor: '#2a4944',
-    //borderWidth: 1,
-    //backgroundColor: '#d2f7f1'
   },
 
   buttonStyle:{
@@ -75,15 +71,5 @@ const styles = StyleSheet.create({
 
   addrStyle:{
     color: '#bbbbbb'
-  }/*,
-
-  <Button
-          color={'#0077bb'}
-          title="Map"
-          onPress={createOpenLink({query:(item.addr)})}
-        />
-
-  mainViewStyle:{
-    margin: 50, height: 5000
-  }*/
+  }
 })
