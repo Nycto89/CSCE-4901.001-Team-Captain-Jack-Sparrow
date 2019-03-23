@@ -14,8 +14,10 @@
     "react-native-elements": "^1.1.0",
     "react-native-gesture-handler": "^1.0.16",
     "react-native-open-maps": "^0.3.3",
+    "react-native-paper": "^2.14.0",
     "react-native-router-flux": "^4.0.6",
     "react-native-swiper": "^1.5.14",
+    "react-native-vector-icons": "^6.4.2",
     "react-navigation": "^3.3.2",
     "react-router-dom": "^4.3.1"
   },

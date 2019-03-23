@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Text, Button, StyleSheet, ScrollView, View} from 'react-native';
 import {createOpenLink} from 'react-native-open-maps';
+import Icon from 'react-native-vector-icons/FontAwesome';//maybe delete?
+import {IconButton, Colors} from 'react-native-paper';
 import {clinicLst} from '../clinicData/clinicLookupData';
 
 export default class ScrollViewTEST extends Component{
@@ -11,9 +13,10 @@ export default class ScrollViewTEST extends Component{
         <Text style={styles.addrStyle}>{item.addr}</Text>
       </View>
       <View style={styles.buttonStyle}>
-        <Button
-          color={'#0077bb'}
-          title="Map"
+        <IconButton
+          icon={"explore"}
+          size={30}
+          color={Colors.grey600}
           onPress={createOpenLink({query:(item.addr)})}
         />
       </View>
@@ -44,11 +47,12 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
-    paddingTop: 20,
-    paddingBottom: 20,
+    paddingTop: 0,
+    paddingBottom: 0,
     paddingLeft: 5,
     paddingRight: 5,
-    margin: 2
+    marginTop: 20,
+    width: 300
     //borderColor: '#2a4944',
     //borderWidth: 1,
     //backgroundColor: '#d2f7f1'
@@ -58,10 +62,6 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    paddingTop: 20,
-    paddingBottom: 20,
-    paddingLeft: 5,
-    paddingRight: 5,
     margin: 2,
     width: 100,
     height: 100
@@ -69,12 +69,19 @@ const styles = StyleSheet.create({
   
   nameStyle:{
     fontWeight: 'bold',
+    fontSize: 15,
     color: '#ffffff'
   },
 
   addrStyle:{
     color: '#bbbbbb'
   }/*,
+
+  <Button
+          color={'#0077bb'}
+          title="Map"
+          onPress={createOpenLink({query:(item.addr)})}
+        />
 
   mainViewStyle:{
     margin: 50, height: 5000
