@@ -60,7 +60,7 @@ const { width } = Dimensions.get('window');
 
     mainViewContainer : {
       flex : 1,
-      backgroundColor : 'blue'
+      // backgroundColor : 'blue'
     },
 
     titleParent : {
@@ -70,7 +70,7 @@ const { width } = Dimensions.get('window');
       justifyContent : 'space-around',
       paddingTop : 10,
       textAlign : 'center',
-      backgroundColor : 'orange'
+      // backgroundColor : 'orange'
     } ,
 
     title: {
@@ -97,20 +97,20 @@ const { width } = Dimensions.get('window');
     tileFlexMain : {
       flex : 4,
       alignItems : 'center',
-      backgroundColor : 'purple',
+      // backgroundColor : 'purple',
       justifyContent : 'space-around'
     }, 
 
     tileFlexHorizontal1 : {
       flex : 1,
       justifyContent : 'center',
-      backgroundColor : 'yellow',
+      // backgroundColor : 'yellow',
       padding : 15
     },
 
     tileFlexHorizontal2 : {
       flex : 2,
-      backgroundColor : 'yellow',
+      // backgroundColor : 'yellow',
       flexDirection : 'row',
       justifyContent : 'center',
       paddingBottom : 80
