@@ -14,19 +14,21 @@ import HomeScreen from '../home';
 import {Action} from 'react-native-router-flux';
 import {Content, List, ListItem} from 'native-base';
 import {HomeData} from '../modalityData/modality_pros_n_cons';
+import {modalityStyles} from './modality_style';
 
 class SectionListItem extends Component {
   render() {
 
       return (
-        <View>
-          <Text style={styles.data_txt}>
+        <View style={{width: Dimensions.get('window').width - 50}}>
+          <Text style={modalityStyles.data_txt}>
             {this.props.item.description}
           </Text>
           <View style= {{
           backgroundColor: 'white',
           height: 1,
-          marginRight: 4
+          width: Dimensions.get('window').width - 50,
+          margin: 5
         }}></View>
         </View>
       );
@@ -38,7 +40,7 @@ class SectionHeader extends Component {
 
       return (
         <View>
-          <Text style={styles.header}>
+          <Text style={modalityStyles.header}>
             {this.props.section.title}
           </Text>
         </View>
@@ -59,16 +61,28 @@ class HomeHemo extends Component {
     return (
       <View>
       <ScrollView>
-       <View style={styles.container}>
-      	<Text style={styles.header}>What is Home Hemodialysis?</Text>
-      	<Text style={styles.important_txt}>Home Hemodialysis is a home dialysis option. 
+       <View style={modalityStyles.container}>
+      	<Text style={modalityStyles.header}>What is Home Hemodialysis?</Text>
+      	<View style= {{
+          backgroundColor: 'white',
+          height: 1,
+          width: (Dimensions.get('window').width) - 100,
+          marginBottom: 20
+        }}></View>
+        <Text style={modalityStyles.important_txt}>Home Hemodialysis is a home dialysis option. 
           Hemodialysis is a treatment that replaces the work of your own kidneys to remove wastes and 
           extra fluid from your bloodstream. This is done using a special filter called a dialyzer or 
           artificial kidney. You can do hemodialysis at home by yourself or with a care partner. This allows 
           you to fit your treatments within a schedule. You along with your care partner will receive training at 
           your local dialysis center in order to safely perform these treatments at home.</Text>
-        <Text style={styles.header}>How does it Work?</Text>
-        <Text style={styles.important_txt}>You will need surgery to create an access for hemodialysis. This access is 
+        <Text style={modalityStyles.header}>How does it Work?</Text>
+        <View style= {{
+          backgroundColor: 'white',
+          height: 1,
+          width: (Dimensions.get('window').width) - 100,
+          marginBottom: 20
+        }}></View>
+        <Text style={modalityStyles.important_txt}>You will need surgery to create an access for hemodialysis. This access is 
           quite literally, your lifeline; a way to reach your bloodstream and be able to clean your blood using the 
           dialysis machine and return it safely back to your body. There are three types of access sites for home hemodialysis: 
           fistula, graft or catheter. Fistula is considered the best option for people because it is your own blood vessels 
@@ -89,45 +103,13 @@ class HomeHemo extends Component {
           >
 
           </SectionList> 
+          <View style={{flex: 0.2, paddingBottom: 50}}>
+          </View>
        </View>
       </ScrollView>
       </View>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
-    backgroundColor: '#A52A2A',
-    width: Dimensions.get('window').width,
-    height: (Dimensions.get('window').height*2),
-    paddingTop: 60,
-    paddingLeft: 20
-  },
-  header: {
-    fontSize: 30,
-    paddingBottom: 15,
-    fontFamily: 'Verdana',
-    color: 'white'
-  },
-  important_txt: {
-    fontSize: 15,
-    paddingBottom: 20,
-    fontFamily: 'Arial',
-    color: 'white',
-    textAlign: 'left',
-    paddingRight: 10
-  },
-  data_txt: {
-    fontSize: 15,
-    paddingTop: 20,
-    paddingBottom: 20,
-    fontFamily: 'Arial',
-    color: 'white'
-  }
-});
 
 export default HomeHemo;

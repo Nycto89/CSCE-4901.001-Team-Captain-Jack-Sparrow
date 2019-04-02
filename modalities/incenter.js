@@ -14,19 +14,21 @@ import HomeScreen from '../home';
 import {Action} from 'react-native-router-flux';
 import {Content, List, ListItem} from 'native-base';
 import {InCenterData} from '../modalityData/modality_pros_n_cons';
+import {modalityStyles} from './modality_style';
 
 class SectionListItem extends Component {
   render() {
 
       return (
-        <View>
-          <Text style={styles.data_txt}>
+        <View style={{width: Dimensions.get('window').width - 50}}>
+          <Text style={modalityStyles.data_txt}>
             {this.props.item.description}
           </Text>
           <View style= {{
           backgroundColor: 'white',
           height: 1,
-          marginRight: 4
+          width: Dimensions.get('window').width - 50,
+          margin: 5
         }}></View>
         </View>
       );
@@ -38,7 +40,7 @@ class SectionHeader extends Component {
 
       return (
         <View>
-          <Text style={styles.header}>
+          <Text style={modalityStyles.header}>
             {this.props.section.title}
           </Text>
         </View>
@@ -59,21 +61,39 @@ class Incenter extends Component {
     return (
       <View>
       <ScrollView>
-       <View style={styles.container}>
-      	<Text style={styles.header}>What is In-Center Hemodialysis?</Text>
-      	<Text style={styles.important_txt}>In-Center Hemodialysis is a procedure where you go 
+       <View style={modalityStyles.container}>
+      	<Text style={modalityStyles.header}>What is In-Center Hemodialysis?</Text>
+        <View style= {{
+          backgroundColor: 'white',
+          height: 1,
+          width: (Dimensions.get('window').width) - 100,
+          marginBottom: 20
+        }}></View>
+      	<Text style={modalityStyles.important_txt}>In-Center Hemodialysis is a procedure where you go 
           to a dialysis clinic 3 days per week in order to have your blood cleaned of waste 
           products and excess fluids. These treatments last anywhere from 3 to 5 hours for daytime 
-          hemodialysis or around 8 hours for nocturnal (nighttime) hemodialysis.</Text>
-        <Text style={styles.header}>How does it Work?</Text>
-        <Text style={styles.important_txt}>Before treatment can begin, you will need a surgical 
+          hemodialysis or around 8 hours for nocturnal (night-time) hemodialysis.</Text>
+        <Text style={modalityStyles.header}>How does it Work?</Text>
+        <View style= {{
+          backgroundColor: 'white',
+          height: 1,
+          width: (Dimensions.get('window').width) - 100,
+          marginBottom: 20
+        }}></View>
+        <Text style={modalityStyles.important_txt}>Before treatment can begin, you will need a surgical 
           procedure that creates an access site under your skin. This site allows blood to flow from 
           your body to the dialysis machine for filtering and then returns to your body cleaned. There 
           are three types of hemodialysis access options: a fistula, graft or catheter. Fistula is 
           considered the best option for people because it is your own blood vessels and has less risk 
           of infection and clotting issues.</Text>
-        <Text style={styles.header}>The Routine for Hemodialysis</Text>
-        <Text style={styles.important_txt}>1) Go to dialysis center. Your weight will be checked to see 
+        <Text style={modalityStyles.header}>The Routine for Hemodialysis</Text>
+        <View style= {{
+          backgroundColor: 'white',
+          height: 1,
+          width: (Dimensions.get('window').width) - 100,
+          marginBottom: 20
+        }}></View>
+        <Text style={modalityStyles.important_txt}>1) Go to dialysis center. Your weight will be checked to see 
                                            how much fluid needs to be removed by dialysis. {'\n'}
                                            2) Wash access site to prevent infection.{'\n'}
                                            3) A dialysis center professional will take your blood pressure, 
@@ -105,45 +125,13 @@ class Incenter extends Component {
           >
 
           </SectionList>
+          <View style={{flex: 0.2, paddingBottom: 50}}>
+          </View>
        </View>
       </ScrollView>
       </View>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
-    backgroundColor: '#A52A2A',
-    width: Dimensions.get('window').width,
-    height: (Dimensions.get('window').height*2),
-    paddingTop: 60,
-    paddingLeft: 20
-  },
-  header: {
-    fontSize: 30,
-    paddingBottom: 15,
-    fontFamily: 'Verdana',
-    color: 'white'
-  },
-  important_txt: {
-    fontSize: 15,
-    paddingBottom: 20,
-    fontFamily: 'Arial',
-    color: 'white',
-    textAlign: 'left',
-    paddingRight: 10
-  },
-  data_txt: {
-    fontSize: 15,
-    paddingTop: 20,
-    paddingBottom: 20,
-    fontFamily: 'Arial',
-    color: 'white'
-  }
-});
 
 export default Incenter;

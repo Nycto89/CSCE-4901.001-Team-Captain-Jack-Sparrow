@@ -14,31 +14,16 @@ import HomeScreen from '../home';
 import {Action} from 'react-native-router-flux';
 import {Content, List, ListItem} from 'native-base';
 import {PeritonealData} from '../modalityData/modality_pros_n_cons';
-
-class SectionListItem extends Component {
-  render() {
-
-      return (
-        <View>
-          <Text style={styles.data_txt}>
-            {this.props.item.description}
-          </Text>
-          <View style= {{
-          backgroundColor: 'white',
-          height: 1,
-          marginRight: 4
-        }}></View>
-        </View>
-      );
-  }
-}
+import {modalityStyles} from './modality_style';
+import {connect} from 'react-redux';
+import SectionListItem from './sectionlistitem';
 
 class SectionHeader extends Component {
   render() {
 
       return (
         <View>
-          <Text style={styles.header}>
+          <Text style={modalityStyles.header}>
             {this.props.section.title}
           </Text>
         </View>
@@ -52,40 +37,60 @@ class Peritoneal extends Component {
 
   render() {
 
-    const {navigate} = this.props.navigation;
-
-    console.log(this.props.navigation)
-
     return (
       <View>
       <ScrollView>
-       <View style={styles.container}>
-      	<Text style={styles.header}>What is Peritoneal Dialysis?</Text>
-      	<Text style={styles.important_txt}>Peritoneal Dialysis or PD is a home dialysis option. 
+       <View style={modalityStyles.container}>
+      	<Text style={modalityStyles.header}>What is Peritoneal Dialysis?</Text>
+        <View style= {{
+          backgroundColor: 'white',
+          height: 1,
+          width: (Dimensions.get('window').width) - 100,
+          marginBottom: 20
+        }}></View>
+      	<Text style={[modalityStyles.important_txt, {fontSize: this.props.fontProp.fontVal, overflow: 'hidden', lineHeight: 50}]}>Peritoneal Dialysis or PD is a home dialysis option. 
         In PD, the inside lining of your own belly acts as a natural filter. A cleansing fluid called 
         Dialysate, washes in and out of your abdominal cavity in cycles, which removes fluids and 
         waste products.</Text>
-        <Text style={styles.header}>How does Peritoneal Dialysis Work?</Text>
-        <Text style={styles.important_txt}>A soft plastic tube is placed in your belly through surgery. 
+        <Text style={modalityStyles.header}>How does Peritoneal Dialysis Work?</Text>
+        <View style= {{
+          backgroundColor: 'white',
+          height: 1,
+          width: (Dimensions.get('window').width) - 100,
+          marginBottom: 20
+        }}></View>
+        <Text style={[modalityStyles.important_txt, {fontSize: this.props.fontProp.fontVal, overflow: 'hidden', lineHeight: 50}]}>A soft plastic tube is placed in your belly through surgery. 
             Dialysate is moved in and out of your belly through this catheter. When the solution is inside 
             your body, it draws excess fluids and waste products from your system and then is drained out 
             through the catheter. </Text>
-        <Text style={styles.header}>Where to Start</Text>
-        <Text style={styles.important_txt}>Receiving a PD catheter requires outpatient surgery; 
+        <Text style={modalityStyles.header}>Where to Start</Text>
+        <View style= {{
+          backgroundColor: 'white',
+          height: 1,
+          width: (Dimensions.get('window').width) - 100,
+          marginBottom: 20
+        }}></View>
+        <Text style={[modalityStyles.important_txt, {fontSize: this.props.fontProp.fontVal, overflow: 'hidden', lineHeight: 50}]}>Receiving a PD catheter requires outpatient surgery; 
             patients usually go home on the same day. It may require healing within a few weeks, 
             but the catheter may be used almost immediately.</Text>
-        <Text style={styles.header}>There are two types of Peritoneal Dialysis:</Text>
-        <View style={styles.subheadingView}>
-         <Text style={styles.subheading}> 1) Continuous Ambulatory Peritoneal Dialysis (CAPD) - </Text>
+        <Text style={modalityStyles.header}>There are two types of Peritoneal Dialysis:</Text>
+        <View style= {{
+          backgroundColor: 'white',
+          height: 1,
+          width: (Dimensions.get('window').width) - 100,
+          marginBottom: 20
+        }}></View>
+        <View style={modalityStyles.subheadingView}>
+              <Text style={modalityStyles.subheading}>Continuous Ambulatory Peritoneal Dialysis (CAPD)</Text>
          </View>
-         <Text style={styles.important_txt}> “continuous”, machine-free dialysis where exchanges 
+         <Text style={[modalityStyles.important_txt, {fontSize: this.props.fontProp.fontVal, overflow: 'hidden', lineHeight: 50}]}> A “continuous”, machine-free dialysis where exchanges 
            of dialysate are done 4 to 5 times a day while the patient is awake and doing normal 
            activities. Each exchange takes about 30 minutes. The fluid containing the wastes 
            removed from your body is drained out and replaced by fresh dialysate. </Text>
-           <View style={styles.subheadingView}>  
-           <Text style={styles.subheading}> 2) Automated Peritoneal Dialysis (APD) -</Text>  
+           <View style={modalityStyles.subheadingView}>  
+           <Text style={modalityStyles.subheading}>Automated Peritoneal Dialysis (APD)</Text>  
           </View>
-          <Text style={styles.important_txt}> A machine called a Cycler delivers and then drains 
+          <Text style={[modalityStyles.important_txt, {fontSize: this.props.fontProp.fontVal, overflow: 'hidden', lineHeight: 50}]}> A machine called a Cycler delivers and then drains 
             the solution for you. The treatment is usually done at night while you sleep. Your 
             physician may order you to keep fluid dwelling during the day in addition to your cycles 
             at night depending on how much dialysis you need. </Text>
@@ -105,6 +110,8 @@ class Peritoneal extends Component {
           >
 
           </SectionList>
+          <View style={{flex: 0.2, paddingBottom: 50}}>
+          </View>
           </View>
       </ScrollView>
       </View>
@@ -112,49 +119,11 @@ class Peritoneal extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
-    backgroundColor: '#A52A2A',
-    width: Dimensions.get('window').width,
-    height: (Dimensions.get('window').height*3),
-    paddingTop: 60,
-    paddingLeft: 20
-  },
-  header: {
-    fontSize: 30,
-    paddingBottom: 15,
-    fontFamily: 'Verdana',
-    color: 'white'
-  },
-  important_txt: {
-    fontSize: 15,
-    paddingBottom: 20,
-    fontFamily: 'Arial',
-    color: 'white',
-    textAlign: 'left',
-    paddingRight: 10
-  },
-  subheading: {
-    fontSize: 25,
-    color: '#A52A2A',
-    paddingBottom: 20
-  },
-  subheadingView: {
-    borderRadius: 20,
-    borderWidth: 5,
-    borderColor: 'white',
-    backgroundColor: 'white'
-  },
-  data_txt: {
-    fontSize: 15,
-    paddingTop: 20,
-    paddingBottom: 20,
-    fontFamily: 'Arial',
-    color: 'white'
-  }
-});
+function mapStateToProps(state) {
+  return {
+  fontProp: state.fontProps
+  };
+}
 
-export default Peritoneal;
+connect(mapStateToProps)(SectionListItem);
+export default connect(mapStateToProps)(Peritoneal);
