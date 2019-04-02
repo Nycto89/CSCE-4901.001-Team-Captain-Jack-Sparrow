@@ -1,49 +1,45 @@
 import React, {Component} from 'react';
 import { StyleSheet, View, Image, Text, TouchableHighlight, Dimensions } from 'react-native';
+import {Actions} from 'react-native-router-flux';
+
+import HomeCarousel from '../carousel';
 
 const { width } = Dimensions.get('window');
 
   class HomeScreen extends React.Component {
-    static navigationOptions = {
-      title: 'Home' , 
-      header : null,
-  
-    };
+    
     render() {
       return (
         <View style={styles.mainViewContainer}>
-          <View style={styles.titleParent}>
-
-            <Text style={styles.title}>App Name</Text>
-          </View>
           
           <View style={styles.picFlex}>
-                <Image source={require('../images/harold2.jpg')} style={styles.pic} resizeMode='contain' />
+              <HomeCarousel />
+                {/* <Image source={require('../images/harold2.jpg')} style={styles.pic} resizeMode='contain' /> */}
           </View>
 
           <View style={styles.tileFlexMain}>
 
             <View style={styles.tileFlexHorizontal1} >
               <TouchableHighlight
-                onPress={ () => this.props.navigation.navigate('Modalities')}>
+                onPress={ () => Actions.ModalityMainScreen()}>
                 <Image source={require('../images/modalities.png')} style={styles.tile1}/>
             </TouchableHighlight>
             </View>
 
             <View style={styles.tileFlexHorizontal1} >
               <TouchableHighlight
-                onPress={ () => this.props.navigation.navigate('InfoPage')}>
+                onPress={ () => Actions.InfoPage()}>
                 <Image source={require('../images/kidneyinfo.png')} style={styles.tile1}/>
             </TouchableHighlight>
             </View>
 
             <View style={styles.tileFlexHorizontal2} >
               <TouchableHighlight
-                onPress={ () => this.props.navigation.navigate('Calendar')}>
+                onPress={ () => Actions.CalendarPage()}>
                 <Image source={require('../images/calendaricon.png')} style={styles.tile2}/>
               </TouchableHighlight>
               <TouchableHighlight
-                onPress={ () => this.props.navigation.navigate('ClinicFinder')}>
+                onPress={ () => Actions.ClinicFinder()}>
                 <Image source={require('../images/findericon.png')} style={styles.tile2}/>
             </TouchableHighlight>
 
@@ -63,15 +59,15 @@ const { width } = Dimensions.get('window');
       // backgroundColor : 'blue'
     },
 
-    titleParent : {
-      flex : 1,
-      flexDirection : 'row',
-      alignItems : 'stretch',
-      justifyContent : 'space-around',
-      paddingTop : 10,
-      textAlign : 'center',
-      // backgroundColor : 'orange'
-    } ,
+    // titleParent : {
+    //   flex : 1,
+    //   flexDirection : 'row',
+    //   alignItems : 'stretch',
+    //   justifyContent : 'space-around',
+    //   paddingTop : 10,
+    //   textAlign : 'center',
+    //   // backgroundColor : 'orange'
+    // } ,
 
     title: {
       height : 30,
