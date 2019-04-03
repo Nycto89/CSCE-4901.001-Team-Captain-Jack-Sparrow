@@ -1,9 +1,12 @@
 import React from 'react';
-import { View, Text, StyleSheet, Animated, Dimensions, Button, Slider, Switch } from 'react-native';
+import { View, Text, StyleSheet, Animated, Dimensions, Button, Slider} from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import Lightbox from './BaseLightbox';
 import FontSlider from '../reducers/slider_container';
 import { connect } from 'react-redux';
+import { Switch } from 'react-native-switch';
+import {bindActionCreators} from 'redux';
+import {switchThemes} from '../actions/index';
 
 const styles = StyleSheet.create({
   container: {
@@ -32,7 +35,7 @@ class SettingsLightbox extends React.Component{
    } 
 
    getTheme(){
-     return (this.state.colorSwitchValue ? 'Dark' : 'Light');
+     return (this.props.themeProp.themeType ? 'Dark' : 'Light');
    }
 
    getVal(val){
@@ -42,8 +45,10 @@ class SettingsLightbox extends React.Component{
   
 
     toggleColorSwitch = (value) => {
-      this.setState({colorSwitchValue : !this.state.colorSwitchValue})
-      console.log('Color switch is: ' + this.state.colorSwitchValue)
+      this.setState(() =>{
+        this.props.switchThemes();
+    });
+      console.log('Color switch is: ' + this.props.themeProp.themeType)
    }
 
     render(){
@@ -59,8 +64,12 @@ class SettingsLightbox extends React.Component{
                 </View>
                 <View style={styles.colorSwitchContainer}>
                   <Text> Light / Dark Theme </Text>
-                  <Switch onValueChange = {this.toggleColorSwitch}
-                          value = {this.state.colorSwitchValue}/>
+                  <Switch 
+                          value = {this.props.themeProp.themeType}
+                          onValueChange = {this.toggleColorSwitch}
+                          backgroundActive = {'#222222'}
+                          backgroundInactive = {'#ecebea'}
+                          />
                   <Text> Current theme: {this.getTheme()} </Text> 
                 </View>
                 {/* <Text>Settings Lightbox {this.props.data}</Text> */}
@@ -71,9 +80,14 @@ class SettingsLightbox extends React.Component{
 
 function mapStateToProps(state) {
   return {
-  fontProp: state.fontProps
+  fontProp: state.fontProps,
+  themeProp: state.themeProps
   };
 }
 
-export default connect(mapStateToProps)(SettingsLightbox);
+function matchDispatchToProps(dispatch){
+  return bindActionCreators({switchThemes: switchThemes}, dispatch)
+}
+
+export default connect(mapStateToProps, matchDispatchToProps)(SettingsLightbox);
 

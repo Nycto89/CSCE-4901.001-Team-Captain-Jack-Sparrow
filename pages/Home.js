@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { StyleSheet, View, Image, Text, TouchableHighlight, Dimensions } from 'react-native';
 import {Actions} from 'react-native-router-flux';
+import {connect} from 'react-redux';
 
 import HomeCarousel from '../carousel';
 
@@ -12,12 +13,12 @@ const { width } = Dimensions.get('window');
       return (
         <View style={styles.mainViewContainer}>
           
-          <View style={styles.picFlex}>
+          <View style={[styles.picFlex, {backgroundColor : this.props.themeProp.backgroundColor}]}>
               <HomeCarousel />
                 {/* <Image source={require('../images/harold2.jpg')} style={styles.pic} resizeMode='contain' /> */}
           </View>
 
-          <View style={styles.tileFlexMain}>
+          <View style={[styles.tileFlexMain, {backgroundColor : this.props.themeProp.backgroundColor}]}>
 
             <View style={styles.tileFlexHorizontal1} >
               <TouchableHighlight
@@ -78,8 +79,7 @@ const { width } = Dimensions.get('window');
     picFlex: {
       flex: 3,
       width : null ,
-      height : null ,
-      backgroundColor : 'grey'
+      height : null 
     } ,
 
     pic: {
@@ -93,20 +93,17 @@ const { width } = Dimensions.get('window');
     tileFlexMain : {
       flex : 4,
       alignItems : 'center',
-      // backgroundColor : 'purple',
       justifyContent : 'space-around'
     }, 
 
     tileFlexHorizontal1 : {
       flex : 1,
       justifyContent : 'center',
-      // backgroundColor : 'yellow',
       padding : 15
     },
 
     tileFlexHorizontal2 : {
       flex : 2,
-      // backgroundColor : 'yellow',
       flexDirection : 'row',
       justifyContent : 'center',
       paddingBottom : 80
@@ -129,5 +126,13 @@ const { width } = Dimensions.get('window');
     }
     
   }); 
-  export default HomeScreen;
+
+  function mapStateToProps(state) {
+    return {
+    themeProp: state.themeProps
+    };
+  }
+
+
+  export default connect(mapStateToProps)(HomeScreen);
   

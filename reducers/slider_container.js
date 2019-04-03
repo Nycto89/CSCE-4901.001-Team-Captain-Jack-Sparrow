@@ -47,7 +47,7 @@ class FontSlider extends Component {
                 maximumValue={50}
                 minimumValue={25}
                 onValueChange={this.change.bind(this)}
-                value={value}
+                value={this.props.fontProp.fontVal}
                 trackStyle={{width: 250}}
                 style={{
                  margin: 15}}
