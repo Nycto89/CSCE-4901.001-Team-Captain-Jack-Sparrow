@@ -148,13 +148,13 @@ export default class MainNavigator extends Component {
 
   const styles = StyleSheet.create({
     navBar : {
-      // backgroundColor: 'red', // changing navbar color
+      backgroundColor: 'grey', // changing navbar color
     }, 
     navBarTitleStyle: {
       // centering for Android
      flex: 1,
      textAlign: 'center',
-     color: 'blue'
+     color: 'blue',
     },
     routerScene: {
       // paddingTop : 0

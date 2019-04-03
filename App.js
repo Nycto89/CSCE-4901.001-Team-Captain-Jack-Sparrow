@@ -14,10 +14,19 @@ View, Image, PanResponder } from 'react-native';
 import {Actions} from 'react-native-router-flux';
 import AppContainer from './Navigator.js';
 import {connect, Provider} from 'react-redux';
+
 import {createStore} from 'redux';
 import allReducers from './reducers/index';
 
-const store = createStore(allReducers);
+import { store, persistor } from './reducers/configureStore';
+// import persistor from './reducers/configureStore';
+
+// import configuredStore from './reducers/configureStore';
+
+import { PersistGate } from 'redux-persist/integration/react';
+
+//const store = createStore(allReducers);
+
 
 import MainNavigator from './Navigator.js';
 
@@ -25,7 +34,9 @@ export default class App extends Component{
   render() {
     return (
       <Provider store={store}>
-        <MainNavigator/>
+        <PersistGate loading={null} persistor={persistor}>
+          <MainNavigator/>
+        </PersistGate>
       </Provider>
     )
   }

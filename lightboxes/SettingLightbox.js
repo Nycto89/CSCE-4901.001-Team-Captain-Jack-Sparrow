@@ -37,9 +37,7 @@ class SettingsLightbox extends React.Component{
 
    getVal(val){
     console.log(val);
-    }  
-
-  
+    }    
 
     toggleColorSwitch = (value) => {
       this.setState({colorSwitchValue : !this.state.colorSwitchValue})
@@ -60,7 +58,8 @@ class SettingsLightbox extends React.Component{
                 <View style={styles.colorSwitchContainer}>
                   <Text> Light / Dark Theme </Text>
                   <Switch onValueChange = {this.toggleColorSwitch}
-                          value = {this.state.colorSwitchValue}/>
+                          value = {this.state.colorSwitchValue}
+                          />
                   <Text> Current theme: {this.getTheme()} </Text> 
                 </View>
                 {/* <Text>Settings Lightbox {this.props.data}</Text> */}
