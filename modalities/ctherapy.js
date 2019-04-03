@@ -13,6 +13,8 @@ import {DrawerActions} from 'react-navigation';
 import HomeScreen from '../home';
 import {Action} from 'react-native-router-flux';
 import {Content, List, ListItem} from 'native-base';
+import {modalityStyles} from './modality_style';
+import {connect} from 'react-redux';
 
 
 class Therapy extends Component {
@@ -26,9 +28,16 @@ class Therapy extends Component {
     return (
       <View>
       <ScrollView>
-       <View style={styles.container}>
-      	<Text style={styles.header}>What does Conservative Therapy mean?</Text>
-      	<Text style={styles.important_txt}>The option of choosing not to perform 
+       <View style={modalityStyles.container}>
+      	<Text style={modalityStyles.header}>What is Conservative Therapy?</Text>
+        <View style= {{
+          backgroundColor: 'white',
+          height: 1,
+          width: (Dimensions.get('window').width) - 100,
+          marginBottom: 20
+        }}></View>
+      	<Text style={[modalityStyles.important_txt, {fontSize: this.props.fontProp.fontVal, overflow: 'hidden', lineHeight: 50}]}>
+          The option of choosing not to perform 
           dialysis is entirely up to you. There may be times when dialysis isn’t 
           the right choice for someone with kidney disease. If you decide not to 
           perform dialysis, you may opt for conservative therapy or conservative 
@@ -49,8 +58,10 @@ class Therapy extends Component {
             {backgroundColor: 'white',
             height: 1,
             marginRight: 4}}></View>
-          <Text style={styles.paramount_line}>Remember it’s your life and your decision, but it’s important to 
+          <Text style={[modalityStyles.paramount_line, {fontSize: this.props.fontProp.fontVal, overflow: 'hidden', lineHeight: 50}]}>Remember it’s your life and your decision, but it’s important to 
             weigh all your options to make an informed choice.</Text>
+            <View style={{flex: 0.2, paddingBottom: 50}}>
+          </View>
        </View>
       </ScrollView>
       </View>
@@ -58,39 +69,10 @@ class Therapy extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
-    backgroundColor: '#A52A2A',
-    width: Dimensions.get('window').width,
-    height: (Dimensions.get('window').height*2),
-    paddingTop: 60,
-    paddingLeft: 20
-  },
-  header: {
-    fontSize: 30,
-    paddingBottom: 15,
-    fontFamily: 'Verdana',
-    color: 'white'
-  },
-  important_txt: {
-    fontSize: 15,
-    paddingBottom: 20,
-    fontFamily: 'Arial',
-    color: 'white',
-    textAlign: 'left',
-    paddingRight: 10,
-    lineHeight: 30
-  },
-  paramount_line: {
-    fontSize: 20,
-    padding: 30,
-    fontWeight: 'bold',
-    color: 'white',
-    textAlign: 'center'
-  }
-});
+function mapStateToProps(state) {
+  return {
+  fontProp: state.fontProps
+  };
+}
 
-export default Therapy;
+export default connect(mapStateToProps)(Therapy);

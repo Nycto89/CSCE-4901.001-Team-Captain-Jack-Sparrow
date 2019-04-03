@@ -4,6 +4,8 @@ Platform, StyleSheet, Text,
 View, Image, PanResponder } from 'react-native';
 import {Actions} from 'react-native-router-flux';
 import {Content, List, ListItem} from 'native-base';
+import Transplant from './modalities/transplant';
+import FontSlider from './modalityData/slider_container';
 
 export default class DrawerMenu extends React.Component {
 
@@ -29,7 +31,7 @@ export default class DrawerMenu extends React.Component {
                                 <Text>In-Center Hemodialysis</Text>
                             </ListItem>
                             <ListItem onPress={() => Actions.drawer4()}>
-                                <Text>Overnight Dialysis</Text>
+                                <Text>Nocturnal Dialysis</Text>
                             </ListItem>
                             <ListItem onPress={() => Actions.drawer5()}>
                                 <Text>Home Hemodialysis</Text>
@@ -38,12 +40,15 @@ export default class DrawerMenu extends React.Component {
                                 <Text>Conservative Therapy</Text>
                             </ListItem>
                         </List>
+                        <Text style={{paddingLeft: 15, paddingTop: 15}}>Settings</Text>
+                        <Text style={{color: 'red', paddingLeft: 15, paddingTop: 15}}>
+                            Font Size</Text>
+                        <FontSlider/>
                     </Content>
                 </View>
             </View>
         )
     }
-
 }
 
 const styles = StyleSheet.create({

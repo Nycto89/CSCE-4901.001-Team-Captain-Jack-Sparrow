@@ -13,11 +13,18 @@ Platform, StyleSheet, Text,
 View, Image, PanResponder } from 'react-native';
 import {Actions} from 'react-native-router-flux';
 import AppContainer from './Navigator.js';
+import {connect, Provider} from 'react-redux';
+import {createStore} from 'redux';
+import allReducers from './modalityData/index';
+
+const store = createStore(allReducers);
 
 export default class App extends Component{
   render() {
     return (
+      <Provider store={store}>
         <AppContainer/>
+      </Provider>
     )
   }
 }

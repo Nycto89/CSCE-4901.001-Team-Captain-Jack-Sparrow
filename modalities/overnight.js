@@ -14,31 +14,16 @@ import HomeScreen from '../home';
 import {Action} from 'react-native-router-flux';
 import {Content, List, ListItem} from 'native-base';
 import {NightData} from '../modalityData/modality_pros_n_cons';
-
-class SectionListItem extends Component {
-  render() {
-
-      return (
-        <View>
-          <Text style={styles.data_txt}>
-            {this.props.item.description}
-          </Text>
-          <View style= {{
-          backgroundColor: 'white',
-          height: 1,
-          marginRight: 4
-        }}></View>
-        </View>
-      );
-  }
-}
+import {modalityStyles} from './modality_style';
+import {connect} from 'react-redux';
+import SectionListItem from './sectionlistitem';
 
 class SectionHeader extends Component {
   render() {
 
       return (
         <View>
-          <Text style={styles.header}>
+          <Text style={modalityStyles.header}>
             {this.props.section.title}
           </Text>
         </View>
@@ -59,14 +44,26 @@ class Overnight extends Component {
     return (
       <View>
       <ScrollView>
-       <View style={styles.container}>
-      	<Text style={styles.header}>What is Nocturnal Dialysis?</Text>
-      	<Text style={styles.important_txt}>Nocturnal or Overnight Dialysis is a slower, longer hemodialysis 
+       <View style={modalityStyles.container}>
+      	<Text style={modalityStyles.header}>What is Nocturnal Dialysis?</Text>
+        <View style= {{
+          backgroundColor: 'white',
+          height: 1,
+          width: (Dimensions.get('window').width) - 100,
+          marginBottom: 20
+        }}></View>
+      	<Text style={[modalityStyles.important_txt, {fontSize: this.props.fontProp.fontVal, overflow: 'hidden', lineHeight: 50}]}>Nocturnal or Overnight Dialysis is a slower, longer hemodialysis 
           treatment that takes place at night while you sleep. This longer treatment is for six to eight hours, 
           three times a week. This process requires that you sleep at the dialysis center overnight. Dialysis 
           professionals who are skilled in performing hemodialysis, manage the treatments.</Text>
-        <Text style={styles.header}>How does it Work?</Text>
-        <Text style={styles.important_txt}>Before treatment can begin, you will need a surgical procedure that 
+        <Text style={modalityStyles.header}>How does it Work?</Text>
+        <View style= {{
+          backgroundColor: 'white',
+          height: 1,
+          width: (Dimensions.get('window').width) - 100,
+          marginBottom: 20
+        }}></View>
+        <Text style={[modalityStyles.important_txt, {fontSize: this.props.fontProp.fontVal, overflow: 'hidden', lineHeight: 50}]}>Before treatment can begin, you will need a surgical procedure that 
           creates an access site under your skin. This site allows blood to flow from your body to the dialysis 
           machine for filtering and then returns to your body cleaned. There are three types of hemodialysis access options: 
           a fistula, graft or catheter. Fistula is considered the best option for people because it is your own blood 
@@ -85,7 +82,9 @@ class Overnight extends Component {
                     keyExtractor={(item, index) => item.name}
           >
 
-          </SectionList>       
+          </SectionList>     
+          <View style={{flex: 0.2, paddingBottom: 50}}>
+          </View>  
        </View>
       </ScrollView>
       </View>
@@ -93,38 +92,11 @@ class Overnight extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
-    backgroundColor: '#A52A2A',
-    width: Dimensions.get('window').width,
-    height: (Dimensions.get('window').height*2),
-    paddingTop: 60,
-    paddingLeft: 20
-  },
-  header: {
-    fontSize: 30,
-    paddingBottom: 15,
-    fontFamily: 'Verdana',
-    color: 'white'
-  },
-  important_txt: {
-    fontSize: 15,
-    paddingBottom: 20,
-    fontFamily: 'Arial',
-    color: 'white',
-    textAlign: 'left',
-    paddingRight: 10
-  },
-  data_txt: {
-    fontSize: 15,
-    paddingTop: 20,
-    paddingBottom: 20,
-    fontFamily: 'Arial',
-    color: 'white'
-  }
-});
+function mapStateToProps(state) {
+  return {
+  fontProp: state.fontProps
+  };
+}
 
-export default Overnight;
+connect(mapStateToProps)(SectionListItem);
+export default connect(mapStateToProps)(Overnight);
