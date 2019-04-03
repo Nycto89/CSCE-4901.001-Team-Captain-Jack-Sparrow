@@ -19,14 +19,8 @@ import {createStore} from 'redux';
 import allReducers from './reducers/index';
 
 import { store, persistor } from './reducers/configureStore';
-// import persistor from './reducers/configureStore';
-
-// import configuredStore from './reducers/configureStore';
 
 import { PersistGate } from 'redux-persist/integration/react';
-
-//const store = createStore(allReducers);
-
 
 import MainNavigator from './Navigator.js';
 
