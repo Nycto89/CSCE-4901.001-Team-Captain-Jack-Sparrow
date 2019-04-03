@@ -12,14 +12,13 @@ ScrollView, Dimensions, ListView,
 SectionList, Image} from 'react-native';
 import {Button} from 'native-base';
 import {DrawerActions} from 'react-navigation';
-import HomeScreen from '../home';
+import ModalityHome from './home';
 import {Actions} from 'react-native-router-flux';
 import {Content, List, ListItem} from 'native-base';
-import {KidneyTransplant} from '../modalityData/modality_pros_n_cons';
-import {modalityStyles} from './modality_style';
-import {DrawerMenu} from '../drawers';
+import {KidneyTransplant} from './modalityData/modality_pros_n_cons';
+import {modalityStyles} from './modalityData/modality_style';
 import {connect} from 'react-redux';
-import SectionListItem from './sectionlistitem';
+import SectionListItem from './modalityData/sectionlistitem';
 
 var i_fontSize = 24;
 

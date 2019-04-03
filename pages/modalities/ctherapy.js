@@ -10,10 +10,10 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, ScrollView, Dimensions, ListView} from 'react-native';
 import {Button} from 'native-base';
 import {DrawerActions} from 'react-navigation';
-import HomeScreen from '../home';
+import ModalityHome from './home';
 import {Action} from 'react-native-router-flux';
 import {Content, List, ListItem} from 'native-base';
-import {modalityStyles} from './modality_style';
+import {modalityStyles} from './modalityData/modality_style';
 import {connect} from 'react-redux';
 
 

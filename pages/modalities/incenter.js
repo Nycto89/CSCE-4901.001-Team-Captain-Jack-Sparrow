@@ -10,13 +10,13 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, ScrollView, Dimensions, ListView, SectionList} from 'react-native';
 import {Button} from 'native-base';
 import {DrawerActions} from 'react-navigation';
-import HomeScreen from '../home';
+import ModalityHome from './home';
 import {Action} from 'react-native-router-flux';
 import {Content, List, ListItem} from 'native-base';
-import {InCenterData} from '../modalityData/modality_pros_n_cons';
-import {modalityStyles} from './modality_style';
+import {InCenterData} from './modalityData/modality_pros_n_cons';
+import {modalityStyles} from './modalityData/modality_style';
 import {connect} from 'react-redux';
-import SectionListItem from './sectionlistitem';
+import SectionListItem from './modalityData/sectionlistitem';
 
 class SectionHeader extends Component {
   render() {

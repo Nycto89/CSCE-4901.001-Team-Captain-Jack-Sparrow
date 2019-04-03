@@ -26,6 +26,8 @@
                                                       moduleName:@"app"
                                                initialProperties:nil
                                                    launchOptions:launchOptions];
+
+
   rootView.backgroundColor = [UIColor blackColor];
 
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
@@ -40,9 +42,10 @@
   #if RCT_DEV
     [bridge moduleForClass:[RCTDevLoadingView class]];
   #endif
-    RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge
-                                                    moduleName:@"Test"
-                                              initialProperties:nil];
+
+    // RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge
+    //                                                 moduleName:@"Test"
+    //                                           initialProperties:nil];
   return YES;
 }
 

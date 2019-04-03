@@ -15,55 +15,18 @@ import {Actions} from 'react-native-router-flux';
 import AppContainer from './Navigator.js';
 import {connect, Provider} from 'react-redux';
 import {createStore} from 'redux';
-import allReducers from './modalityData/index';
+import allReducers from './reducers/index';
 
 const store = createStore(allReducers);
+
+import MainNavigator from './Navigator.js';
 
 export default class App extends Component{
   render() {
     return (
       <Provider store={store}>
-        <AppContainer/>
+        <MainNavigator/>
       </Provider>
     )
   }
 }
-
-  /*constructor(props){
-    super(props)
-
-    this.position = new Animated.ValueXY()
-    this.state = {
-
-    }
-    this.rotate = this.position.x.interpolate({
-        inputRange: [-SCREEN_WIDTH,0,SCREEN_WIDTH],
-        outputRange: ['-50deg', '0deg', '50deg'],
-        extrapolate: 'clamp'
-
-    })
-
-    this.rotateAndTranslate = {
-      transform: [{
-        rotate: this.rotate
-      },
-      ...this.position.getTranslateTransform()
-    ]
-    }
-  }
-
-  componentWillMount(){
-      this.PanResponder = PanResponder.create({
-            onStartShouldSetPanResponder:(evt, gestureState) => true,
-            onPanResponderMove:(evt, gestureState) =>{
-              this.position.setValue({x:gestureState.dx, y:gestureState.dy})
-            },
-            onPanResponderRelease:(evt,gestureState) => {}
-      })
-
-
-  }
-
-  onPress = (id) => {
-    console.log(id)
-  }*/

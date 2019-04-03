@@ -5,7 +5,7 @@ import {Animated, TouchableHighlight, Dimensions,
 import Swiper from 'react-native-swiper';
 import {Actions} from 'react-native-router-flux';
 
-class HomeScreen extends Component {
+class ModalityHome extends Component {
 
     onPressLearnMore()
     {
@@ -23,9 +23,9 @@ class HomeScreen extends Component {
               <View style={{flex: 0.2, justifyContent: 'flex-start', paddingTop: 0, marginBottom: 10}}>
               <Text style={styles.headingText}>Kidney Transplant</Text>
               </View> 
-              <TouchableHighlight onPress= {() => Actions.drawer1()}>
+              <TouchableHighlight onPress= {() => Actions.KidneyTransplant()}>
               <View style={styles.circle}> 
-                <Image style={[styles.imageStyle, {aspectRatio: 4/3}]} source= {require('./images/transplant.png')} resizeMode="cover"/>
+                <Image style={[styles.imageStyle, {aspectRatio: 4/3}]} source= {require('../../images/transplant.png')} resizeMode="cover"/>
               </View>
               </TouchableHighlight>
         </View>
@@ -33,9 +33,9 @@ class HomeScreen extends Component {
               <View style={{flex: 0.2, justifyContent: 'flex-start', paddingTop: 0, marginBottom: 0}}>
               <Text style={styles.headingText}>Peritoneal Dialysis</Text>
               </View> 
-              <TouchableHighlight onPress= {() => Actions.drawer2()}>
+              <TouchableHighlight onPress= {() => Actions.PeritonealDialysis()}>
               <View style={styles.circle}>
-              <Image style={[styles.imageStyle, {aspectRatio: 385/378}]} source= {require('./images/peritoneal.png')} resizeMode="cover"/>
+              <Image style={[styles.imageStyle, {aspectRatio: 385/378}]} source= {require('../../images/peritoneal.png')} resizeMode="cover"/>
               </View>
               </TouchableHighlight>
         </View>
@@ -43,9 +43,9 @@ class HomeScreen extends Component {
             <View style={{flex: 0.2, justifyContent: 'flex-start', paddingTop: 0, marginBottom: 0}}>
               <Text style={styles.headingText}>In-Center Dialysis</Text>
             </View> 
-            <TouchableHighlight onPress= {() => Actions.drawer3()}>
+            <TouchableHighlight onPress= {() => Actions.InCenterHemodialysis()}>
             <View style={styles.circle}>
-            <Image style={[styles.imageStyle, {aspectRatio: 326/404}]} source= {require('./images/incenter.png')} resizeMode="cover"/>
+            <Image style={[styles.imageStyle, {aspectRatio: 326/404}]} source= {require('../../images/incenter.png')} resizeMode="cover"/>
             </View>
             </TouchableHighlight>
         </View>
@@ -53,9 +53,9 @@ class HomeScreen extends Component {
               <View style={{flex: 0.2, justifyContent: 'flex-start', paddingTop: 0, marginBottom: 0}}>
               <Text style={styles.headingText}>Nocturnal Dialysis</Text>
               </View> 
-            <TouchableHighlight onPress= {() => Actions.drawer4()}>
+            <TouchableHighlight onPress= {() => Actions.NocturnalDialysis()}>
             <View style={styles.circle}>
-            <Image style={[styles.imageStyle, {aspectRatio: 405/407}]} source= {require('./images/nocturnal.png')} resizeMode="cover"/>
+            <Image style={[styles.imageStyle, {aspectRatio: 405/407}]} source= {require('../../images/nocturnal.png')} resizeMode="cover"/>
             </View>
             </TouchableHighlight>
         </View>
@@ -63,9 +63,9 @@ class HomeScreen extends Component {
             <View style={{flex: 0.2, justifyContent: 'flex-start', paddingTop: 0, marginBottom: 0}}>
               <Text style={styles.headingText}>Home Hemodialysis</Text>
               </View> 
-            <TouchableHighlight onPress= {() => Actions.drawer5()}>
+            <TouchableHighlight onPress= {() => Actions.HomeHemodialysis()}>
             <View style={styles.circle}>
-            <Image style={[styles.imageStyle, {aspectRatio: 302/310}]} source= {require('./images/home_hemo.png')} resizeMode="cover"/>
+            <Image style={[styles.imageStyle, {aspectRatio: 302/310}]} source= {require('../../images/home_hemo.png')} resizeMode="cover"/>
             </View>
             </TouchableHighlight>
         </View>
@@ -73,9 +73,9 @@ class HomeScreen extends Component {
             <View style={{flex: 0.2, justifyContent: 'flex-start', paddingTop: 0, marginBottom: 20}}>
               <Text style={styles.headingText}>Conservative Therapy</Text>
               </View> 
-            <TouchableHighlight onPress= {() => Actions.drawer6()}>
+            <TouchableHighlight onPress= {() => Actions.ConservativeTherapy()}>
             <View style={styles.circle}>
-            <Image style={[styles.imageStyle, {aspectRatio: 342/337}]} source= {require('./images/conservative.png')} resizeMode="cover"/>
+            <Image style={[styles.imageStyle, {aspectRatio: 342/337}]} source= {require('../../images/conservative.png')} resizeMode="cover"/>
             </View>
             </TouchableHighlight>
         </View>
@@ -142,4 +142,4 @@ const styles = StyleSheet.create({
   });
   
 
-export default HomeScreen;
+export default ModalityHome;

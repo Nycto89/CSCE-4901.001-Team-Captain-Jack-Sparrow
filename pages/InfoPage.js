@@ -1,5 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
+import { ActionSheet } from 'native-base';
+import { Actions } from 'react-native-router-flux';
+
 
 export default class InfoPage extends React.Component {
   render() {
@@ -9,7 +12,7 @@ export default class InfoPage extends React.Component {
         <Button
           title="Back to home"
           onPress={() =>
-            this.props.navigation.navigate('Home')
+            Actions.HomeScreen({ type : "reset" })
           }
         />
       </View>
