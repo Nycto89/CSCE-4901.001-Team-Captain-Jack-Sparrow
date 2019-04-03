@@ -75,6 +75,6 @@ const styles = {
         //     rotate: '0deg'
         // }],
         width: width,
-        height: width
+        height: height
     }
 };
