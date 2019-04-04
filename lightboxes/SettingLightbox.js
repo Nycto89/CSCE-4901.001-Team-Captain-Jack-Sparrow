@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
   },
   colorSwitchContainer : {
     justifyContent: 'center',
+    alignItems: 'center'
   }
 });
 
@@ -54,21 +55,20 @@ class SettingsLightbox extends React.Component{
               <Lightbox verticalPercent={0.5} 
                         horizontalPercent={0.8}
                         >
-                <View styles={styles.fontSliderContainer}>
-                  <FontSlider />
-                  <Text>
-                    {this.props.fontProp.fontSize}
-                  </Text>      
+                <View>
+                  <FontSlider />    
                 </View>
                 <View style={styles.colorSwitchContainer}>
-                  <Text> Light / Dark Theme </Text>
+                  <Text style={{color: this.props.themeProp.textColor}}> Light / Dark Theme </Text>
+                  <View style={{padding: 15}}>
                   <Switch 
                           value = {this.props.themeProp.themeType}
                           onValueChange = {this.toggleColorSwitch}
-                          backgroundActive = {'#222222'}
-                          backgroundInactive = {'#ecebea'}
+                          backgroundActive = {'#ecebea'}
+                          backgroundInactive = {'#222222'}
                           />
-                  <Text> Current theme: {this.getTheme()} </Text> 
+                  </View>
+                  <Text style={{color: this.props.themeProp.textColor}}> Current theme: {this.getTheme()} </Text> 
                 </View>
                 {/* <Text>Settings Lightbox {this.props.data}</Text> */}
             </Lightbox>

@@ -17,21 +17,7 @@ import {InCenterData} from './modalityData/modality_pros_n_cons';
 import {modalityStyles} from './modalityData/modality_style';
 import {connect} from 'react-redux';
 import SectionListItem from './modalityData/sectionlistitem';
-
-class SectionHeader extends Component {
-  render() {
-
-      return (
-        <View>
-          <Text style={modalityStyles.header}>
-            {this.props.section.title}
-          </Text>
-        </View>
-      )
-
-  }
-
-}
+import SectionHeader from './modalityData/sectionheader';
 
 class Incenter extends Component {
 
@@ -44,39 +30,39 @@ class Incenter extends Component {
     return (
       <View>
       <ScrollView>
-       <View style={modalityStyles.container}>
-      	<Text style={modalityStyles.header}>What is In-Center Hemodialysis?</Text>
+       <View style={[modalityStyles.container, {backgroundColor: this.props.themeProp.backgroundColor}]}>
+      	<Text style={[modalityStyles.header, {color: this.props.themeProp.accentColor}]}>What is In-Center Hemodialysis?</Text>
         <View style= {{
-          backgroundColor: 'white',
+          backgroundColor: this.props.themeProp.accentColor,
           height: 1,
           width: (Dimensions.get('window').width) - 100,
           marginBottom: 20
         }}></View>
-      	<Text style={[modalityStyles.important_txt, {fontSize: this.props.fontProp.fontVal, overflow: 'hidden', lineHeight: 50}]}>In-Center Hemodialysis is a procedure where you go 
+      	<Text style={[modalityStyles.important_txt, {fontSize: this.props.fontProp.fontVal, overflow: 'hidden', lineHeight: 50, color: this.props.themeProp.textColor}]}>In-Center Hemodialysis is a procedure where you go 
           to a dialysis clinic 3 days per week in order to have your blood cleaned of waste 
           products and excess fluids. These treatments last anywhere from 3 to 5 hours for daytime 
           hemodialysis or around 8 hours for nocturnal (night-time) hemodialysis.</Text>
-        <Text style={modalityStyles.header}>How does it Work?</Text>
+        <Text style={[modalityStyles.header, {color: this.props.themeProp.accentColor}]}>How does it Work?</Text>
         <View style= {{
-          backgroundColor: 'white',
+          backgroundColor: this.props.themeProp.accentColor,
           height: 1,
           width: (Dimensions.get('window').width) - 100,
           marginBottom: 20
         }}></View>
-        <Text style={[modalityStyles.important_txt, {fontSize: this.props.fontProp.fontVal, overflow: 'hidden', lineHeight: 50}]}>Before treatment can begin, you will need a surgical 
+        <Text style={[modalityStyles.important_txt, {fontSize: this.props.fontProp.fontVal, overflow: 'hidden', lineHeight: 50, color: this.props.themeProp.textColor}]}>Before treatment can begin, you will need a surgical 
           procedure that creates an access site under your skin. This site allows blood to flow from 
           your body to the dialysis machine for filtering and then returns to your body cleaned. There 
           are three types of hemodialysis access options: a fistula, graft or catheter. Fistula is 
           considered the best option for people because it is your own blood vessels and has less risk 
           of infection and clotting issues.</Text>
-        <Text style={modalityStyles.header}>The Routine for Hemodialysis</Text>
+        <Text style={[modalityStyles.header, {color: this.props.themeProp.accentColor}]}>The Routine for Hemodialysis</Text>
         <View style= {{
-          backgroundColor: 'white',
+          backgroundColor: this.props.themeProp.accentColor,
           height: 1,
           width: (Dimensions.get('window').width) - 100,
           marginBottom: 20
         }}></View>
-        <Text style={[modalityStyles.important_txt, {fontSize: this.props.fontProp.fontVal, overflow: 'hidden', lineHeight: 50}]}>1) Go to dialysis center. Your weight will be checked to see 
+        <Text style={[modalityStyles.important_txt, {fontSize: this.props.fontProp.fontVal, overflow: 'hidden', lineHeight: 50, color: this.props.themeProp.textColor}]}>1) Go to dialysis center. Your weight will be checked to see 
                                            how much fluid needs to be removed by dialysis. {'\n'}
                                            2) Wash access site to prevent infection.{'\n'}
                                            3) A dialysis center professional will take your blood pressure, 
@@ -119,7 +105,8 @@ class Incenter extends Component {
 
 function mapStateToProps(state) {
   return {
-  fontProp: state.fontProps
+  fontProp: state.fontProps,
+  themeProp: state.themeProps
   };
 }
 

@@ -13,7 +13,7 @@ const { width } = Dimensions.get('window');
       return (
         <View style={styles.mainViewContainer}>
           
-          <View style={[styles.picFlex, {backgroundColor : this.props.themeProp.backgroundColor}]}>
+          <View style={styles.picFlex}>
               <HomeCarousel />
                 {/* <Image source={require('../images/harold2.jpg')} style={styles.pic} resizeMode='contain' /> */}
           </View>

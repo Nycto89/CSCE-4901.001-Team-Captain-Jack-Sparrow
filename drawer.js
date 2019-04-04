@@ -4,52 +4,53 @@ Platform, StyleSheet, Text,
 View, Image, PanResponder } from 'react-native';
 import {Actions} from 'react-native-router-flux';
 import {Content, List, ListItem} from 'native-base';
+import {connect} from 'react-redux';
 
-export default class DrawerMenu extends React.Component {
+class DrawerMenu extends React.Component {
 
     // componentDidMount() { Actions.refresh({key: 'Drawer', ref: this.refs.navigation}); }
 
     render() {
 
         return (
-                <View style={styles.drawerStyle}>
+                <View style={[styles.drawerStyle, {backgroundColor: this.props.themeProp.backgroundColor}]}>
                     <Content>
                         <List>
                             <ListItem onPress={() => Actions.HomeScreen({type : "reset" })}>
-                                <Text style={styles.homeText}>Return to Home</Text>
+                                <Text style={[styles.homeText, {color: this.props.themeProp.accentColor}]}>Return to Home</Text>
                             </ListItem>
                             <ListItem onPress={() => Actions.CalendarPage()}>
-                                <Text>Appointments</Text>
+                                <Text style={{color: this.props.themeProp.textColor}}>Appointments</Text>
                             </ListItem>
                             <ListItem onPress={() => Actions.ClinicFinder()}>
-                                <Text>Find a clinic</Text>
+                                <Text style={{color: this.props.themeProp.textColor}}>Find a clinic</Text>
                             </ListItem>
                             <ListItem onPress={() => Actions.InfoPage()}>
-                                <Text>Kidney Information</Text>
+                                <Text style={{color: this.props.themeProp.textColor}}>Kidney Information</Text>
                             </ListItem>
                             <ListItem onPress={() => Actions.ModalityMainScreen()}>
-                                <Text>Modalities</Text>
+                                <Text style={{color: this.props.themeProp.textColor}}>Modalities</Text>
                             </ListItem>
                             <ListItem onPress={() => Actions.KidneyTransplant()}>
-                                <Text>   Kidney Transplant</Text>
+                                <Text style={{color: this.props.themeProp.textColor}}>   Kidney Transplant</Text>
                             </ListItem>
                             <ListItem onPress={() => Actions.PeritonealDialysis()}>
-                                <Text>   Peritoneal Dialysis</Text>
+                                <Text style={{color: this.props.themeProp.textColor}}>   Peritoneal Dialysis</Text>
                             </ListItem>
                             <ListItem onPress={() => Actions.InCenterHemodialysis()}> 
-                                <Text>   In-Center Hemodialysis</Text>
+                                <Text style={{color: this.props.themeProp.textColor}}>   In-Center Hemodialysis</Text>
                             </ListItem>
                             <ListItem onPress={() => Actions.NocturnalDialysis()}>
-                                <Text>   Overnight Dialysis</Text>
+                                <Text style={{color: this.props.themeProp.textColor}}>   Nocturnal Dialysis</Text>
                             </ListItem>
                             <ListItem onPress={() => Actions.HomeHemodialysis()}>
-                                <Text>   Home Hemodialysis</Text>
+                                <Text style={{color: this.props.themeProp.textColor}}>   Home Hemodialysis</Text>
                             </ListItem>
                             <ListItem onPress={() => Actions.ConservativeTherapy()}>
-                                <Text>   Conservative Therapy</Text>
+                                <Text style={{color: this.props.themeProp.textColor}}>   Conservative Therapy</Text>
                             </ListItem>
                             <ListItem onPress={() => Actions.SettingsLightbox()}>
-                                <Text>Settings</Text>
+                                <Text style={{color: this.props.themeProp.textColor}}>Settings</Text>
                             </ListItem>
                         </List>
                     </Content>
@@ -68,9 +69,16 @@ const styles = StyleSheet.create({
         ...Platform.select({ ios: { top: 64, }, android: { top: 40, } }),
         },
     homeText: {
-      fontWeight: 'bold',
-      color: 'blue'
+      fontWeight: 'bold'
     }
 });
+
+function mapStateToProps(state) {
+    return {
+    themeProp: state.themeProps
+    };
+  }
+
+  export default connect(mapStateToProps)(DrawerMenu);
 
 

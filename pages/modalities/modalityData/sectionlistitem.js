@@ -16,11 +16,11 @@ class SectionListItem extends Component {
 
         return (
           <View style={{width: Dimensions.get('window').width - 50}}>
-            <Text style={[modalityStyles.data_txt, {fontSize: (this.props.fontProp.fontVal)/2, overflow: 'hidden', lineHeight: 50}]}>
+            <Text style={[modalityStyles.data_txt, {fontSize: (this.props.fontProp.fontVal)/2, overflow: 'hidden', lineHeight: 50, color: this.props.themeProp.textColor}]}>
               {this.props.item.description}
             </Text>
             <View style= {{
-              backgroundColor: 'white',
+              backgroundColor: this.props.themeProp.textColor,
               height: 1,
               width: Dimensions.get('window').width - 50,
               margin: 5
@@ -32,7 +32,8 @@ class SectionListItem extends Component {
 
 function mapStateToProps(state) {
   return {
-  fontProp: state.fontProps
+  fontProp: state.fontProps,
+  themeProp: state.themeProps
   };
 }
 
