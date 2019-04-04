@@ -3,7 +3,8 @@ const initialState = {
     backgroundColor: 'white',
     textColor: '#222222',
     sliderColor: 'black',
-    accentColor: 'blue'
+    accentColor: 'blue',
+    circleColor: '#AACCFF',
 }
 
 export default function(state = initialState, action) {
@@ -18,7 +19,8 @@ export default function(state = initialState, action) {
                     backgroundColor: '#222222',
                     textColor: 'white',
                     sliderColor: 'white',
-                    accentColor: '#AACCFF'
+                    accentColor: '#AACCFF',
+                    circleColor: '#222222'
                 }
             }
             else {
@@ -28,7 +30,8 @@ export default function(state = initialState, action) {
                     backgroundColor: 'white',
                     textColor: '#222222',
                     sliderColor: 'black',
-                    accentColor: 'blue'
+                    accentColor: 'blue',
+                    circleColor: '#AACCFF'
                 }
             }
             break;

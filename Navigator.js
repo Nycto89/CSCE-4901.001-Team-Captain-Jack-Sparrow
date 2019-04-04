@@ -63,7 +63,7 @@ export default class MainNavigator extends Component {
                       />                  
                   <Scene key="ModalityMainScreen"
                       component={ModalityHome}
-                      title="Welcome!"
+                      title="Modalities"
                       renderBackButton={() => (null)}
                       panHandlers={null}
                       />
@@ -148,13 +148,13 @@ export default class MainNavigator extends Component {
 
   const styles = StyleSheet.create({
     navBar : {
-      backgroundColor: 'grey', // changing navbar color
+      backgroundColor: '#222222', // changing navbar color
     }, 
     navBarTitleStyle: {
       // centering for Android
      flex: 1,
      textAlign: 'center',
-     color: 'blue',
+     color: '#AACCFF'
     },
     routerScene: {
       // paddingTop : 0
