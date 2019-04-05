@@ -33,8 +33,8 @@ class ModalityHome extends Component {
               <Text style={[styles.headingText, {color: this.props.themeProp.textColor}]}>Kidney Transplant</Text>
               </View> 
               <TouchableHighlight onPress= {() => Actions.KidneyTransplant()}>
-              <View style={[styles.circle, {backgroundColor: this.props.themeProp.circleColor}]}> 
-                <Image style={[styles.imageStyle, {aspectRatio: 4/3}]} source= {require('../../images/transplant.png')} resizeMode="cover"/>
+              <View style={[styles.circle, {borderColor: this.props.themeProp.textColor}]}> 
+                <Image style={[styles.imageStyle, {aspectRatio: 4/3, tintColor: this.props.themeProp.textColor}]} source= {require('../../images/transplant.png')} resizeMode="cover"/>
               </View>
               </TouchableHighlight>
         </View>
@@ -43,8 +43,8 @@ class ModalityHome extends Component {
               <Text style={[styles.headingText, {color: this.props.themeProp.textColor}]}>Peritoneal Dialysis</Text>
               </View> 
               <TouchableHighlight onPress= {() => Actions.PeritonealDialysis()}>
-              <View style={[styles.circle, {backgroundColor: this.props.themeProp.circleColor}]}>
-              <Image style={[styles.imageStyle, {aspectRatio: 385/378}]} source= {require('../../images/peritoneal.png')} resizeMode="cover"/>
+              <View style={[styles.circle, {borderColor: this.props.themeProp.textColor}]}>
+              <Image style={[styles.imageStyle, {aspectRatio: 385/378, tintColor: this.props.themeProp.textColor}]} source= {require('../../images/peritoneal.png')} resizeMode="cover"/>
               </View>
               </TouchableHighlight>
         </View>
@@ -53,8 +53,8 @@ class ModalityHome extends Component {
               <Text style={[styles.headingText, {color: this.props.themeProp.textColor}]}>In-Center Dialysis</Text>
             </View> 
             <TouchableHighlight onPress= {() => Actions.InCenterHemodialysis()}>
-            <View style={[styles.circle, {backgroundColor: this.props.themeProp.circleColor}]}>
-            <Image style={[styles.imageStyle, {aspectRatio: 326/404}]} source= {require('../../images/incenter.png')} resizeMode="cover"/>
+            <View style={[styles.circle, {borderColor: this.props.themeProp.textColor}]}>
+            <Image style={[styles.imageStyle, {aspectRatio: 326/404, tintColor: this.props.themeProp.textColor}]} source= {require('../../images/incenter.png')} resizeMode="cover"/>
             </View>
             </TouchableHighlight>
         </View>
@@ -63,8 +63,8 @@ class ModalityHome extends Component {
               <Text style={[styles.headingText, {color: this.props.themeProp.textColor}]}>Nocturnal Dialysis</Text>
               </View> 
             <TouchableHighlight onPress= {() => Actions.NocturnalDialysis()}>
-            <View style={[styles.circle, {backgroundColor: this.props.themeProp.circleColor}]}>
-            <Image style={[styles.imageStyle, {aspectRatio: 405/407}]} source= {require('../../images/nocturnal.png')} resizeMode="cover"/>
+            <View style={[styles.circle, {borderColor: this.props.themeProp.textColor}]}>
+            <Image style={[styles.imageStyle, {aspectRatio: 405/407, tintColor: this.props.themeProp.textColor}]} source= {require('../../images/nocturnal.png')} resizeMode="cover"/>
             </View>
             </TouchableHighlight>
         </View>
@@ -73,8 +73,8 @@ class ModalityHome extends Component {
               <Text style={[styles.headingText, {color: this.props.themeProp.textColor}]}>Home Hemodialysis</Text>
               </View> 
             <TouchableHighlight onPress= {() => Actions.HomeHemodialysis()}>
-            <View style={[styles.circle, {backgroundColor: this.props.themeProp.circleColor}]}>
-            <Image style={[styles.imageStyle, {aspectRatio: 302/310}]} source= {require('../../images/home_hemo.png')} resizeMode="cover"/>
+            <View style={[styles.circle, {borderColor: this.props.themeProp.textColor}]}>
+            <Image style={[styles.imageStyle, {aspectRatio: 302/310, tintColor: this.props.themeProp.textColor}]} source= {require('../../images/home_hemo.png')} resizeMode="cover"/>
             </View>
             </TouchableHighlight>
         </View>
@@ -83,8 +83,8 @@ class ModalityHome extends Component {
               <Text style={[styles.headingText, {color: this.props.themeProp.textColor}]}>Conservative Therapy</Text>
               </View> 
             <TouchableHighlight onPress= {() => Actions.ConservativeTherapy()}>
-            <View style={[styles.circle, {backgroundColor: this.props.themeProp.circleColor}]}>
-            <Image style={[styles.imageStyle, {aspectRatio: 342/337}]} source= {require('../../images/conservative.png')} resizeMode="cover"/>
+            <View style={[styles.circle, {borderColor: this.props.themeProp.textColor}]}>
+            <Image style={[styles.imageStyle, {aspectRatio: 342/337, tintColor: this.props.themeProp.textColor}]} source= {require('../../images/conservative.png')} resizeMode="cover"/>
             </View>
             </TouchableHighlight>
         </View>
@@ -100,7 +100,6 @@ const styles = StyleSheet.create({
     height: 300,
     borderRadius: 300/2,
     borderWidth: 5,
-    borderColor: 'white',
     justifyContent: 'space-evenly',
     alignItems: 'center',
     marginBottom: 50,
