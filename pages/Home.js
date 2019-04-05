@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { StyleSheet, View, Image, Text, TouchableHighlight, Dimensions } from 'react-native';
+import {StyleSheet, View, Image, Text, TouchableHighlight, Dimensions, Linking} from 'react-native';
 import {Actions} from 'react-native-router-flux';
 import {connect} from 'react-redux';
 
@@ -8,7 +8,7 @@ import HomeCarousel from '../carousel';
 const { width } = Dimensions.get('window');
 
   class HomeScreen extends React.Component {
-    
+
     render() {
       return (
         <View style={styles.mainViewContainer}>
@@ -44,7 +44,7 @@ const { width } = Dimensions.get('window');
             </TouchableHighlight>
             </View>*/}
 
-            <View style={styles.tileFlexHorizontal2} >
+            <View style={styles.tileFlexHorizontal1} >
               {/*<TouchableHighlight
                 onPress={ () => Actions.CalendarPage()}>
                 <Image source={require('../images/calendaricon.png')} style={[styles.tile2,  {tintColor: this.props.themeProp.textColor, borderColor : this.props.themeProp.textColor}]}/>
@@ -59,6 +59,19 @@ const { width } = Dimensions.get('window');
                 </View>
               </TouchableHighlight>
             </View>
+
+            <View style={styles.tileFlexHorizontal1} >
+              <TouchableHighlight
+                onPress={()=>{ Linking.openURL('https://www.esrdnetwork.org/')}}>
+                <View style={{width : 265, height : 50,
+                              borderWidth: 3, borderColor: this.props.themeProp.textColor}}>
+                <Text style={[styles.tile1, {fontSize: 25, color: this.props.themeProp.textColor}]}>
+                    ESRD WEBSITE
+                </Text>
+                </View>
+            </TouchableHighlight>
+            </View>
+
           </View>
           
         </View>
