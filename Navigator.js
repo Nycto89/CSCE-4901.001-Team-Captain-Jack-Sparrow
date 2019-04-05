@@ -128,7 +128,7 @@ export default class MainNavigator extends Component {
     return (
       <View>
         <TouchableHighlight onPress={() => Actions.HomeScreen({ type : "reset" })}>
-          <Image style={{ height: 30, width: 30, marginRight: 20 }} source={require('./images/HOME.png')} />
+          <Image style={{ height: 30, width: 30, marginRight: 20, tintColor: '#AACCFF'}} source={require('./images/HOME.png')} />
         </TouchableHighlight>
       </View>
     )
