@@ -23,25 +23,35 @@ const { width } = Dimensions.get('window');
             <View style={styles.tileFlexHorizontal1} >
               <TouchableHighlight
                 onPress={ () => Actions.ModalityMainScreen()}>
-                <Image source={require('../images/modalities.png')} style={styles.tile1}/>
+                <View style={{width : 265, height : 50,
+                              borderWidth: 3, borderColor: this.props.themeProp.textColor}}>
+                <Text style={[styles.tile1, {color: this.props.themeProp.textColor}]}>
+                  MODALITIES
+                </Text>
+                </View>
             </TouchableHighlight>
             </View>
 
             <View style={styles.tileFlexHorizontal1} >
               <TouchableHighlight
                 onPress={ () => Actions.InfoPage()}>
-                <Image source={require('../images/kidneyinfo.png')} style={styles.tile1}/>
+                <View style={{width : 265, height : 50,
+                              borderWidth: 3, borderColor: this.props.themeProp.textColor}}>
+                <Text style={[styles.tile1, {color: this.props.themeProp.textColor}]}>
+                  KIDNEY INFO
+                </Text>
+                </View>
             </TouchableHighlight>
             </View>
 
             <View style={styles.tileFlexHorizontal2} >
               <TouchableHighlight
                 onPress={ () => Actions.CalendarPage()}>
-                <Image source={require('../images/calendaricon.png')} style={styles.tile2}/>
+                <Image source={require('../images/calendaricon.png')} style={[styles.tile2,  {tintColor: this.props.themeProp.textColor, borderColor : this.props.themeProp.textColor}]}/>
               </TouchableHighlight>
               <TouchableHighlight
                 onPress={ () => Actions.ClinicFinder()}>
-                <Image source={require('../images/findericon.png')} style={styles.tile2}/>
+                <Image source={require('../images/findericon.png')} style={[styles.tile2,  {tintColor: this.props.themeProp.textColor, borderColor : this.props.themeProp.textColor}]}/>
             </TouchableHighlight>
 
             </View>
@@ -112,8 +122,11 @@ const { width } = Dimensions.get('window');
     tile1: {
       width : 265,
       height : 50,
-      borderColor : 'black',
-      borderWidth : 3
+      textAlign: 'center',
+      fontSize: 30,
+      letterSpacing: 5,
+      paddingTop: 5,
+      fontWeight: 'bold'
     },
 
     tile2 : {
@@ -121,8 +134,8 @@ const { width } = Dimensions.get('window');
       width : 40 ,
       margin : 15,
       padding : 55,
-      borderColor : 'black',
-      borderWidth : 3
+      borderWidth : 3,
+      tintColor: 'white'
     }
     
   }); 

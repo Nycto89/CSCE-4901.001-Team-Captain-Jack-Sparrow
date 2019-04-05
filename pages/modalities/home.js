@@ -13,13 +13,21 @@ class ModalityHome extends Component {
     
     }
 
+    constructor(props) {
+      super(props);
+      this.state= {
+        cIndex: 0
+      };
+    }
+
     
   render() {
 
     const {navigate} = this.props.navigation;
 
     return (
-            <Swiper dotColor= {this.props.themeProp.textColor} activeDotColor= '#4169E1'>
+            <Swiper loop={false} dotColor= {this.props.themeProp.textColor} activeDotColor= '#4169E1' onIndexChanged={(swipe_index)=>{
+              setTimeout(()=>this.setState({swipe_index}),200)}}>
               <View style={[styles.slideDefault, {backgroundColor: this.props.themeProp.backgroundColor}]}>
               <View style={{flex: 0.2, justifyContent: 'flex-start', paddingTop: 0, marginBottom: 10}}>
               <Text style={[styles.headingText, {color: this.props.themeProp.textColor}]}>Kidney Transplant</Text>
