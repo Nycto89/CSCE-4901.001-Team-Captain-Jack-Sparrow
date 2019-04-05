@@ -3,11 +3,13 @@ var KidneyTransplant = [
         data: [
             {
                 name: 'Pro1',
-                description: 'Fewer limits on what you can eat or drink'
+                description: 'Fewer limits on what you can eat or drink',
+                photo: require('../../../images/food_drink.png')
             },
             {
                 name: 'Pro2',
-                description: 'Possibility of living a longer life and the kind of life you were living before your kidney disease'
+                description: 'Possibility of living a longer life and the kind of life you were living before your kidney disease',
+                photo: require('../../../images/healthy.png')
             }
         ],
         title: "Benefits"      
@@ -20,7 +22,8 @@ var KidneyTransplant = [
             },
             {
                 name: 'Con2',
-                description: 'Need to take anti-rejection medications for the length of time your new kidney is working The medication may contain side effects and may cause a higher risk for infections/certain types of cancer'
+                description: 'Need to take anti-rejection medications for the length of time your new kidney is working The medication may contain side effects and may cause a higher risk for infections/certain types of cancer',
+                photo: require('../../../images/medicine.png')
             },
             {
                 name: 'Con3',
@@ -28,7 +31,8 @@ var KidneyTransplant = [
             },
             {
                 name: 'Con4',
-                description: 'Every person will get a full medical and psychosocial evaluation to ensure they are a good candidate'
+                description: 'Every person will get a full medical and psychosocial evaluation to ensure they are a good candidate',
+                photo: require('../../../images/search.png')
             }
         ],
         title: "Considerations"
@@ -48,27 +52,33 @@ var PeritonealData = [
             },
             {
                 name: 'Pro3',
-                description: 'You are able to eat more and take fewer medications'
+                description: 'You are able to eat more and take fewer medications',
+                photo: require('../../../images/food_drink.png')
             },
             {
                 name: 'Pro4',
-                description: 'It is easier to work or travel with this type of dialysis'
+                description: 'It is easier to work or travel with this type of dialysis',
+                photo: require('../../../images/travel.png')
             },
             {
                 name: 'Pro5',
-                description: 'PD may help preserve whatever remaining kidney function you have when starting dialysis'
+                description: 'PD may help preserve whatever remaining kidney function you have when starting dialysis',
+                photo: require('../../../images/healthy.png')
             },
             {
                 name: 'Pro6',
-                description: 'You have the flexibility of making your own schedule'
+                description: 'You have the flexibility of making your own schedule',
+                photo: require('../../../images/calendar_1.png')
             },
             {
                 name: 'Pro7',
-                description: 'There are no needles used'
+                description: 'There are no needles used',
+                photo: require('../../../images/no_needle.png')
             },
             {
                 name: 'Pro8',
-                description: 'You can contact a 24/7 on-call PD nurse via phone for any concerns or issues'
+                description: 'You can contact a 24/7 on-call PD nurse via phone for any concerns or issues',
+                photo: require('../../../images/nurse_call.png')
             },
             {
                 name: 'Pro9',
@@ -81,7 +91,8 @@ var PeritonealData = [
         data: [
             {
                 name: 'Con1',
-                description: 'Not everyone can be a candidate for PD. It may not be possible if you’ve had multiple abdominal surgeries.'
+                description: 'Not everyone can be a candidate for PD. It may not be possible if you’ve had multiple abdominal surgeries.',
+                photo: require('../../../images/search.png')
             },
             {
                 name: 'Con2',
@@ -113,7 +124,8 @@ var InCenterData = [
             },
             {
                 name: 'Pro2',
-                description: 'Going to the Dialysis Center can be a social activity where you can get to know people who relate to your experience'
+                description: 'Going to the Dialysis Center can be a social activity where you can get to know people who relate to your experience',
+                photo: require('../../../images/chat.png')
             },
             {
                 name: 'Pro3',
@@ -126,7 +138,8 @@ var InCenterData = [
         data: [
             {
                 name: 'Con1',
-                description: 'Hemodialysis requires needles'
+                description: 'Hemodialysis requires needles',
+                photo: require('../../../images/needle.png')
             },
             {
                 name: 'Con2',
@@ -138,15 +151,18 @@ var InCenterData = [
             },
             {
                 name: 'Con4',
-                description: 'Traveling is more difficult as you will need to contact another dialysis facility and plan your schedule according to their availability.'
+                description: 'Traveling is more difficult as you will need to contact another dialysis facility and plan your schedule according to their availability.',
+                photo: require('../../../images/travel.png')
             },
             {
                 name: 'Con5',
-                description: 'What you eat and drink is limited in order to maintain your health'
+                description: 'What you eat and drink is limited in order to maintain your health',
+                photo: require('../../../images/no_food.png')
             },
             {
                 name: 'Con6',
-                description: 'It is important to complete your entire treatment session to receive the full benefits. Stopping even 5 minutes early can affect your health.'
+                description: 'It is important to complete your entire treatment session to receive the full benefits. Stopping even 5 minutes early can affect your health.',
+                photo: require('../../../images/clock.png')
             }
         ],
         title: "Considerations"
@@ -158,11 +174,13 @@ var NightData = [
         data: [
             {
                 name: 'Pro1',
-                description: 'Treatment is slower and last a longer period of time, meaning the process is gentler on your body and easier to tolerate.'
+                description: 'Treatment is slower and last a longer period of time, meaning the process is gentler on your body and easier to tolerate.',
+                photo: require('../../../images/clock.png')
             },
             {
                 name: 'Pro2',
-                description: 'Overnight treatment allows for a freer daytime schedule'
+                description: 'Overnight treatment allows for a freer daytime schedule',
+                photo: require('../../../images/calendar_1.png')
             },
             {
                 name: 'Pro3',
@@ -170,7 +188,8 @@ var NightData = [
             },
             {
                 name: 'Pro4',
-                description: 'Diet is less strict'
+                description: 'Diet is less strict',
+                photo: require('../../../images/food_drink.png')
             },
             {
                 name: 'Pro5',
@@ -191,7 +210,8 @@ var NightData = [
             },
             {
                 name: 'Con3',
-                description: 'Treatment requires needles'
+                description: 'Treatment requires needles',
+                photo: require('../../../images/needle.png')
             },
             {
                 name: 'Con4',
@@ -199,7 +219,8 @@ var NightData = [
             },
             {
                 name: 'Con5',
-                description: 'Traveling is more difficult as you will need to contact another dialysis facility and plan your schedule according to their availability'
+                description: 'Traveling is more difficult as you will need to contact another dialysis facility and plan your schedule according to their availability',
+                photo: require('../../../images/travel.png')
             },
             {
                 name: 'Con6',
@@ -223,7 +244,8 @@ var HomeData = [
             },
             {
                 name: 'Pro2',
-                description: 'The schedule is more frequent, making it gentler on your system. Side effects are more rare.'
+                description: 'The schedule is more frequent, making it gentler on your system. Side effects are more rare.',
+                photo: require('../../../images/calendar_1.png')
             },
             {
                 name: 'Pro3',
@@ -231,15 +253,18 @@ var HomeData = [
             },
             {
                 name: 'Pro4',
-                description: 'Diet is less strict'
+                description: 'Diet is less strict',
+                photo: require('../../../images/food_drink.png')
             },
             {
                 name: 'Pro5',
-                description: 'Travel easier by bringing your home hemodialysis machines'
+                description: 'Travel easier by bringing your home hemodialysis machines',
+                photo: require('../../../images/travel.png')
             },
             {
                 name: 'Pro6',
-                description: 'You can contact a 24/7 on-call home nurse via phone for any concerns or issues'
+                description: 'You can contact a 24/7 on-call home nurse via phone for any concerns or issues',
+                photo: require('../../../images/nurse_call.png')
             }
         ],
         title: "Benefits"      
@@ -252,7 +277,8 @@ var HomeData = [
             },
             {
                 name: 'Con2',
-                description: 'Either you or your care partner must be comfortable inserting needles in your access. You will receive training at how to perform this task safely by your dialysis center'
+                description: 'Either you or your care partner must be comfortable inserting needles in your access. You will receive training at how to perform this task safely by your dialysis center',
+                photo: require('../../../images/needle.png')
             },
             {
                 name: 'Con3',
