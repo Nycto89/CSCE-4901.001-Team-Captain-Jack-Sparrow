@@ -32,7 +32,7 @@ const { width } = Dimensions.get('window');
             </TouchableHighlight>
             </View>
 
-            <View style={styles.tileFlexHorizontal1} >
+            {/*<View style={styles.tileFlexHorizontal1} >
               <TouchableHighlight
                 onPress={ () => Actions.InfoPage()}>
                 <View style={{width : 265, height : 50,
@@ -42,18 +42,22 @@ const { width } = Dimensions.get('window');
                 </Text>
                 </View>
             </TouchableHighlight>
-            </View>
+            </View>*/}
 
             <View style={styles.tileFlexHorizontal2} >
-              <TouchableHighlight
+              {/*<TouchableHighlight
                 onPress={ () => Actions.CalendarPage()}>
                 <Image source={require('../images/calendaricon.png')} style={[styles.tile2,  {tintColor: this.props.themeProp.textColor, borderColor : this.props.themeProp.textColor}]}/>
-              </TouchableHighlight>
+              </TouchableHighlight>*/}
               <TouchableHighlight
                 onPress={ () => Actions.ClinicFinder()}>
-                <Image source={require('../images/findericon.png')} style={[styles.tile2,  {tintColor: this.props.themeProp.textColor, borderColor : this.props.themeProp.textColor}]}/>
-            </TouchableHighlight>
-
+                <View style={{width : 265, height : 50,
+                              borderWidth: 3, borderColor: this.props.themeProp.textColor}}>
+                <Text style={[styles.tile1, {color: this.props.themeProp.textColor}]}>
+                  FIND CLINIC
+                </Text>
+                </View>
+              </TouchableHighlight>
             </View>
           </View>
           
@@ -87,7 +91,7 @@ const { width } = Dimensions.get('window');
     },
 
     picFlex: {
-      flex: 3,
+      flex: 5,
       width : null ,
       height : null 
     } ,

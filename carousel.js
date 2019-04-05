@@ -10,13 +10,10 @@ export default class HomeCarousel extends Component {
 
     state = {
         images: [
-            'https://unsplash.it/300/?random',
-            'https://unsplash.it/350/?random',
-            'https://unsplash.it/400/?random',
-            'https://unsplash.it/450/?random',
-            'https://unsplash.it/500/?random',
-            'https://unsplash.it/550/?random',
-            'https://unsplash.it/600/?random'
+            'https://images.unsplash.com/photo-1450297428000-5f0b50540da9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80',
+            'https://images.unsplash.com/photo-1498475738132-c35d17bba059?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+            'https://images.unsplash.com/photo-1536408157291-aef6d736e2cd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1735&q=80',
+            'https://images.unsplash.com/photo-1531983412531-1f49a365ffed?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80'
         ]
     };
 
@@ -74,7 +71,8 @@ const styles = {
         // transform: [{
         //     rotate: '0deg'
         // }],
-        width: width,
-        height: height
+        width: width/3,
+        height: height/2,
+        aspectRatio: 3/2
     }
 };

@@ -19,15 +19,15 @@ class DrawerMenu extends React.Component {
                             <ListItem onPress={() => Actions.HomeScreen({type : "reset" })}>
                                 <Text style={[styles.homeText, {color: this.props.themeProp.accentColor}]}>Return to Home</Text>
                             </ListItem>
-                            <ListItem onPress={() => Actions.CalendarPage()}>
+                            {/*<ListItem onPress={() => Actions.CalendarPage()}>
                                 <Text style={{color: this.props.themeProp.textColor}}>Appointments</Text>
-                            </ListItem>
+                            </ListItem>*/}
                             <ListItem onPress={() => Actions.ClinicFinder()}>
                                 <Text style={{color: this.props.themeProp.textColor}}>Find a clinic</Text>
                             </ListItem>
-                            <ListItem onPress={() => Actions.InfoPage()}>
+                            {/*<ListItem onPress={() => Actions.InfoPage()}>
                                 <Text style={{color: this.props.themeProp.textColor}}>Kidney Information</Text>
-                            </ListItem>
+                            </ListItem>*/}
                             <ListItem onPress={() => Actions.ModalityMainScreen()}>
                                 <Text style={{color: this.props.themeProp.textColor}}>Modalities</Text>
                             </ListItem>
