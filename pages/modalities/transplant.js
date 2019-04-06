@@ -9,7 +9,7 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, 
 ScrollView, Dimensions, ListView, 
-SectionList, Image} from 'react-native';
+SectionList} from 'react-native';
 import {Button} from 'native-base';
 import {DrawerActions} from 'react-navigation';
 import ModalityHome from './home';
@@ -20,6 +20,7 @@ import {modalityStyles} from './modalityData/modality_style';
 import {connect} from 'react-redux';
 import SectionListItem from './modalityData/sectionlistitem';
 import SectionHeader from './modalityData/sectionheader';
+import Image from 'react-native-scalable-image';
 
 var i_fontSize = 24;
 
@@ -37,24 +38,42 @@ class Transplant extends React.Component {
       <View>
       <ScrollView>
        <View style={[modalityStyles.container, {backgroundColor: this.props.themeProp.backgroundColor}]}>
+         <View style= {{
+                  shadowColor: this.props.themeProp.textColor,
+                  shadowOffset: {height: 2},
+                  shadowRadius: 5,
+                  shadowOpacity: 0.5
+                      }}>
+        <Image width = {Dimensions.get('window').width} style={{paddingLeft: 0}} source={require('../../images/stock_images/giving.jpg')}/>
+        </View>
       	<Text style={[modalityStyles.header, {color: this.props.themeProp.accentColor}]}>What Does it Mean to Have a Transplant?</Text>
         <View style= {{
           backgroundColor: this.props.themeProp.accentColor,
           height: 1,
           width: (Dimensions.get('window').width) - 100,
-          marginBottom: 20
+          marginBottom: 20,
+          marginLeft: 20
         }}></View>
       	<Text style={[modalityStyles.important_txt, {fontSize: this.props.fontProp.fontVal, overflow: 'hidden', lineHeight: 50, color: this.props.themeProp.textColor}]}>
         A healthy kidney is placed inside your body 
       	to perform the work your own kidneys can no longer 
       	do. These kidneys can last between 12 to 15 years on 
       	average. During this time, dialysis isn’t needed.</Text>
+        <View style= {{
+                  shadowColor: this.props.themeProp.textColor,
+                  shadowOffset: {height: 2},
+                  shadowRadius: 5,
+                  shadowOpacity: 0.5
+                      }}>
+        <Image width = {Dimensions.get('window').width} style={{paddingLeft: 0}} source={require('../../images/stock_images/long_queue_outdoors.jpg')}/>
+        </View>
         <Text style={[modalityStyles.header, {color: this.props.themeProp.accentColor}]}>Where do the Kidneys Come From?</Text>
         <View style= {{
           backgroundColor: this.props.themeProp.accentColor,
           height: 1,
           width: (Dimensions.get('window').width) - 100,
-          marginBottom: 20
+          marginBottom: 20,
+          marginLeft: 20
         }}></View>
         <Text style={[modalityStyles.important_txt, {fontSize: this.props.fontProp.fontVal, overflow: 'hidden', lineHeight: 50, color: this.props.themeProp.textColor}]}>Donated kidneys may come from someone who passed away 
           OR from a living donor. A healthy person who donates a kidney 
@@ -63,12 +82,21 @@ class Transplant extends React.Component {
           from living donors can be transplanted faster. The operations are 
           done on the same day and can be scheduled at a convenient time for 
           both the patient and the donor.</Text>
+          <View style= {{
+                  shadowColor: this.props.themeProp.textColor,
+                  shadowOffset: {height: 2},
+                  shadowRadius: 5,
+                  shadowOpacity: 0.5
+                      }}>
+        <Image width = {Dimensions.get('window').width} style={{paddingLeft: 0}} source={require('../../images/stock_images/woman-doctor.jpg')}/>
+        </View>
         <Text style={[modalityStyles.header, {color: this.props.themeProp.accentColor}]}>Getting a Transplant</Text>
         <View style= {{
           backgroundColor: this.props.themeProp.accentColor,
           height: 1,
           width: (Dimensions.get('window').width) - 100,
-          marginBottom: 20
+          marginBottom: 20,
+          marginLeft: 20
         }}></View>
         <Text style={[modalityStyles.important_txt, {fontSize: this.props.fontProp.fontVal, overflow: 'hidden', lineHeight: 50, color: this.props.themeProp.textColor}]}>1) Ask your nephrologist or healthcare provider to refer you to a 
           transplant center for evaluation OR contact a transplant center in 

@@ -36,7 +36,8 @@ class HomeHemo extends Component {
           backgroundColor: this.props.themeProp.accentColor,
           height: 1,
           width: (Dimensions.get('window').width) - 100,
-          marginBottom: 20
+          marginBottom: 20,
+          marginLeft: 20
         }}></View>
         <Text style={[modalityStyles.important_txt, {fontSize: this.props.fontProp.fontVal, overflow: 'hidden', lineHeight: 50, color: this.props.themeProp.textColor}]}>Home Hemodialysis is a home dialysis option. 
           Hemodialysis is a treatment that replaces the work of your own kidneys to remove wastes and 
@@ -49,7 +50,8 @@ class HomeHemo extends Component {
           backgroundColor: this.props.themeProp.accentColor,
           height: 1,
           width: (Dimensions.get('window').width) - 100,
-          marginBottom: 20
+          marginBottom: 20,
+          marginLeft: 20
         }}></View>
         <Text style={[modalityStyles.important_txt, {fontSize: this.props.fontProp.fontVal, overflow: 'hidden', lineHeight: 50, color: this.props.themeProp.textColor}]}>You will need surgery to create an access for hemodialysis. This access is 
           quite literally, your lifeline; a way to reach your bloodstream and be able to clean your blood using the 

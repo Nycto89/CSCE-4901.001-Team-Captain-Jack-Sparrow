@@ -6,21 +6,22 @@ const modalityStyles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
     width: Dimensions.get('window').width,
-    paddingTop: 60,
-    paddingLeft: 20
+    paddingTop: 60
   },
   header: {
     fontSize: 30,
     paddingBottom: 15,
     fontFamily: 'Verdana',
-    marginTop: 15
+    marginTop: 15,
+    paddingLeft: 20
   },
   important_txt: {
     paddingBottom: 20,
     fontFamily: 'Arial',
     textAlign: 'left',
     paddingRight: 10,
-    lineHeight: 30
+    lineHeight: 30,
+    paddingLeft: 20
   },
   paramount_line: {
     padding: 30,

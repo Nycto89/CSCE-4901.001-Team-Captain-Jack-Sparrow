@@ -36,7 +36,8 @@ class Incenter extends Component {
           backgroundColor: this.props.themeProp.accentColor,
           height: 1,
           width: (Dimensions.get('window').width) - 100,
-          marginBottom: 20
+          marginBottom: 20,
+          marginLeft: 20
         }}></View>
       	<Text style={[modalityStyles.important_txt, {fontSize: this.props.fontProp.fontVal, overflow: 'hidden', lineHeight: 50, color: this.props.themeProp.textColor}]}>In-Center Hemodialysis is a procedure where you go 
           to a dialysis clinic 3 days per week in order to have your blood cleaned of waste 
@@ -47,7 +48,8 @@ class Incenter extends Component {
           backgroundColor: this.props.themeProp.accentColor,
           height: 1,
           width: (Dimensions.get('window').width) - 100,
-          marginBottom: 20
+          marginBottom: 20,
+          marginLeft: 20
         }}></View>
         <Text style={[modalityStyles.important_txt, {fontSize: this.props.fontProp.fontVal, overflow: 'hidden', lineHeight: 50, color: this.props.themeProp.textColor}]}>Before treatment can begin, you will need a surgical 
           procedure that creates an access site under your skin. This site allows blood to flow from 
@@ -60,7 +62,8 @@ class Incenter extends Component {
           backgroundColor: this.props.themeProp.accentColor,
           height: 1,
           width: (Dimensions.get('window').width) - 100,
-          marginBottom: 20
+          marginBottom: 20,
+          marginLeft: 20
         }}></View>
         <Text style={[modalityStyles.important_txt, {fontSize: this.props.fontProp.fontVal, overflow: 'hidden', lineHeight: 50, color: this.props.themeProp.textColor}]}>1) Go to dialysis center. Your weight will be checked to see 
                                            how much fluid needs to be removed by dialysis. {'\n'}

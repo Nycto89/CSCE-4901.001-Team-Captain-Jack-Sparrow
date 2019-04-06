@@ -36,7 +36,8 @@ class Overnight extends Component {
           backgroundColor: this.props.themeProp.accentColor,
           height: 1,
           width: (Dimensions.get('window').width) - 100,
-          marginBottom: 20
+          marginBottom: 20,
+          marginLeft: 20
         }}></View>
       	<Text style={[modalityStyles.important_txt, {fontSize: this.props.fontProp.fontVal, overflow: 'hidden', lineHeight: 50, color: this.props.themeProp.textColor}]}>Nocturnal or Overnight Dialysis is a slower, longer hemodialysis 
           treatment that takes place at night while you sleep. This longer treatment is for six to eight hours, 
@@ -47,7 +48,8 @@ class Overnight extends Component {
           backgroundColor: this.props.themeProp.accentColor,
           height: 1,
           width: (Dimensions.get('window').width) - 100,
-          marginBottom: 20
+          marginBottom: 20,
+          marginLeft: 20
         }}></View>
         <Text style={[modalityStyles.important_txt, {fontSize: this.props.fontProp.fontVal, overflow: 'hidden', lineHeight: 50, color: this.props.themeProp.textColor}]}>Before treatment can begin, you will need a surgical procedure that 
           creates an access site under your skin. This site allows blood to flow from your body to the dialysis 

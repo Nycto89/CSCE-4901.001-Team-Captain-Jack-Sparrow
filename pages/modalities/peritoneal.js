@@ -32,7 +32,8 @@ class Peritoneal extends Component {
           backgroundColor: this.props.themeProp.accentColor,
           height: 1,
           width: (Dimensions.get('window').width) - 100,
-          marginBottom: 20
+          marginBottom: 20,
+          marginLeft: 20
         }}></View>
       	<Text style={[modalityStyles.important_txt, {fontSize: this.props.fontProp.fontVal, overflow: 'hidden', lineHeight: 50, color: this.props.themeProp.textColor}]}>Peritoneal Dialysis or PD is a home dialysis option. 
         In PD, the inside lining of your own belly acts as a natural filter. A cleansing fluid called 
@@ -43,7 +44,8 @@ class Peritoneal extends Component {
           backgroundColor: this.props.themeProp.accentColor,
           height: 1,
           width: (Dimensions.get('window').width) - 100,
-          marginBottom: 20
+          marginBottom: 20,
+          marginLeft: 20
         }}></View>
         <Text style={[modalityStyles.important_txt, {fontSize: this.props.fontProp.fontVal, overflow: 'hidden', lineHeight: 50, color: this.props.themeProp.textColor}]}>A soft plastic tube is placed in your belly through surgery. 
             Dialysate is moved in and out of your belly through this catheter. When the solution is inside 
@@ -54,7 +56,8 @@ class Peritoneal extends Component {
           backgroundColor: this.props.themeProp.accentColor,
           height: 1,
           width: (Dimensions.get('window').width) - 100,
-          marginBottom: 20
+          marginBottom: 20,
+          marginLeft: 20
         }}></View>
         <Text style={[modalityStyles.important_txt, {fontSize: this.props.fontProp.fontVal, overflow: 'hidden', lineHeight: 50, color: this.props.themeProp.textColor}]}>Receiving a PD catheter requires outpatient surgery; 
             patients usually go home on the same day. It may require healing within a few weeks, 
@@ -64,7 +67,8 @@ class Peritoneal extends Component {
           backgroundColor: this.props.themeProp.accentColor,
           height: 1,
           width: (Dimensions.get('window').width) - 100,
-          marginBottom: 20
+          marginBottom: 20,
+          marginLeft: 20
         }}></View>
         <View style={[modalityStyles.subheadingView, {backgroundColor: this.props.themeProp.textColor, borderColor: this.props.themeProp.textColor}]}>
               <Text style={[modalityStyles.subheading, {color: this.props.themeProp.backgroundColor}]}>Continuous Ambulatory Peritoneal Dialysis (CAPD)</Text>

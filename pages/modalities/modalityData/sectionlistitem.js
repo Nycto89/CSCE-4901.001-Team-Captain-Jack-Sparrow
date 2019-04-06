@@ -27,7 +27,7 @@ class SectionListItem extends Component {
     render() {
 
         return (
-          <View style={{width: Dimensions.get('window').width - 50, justifyContent: 'center', alignItems: 'center'}}>             
+          <View style={{width: Dimensions.get('window').width - 50, justifyContent: 'center', alignItems: 'center', marginLeft: 20}}>             
             {this.doesPhotoExist()}
             <Text style={[modalityStyles.data_txt, {fontSize: (this.props.fontProp.fontVal)/2, overflow: 'hidden', lineHeight: 50, color: this.props.themeProp.textColor}]}>
               {this.props.item.description}
@@ -36,7 +36,6 @@ class SectionListItem extends Component {
               backgroundColor: this.props.themeProp.textColor,
               height: 1,
               width: Dimensions.get('window').width - 50,
-              margin: 5
             }}></View>
           </View>
         );
