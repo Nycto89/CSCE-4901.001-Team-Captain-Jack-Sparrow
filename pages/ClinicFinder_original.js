@@ -30,93 +30,62 @@ class ScrollViewTEST extends Component{
     </View>
   );//end makeList
 
-  _requestPermission = async () => new Promise((resolve, reject) => {
+  _requestPermission = async () => {
     console.log('making request...');
-    console.log(this.location);
-    Permissions.request('location',
+    await Permissions.request('location',
+      { rationale:{
+        title: 'clinic Finder Location Permission',
+        message: 'The clinic finder needs to access your location to find clinics near you!',
+        }
+      }
     ).then(async (response) => {
       console.log('got response');
       if(response === 'authorized'){
-        console.log('access authorized...');
-        this.state.perms = 'authorized';
-
-        resolve('authorized');
+        await Geolocation.getCurrentPosition(
+          (position) => {
+            console.log({position});
+            this.location = {lat: position.coords.latitude,
+                        lng: position.coords.longitude};
+            console.log(this.location);
+          },
+          (error) => {
+              // See error code charts below.
+              console.log(error.code, error.message);
+          },
+          { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
+        );//end Geolocation
       }//end if
       else{
         console.log('access denied...');
-        resolve('denied');
       }
     })//end then()
 
-    console.log('here3');
-  });//end request permissions promise
+    console.log('here');
+  }//end request permissions
 
-  _alertForPerms = async () => new Promise((resolve, reject) => {
-    console.log('in alert...');
-    Alert.alert(
-      'Can we have access to your location?',
-      'We need access to give you relevant clinic locations',
-      [
-        {
-          text: 'Cancel',
-          onPress: () => {console.log('Cancel pressed...'); resolve('cancel');},
-          style: 'cancel'
-        },
-        ((this.state.perms == ('undetermined'))|| (this.state.perms == ('denied')))
-          ? { text: 'OK', onPress: ()=>{resolve('OK');} }
-          : { text: 'Open Settings', onPress: ()=>{console.log('access restricted... at "open settings button'); resolve('Open Settings');} }
-      ],
-      {cancelable: false}
-    );//end alert
-  });//end alertForPerms promise
+  _alertForPerms = async () => {
+    console.log('in Alert...');
+    console.log(this.state);
+    new Promise((resolve, reject) => {
+      Alert.alert(
+        'Can we have access to your location?',
+        'We need access to give you relevant clinic locations',
+        [
+          {
+            text: 'Cancel',
+            onPress: () => {console.log('Cancel pressed...'); resolve('cancel');},
+            style: 'cancel'
+          },
+          this.state.perms != 'restricted'
+            ? { text: 'OK', onPress: async ()=>{await this._requestPermission; resolve('OK');} }
+            : { text: 'Open Settings', onPress: ()=>{console.log('access restricted... at "open settings button'); resolve('Open Settings');} }
+        ],
+        {cancelable: false}
+      );//end alert
+    });//end promise
+  }//edn _alertForPerms
 
-  getCoords = async () => new Promise(async (resolve, reject) => {
-    console.log('getting Coords...');
-    await Geolocation.getCurrentPosition(
-      (position) => {
-        console.log({position});
-        this.location = {lat: position.coords.latitude,
-                    lng: position.coords.longitude};
-        console.log(this.location);
-        resolve(this.location);
-      },
-      (error) => {
-          // See error code charts below.
-          console.log(error.code, error.message);
-          reject(error);
-      },
-      { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
-    );//end Geolocation
-  });//end getCoords promise
-  
-  doGeoCode = async () => new Promise(async (resolve, reject) =>{
-    console.log('geoCoding...');
-    console.log('this.location: ');
-    console.log('lat: '+this.location.lat);
-    console.log('lng: '+this.location.lng);
-    try{
-      const res = await Geocoder.geocodePosition(this.location);
-      this.location = {
-        city: res[0].locality,
-        state: res[0].adminArea,
-        zipCode: res[0].postalCode
-      };
-      console.log('city: ' + this.location.city);
-      console.log('state: ' + this.location.state);
-      console.log('zipCode: ' + this.location.zipCode);
-  
-      resolve(this.location);
-    }//end try
-    catch(err){
-      console.log('ERROR:' , err);
-      reject(err);
-    };
-  
-  });//end doGeoCode promise
-
-  /////////////////COMPONENT DID MOUNT/////////////////////
   async componentDidMount(){
-    //check if authorized
     await Permissions.check('location').then(response =>{
       console.log({response});
       this.setState({perms: response});
@@ -124,66 +93,33 @@ class ScrollViewTEST extends Component{
       console.log(this.state);
     })
 
-    //if not already authorized, tell why you want auth
-    if(this.state.perms != 'authorized') await this._alertForPerms().then(async (response) => {
-      console.log({response});
-      
-      //if not cancel... formal request for perms
-      if(response != 'cancel') await this._requestPermission().then(async (perms) =>{
-        console.log('after request...');
+    await this._alertForPerms().then((blah)=>{
+      try{
+        console.log({blah});
+        console.log('location: ' + this.location);
+        const res = Geocoder.geocodePosition(this.location);
+        console.log('here3');
+        console.log({res});
+      }
+      catch(err){ console.log('ERROR:' , err)};
+    })
+    .catch(err => {console.log('ERROR:', err)});
 
-        //if now authorized
-        if(perms == 'authorized'){
-         await this.getCoords().then(async () => {
-          console.log('here');
-          await this.doGeoCode().then(async (response) => {
-            console.log('doGeoCode response: '+ response);
-            await getFinderData(response).then(()=>{
-              console.log('setState({ready: true})');
-              this.setState({ready: true});
-            });//end getFinderData.then()
-          });//end doGeoCode.then()
-        })//end getCoords.then()
-        .catch(error => {console.log("ERROR: " + error)});
-        }
-      });
-    });//end ifPerms NOT ALREADY authorized --> alertForPerms.then()
-    else{//already authorized
-      await this.getCoords().then(async () => {
-        console.log('here');
-        await this.doGeoCode().then(async (response) => {
-          console.log('doGeoCode response: '+ {response});
-          await getFinderData(response).then(()=>{
-            console.log('setState({ready: true})');
-            this.setState({ready: true});
-          });//end getFinderData.then()
-        });//end doGeoCode.then()
-      })//end getCoords.then()
-      .catch(error => {console.log("ERROR: " + error)});
-    }//end already authorized
+    /*
+    console.log('here');
+    console.log(this.NY);
+    try{
+      const res = await Geocoder.geocodePosition(this.location);
+      console.log({res});
+    }
+    catch(err){ console.log('ERROR:' , err)};
+    */
+    console.log('here2');
 
-    //check perms again... if authed, we already did stuff... if not go to default loc
-    await Permissions.check('location').then(async (response) =>{
-      console.log({response});
-      this.state.perms = response;
-
-      //if still not authed... go to default location
-      if(response != 'authorized'){
-        this.location = {lat: 32.780907, lng: -96.797766};//set location to Dallas
-        
-        await this.doGeoCode().then(async (response) => {
-          console.log('doGeoCode response: '+ {response});
-          await getFinderData(response).then(()=>{
-            console.log('setState({ready: true})');
-            this.setState({ready: true});
-          });//end getFinderData.then()
-        });//end doGeoCode.then()
-      }//end if still not authorized
-    })//end permission check.then()
-
-    console.log('after alert');
-  }
-  //////////////////////////////end componentDidMount()//////////////////////////
+    /*getFinderData(url).then(
+      ()=>{this.setState({ready: true});}
+    );*/
+  }//end componentDidMount()
 
   render(){
     if(!this.state.ready){
@@ -245,9 +181,9 @@ const styles = StyleSheet.create({
 ////////////////////////////////////////////////////////////
 //FUNCTIONS//
 ////////////////////////////////////////////////////////////
-async function getFinderData(location){
+async function getFinderData(url){
   ////GET NUM PAGES////
-  url = 'https://www.dialysisfinder.com/dialysis-centers/'+location.city+'/'+location.state+'/'+location.zipCode;
+  //url = 'https://www.dialysisfinder.com/dialysis-centers/los-angeles/ca/90001';
   console.log('getting clinicFinder data from website... ' + url);
   const htmlStr = await fetch(url)//request HTML page
   .then(
