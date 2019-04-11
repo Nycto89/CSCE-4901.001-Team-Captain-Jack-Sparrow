@@ -9,22 +9,9 @@ import {clinicLst} from '../clinicData/clinicLookupData';
 import {connect} from 'react-redux';
 import cheerio from 'cheerio-without-node-native';
 
-import RNReactLogging from 'react-native-file-log';
-
 class ScrollViewTEST extends Component{
   state = {ready: false};
   location = {};
-
-  constructor(props){
-    super(props);
-    RNReactLogging.setTag('clinicFinderLog');
-    RNReactLogging.setConsoleLogEnabled(true);
-    RNReactLogging.setFileLogEnabled(true);
-    RNReactLogging.printLog('test log');
-    RNReactLogging.listAllLogFiles().then((paths)=>{
-      console.log({paths});
-    })
-  }
 
   ////////////////////////////////////////////////////////
   //FUNCTIONS//
