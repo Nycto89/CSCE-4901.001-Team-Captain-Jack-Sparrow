@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Alert, Text, Button, StyleSheet, ScrollView, View} from 'react-native';
 import Permissions from 'react-native-permissions';
+import AndroidOpenSettings from 'react-native-android-open-settings'
 import {createOpenLink} from 'react-native-open-maps';
 import Geolocation from 'react-native-geolocation-service';
 import Geocoder from 'react-native-geocoder';
@@ -68,7 +69,7 @@ class clinicFinder extends Component{
         },
         ((this.state.perms == ('undetermined'))|| (this.state.perms == ('denied')))
           ? { text: 'OK', onPress: ()=>{resolve('OK');} }
-          : { text: 'Open Settings', onPress: ()=>{console.log('access restricted... at "open settings button'); resolve('Open Settings');} }
+          : { text: 'Open Settings', onPress: ()=>{resolve('settings');} }
       ],
       {cancelable: false}
     );//end alert
@@ -138,7 +139,7 @@ class clinicFinder extends Component{
       console.log({response});
       
       //if not cancel... formal request for perms
-      if(response != 'cancel') await this._requestPermission().then(async (perms) =>{
+      if(response == 'OK') await this._requestPermission().then(async (perms) =>{
         console.log('after request...');
 
         //if now authorized
@@ -154,8 +155,11 @@ class clinicFinder extends Component{
           });//end doGeoCode.then()
         })//end getCoords.then()
         .catch(error => {console.log("ERROR: " + error)});
-        }
-      });
+        }//end if authed
+      });//end requestPermission.then()
+      else if(response == 'settings'){//else user wants to open settings...        
+        this.setState({reload: true});
+      }//end else if 'settings'
     });//end ifPerms NOT ALREADY authorized --> alertForPerms.then()
     else{//already authorized
       await this.getCoords().then(async () => {
@@ -198,6 +202,12 @@ class clinicFinder extends Component{
 
   //////RENDER//////
   render(){
+    if(this.state.reload){
+      AndroidOpenSettings.appDetailsSettings();
+      return(
+        <Text style={{color: 'black', fontWeight: 'bold', fontSize: 30}}>Please restart clinicFinder for permission cahnges to take affect...</Text>
+      )
+    }
     if(!this.state.ready){
       return(
         <Text>Fetching Clinic Data... please wait!</Text>
