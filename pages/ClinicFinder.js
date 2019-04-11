@@ -52,8 +52,6 @@ class clinicFinder extends Component{
         resolve('denied');
       }
     })//end then()
-
-    console.log('here3');
   });//end request permissions promise
 
   _alertForPerms = async () => new Promise((resolve, reject) => {
@@ -128,7 +126,7 @@ class clinicFinder extends Component{
   async componentDidMount(){
     //check if authorized
     await Permissions.check('location').then(response =>{
-      console.log({response});
+      //console.log({response});
       this.setState({perms: response});
 
       console.log(this.state);
@@ -145,7 +143,6 @@ class clinicFinder extends Component{
         //if now authorized
         if(perms == 'authorized'){
          await this.getCoords().then(async () => {
-          console.log('here');
           await this.doGeoCode().then(async (response) => {
             console.log('doGeoCode response: '+ response);
             await getFinderData(response).then(()=>{
@@ -163,7 +160,6 @@ class clinicFinder extends Component{
     });//end ifPerms NOT ALREADY authorized --> alertForPerms.then()
     else{//already authorized
       await this.getCoords().then(async () => {
-        console.log('here');
         await this.doGeoCode().then(async (response) => {
           console.log('doGeoCode response: '+ {response});
           await getFinderData(response).then(()=>{
@@ -177,8 +173,8 @@ class clinicFinder extends Component{
 
     //check perms again... if authed, we already did stuff... if not go to default loc
     await Permissions.check('location').then(async (response) =>{
-      console.log({response});
       this.state.perms = response;
+      console.log(this.state);
 
       //if still not authed... go to default location
       if(response != 'authorized'){
@@ -265,7 +261,6 @@ const styles = StyleSheet.create({
   },
 
   addrStyle:{
-    color: '#bbbbbb'
   }
 })//end styles
 
@@ -348,7 +343,7 @@ async function getFinderData(location){
   }while(pageNum <= numPages);
 
   console.log("Finished all pages");
-  console.log({clinicLst});
+  //console.log({clinicLst});
 
   return numPages;
 }//end getFinderData
@@ -369,4 +364,5 @@ function mapStateToProps(state) {
   };
 }
 
+connect(mapStateToProps)
 export default connect(mapStateToProps)(clinicFinder);
