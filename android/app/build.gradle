@@ -134,7 +134,6 @@ android {
 }
 
 dependencies {
-    implementation project(':react-native-file-log')
     implementation project(':react-native-geocoder')
     implementation project(':react-native-geolocation-service')
     implementation project(':react-native-vector-icons')

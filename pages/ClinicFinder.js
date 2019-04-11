@@ -9,7 +9,7 @@ import {clinicLst} from '../clinicData/clinicLookupData';
 import {connect} from 'react-redux';
 import cheerio from 'cheerio-without-node-native';
 
-class ScrollViewTEST extends Component{
+class clinicFinder extends Component{
   state = {ready: false};
   location = {};
 
@@ -248,6 +248,12 @@ const styles = StyleSheet.create({
     color: '#ffffff'
   },
 
+  modalityStyle:{
+    borderStyle: 'dashed',
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    marginBottom: 5
+  },
+
   addrStyle:{
     color: '#bbbbbb'
   }
@@ -353,4 +359,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(ScrollViewTEST);
+export default connect(mapStateToProps)(clinicFinder);

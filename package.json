@@ -13,7 +13,6 @@
     "react-native": "0.58.5",
     "react-native-calendars": "^1.27.0",
     "react-native-elements": "^1.1.0",
-    "react-native-file-log": "^1.0.1",
     "react-native-geocoder": "^0.5.0",
     "react-native-geolocation-service": "^2.0.0",
     "react-native-gesture-handler": "^1.1.0",
