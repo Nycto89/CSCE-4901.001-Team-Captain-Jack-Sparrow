@@ -9,14 +9,31 @@ import {clinicLst} from '../clinicData/clinicLookupData';
 import {connect} from 'react-redux';
 import cheerio from 'cheerio-without-node-native';
 
+import RNReactLogging from 'react-native-file-log';
+
 class ScrollViewTEST extends Component{
   state = {ready: false};
   location = {};
 
+  constructor(props){
+    super(props);
+    RNReactLogging.setTag('clinicFinderLog');
+    RNReactLogging.setConsoleLogEnabled(true);
+    RNReactLogging.setFileLogEnabled(true);
+    RNReactLogging.printLog('test log');
+    RNReactLogging.listAllLogFiles().then((paths)=>{
+      console.log({paths});
+    })
+  }
+
+  ////////////////////////////////////////////////////////
+  //FUNCTIONS//
+  ////////////////////////////////////////////////////////
   makeList=(item)=>(
-    <View key={item.id} style={[styles.rowStyle, {backgroundColor: this.props.themeProp.backgroundColor, borderColor: this.props.themeProp.textColor}]}>
+    <View key={item.id} style={[styles.rowStyle, {backgroundColor: this.props.themeProp.backgroundColor, borderColor: this.props.themeProp.borderColor}]}>
       <View style={styles.listStyle}>
         <Text style={[styles.nameStyle, {color: this.props.themeProp.textColor}]}>{item.name}</Text>
+        <Text style={[styles.modalityStyle, {color: this.props.themeProp.textColor}]}>Modalities: {item.srvcs.toString()}</Text>
         <Text style={[styles.addrStyle, {color: this.props.themeProp.accentColor}]}>{item.addr}</Text>
       </View>
       <View style={styles.buttonStyle}>
@@ -113,8 +130,13 @@ class ScrollViewTEST extends Component{
     };
   
   });//end doGeoCode promise
+  ////////////////////////////////////////////////////////
+  //END FUNCTIONS//
+  ////////////////////////////////////////////////////////
 
-  /////////////////COMPONENT DID MOUNT/////////////////////
+  ////////////////////////////////////////////////////////
+  /////////////////COMPONENT DID MOUNT////////////////////
+  /////////////////////////////////////////////////////////
   async componentDidMount(){
     //check if authorized
     await Permissions.check('location').then(response =>{
@@ -183,8 +205,11 @@ class ScrollViewTEST extends Component{
 
     console.log('after alert');
   }
-  //////////////////////////////end componentDidMount()//////////////////////////
+  ////////////////////////////////////////////////////////
+  /////////////////end componentDidMount()////////////////
+  ////////////////////////////////////////////////////////
 
+  //////RENDER//////
   render(){
     if(!this.state.ready){
       return(
@@ -205,7 +230,6 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    borderColor: '#111111',
     borderWidth: 1,
   },
   
@@ -274,19 +298,21 @@ async function getFinderData(location){
     newClinicCIO.each((i, elem)=>{//for each location 'ul', extract info & add to clinicList
       //console.log({elem});
 
-      tmpName = $('*', 'li:first-of-type > a:first-of-type', elem).text();//select text of child of first 'a'
+      tmpName = $('*', 'li:first-of-type > a:first-of-type', elem).text();//select name text
       if(tmpName != ''){
         tmpAddr = $('li:first-of-type > p:first-of-type', elem).text();//select address text
-        tmpSrvcStr = $('p', 'li:first-of-type > div', elem).text();//select general info string
-        tmpSrvcStr = tmpSrvcStr.substring(tmpSrvcStr.indexOf(':')+1).replace(/\s/g, '');//extract service info
-        
-        //console.log({tmpName});
-        //console.log({tmpAddr});
-        //console.log({tmpSrvcStr});
+        tmpSrvcLst = [];
+        newSrvcCIO = $('ul', '*.all-serv-bar ~ div');//select lists on services from service divs
+        const numPerPage = $(newSrvcCIO).length;
+        newSrvcCIO = newSrvcCIO.eq(numClinics%numPerPage);
+        newSrvcCIO = $('li', newSrvcCIO);
+        newSrvcCIO.each((j, elem)=>{
+          tmpSrvcLst.push($(elem).text());
+        })
 
         var newClinicOBJ = {'name': tmpName,
                             'addr': tmpAddr,
-                            'srvcs': tmpSrvcStr,
+                            'srvcs': tmpSrvcLst,
                             'id': ++numClinics};
         //console.log({newClinicOBJ});
 
@@ -319,10 +345,20 @@ async function getFinderData(location){
   }while(pageNum <= numPages);
 
   console.log("Finished all pages");
+  console.log({clinicLst});
 
   return numPages;
 }//end getFinderData
+/////////////////////////////////////////////////////////////
+//END FUNCTIONS//
+/////////////////////////////////////////////////////////////
 
+
+///////////////////////////////////////////////////////
+//REDUX//
+///////////////////////////////////////////////////////
+
+//allow these global props to affect this component
 function mapStateToProps(state) {
   return {
   fontProp: state.fontProps,
@@ -330,5 +366,4 @@ function mapStateToProps(state) {
   };
 }
 
-connect(mapStateToProps);
 export default connect(mapStateToProps)(ScrollViewTEST);

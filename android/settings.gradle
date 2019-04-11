@@ -1,4 +1,6 @@
 rootProject.name = 'app'
+include ':react-native-file-log'
+project(':react-native-file-log').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-file-log/android')
 include ':react-native-geocoder'
 project(':react-native-geocoder').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-geocoder/android')
 include ':react-native-geolocation-service'

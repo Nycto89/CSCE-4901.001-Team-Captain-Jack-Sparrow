@@ -1,6 +1,7 @@
 const initialState = {
     themeType: false,
     backgroundColor: 'white',
+    borderColor: 'default',
     textColor: '#222222',
     sliderColor: 'black',
     accentColor: 'blue',
@@ -17,6 +18,7 @@ export default function(state = initialState, action) {
                 return {
                     themeType: true,
                     backgroundColor: '#222222',
+                    borderColor: '#111111',
                     textColor: 'white',
                     sliderColor: 'white',
                     accentColor: '#AACCFF',
@@ -28,6 +30,7 @@ export default function(state = initialState, action) {
                 return {
                     themeType: false,
                     backgroundColor: 'white',
+                    bordercolor: 'default',
                     textColor: '#222222',
                     sliderColor: 'black',
                     accentColor: 'blue',
