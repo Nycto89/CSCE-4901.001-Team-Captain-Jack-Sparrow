@@ -1,4 +1,8 @@
 rootProject.name = 'app'
+include ':react-native-app-settings'
+project(':react-native-app-settings').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-app-settings/android')
+include ':react-native-file-log'
+project(':react-native-file-log').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-file-log/android')
 include ':react-native-android-open-settings'
 project(':react-native-android-open-settings').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-android-open-settings/android')
 include ':react-native-geocoder'

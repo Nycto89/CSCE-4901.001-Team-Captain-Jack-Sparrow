@@ -3,6 +3,8 @@ package com.app;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.krazylabs.OpenAppSettingsPackage;
+import com.reactlibrary.RNReactLoggingPackage;
 import com.levelasquez.androidopensettings.AndroidOpenSettingsPackage;
 import com.devfd.RNGeocoder.RNGeocoderPackage;
 import com.agontuk.RNFusedLocation.RNFusedLocationPackage;
@@ -28,6 +30,8 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new OpenAppSettingsPackage(),
+            new RNReactLoggingPackage(),
             new AndroidOpenSettingsPackage(),
             new RNGeocoderPackage(),
             new RNFusedLocationPackage(),
