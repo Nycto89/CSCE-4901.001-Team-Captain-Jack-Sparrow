@@ -21,6 +21,7 @@ import {connect} from 'react-redux';
 import SectionListItem from './modalityData/sectionlistitem';
 import SectionHeader from './modalityData/sectionheader';
 import Image from 'react-native-scalable-image';
+import {Collapse, CollapseHeader, CollapseBody} from 'accordion-collapse-react-native';
 
 var i_fontSize = 24;
 
@@ -37,7 +38,8 @@ class Transplant extends React.Component {
     return (
       <View>
       <ScrollView>
-       <View style={[modalityStyles.container, {backgroundColor: this.props.themeProp.backgroundColor}]}>
+
+          <View style={[modalityStyles.container, {backgroundColor: this.props.themeProp.backgroundColor}]}>
          <View style= {{
                   shadowColor: this.props.themeProp.textColor,
                   shadowOffset: {height: 2},
@@ -46,6 +48,8 @@ class Transplant extends React.Component {
                       }}>
         <Image width = {Dimensions.get('window').width} style={{paddingLeft: 0}} source={require('../../images/stock_images/giving.jpg')}/>
         </View>
+        <Collapse>
+          <CollapseHeader>
       	<Text style={[modalityStyles.header, {color: this.props.themeProp.accentColor}]}>What Does it Mean to Have a Transplant?</Text>
         <View style= {{
           backgroundColor: this.props.themeProp.accentColor,
@@ -54,11 +58,15 @@ class Transplant extends React.Component {
           marginBottom: 20,
           marginLeft: 20
         }}></View>
+        </CollapseHeader>
+        <CollapseBody>
       	<Text style={[modalityStyles.important_txt, {fontSize: this.props.fontProp.fontVal, overflow: 'hidden', lineHeight: 50, color: this.props.themeProp.textColor}]}>
         A healthy kidney is placed inside your body 
       	to perform the work your own kidneys can no longer 
       	do. These kidneys can last between 12 to 15 years on 
       	average. During this time, dialysis isn’t needed.</Text>
+        </CollapseBody>
+        </Collapse>
         <View style= {{
                   shadowColor: this.props.themeProp.textColor,
                   shadowOffset: {height: 2},
@@ -67,6 +75,8 @@ class Transplant extends React.Component {
                       }}>
         <Image width = {Dimensions.get('window').width} style={{paddingLeft: 0}} source={require('../../images/stock_images/long_queue_outdoors.jpg')}/>
         </View>
+        <Collapse>
+        <CollapseHeader>
         <Text style={[modalityStyles.header, {color: this.props.themeProp.accentColor}]}>Where do the Kidneys Come From?</Text>
         <View style= {{
           backgroundColor: this.props.themeProp.accentColor,
@@ -75,6 +85,8 @@ class Transplant extends React.Component {
           marginBottom: 20,
           marginLeft: 20
         }}></View>
+        </CollapseHeader>
+        <CollapseBody>
         <Text style={[modalityStyles.important_txt, {fontSize: this.props.fontProp.fontVal, overflow: 'hidden', lineHeight: 50, color: this.props.themeProp.textColor}]}>Donated kidneys may come from someone who passed away 
           OR from a living donor. A healthy person who donates a kidney 
           can live a normal life with the kidney they have left. The wait 
@@ -82,6 +94,8 @@ class Transplant extends React.Component {
           from living donors can be transplanted faster. The operations are 
           done on the same day and can be scheduled at a convenient time for 
           both the patient and the donor.</Text>
+          </CollapseBody>
+          </Collapse>
           <View style= {{
                   shadowColor: this.props.themeProp.textColor,
                   shadowOffset: {height: 2},
@@ -90,6 +104,8 @@ class Transplant extends React.Component {
                       }}>
         <Image width = {Dimensions.get('window').width} style={{paddingLeft: 0}} source={require('../../images/stock_images/woman-doctor.jpg')}/>
         </View>
+        <Collapse>
+        <CollapseHeader>
         <Text style={[modalityStyles.header, {color: this.props.themeProp.accentColor}]}>Getting a Transplant</Text>
         <View style= {{
           backgroundColor: this.props.themeProp.accentColor,
@@ -98,6 +114,8 @@ class Transplant extends React.Component {
           marginBottom: 20,
           marginLeft: 20
         }}></View>
+        </CollapseHeader>
+        <CollapseBody>
         <Text style={[modalityStyles.important_txt, {fontSize: this.props.fontProp.fontVal, overflow: 'hidden', lineHeight: 50, color: this.props.themeProp.textColor}]}>1) Ask your nephrologist or healthcare provider to refer you to a 
           transplant center for evaluation OR contact a transplant center in 
           your area.</Text>
@@ -108,7 +126,8 @@ class Transplant extends React.Component {
           If you are on the waitlist, you may have to be on dialysis during this time.
         </Text>
         <Text style={[modalityStyles.important_txt, {fontSize: this.props.fontProp.fontVal, overflow: 'hidden', lineHeight: 50, color: this.props.themeProp.textColor}]}>4) Next step: Transplant Surgery!</Text>
-
+        </CollapseBody>
+        </Collapse>
 
           {/*SECTION LIST*/}
           <SectionList

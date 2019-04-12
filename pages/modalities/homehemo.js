@@ -18,6 +18,7 @@ import {modalityStyles} from './modalityData/modality_style';
 import {connect} from 'react-redux';
 import SectionListItem from './modalityData/sectionlistitem';
 import SectionHeader from './modalityData/sectionheader';
+import {Collapse, CollapseHeader, CollapseBody} from 'accordion-collapse-react-native';
 
 class HomeHemo extends Component {
 
@@ -31,7 +32,9 @@ class HomeHemo extends Component {
       <View>
       <ScrollView>
        <View style={[modalityStyles.container, {backgroundColor: this.props.themeProp.backgroundColor}]}>
-      	<Text style={[modalityStyles.header, {color: this.props.themeProp.accentColor}]}>What is Home Hemodialysis?</Text>
+      	<Collapse>
+        <CollapseHeader>
+        <Text style={[modalityStyles.header, {color: this.props.themeProp.accentColor}]}>What is Home Hemodialysis?</Text>
       	<View style= {{
           backgroundColor: this.props.themeProp.accentColor,
           height: 1,
@@ -39,12 +42,18 @@ class HomeHemo extends Component {
           marginBottom: 20,
           marginLeft: 20
         }}></View>
+        </CollapseHeader>
+        <CollapseBody>
         <Text style={[modalityStyles.important_txt, {fontSize: this.props.fontProp.fontVal, overflow: 'hidden', lineHeight: 50, color: this.props.themeProp.textColor}]}>Home Hemodialysis is a home dialysis option. 
           Hemodialysis is a treatment that replaces the work of your own kidneys to remove wastes and 
           extra fluid from your bloodstream. This is done using a special filter called a dialyzer or 
           artificial kidney. You can do hemodialysis at home by yourself or with a care partner. This allows 
           you to fit your treatments within a schedule. You along with your care partner will receive training at 
           your local dialysis center in order to safely perform these treatments at home.</Text>
+        </CollapseBody>
+        </Collapse>
+        <Collapse>
+        <CollapseHeader>
         <Text style={[modalityStyles.header, {color: this.props.themeProp.accentColor}]}>How does it Work?</Text>
         <View style= {{
           backgroundColor: this.props.themeProp.accentColor,
@@ -53,12 +62,16 @@ class HomeHemo extends Component {
           marginBottom: 20,
           marginLeft: 20
         }}></View>
+        </CollapseHeader>
+        <CollapseBody>
         <Text style={[modalityStyles.important_txt, {fontSize: this.props.fontProp.fontVal, overflow: 'hidden', lineHeight: 50, color: this.props.themeProp.textColor}]}>You will need surgery to create an access for hemodialysis. This access is 
           quite literally, your lifeline; a way to reach your bloodstream and be able to clean your blood using the 
           dialysis machine and return it safely back to your body. There are three types of access sites for home hemodialysis: 
           fistula, graft or catheter. Fistula is considered the best option for people because it is your own blood vessels 
           and has less risk of infection and clotting issues. Using a dialysis machine at home, you’ll perform treatments 
           usually 4 to 5 times per week.  </Text>
+        </CollapseBody>
+        </Collapse>
           {/*SECTION LIST*/}
         <SectionList
                     renderItem={({item, index}) => {

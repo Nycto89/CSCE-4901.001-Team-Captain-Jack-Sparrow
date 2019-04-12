@@ -18,6 +18,7 @@ import {modalityStyles} from './modalityData/modality_style';
 import {connect} from 'react-redux';
 import SectionListItem from './modalityData/sectionlistitem';
 import SectionHeader from './modalityData/sectionheader';
+import {Collapse, CollapseHeader, CollapseBody} from 'accordion-collapse-react-native';
 
 class Incenter extends Component {
 
@@ -31,7 +32,9 @@ class Incenter extends Component {
       <View>
       <ScrollView>
        <View style={[modalityStyles.container, {backgroundColor: this.props.themeProp.backgroundColor}]}>
-      	<Text style={[modalityStyles.header, {color: this.props.themeProp.accentColor}]}>What is In-Center Hemodialysis?</Text>
+      	<Collapse>
+        <CollapseHeader>
+        <Text style={[modalityStyles.header, {color: this.props.themeProp.accentColor}]}>What is In-Center Hemodialysis?</Text>
         <View style= {{
           backgroundColor: this.props.themeProp.accentColor,
           height: 1,
@@ -39,10 +42,16 @@ class Incenter extends Component {
           marginBottom: 20,
           marginLeft: 20
         }}></View>
+        </CollapseHeader>
+        <CollapseBody>
       	<Text style={[modalityStyles.important_txt, {fontSize: this.props.fontProp.fontVal, overflow: 'hidden', lineHeight: 50, color: this.props.themeProp.textColor}]}>In-Center Hemodialysis is a procedure where you go 
           to a dialysis clinic 3 days per week in order to have your blood cleaned of waste 
           products and excess fluids. These treatments last anywhere from 3 to 5 hours for daytime 
           hemodialysis or around 8 hours for nocturnal (night-time) hemodialysis.</Text>
+        </CollapseBody>
+        </Collapse>
+        <Collapse>
+        <CollapseHeader>
         <Text style={[modalityStyles.header, {color: this.props.themeProp.accentColor}]}>How does it Work?</Text>
         <View style= {{
           backgroundColor: this.props.themeProp.accentColor,
@@ -51,12 +60,18 @@ class Incenter extends Component {
           marginBottom: 20,
           marginLeft: 20
         }}></View>
+        </CollapseHeader>
+        <CollapseBody>
         <Text style={[modalityStyles.important_txt, {fontSize: this.props.fontProp.fontVal, overflow: 'hidden', lineHeight: 50, color: this.props.themeProp.textColor}]}>Before treatment can begin, you will need a surgical 
           procedure that creates an access site under your skin. This site allows blood to flow from 
           your body to the dialysis machine for filtering and then returns to your body cleaned. There 
           are three types of hemodialysis access options: a fistula, graft or catheter. Fistula is 
           considered the best option for people because it is your own blood vessels and has less risk 
           of infection and clotting issues.</Text>
+        </CollapseBody>
+        </Collapse>
+        <Collapse>
+        <CollapseHeader>
         <Text style={[modalityStyles.header, {color: this.props.themeProp.accentColor}]}>The Routine for Hemodialysis</Text>
         <View style= {{
           backgroundColor: this.props.themeProp.accentColor,
@@ -65,6 +80,8 @@ class Incenter extends Component {
           marginBottom: 20,
           marginLeft: 20
         }}></View>
+        </CollapseHeader>
+        <CollapseBody>
         <Text style={[modalityStyles.important_txt, {fontSize: this.props.fontProp.fontVal, overflow: 'hidden', lineHeight: 50, color: this.props.themeProp.textColor}]}>1) Go to dialysis center. Your weight will be checked to see 
                                            how much fluid needs to be removed by dialysis. {'\n'}
                                            2) Wash access site to prevent infection.{'\n'}
@@ -82,6 +99,8 @@ class Incenter extends Component {
                                            7) Vitals are checked and weight recorded to determine how much fluid is removed. {'\n'}
                                            8) You’re now free to go home and resume your normal activities. {'\n'}
         </Text>
+        </CollapseBody>
+        </Collapse>
         {/*SECTION LIST*/}
         <SectionList
                     renderItem={({item, index}) => {

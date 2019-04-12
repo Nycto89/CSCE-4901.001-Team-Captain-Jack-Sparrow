@@ -7,6 +7,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "accordion-collapse-react-native": "^0.1.9",
     "native-base": "^2.12.0",
     "react": "16.6.3",
     "react-native": "^0.59.3",

@@ -15,6 +15,7 @@ import {Action} from 'react-native-router-flux';
 import {Content, List, ListItem} from 'native-base';
 import {modalityStyles} from './modalityData/modality_style';
 import {connect} from 'react-redux';
+import {Collapse, CollapseHeader, CollapseBody} from 'accordion-collapse-react-native';
 
 
 class Therapy extends Component {
@@ -29,6 +30,8 @@ class Therapy extends Component {
       <View>
       <ScrollView>
        <View style={[modalityStyles.container, {backgroundColor: this.props.themeProp.backgroundColor}]}>
+        <Collapse>
+        <CollapseHeader>
       	<Text style={[modalityStyles.header, {color: this.props.themeProp.accentColor}]}>What is Conservative Therapy?</Text>
         <View style= {{
           backgroundColor: this.props.themeProp.accentColor,
@@ -37,6 +40,8 @@ class Therapy extends Component {
           marginBottom: 20,
           marginLeft: 20
         }}></View>
+        </CollapseHeader>
+        <CollapseBody>
       	<Text style={[modalityStyles.important_txt, {fontSize: this.props.fontProp.fontVal, overflow: 'hidden', lineHeight: 50, color: this.props.themeProp.textColor}]}>
           The option of choosing not to perform 
           dialysis is entirely up to you. There may be times when dialysis isn’t 
@@ -55,6 +60,8 @@ class Therapy extends Component {
           pain and symptoms of kidney failure such as swelling or shortness of 
           breath. You may also discuss options such as palliative care or hospice 
           care to enhance comfort for the remainder of your life.</Text>
+        </CollapseBody>
+        </Collapse>
           <View style= {
             {backgroundColor: this.props.themeProp.accentColor,
             height: 1,

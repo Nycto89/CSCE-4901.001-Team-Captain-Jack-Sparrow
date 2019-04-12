@@ -18,6 +18,7 @@ import {modalityStyles} from './modalityData/modality_style';
 import {connect} from 'react-redux';
 import SectionListItem from './modalityData/sectionlistitem';
 import SectionHeader from './modalityData/sectionheader';
+import {Collapse, CollapseHeader, CollapseBody} from 'accordion-collapse-react-native';
 
 class Peritoneal extends Component {
 
@@ -27,7 +28,9 @@ class Peritoneal extends Component {
       <View>
       <ScrollView>
        <View style={[modalityStyles.container, {backgroundColor: this.props.themeProp.backgroundColor}]}>
-      	<Text style={[modalityStyles.header, {color: this.props.themeProp.accentColor}]}>What is Peritoneal Dialysis?</Text>
+      	<Collapse>
+        <CollapseHeader>
+        <Text style={[modalityStyles.header, {color: this.props.themeProp.accentColor}]}>What is Peritoneal Dialysis?</Text>
         <View style= {{
           backgroundColor: this.props.themeProp.accentColor,
           height: 1,
@@ -35,10 +38,16 @@ class Peritoneal extends Component {
           marginBottom: 20,
           marginLeft: 20
         }}></View>
+        </CollapseHeader>
+        <CollapseBody>
       	<Text style={[modalityStyles.important_txt, {fontSize: this.props.fontProp.fontVal, overflow: 'hidden', lineHeight: 50, color: this.props.themeProp.textColor}]}>Peritoneal Dialysis or PD is a home dialysis option. 
         In PD, the inside lining of your own belly acts as a natural filter. A cleansing fluid called 
         Dialysate, washes in and out of your abdominal cavity in cycles, which removes fluids and 
         waste products.</Text>
+        </CollapseBody>
+        </Collapse>
+        <Collapse>
+        <CollapseHeader>
         <Text style={[modalityStyles.header, {color: this.props.themeProp.accentColor}]}>How does Peritoneal Dialysis Work?</Text>
         <View style= {{
           backgroundColor: this.props.themeProp.accentColor,
@@ -47,10 +56,16 @@ class Peritoneal extends Component {
           marginBottom: 20,
           marginLeft: 20
         }}></View>
+        </CollapseHeader>
+        <CollapseBody>
         <Text style={[modalityStyles.important_txt, {fontSize: this.props.fontProp.fontVal, overflow: 'hidden', lineHeight: 50, color: this.props.themeProp.textColor}]}>A soft plastic tube is placed in your belly through surgery. 
             Dialysate is moved in and out of your belly through this catheter. When the solution is inside 
             your body, it draws excess fluids and waste products from your system and then is drained out 
             through the catheter. </Text>
+        </CollapseBody>
+        </Collapse>
+        <Collapse>
+        <CollapseHeader>
         <Text style={[modalityStyles.header, {color: this.props.themeProp.accentColor}]}>Where to Start</Text>
         <View style= {{
           backgroundColor: this.props.themeProp.accentColor,
@@ -59,6 +74,8 @@ class Peritoneal extends Component {
           marginBottom: 20,
           marginLeft: 20
         }}></View>
+        </CollapseHeader>
+        <CollapseBody>
         <Text style={[modalityStyles.important_txt, {fontSize: this.props.fontProp.fontVal, overflow: 'hidden', lineHeight: 50, color: this.props.themeProp.textColor}]}>Receiving a PD catheter requires outpatient surgery; 
             patients usually go home on the same day. It may require healing within a few weeks, 
             but the catheter may be used almost immediately.</Text>
@@ -84,7 +101,8 @@ class Peritoneal extends Component {
             the solution for you. The treatment is usually done at night while you sleep. Your 
             physician may order you to keep fluid dwelling during the day in addition to your cycles 
             at night depending on how much dialysis you need. </Text>
-       
+          </CollapseBody>
+          </Collapse>
        {/*SECTION LIST*/}
        <SectionList
                     renderItem={({item, index}) => {
