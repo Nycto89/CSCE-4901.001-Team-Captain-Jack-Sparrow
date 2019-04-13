@@ -4,6 +4,7 @@ import {Animated, TouchableHighlight, Dimensions,
     View, Image, PanResponder } from 'react-native';
 import Swiper from 'react-native-swiper';
 import {Actions} from 'react-native-router-flux';
+import {connect} from 'react-redux';
 
 class ModalityHome extends Component {
 
@@ -12,70 +13,78 @@ class ModalityHome extends Component {
     
     }
 
+    constructor(props) {
+      super(props);
+      this.state= {
+        cIndex: 0
+      };
+    }
+
     
   render() {
 
     const {navigate} = this.props.navigation;
 
     return (
-            <Swiper dotColor= 'white' activeDotColor= '#4169E1'>
-              <View style={styles.slideDefault}>
+            <Swiper loop={false} dotColor= {this.props.themeProp.textColor} activeDotColor= '#4169E1' onIndexChanged={(swipe_index)=>{
+              setTimeout(()=>this.setState({swipe_index}),200)}}>
+              <View style={[styles.slideDefault, {backgroundColor: this.props.themeProp.backgroundColor}]}>
               <View style={{flex: 0.2, justifyContent: 'flex-start', paddingTop: 0, marginBottom: 10}}>
-              <Text style={styles.headingText}>Kidney Transplant</Text>
+              <Text style={[styles.headingText, {color: this.props.themeProp.textColor}]}>Kidney Transplant</Text>
               </View> 
               <TouchableHighlight onPress= {() => Actions.KidneyTransplant()}>
-              <View style={styles.circle}> 
-                <Image style={[styles.imageStyle, {aspectRatio: 4/3}]} source= {require('../../images/transplant.png')} resizeMode="cover"/>
+              <View style={[styles.circle, {borderColor: this.props.themeProp.textColor}]}> 
+                <Image style={[styles.imageStyle, {aspectRatio: 4/3, tintColor: this.props.themeProp.textColor}]} source= {require('../../images/transplant.png')} resizeMode="cover"/>
               </View>
               </TouchableHighlight>
         </View>
-        <View style={styles.slideDefault}>
+        <View style={[styles.slideDefault, {backgroundColor: this.props.themeProp.backgroundColor}]}>
               <View style={{flex: 0.2, justifyContent: 'flex-start', paddingTop: 0, marginBottom: 0}}>
-              <Text style={styles.headingText}>Peritoneal Dialysis</Text>
+              <Text style={[styles.headingText, {color: this.props.themeProp.textColor}]}>Peritoneal Dialysis</Text>
               </View> 
               <TouchableHighlight onPress= {() => Actions.PeritonealDialysis()}>
-              <View style={styles.circle}>
-              <Image style={[styles.imageStyle, {aspectRatio: 385/378}]} source= {require('../../images/peritoneal.png')} resizeMode="cover"/>
+              <View style={[styles.circle, {borderColor: this.props.themeProp.textColor}]}>
+              <Image style={[styles.imageStyle, {aspectRatio: 385/378, tintColor: this.props.themeProp.textColor}]} source= {require('../../images/peritoneal.png')} resizeMode="cover"/>
               </View>
               </TouchableHighlight>
         </View>
-        <View style={styles.slideDefault}>
+        <View style={[styles.slideDefault, {backgroundColor: this.props.themeProp.backgroundColor}]}>
             <View style={{flex: 0.2, justifyContent: 'flex-start', paddingTop: 0, marginBottom: 0}}>
-              <Text style={styles.headingText}>In-Center Dialysis</Text>
+              <Text style={[styles.headingText, {color: this.props.themeProp.textColor}]}>In-Center Dialysis</Text>
             </View> 
             <TouchableHighlight onPress= {() => Actions.InCenterHemodialysis()}>
-            <View style={styles.circle}>
-            <Image style={[styles.imageStyle, {aspectRatio: 326/404}]} source= {require('../../images/incenter.png')} resizeMode="cover"/>
+            <View style={[styles.circle, {borderColor: this.props.themeProp.textColor}]}>
+            <Image style={[styles.imageStyle, {aspectRatio: 326/404, tintColor: this.props.themeProp.textColor}]} source= {require('../../images/incenter.png')} resizeMode="cover"/>
             </View>
             </TouchableHighlight>
         </View>
-        <View style={styles.slideDefault}>
+        <View style={[styles.slideDefault, {backgroundColor: this.props.themeProp.backgroundColor}]}>
               <View style={{flex: 0.2, justifyContent: 'flex-start', paddingTop: 0, marginBottom: 0}}>
-              <Text style={styles.headingText}>Nocturnal Dialysis</Text>
+              <Text style={[styles.headingText, {color: this.props.themeProp.textColor}]}>Nocturnal Dialysis</Text>
               </View> 
             <TouchableHighlight onPress= {() => Actions.NocturnalDialysis()}>
-            <View style={styles.circle}>
-            <Image style={[styles.imageStyle, {aspectRatio: 405/407}]} source= {require('../../images/nocturnal.png')} resizeMode="cover"/>
+            <View style={[styles.circle, {borderColor: this.props.themeProp.textColor}]}>
+            <Image style={[styles.imageStyle, {aspectRatio: 405/407, tintColor: this.props.themeProp.textColor}]} source= {require('../../images/nocturnal.png')} resizeMode="cover"/>
             </View>
             </TouchableHighlight>
         </View>
-        <View style={styles.slideDefault}>
+        <View style={[styles.slideDefault, {backgroundColor: this.props.themeProp.backgroundColor}]}>
             <View style={{flex: 0.2, justifyContent: 'flex-start', paddingTop: 0, marginBottom: 0}}>
-              <Text style={styles.headingText}>Home Hemodialysis</Text>
+              <Text style={[styles.headingText, {color: this.props.themeProp.textColor}]}>Home Hemodialysis</Text>
               </View> 
             <TouchableHighlight onPress= {() => Actions.HomeHemodialysis()}>
-            <View style={styles.circle}>
-            <Image style={[styles.imageStyle, {aspectRatio: 302/310}]} source= {require('../../images/home_hemo.png')} resizeMode="cover"/>
+            <View style={[styles.circle, {borderColor: this.props.themeProp.textColor}]}>
+            <Image style={[styles.imageStyle, {aspectRatio: 302/310, tintColor: this.props.themeProp.textColor}]} source= {require('../../images/home_hemo.png')} resizeMode="cover"/>
             </View>
             </TouchableHighlight>
         </View>
-        <View style={styles.slideDefault}>
+        <View style={[styles.slideDefault, {backgroundColor: this.props.themeProp.backgroundColor}]}>
             <View style={{flex: 0.2, justifyContent: 'flex-start', paddingTop: 0, marginBottom: 20}}>
-              <Text style={styles.headingText}>Conservative Therapy</Text>
+              <Text style={[styles.headingText, {color: this.props.themeProp.textColor}]}>Conservative Therapy</Text>
               </View> 
             <TouchableHighlight onPress= {() => Actions.ConservativeTherapy()}>
-            <View style={styles.circle}>
-            <Image style={[styles.imageStyle, {aspectRatio: 342/337}]} source= {require('../../images/conservative.png')} resizeMode="cover"/>
+            <View style={[styles.circle, {borderColor: this.props.themeProp.textColor}]}>
+            <Image style={[styles.imageStyle, {aspectRatio: 342/337, tintColor: this.props.themeProp.textColor}]} source= {require('../../images/conservative.png')} resizeMode="cover"/>
             </View>
             </TouchableHighlight>
         </View>
@@ -91,7 +100,6 @@ const styles = StyleSheet.create({
     height: 300,
     borderRadius: 300/2,
     borderWidth: 5,
-    borderColor: 'white',
     justifyContent: 'space-evenly',
     alignItems: 'center',
     marginBottom: 50,
@@ -108,7 +116,6 @@ const styles = StyleSheet.create({
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: '#222222'
     },
     container: {
       flex: 1,
@@ -135,11 +142,17 @@ const styles = StyleSheet.create({
     },
     headingText: {
       fontFamily: 'Arial',
-      color: 'white',
       fontSize: 35,
       flexWrap: 'wrap'
     }
   });
   
-
-export default ModalityHome;
+  function mapStateToProps(state) {
+    return {
+    fontProp: state.fontProps,
+    themeProp: state.themeProps
+    };
+  }
+  
+  connect(mapStateToProps);
+  export default connect(mapStateToProps)(ModalityHome);

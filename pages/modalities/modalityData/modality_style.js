@@ -5,30 +5,27 @@ const modalityStyles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
-    backgroundColor: '#222222',
     width: Dimensions.get('window').width,
-    paddingTop: 60,
-    paddingLeft: 20
+    paddingTop: 60
   },
   header: {
     fontSize: 30,
     paddingBottom: 15,
     fontFamily: 'Verdana',
-    color: '#ffffff',
-    marginTop: 15
+    marginTop: 15,
+    paddingLeft: 20
   },
   important_txt: {
     paddingBottom: 20,
     fontFamily: 'Arial',
-    color: '#ffffff',
     textAlign: 'left',
     paddingRight: 10,
-    lineHeight: 30
+    lineHeight: 30,
+    paddingLeft: 20
   },
   paramount_line: {
     padding: 30,
     fontWeight: 'bold',
-    color: '#ffffff',
     textAlign: 'center'
   },
   data_txt: {
@@ -36,20 +33,16 @@ const modalityStyles = StyleSheet.create({
     paddingTop: 20,
     paddingBottom: 20,
     fontFamily: 'Arial',
-    color: '#ffffff',
     marginLeft: 5
   },
   subheading: {
     fontSize: 25,
-    color: '#222222',
     paddingBottom: 20
   },
   subheadingView: {
     width: Dimensions.get('window').width - 50,
     borderRadius: 20,
     borderWidth: 5,
-    borderColor: '#ffffff',
-    backgroundColor: '#ffffff',
     marginBottom: 20
   },
 });

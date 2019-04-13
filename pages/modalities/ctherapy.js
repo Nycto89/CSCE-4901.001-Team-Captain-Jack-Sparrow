@@ -15,6 +15,7 @@ import {Action} from 'react-native-router-flux';
 import {Content, List, ListItem} from 'native-base';
 import {modalityStyles} from './modalityData/modality_style';
 import {connect} from 'react-redux';
+import {Collapse, CollapseHeader, CollapseBody} from 'accordion-collapse-react-native';
 
 
 class Therapy extends Component {
@@ -28,15 +29,20 @@ class Therapy extends Component {
     return (
       <View>
       <ScrollView>
-       <View style={modalityStyles.container}>
-      	<Text style={modalityStyles.header}>What is Conservative Therapy?</Text>
+       <View style={[modalityStyles.container, {backgroundColor: this.props.themeProp.backgroundColor}]}>
+        <Collapse>
+        <CollapseHeader>
+      	<Text style={[modalityStyles.header, {color: this.props.themeProp.accentColor}]}>What is Conservative Therapy?</Text>
         <View style= {{
-          backgroundColor: 'white',
+          backgroundColor: this.props.themeProp.accentColor,
           height: 1,
           width: (Dimensions.get('window').width) - 100,
-          marginBottom: 20
+          marginBottom: 20,
+          marginLeft: 20
         }}></View>
-      	<Text style={[modalityStyles.important_txt, {fontSize: this.props.fontProp.fontVal, overflow: 'hidden', lineHeight: 50}]}>
+        </CollapseHeader>
+        <CollapseBody>
+      	<Text style={[modalityStyles.important_txt, {fontSize: this.props.fontProp.fontVal, overflow: 'hidden', lineHeight: 50, color: this.props.themeProp.textColor}]}>
           The option of choosing not to perform 
           dialysis is entirely up to you. There may be times when dialysis isn’t 
           the right choice for someone with kidney disease. If you decide not to 
@@ -54,11 +60,13 @@ class Therapy extends Component {
           pain and symptoms of kidney failure such as swelling or shortness of 
           breath. You may also discuss options such as palliative care or hospice 
           care to enhance comfort for the remainder of your life.</Text>
+        </CollapseBody>
+        </Collapse>
           <View style= {
-            {backgroundColor: 'white',
+            {backgroundColor: this.props.themeProp.accentColor,
             height: 1,
             marginRight: 4}}></View>
-          <Text style={[modalityStyles.paramount_line, {fontSize: this.props.fontProp.fontVal, overflow: 'hidden', lineHeight: 50}]}>Remember it’s your life and your decision, but it’s important to 
+          <Text style={[modalityStyles.paramount_line, {color: this.props.themeProp.textColor, fontSize: this.props.fontProp.fontVal, overflow: 'hidden', lineHeight: 50}]}>Remember it’s your life and your decision, but it’s important to 
             weigh all your options to make an informed choice.</Text>
             <View style={{flex: 0.2, paddingBottom: 50}}>
           </View>
@@ -71,7 +79,8 @@ class Therapy extends Component {
 
 function mapStateToProps(state) {
   return {
-  fontProp: state.fontProps
+  fontProp: state.fontProps,
+  themeProp: state.themeProps
   };
 }
 

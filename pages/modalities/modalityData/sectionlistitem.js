@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, 
     ScrollView, Dimensions, ListView, 
-    SectionList, Image} from 'react-native';
+    SectionList} from 'react-native';
 import {Content, List, ListItem} from 'native-base';
 import {modalityStyles} from './modality_style';
 import {connect} from 'react-redux';
+import Image from 'react-native-scalable-image';
 
 class SectionListItem extends Component {
 
@@ -12,18 +13,29 @@ class SectionListItem extends Component {
         super(props);
       }
 
+    doesPhotoExist() {
+      if (this.props.item.photo === undefined)
+      {
+        //do nothing
+      }
+      else {
+      return (<Image width={90} height={90} style={{top: 20, paddingBottom: 20, tintColor: this.props.themeProp.textColor}} source={this.props.item.photo} />);
+      }
+    }
+
+
     render() {
 
         return (
-          <View style={{width: Dimensions.get('window').width - 50}}>
-            <Text style={[modalityStyles.data_txt, {fontSize: (this.props.fontProp.fontVal)/2, overflow: 'hidden', lineHeight: 50}]}>
+          <View style={{width: Dimensions.get('window').width - 50, justifyContent: 'center', alignItems: 'center', marginLeft: 20}}>             
+            {this.doesPhotoExist()}
+            <Text style={[modalityStyles.data_txt, {fontSize: (this.props.fontProp.fontVal)/2, overflow: 'hidden', lineHeight: 50, color: this.props.themeProp.textColor}]}>
               {this.props.item.description}
             </Text>
             <View style= {{
-              backgroundColor: 'white',
+              backgroundColor: this.props.themeProp.textColor,
               height: 1,
               width: Dimensions.get('window').width - 50,
-              margin: 5
             }}></View>
           </View>
         );
@@ -32,7 +44,8 @@ class SectionListItem extends Component {
 
 function mapStateToProps(state) {
   return {
-  fontProp: state.fontProps
+  fontProp: state.fontProps,
+  themeProp: state.themeProps
   };
 }
 

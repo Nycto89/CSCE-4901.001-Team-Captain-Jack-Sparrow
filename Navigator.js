@@ -63,7 +63,7 @@ class MainNavigator extends Component {
                       />                  
                   <Scene key="ModalityMainScreen"
                       component={ModalityHome}
-                      title="Welcome!"
+                      title="Modalities"
                       renderBackButton={() => (null)}
                       panHandlers={null}
                       />
@@ -130,7 +130,7 @@ class MainNavigator extends Component {
     return (
       <View>
         <TouchableHighlight onPress={() => Actions.HomeScreen({ type : "reset" })}>
-          <Image style={{ height: 30, width: 30, marginRight: 20 }} source={require('./images/HOME.png')} />
+          <Image style={{ height: 30, width: 30, marginRight: 20, tintColor: '#AACCFF'}} source={require('./images/HOME.png')} />
         </TouchableHighlight>
       </View>
     )
@@ -152,13 +152,13 @@ class MainNavigator extends Component {
 
   const styles = StyleSheet.create({
     navBar : {
-      backgroundColor: 'grey', // changing navbar color
+      backgroundColor: '#222222', // changing navbar color
     }, 
     navBarTitleStyle: {
       // centering for Android
      flex: 1,
      textAlign: 'center',
-     color: 'blue',
+     color: '#AACCFF'
     },
     routerScene: {
       // paddingTop : 0

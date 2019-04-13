@@ -3,19 +3,20 @@ import { Text, Button, StyleSheet, ScrollView, View} from 'react-native';
 import {createOpenLink} from 'react-native-open-maps';
 import {IconButton, Colors} from 'react-native-paper';
 import {clinicLst} from '../clinicData/clinicLookupData';
+import {connect} from 'react-redux';
 
-export default class ScrollViewTEST extends Component{
+class ScrollViewTEST extends Component{
   makeList=(item)=>(
-    <View key={item.id} style={styles.rowStyle}>
+    <View key={item.id} style={[styles.rowStyle, {backgroundColor: this.props.themeProp.backgroundColor, borderColor: this.props.themeProp.textColor}]}>
       <View style={styles.listStyle}>
-        <Text style={styles.nameStyle}>{item.name}</Text>
-        <Text style={styles.addrStyle}>{item.addr}</Text>
+        <Text style={[styles.nameStyle, {color: this.props.themeProp.textColor}]}>{item.name}</Text>
+        <Text style={[styles.addrStyle, {color: this.props.themeProp.accentColor}]}>{item.addr}</Text>
       </View>
       <View style={styles.buttonStyle}>
         <IconButton
           icon={"explore"}
           size={30}
-          color={Colors.grey600}
+          color={this.props.themeProp.textColor}
           onPress={createOpenLink({query:(item.addr)})}
         />
       </View>
@@ -38,7 +39,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     borderColor: '#111111',
     borderWidth: 1,
-    backgroundColor: '#222222'
   },
   
   listStyle:{
@@ -73,3 +73,13 @@ const styles = StyleSheet.create({
     color: '#bbbbbb'
   }
 })
+
+function mapStateToProps(state) {
+  return {
+  fontProp: state.fontProps,
+  themeProp: state.themeProps
+  };
+}
+
+connect(mapStateToProps);
+export default connect(mapStateToProps)(ScrollViewTEST);

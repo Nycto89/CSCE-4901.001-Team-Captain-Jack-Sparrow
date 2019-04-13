@@ -1,7 +1,10 @@
 const initialState = {
     themeType: false,
     backgroundColor: 'white',
-    textColor: '#222222'
+    textColor: '#222222',
+    sliderColor: 'black',
+    accentColor: 'blue',
+    circleColor: '#AACCFF',
 }
 
 export default function(state = initialState, action) {
@@ -14,7 +17,10 @@ export default function(state = initialState, action) {
                 return {
                     themeType: true,
                     backgroundColor: '#222222',
-                    textColor: 'white'
+                    textColor: 'white',
+                    sliderColor: 'white',
+                    accentColor: '#AACCFF',
+                    circleColor: '#222222'
                 }
             }
             else {

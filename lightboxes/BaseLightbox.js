@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View, StyleSheet, Animated, Dimensions, Button } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import { connect } from 'react-redux';
 
 const { height: deviceHeight, width: deviceWidth } = Dimensions.get('window');
 
-export default class BaseLightbox extends Component {
+class BaseLightbox extends Component {
   static propTypes = {
     children: PropTypes.any,
     horizontalPercent: PropTypes.number,
@@ -45,11 +46,11 @@ export default class BaseLightbox extends Component {
           height,
           justifyContent: 'center',
           alignItems: 'center',
-          backgroundColor: 'rgba(255,255,255,1)',
+          backgroundColor: this.props.themeProp.backgroundColor,
         }}
       >
         {children}
-        <Button style={{ paddingTop : 30 }} title="Close" onPress={this.closeModal} />
+        <Button style={{ paddingTop : 50 }} title="Close" onPress={this.closeModal} />
       </View>
     );
   };
@@ -74,3 +75,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 });
+
+function mapStateToProps(state) {
+  return {
+  fontProp: state.fontProps,
+  themeProp: state.themeProps
+  };
+}
+export default connect(mapStateToProps)(BaseLightbox);

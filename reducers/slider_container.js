@@ -31,7 +31,12 @@ class FontSlider extends Component {
 
       getFontValue(){
               return(
-                <Text key="fontSize">{this.props.fontProp.fontVal}</Text>
+                <View style={{justifyContent: 'center', paddingBottom: 20}}>
+                <Text key="fontSize" style={{color: this.props.themeProp.textColor, textAlign: 'center'}}>Font Size: {this.props.fontProp.fontVal}</Text>
+                <Text key="fSizePreview" style={{fontSize: this.props.fontProp.fontVal, color: this.props.themeProp.textColor, textAlign: 'center'}}>
+                    Aa
+                </Text>
+                </View>
               );
       }
 
@@ -53,7 +58,7 @@ class FontSlider extends Component {
                  margin: 15}}
                 thumbTintColor= 'gray'
                 minimumTrackTintColor= 'gray'
-                maximumTrackTintColor= 'black'
+                maximumTrackTintColor= {this.props.themeProp.sliderColor}
                 />
                 {this.getFontValue()}
                 </View>
@@ -63,7 +68,8 @@ class FontSlider extends Component {
 
     function mapStateToProps(state) {
         return {
-        fontProp: state.fontProps
+        fontProp: state.fontProps,
+        themeProp: state.themeProps
         };
      }
 
