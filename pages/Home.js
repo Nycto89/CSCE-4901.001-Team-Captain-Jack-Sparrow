@@ -5,44 +5,52 @@ import {connect} from 'react-redux';
 
 import HomeCarousel from '../carousel';
 
-const { width } = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 
   class HomeScreen extends React.Component {
     
     render() {
+
       return (
         <View style={styles.mainViewContainer}>
           
           <View style={[styles.picFlex, {backgroundColor : this.props.themeProp.backgroundColor}]}>
               <HomeCarousel />
-                {/* <Image source={require('../images/harold2.jpg')} style={styles.pic} resizeMode='contain' /> */}
           </View>
 
           <View style={[styles.tileFlexMain, {backgroundColor : this.props.themeProp.backgroundColor}]}>
 
-            <View style={styles.tileFlexHorizontal1} >
+            <View style={styles.tileFlexHorizontal}>
+            <View style={styles.tileFlexVertical}>
+
               <TouchableHighlight
                 onPress={ () => Actions.ModalityMainScreen()}>
-                <Image source={require('../images/modalities.png')} style={styles.tile1}/>
-            </TouchableHighlight>
-            </View>
-
-            <View style={styles.tileFlexHorizontal1} >
-              <TouchableHighlight
-                onPress={ () => Actions.InfoPage()}>
-                <Image source={require('../images/kidneyinfo.png')} style={styles.tile1}/>
-            </TouchableHighlight>
-            </View>
-
-            <View style={styles.tileFlexHorizontal2} >
-              <TouchableHighlight
-                onPress={ () => Actions.CalendarPage()}>
-                <Image source={require('../images/calendaricon.png')} style={styles.tile2}/>
+                <Image source={require('../images/home_icons/treatment.png')} style={[styles.tile, this.iconTintStyle()]}/>
               </TouchableHighlight>
+            </View>
+            <View style={styles.tileFlexVertical}>
               <TouchableHighlight
+                onPress={ () => Actions.Nutrition()}>
+                <Image source={require('../images/home_icons/nutrition.png')} style={[styles.tile, this.iconTintStyle()]}/>
+              </TouchableHighlight>
+            </View>
+            
+            </View>
+
+            <View style={styles.tileFlexHorizontal} >
+              <View style={styles.tileFlexVertical}>
+                <TouchableHighlight
+                onPress={ () => Actions.CalendarPage()}>
+                <Image source={require('../images/home_icons/calendar.png')} style={[styles.tile, this.iconTintStyle()]}/>
+              </TouchableHighlight>
+              </View>
+              <View style={styles.tileFlexVertical}>
+                <TouchableHighlight
                 onPress={ () => Actions.ClinicFinder()}>
-                <Image source={require('../images/findericon.png')} style={styles.tile2}/>
-            </TouchableHighlight>
+                <Image source={require('../images/home_icons/map.png')} style={[styles.tile, this.iconTintStyle()]}/>
+              </TouchableHighlight>
+              </View>
+              
 
             </View>
           </View>
@@ -51,7 +59,14 @@ const { width } = Dimensions.get('window');
           
       );
     }
+
+    iconTintStyle = function(){
+      return {tintColor : this.props.themeProp.themeType ? '#e5e5e5' : '#000000'}
+    } 
+
   }
+
+  
 
   const styles = StyleSheet.create({
 
@@ -60,35 +75,11 @@ const { width } = Dimensions.get('window');
       // backgroundColor : 'blue'
     },
 
-    // titleParent : {
-    //   flex : 1,
-    //   flexDirection : 'row',
-    //   alignItems : 'stretch',
-    //   justifyContent : 'space-around',
-    //   paddingTop : 10,
-    //   textAlign : 'center',
-    //   // backgroundColor : 'orange'
-    // } ,
-
-    title: {
-      height : 30,
-      alignSelf : 'center',
-      fontSize : 24
-    },
-
     picFlex: {
       flex: 3,
       width : null ,
       height : null 
     } ,
-
-    pic: {
-      flex : 1,
-      width : width,
-      // height : 400,
-      alignItems : 'flex-start',
-      justifyContent : 'center'
-    } , 
 
     tileFlexMain : {
       flex : 4,
@@ -96,33 +87,28 @@ const { width } = Dimensions.get('window');
       justifyContent : 'space-around'
     }, 
 
-    tileFlexHorizontal1 : {
+    tileFlexHorizontal : {
       flex : 1,
-      justifyContent : 'center',
-      padding : 15
-    },
-
-    tileFlexHorizontal2 : {
-      flex : 2,
       flexDirection : 'row',
-      justifyContent : 'center',
-      paddingBottom : 80
+      justifyContent : 'space-around',
+      alignItems : 'center'
     },
 
-    tile1: {
-      width : 265,
-      height : 50,
-      borderColor : 'black',
-      borderWidth : 3
+    tileFlexVertical : {
+      flex : 1,
+      flexDirection : 'column',
+      justifyContent : 'space-around',
+      alignItems: 'center'
     },
 
-    tile2 : {
-      height : 40,
-      width : 40 ,
-      margin : 15,
-      padding : 55,
-      borderColor : 'black',
-      borderWidth : 3
+    tile : {
+      height : height * (25/100),
+      width : width * (25 / 100),
+      resizeMode : 'contain'
+      // margin : 25,
+      // padding : 55,
+      // borderColor : 'black',
+      // borderWidth : 3
     }
     
   }); 

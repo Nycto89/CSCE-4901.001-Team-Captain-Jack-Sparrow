@@ -7,44 +7,40 @@ import Carousel from 'react-native-snap-carousel';
 const { height, width } = Dimensions.get('window');
 
 export default class HomeCarousel extends Component {
-
-    state = {
-        images: [
-            'https://unsplash.it/300/?random',
-            'https://unsplash.it/350/?random',
-            'https://unsplash.it/400/?random',
-            'https://unsplash.it/450/?random',
-            'https://unsplash.it/500/?random',
-            'https://unsplash.it/550/?random',
-            'https://unsplash.it/600/?random'
-        ]
-    };
+    constructor() {
+        super()
+        this.state = {
+          images: [
+            require('app/images/home_carousel/kidneyhands.png')
+          ],
+        }
+      }
 
     renderItem = ({item, index}) => {
         return (
-            <Image style={styles.logoStyle} source={{ uri: item }} />
+            <Image style={styles.entryStyle} source={  item } resizeMode="cover"/>
         );
     }
 
     render () {
         return (
-            <View>
-                <View style={{
-                    transform: [{
-                        rotate: '0deg'
-                    }]
-                }}>
+                <View style={{ flex : 1, width : width }}>
+                {/* // width : width, height : (3/7) * height }}> */}
                     <Carousel
-                      inactiveSlideOpacity={0.9}
-                      inactiveSlideScale={1}
-                      firstItem={1}
-                      sliderWidth={width}
-                      itemWidth={width}
-                      data={this.state.images}
-                      renderItem={this.renderItem}
+                        inactiveSlideOpacity={0.9}
+                        inactiveSlideScale={1}
+                        firstItem={1}
+                        sliderWidth={width}
+                        itemWidth={width}
+                        data={this.state.images}
+                        renderItem={this.renderItem}
+                        enableMomentum={true}
+                        loop={true}
+                        autoplay={true}
+                        autoplayDelay={500}
+                        autoplayInterval={3000}
                     />
                 </View>
-            </View>
         );
     }
 
@@ -70,11 +66,13 @@ export default class HomeCarousel extends Component {
 }
 
 const styles = {
-    logoStyle: {
+    entryStyle: {
         // transform: [{
-        //     rotate: '0deg'
+        //     scale: .5
         // }],
+        flex : 1,
         width: width,
-        height: height
+        // height: height,
+        // backgroundColor : 'green'
     }
 };

@@ -8,7 +8,7 @@ import DrawerMenu from './drawer.js';
 import ModalityHome from './pages/modalities/home';
 import CalendarPage from './pages/Calendar.js';
 import ClinicFinder from './pages/ClinicFinder.js';
-import InfoPage from './pages/InfoPage.js';
+import Nutrition from './pages/Nutrition.js';
 import Transplant from './pages/modalities/transplant';
 import Peritoneal from './pages/modalities/peritoneal';
 import Incenter from './pages/modalities/incenter';
@@ -22,7 +22,7 @@ import SettingsLightbox from './lightboxes/SettingLightbox';
 import { Router, Scene, Actions, Stack, Drawer, Modal, Lightbox} from 'react-native-router-flux';
 
 
-export default class MainNavigator extends Component {
+class MainNavigator extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -75,9 +75,9 @@ export default class MainNavigator extends Component {
                       component={ClinicFinder} 
                       title="Find a clinic"
                       />
-                  <Scene key="InfoPage" 
-                      component={InfoPage} 
-                      title="General Info" 
+                  <Scene key="Nutrition" 
+                      component={Nutrition} 
+                      title="Phosphorus Lookup" 
                       drawer
                       />
                   <Scene
@@ -120,11 +120,13 @@ export default class MainNavigator extends Component {
     )
   }
 }
+
+
   //Home icon
   const HomeButton = () => {
-    if(Actions.currentScene === '_HomeScreen')
-      return null;
-    else
+    // if(Actions.currentScene === 'HomeScreen')
+    //   return null;
+    // else
     return (
       <View>
         <TouchableHighlight onPress={() => Actions.HomeScreen({ type : "reset" })}>
@@ -146,6 +148,8 @@ export default class MainNavigator extends Component {
     )
   }
 
+
+
   const styles = StyleSheet.create({
     navBar : {
       backgroundColor: 'grey', // changing navbar color
@@ -160,3 +164,5 @@ export default class MainNavigator extends Component {
       // paddingTop : 0
     },
   });
+
+  export default MainNavigator

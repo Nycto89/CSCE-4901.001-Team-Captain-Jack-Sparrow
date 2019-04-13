@@ -21,7 +21,7 @@ export default function(state = initialState, action) {
                 console.log("CHANGE THEME TO LIGHT");
                 return {
                     themeType: false,
-                    backgroundColor: 'white',
+                    backgroundColor: '#e5e5e5',
                     textColor: '#222222'
                 }
             }

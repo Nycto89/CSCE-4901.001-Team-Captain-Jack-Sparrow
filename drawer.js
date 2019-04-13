@@ -24,7 +24,7 @@ export default class DrawerMenu extends React.Component {
                             <ListItem onPress={() => Actions.ClinicFinder()}>
                                 <Text>Find a clinic</Text>
                             </ListItem>
-                            <ListItem onPress={() => Actions.InfoPage()}>
+                            <ListItem onPress={() => Actions.Nutrition()}>
                                 <Text>Kidney Information</Text>
                             </ListItem>
                             <ListItem onPress={() => Actions.ModalityMainScreen()}>
