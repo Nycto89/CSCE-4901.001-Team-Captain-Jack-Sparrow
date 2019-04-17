@@ -146,6 +146,8 @@ dependencies {
     implementation project(':react-native-android-open-settings')
     implementation project(':react-native-geocoder')
     implementation project(':react-native-geolocation-service')
+    implementation project(':react-native-android-open-settings')
+
 }
 
 // Run this once to be able to run the application with BUCK

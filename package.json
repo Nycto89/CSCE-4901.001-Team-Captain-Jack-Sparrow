@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "accordion-collapse-react-native": "^0.1.9",
-    "cheerio-without-node-native": "^1.0.0-rc.2",
+    "cheerio-without-node-native": "^0.20.2",
     "lodash": "^4.17.11",
     "native-base": "^2.12.0",
     "react": "16.8.3",
