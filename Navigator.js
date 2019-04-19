@@ -7,7 +7,7 @@ import HomeScreen from './pages/Home.js';
 import DrawerMenu from './drawer.js';
 import ModalityHome from './pages/modalities/home';
 import CalendarPage from './pages/Calendar.js';
-import ClinicFinder from './pages/ClinicFinder.js';
+import ClinicFinder from './pages/ClinicFinder';
 import InfoPage from './pages/InfoPage.js';
 import Transplant from './pages/modalities/transplant';
 import Peritoneal from './pages/modalities/peritoneal';

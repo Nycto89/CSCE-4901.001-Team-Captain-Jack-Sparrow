@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Alert, Text, Button, StyleSheet, ScrollView, View} from 'react-native';
+import { Alert, Text, Button, StyleSheet, ScrollView, FlatList, View} from 'react-native';
 import Permissions from 'react-native-permissions';
 import AndroidOpenSettings from 'react-native-android-open-settings'
 import {createOpenLink} from 'react-native-open-maps';
@@ -17,24 +17,6 @@ class clinicFinder extends Component{
   ////////////////////////////////////////////////////////
   //FUNCTIONS//
   ////////////////////////////////////////////////////////
-  makeList=(item)=>(
-    <View key={item.id} style={[styles.rowStyle, {backgroundColor: this.props.themeProp.backgroundColor, borderColor: this.props.themeProp.borderColor}]}>
-      <View style={styles.listStyle}>
-        <Text style={[styles.nameStyle, {color: this.props.themeProp.textColor}]}>{item.name}</Text>
-        <Text style={[styles.modalityStyle, {color: this.props.themeProp.textColor}]}>Modalities: {item.srvcs.toString()}</Text>
-        <Text style={[styles.addrStyle, {color: this.props.themeProp.accentColor}]}>{item.addr}</Text>
-      </View>
-      <View style={styles.buttonStyle}>
-        <IconButton
-          icon={"explore"}
-          size={30}
-          color={this.props.themeProp.textColor}
-          onPress={createOpenLink({query:(item.addr)})}
-        />
-      </View>
-    </View>
-  );//end makeList
-
   _requestPermission = async () => new Promise((resolve, reject) => {
     console.log('making request...');
     console.log(this.location);
@@ -201,18 +183,44 @@ class clinicFinder extends Component{
     if(this.state.reload){
       AndroidOpenSettings.appDetailsSettings();
       return(
-        <Text style={{color: 'black', fontWeight: 'bold', fontSize: 30}}>Please restart clinicFinder for permission cahnges to take affect...</Text>
+        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+          <Text style={{color: 'black', fontWeight: 'bold', fontSize: 30}}>Please restart clinicFinder for permission cahnges to take affect...</Text>
+        </View>
       )
     }
     if(!this.state.ready){
       return(
-        <Text>Fetching Clinic Data... please wait!</Text>
+        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+          <Text>Please wait while we find clinics near you...</Text>
+        </View>
       )
     }
     return(
-      <View>
-        <ScrollView>{clinicLst.map(this.makeList)}</ScrollView>
-      </View>
+      <FlatList
+        //removeClippedSubviews={false}
+        data = {clinicLst}
+        extraData={this.props}
+        renderItem={({item})=>{
+          return(
+            <View style={[styles.rowStyle, {backgroundColor: this.props.themeProp.backgroundColor, borderColor: this.props.themeProp.borderColor}]}>
+              <View style={styles.listStyle}>
+                <Text style={[styles.nameStyle, {color: this.props.themeProp.textColor}]}>{item.name}</Text>
+                <Text style={[styles.modalityStyle, {color: this.props.themeProp.textColor}]}>Modalities: {item.srvcs.toString()}</Text>
+                <Text style={[styles.addrStyle, {color: this.props.themeProp.accentColor}]}>{item.addr}</Text>
+              </View>
+              <View style={styles.buttonStyle}>
+                <IconButton
+                  icon={"explore"}
+                  size={30}
+                  color={this.props.themeProp.textColor}
+                  onPress={createOpenLink({query:(item.addr)})}
+                />
+              </View>
+            </View>
+          )//end return
+        }}//end renderItem
+        keyExtractor={(item, index) => item.name}
+      />//end FlatList
     );
   }//end render
 
@@ -364,5 +372,4 @@ function mapStateToProps(state) {
   };
 }
 
-connect(mapStateToProps)
 export default connect(mapStateToProps)(clinicFinder);

@@ -129,6 +129,7 @@ class clinicFinder extends Component{
       //console.log({response});
       this.setState({perms: response});
 
+      console.log('here');
       console.log(this.state);
     })
 
@@ -201,7 +202,9 @@ class clinicFinder extends Component{
     if(this.state.reload){
       AndroidOpenSettings.appDetailsSettings();
       return(
-        <Text style={{color: 'black', fontWeight: 'bold', fontSize: 30}}>Please restart clinicFinder for permission cahnges to take affect...</Text>
+        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+          <Text style={{color: 'black', fontWeight: 'bold', fontSize: 30}}>Please restart clinicFinder for permission changes to take affect...</Text>
+        </View>
       )
     }
     if(!this.state.ready){
