@@ -9,19 +9,19 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, 
 ScrollView, Dimensions, ListView, 
-SectionList} from 'react-native';
+SectionList, FlatList} from 'react-native';
 import {Button} from 'native-base';
 import {DrawerActions} from 'react-navigation';
 import ModalityHome from './home';
 import {Actions} from 'react-native-router-flux';
 import {Content, List, ListItem} from 'native-base';
-import {KidneyTransplant} from './modalityData/modality_pros_n_cons';
+import {KidneyTransplant} from './modalityData/modality_data';
 import {modalityStyles} from './modalityData/modality_style';
 import {connect} from 'react-redux';
 import SectionListItem from './modalityData/sectionlistitem';
 import SectionHeader from './modalityData/sectionheader';
 import Image from 'react-native-scalable-image';
-import {Collapse, CollapseHeader, CollapseBody} from 'accordion-collapse-react-native';
+import Accordion from 'react-native-collapsible/Accordion';
 
 var i_fontSize = 24;
 
@@ -31,121 +31,111 @@ class Transplant extends React.Component {
     super(props);
   }
 
-  render() {
+  state = {
+    activeSections: [],
+  };
 
-    console.log("Value: " + this.props.fontProp.fontVal);
+  doesPhotoExist(v_photo) {
+    if (v_photo === undefined)
+    {
+      //do nothing
+    }
+    else {
+    return (<Image width={Dimensions.get('window').width} style={{paddingBottom: 20}} source={v_photo} />);
+    }
+  }
+
+  doesIconExist(v_icon) {
+    if (v_icon === undefined)
+    {
+      //do nothing
+    }
+    else {
+    return (<Image width={90} height={90} style={{top: 20, paddingBottom: 20, tintColor: this.props.themeProp.textColor}} source={v_icon} />);
+    }
+  }
+
+  doesHeadingExist(v_heading){
+    if (v_heading === undefined)
+    {
+      //do nothing
+    }
+    else {
+    return (v_heading);
+    }
+  }
+
+  isList(data){
+    if (data === undefined)
+    {
+      //do nothing
+    }
+    else
+    {
+      console.log(data.length);
+    return (<FlatList
+            data={data}
+            renderItem= {({item, index}) => {
+                          return(<SectionListItem item={item} index={index}>
+                            
+                            </SectionListItem>);
+                    }}/>);
+    }
+  }
+
+
+  renderHeader = section => {
+    return(
+      <View>
+      <View style= {{
+        shadowColor: this.props.themeProp.textColor,
+        shadowOffset: {height: 2},
+        shadowRadius: 5,
+        shadowOpacity: 0.5
+            }}>
+            {this.doesPhotoExist(section.photo)}
+      </View>
+        <Text style={[modalityStyles.header, {color: this.props.themeProp.accentColor}]}>{this.doesHeadingExist(section.heading)}</Text>
+        <View style= {{
+          backgroundColor: this.props.themeProp.accentColor,
+          height: 1,
+          width: (Dimensions.get('window').width) - 100,
+          marginBottom: 20,
+          marginLeft: 20
+        }}></View>
+      </View>
+    );
+  };
+
+  renderContent = section => {
+    return(
+      <View>
+      {this.isList(section.data)}
+      <Text style={[modalityStyles.important_txt, {fontSize: this.props.fontProp.fontVal, overflow: 'hidden', lineHeight: 50, color: this.props.themeProp.textColor}]}>
+        {section.text}
+      </Text>
+      </View>
+    );
+  };
+
+  updateSections = activeSections => {
+    this.setState({activeSections});
+  };
+
+  render() {
 
     return (
       <View>
       <ScrollView>
-
-          <View style={[modalityStyles.container, {backgroundColor: this.props.themeProp.backgroundColor}]}>
-         <View style= {{
-                  shadowColor: this.props.themeProp.textColor,
-                  shadowOffset: {height: 2},
-                  shadowRadius: 5,
-                  shadowOpacity: 0.5
-                      }}>
-        <Image width = {Dimensions.get('window').width} style={{paddingLeft: 0}} source={require('../../images/stock_images/giving.jpg')}/>
+      <View style={[modalityStyles.container, {backgroundColor: this.props.themeProp.backgroundColor}]}>
+          <Accordion
+            sections={KidneyTransplant}
+            activeSections={this.state.activeSections}
+            renderHeader={this.renderHeader}
+            renderContent={this.renderContent}
+            onChange={this.updateSections}
+          />
         </View>
-        <Collapse>
-          <CollapseHeader>
-      	<Text style={[modalityStyles.header, {color: this.props.themeProp.accentColor}]}>What Does it Mean to Have a Transplant?</Text>
-        <View style= {{
-          backgroundColor: this.props.themeProp.accentColor,
-          height: 1,
-          width: (Dimensions.get('window').width) - 100,
-          marginBottom: 20,
-          marginLeft: 20
-        }}></View>
-        </CollapseHeader>
-        <CollapseBody>
-      	<Text style={[modalityStyles.important_txt, {fontSize: this.props.fontProp.fontVal, overflow: 'hidden', lineHeight: 50, color: this.props.themeProp.textColor}]}>
-        A healthy kidney is placed inside your body 
-      	to perform the work your own kidneys can no longer 
-      	do. These kidneys can last between 12 to 15 years on 
-      	average. During this time, dialysis isn’t needed.</Text>
-        </CollapseBody>
-        </Collapse>
-        <View style= {{
-                  shadowColor: this.props.themeProp.textColor,
-                  shadowOffset: {height: 2},
-                  shadowRadius: 5,
-                  shadowOpacity: 0.5
-                      }}>
-        <Image width = {Dimensions.get('window').width} style={{paddingLeft: 0}} source={require('../../images/stock_images/long_queue_outdoors.jpg')}/>
-        </View>
-        <Collapse>
-        <CollapseHeader>
-        <Text style={[modalityStyles.header, {color: this.props.themeProp.accentColor}]}>Where do the Kidneys Come From?</Text>
-        <View style= {{
-          backgroundColor: this.props.themeProp.accentColor,
-          height: 1,
-          width: (Dimensions.get('window').width) - 100,
-          marginBottom: 20,
-          marginLeft: 20
-        }}></View>
-        </CollapseHeader>
-        <CollapseBody>
-        <Text style={[modalityStyles.important_txt, {fontSize: this.props.fontProp.fontVal, overflow: 'hidden', lineHeight: 50, color: this.props.themeProp.textColor}]}>Donated kidneys may come from someone who passed away 
-          OR from a living donor. A healthy person who donates a kidney 
-          can live a normal life with the kidney they have left. The wait 
-          list for deceased donor kidneys is three to five years. Kidneys 
-          from living donors can be transplanted faster. The operations are 
-          done on the same day and can be scheduled at a convenient time for 
-          both the patient and the donor.</Text>
-          </CollapseBody>
-          </Collapse>
-          <View style= {{
-                  shadowColor: this.props.themeProp.textColor,
-                  shadowOffset: {height: 2},
-                  shadowRadius: 5,
-                  shadowOpacity: 0.5
-                      }}>
-        <Image width = {Dimensions.get('window').width} style={{paddingLeft: 0}} source={require('../../images/stock_images/woman-doctor.jpg')}/>
-        </View>
-        <Collapse>
-        <CollapseHeader>
-        <Text style={[modalityStyles.header, {color: this.props.themeProp.accentColor}]}>Getting a Transplant</Text>
-        <View style= {{
-          backgroundColor: this.props.themeProp.accentColor,
-          height: 1,
-          width: (Dimensions.get('window').width) - 100,
-          marginBottom: 20,
-          marginLeft: 20
-        }}></View>
-        </CollapseHeader>
-        <CollapseBody>
-        <Text style={[modalityStyles.important_txt, {fontSize: this.props.fontProp.fontVal, overflow: 'hidden', lineHeight: 50, color: this.props.themeProp.textColor}]}>1) Ask your nephrologist or healthcare provider to refer you to a 
-          transplant center for evaluation OR contact a transplant center in 
-          your area.</Text>
-        <Text style={[modalityStyles.important_txt, {fontSize: this.props.fontProp.fontVal, overflow: 'hidden', lineHeight: 50, color: this.props.themeProp.textColor}]}>2) The transplant center professionals will provide a complete physical exam, 
-          review your health records and conduct testing and x-rays to evaluate your ability 
-          to receive surgery.</Text>
-        <Text style={[modalityStyles.important_txt, {fontSize: this.props.fontProp.fontVal, overflow: 'hidden', lineHeight: 50, color: this.props.themeProp.textColor}]}>3) Find a living donor or join the waiting list for a deceased donor kidney. 
-          If you are on the waitlist, you may have to be on dialysis during this time.
-        </Text>
-        <Text style={[modalityStyles.important_txt, {fontSize: this.props.fontProp.fontVal, overflow: 'hidden', lineHeight: 50, color: this.props.themeProp.textColor}]}>4) Next step: Transplant Surgery!</Text>
-        </CollapseBody>
-        </Collapse>
-
-          {/*SECTION LIST*/}
-          <SectionList
-                    renderItem={({item, index}) => {
-                          return(<SectionListItem item={item} index={index}>
-                            
-                            </SectionListItem>);
-                    }}
-                    renderSectionHeader={({section}) => {
-                        return(<SectionHeader section={section} />);
-                    }}
-                    sections={KidneyTransplant}
-                    keyExtractor={(item, index) => item.name}
-          >
-
-          </SectionList>
-          <View style={{flex: 0.2, paddingBottom: 50}}></View>
-       </View>
       </ScrollView>
       </View>
     );

@@ -6,7 +6,8 @@ const modalityStyles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
     width: Dimensions.get('window').width,
-    paddingTop: 60
+    paddingTop: 60,
+    paddingBottom: 175
   },
   header: {
     fontSize: 30,

@@ -29,7 +29,7 @@ class Therapy extends Component {
     return (
       <View>
       <ScrollView>
-       <View style={[modalityStyles.container, {backgroundColor: this.props.themeProp.backgroundColor}]}>
+       <View style={[modalityStyles.container, {backgroundColor: this.props.themeProp.backgroundColor, paddingBottom: 550}]}>
         <Collapse>
         <CollapseHeader>
       	<Text style={[modalityStyles.header, {color: this.props.themeProp.accentColor}]}>What is Conservative Therapy?</Text>
@@ -60,16 +60,10 @@ class Therapy extends Component {
           pain and symptoms of kidney failure such as swelling or shortness of 
           breath. You may also discuss options such as palliative care or hospice 
           care to enhance comfort for the remainder of your life.</Text>
-        </CollapseBody>
-        </Collapse>
-          <View style= {
-            {backgroundColor: this.props.themeProp.accentColor,
-            height: 1,
-            marginRight: 4}}></View>
           <Text style={[modalityStyles.paramount_line, {color: this.props.themeProp.textColor, fontSize: this.props.fontProp.fontVal, overflow: 'hidden', lineHeight: 50}]}>Remember it’s your life and your decision, but it’s important to 
             weigh all your options to make an informed choice.</Text>
-            <View style={{flex: 0.2, paddingBottom: 50}}>
-          </View>
+        </CollapseBody>
+        </Collapse>
        </View>
       </ScrollView>
       </View>
