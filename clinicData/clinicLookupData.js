@@ -1,0 +1,3 @@
+var clinicLst = [];
+
+export {clinicLst};
