@@ -23,8 +23,6 @@ import SectionHeader from './modalityData/sectionheader';
 import Image from 'react-native-scalable-image';
 import Accordion from 'react-native-collapsible/Accordion';
 
-var i_fontSize = 24;
-
 class Transplant extends React.Component {
 
   constructor(props) {
@@ -33,6 +31,7 @@ class Transplant extends React.Component {
 
   state = {
     activeSections: [],
+    fontVal: this.props.fontProp.fontVal
   };
 
   doesPhotoExist(v_photo) {
@@ -72,7 +71,6 @@ class Transplant extends React.Component {
     }
     else
     {
-      console.log(data.length);
     return (<FlatList
             data={data}
             renderItem= {({item, index}) => {
@@ -82,7 +80,6 @@ class Transplant extends React.Component {
                     }}/>);
     }
   }
-
 
   renderHeader = section => {
     return(
@@ -122,12 +119,24 @@ class Transplant extends React.Component {
     this.setState({activeSections});
   };
 
+  //update accordion based on font size
+  componentWillUpdate(nextProps, nextState) {
+    if (nextState.fontVal !== nextProps.fontProp.fontVal)
+    {
+      this.updateSections([])                     //reset component
+      const newVal = nextProps.fontProp.fontVal;
+      this.setState({fontVal: newVal});
+    }
+    return;
+  }
+
+
   render() {
 
     return (
       <View>
       <ScrollView>
-      <View style={[modalityStyles.container, {backgroundColor: this.props.themeProp.backgroundColor}]}>
+      <View style={[modalityStyles.container, {backgroundColor: this.props.themeProp.backgroundColor}]} >
           <Accordion
             sections={KidneyTransplant}
             activeSections={this.state.activeSections}

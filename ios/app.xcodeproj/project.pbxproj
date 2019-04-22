@@ -60,6 +60,8 @@
 		EB8DD70832B6483B8C4C64F3 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 39B44FF0471B4CE293FC92FF /* MaterialIcons.ttf */; };
 		ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED297162215061F000B7C4FE /* JavaScriptCore.framework */; };
 		ED2971652150620600B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED2971642150620600B7C4FE /* JavaScriptCore.framework */; };
+		F573B005226D5394008CF11F /* esrd_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F573AFD8226D5393008CF11F /* esrd_icon.png */; };
+		F573B006226D5394008CF11F /* esrd_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F573AFD8226D5393008CF11F /* esrd_icon.png */; };
 		F660D5C3ED0F444A8B63A4CE /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D19805EBBAF64C3990F0E5FB /* FontAwesome5_Brands.ttf */; };
 /* End PBXBuildFile section */
 
@@ -309,6 +311,13 @@
 			remoteGlobalIDString = 358F4ED71D1E81A9004DF814;
 			remoteInfo = RCTBlob;
 		};
+		F573B007226D5453008CF11F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 83CBBA2D1A601D0E00E9B192;
+			remoteInfo = React;
+		};
 		F580EB17226A9FEF007DC4BC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 05CF1B0B21EA4154AE7E6E9E /* ReactNativePermissions.xcodeproj */;
@@ -442,7 +451,7 @@
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		F2CAFDE149E44D77974C7894 /* RNCamera.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNCamera.xcodeproj; path = "../node_modules/react-native-camera/ios/RNCamera.xcodeproj"; sourceTree = "<group>"; };
-		F5BF01352258272F0078C167 /* esrd_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = esrd_icon.png; path = ../../../Downloads/esrd_icon.png; sourceTree = "<group>"; };
+		F573AFD8226D5393008CF11F /* esrd_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = esrd_icon.png; path = app/esrd_icon.png; sourceTree = "<group>"; };
 		F9185E2A11A04582AC64B5A7 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -590,12 +599,13 @@
 		13B07FAE1A68108700A75B9A /* app */ = {
 			isa = PBXGroup;
 			children = (
+				F573AFD8226D5393008CF11F /* esrd_icon.png */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
+				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
-				F5BF01352258272F0078C167 /* esrd_icon.png */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
@@ -679,7 +689,6 @@
 			isa = PBXGroup;
 			children = (
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
-				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
 				ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */,
 				00C302B51ABCB90400DB3ED1 /* RCTGeolocation.xcodeproj */,
@@ -832,6 +841,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				F573B008226D5453008CF11F /* PBXTargetDependency */,
 			);
 			name = app;
 			productName = "Hello World";
@@ -1312,6 +1322,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F573B006226D5394008CF11F /* esrd_icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1321,6 +1332,7 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				F573B005226D5394008CF11F /* esrd_icon.png in Resources */,
 				D57182D9FDDF4D29B175F3C7 /* AntDesign.ttf in Resources */,
 				8B47E65971BD4CEA8A5FC84A /* Entypo.ttf in Resources */,
 				848C5F6D823843F5A34FE0E6 /* EvilIcons.ttf in Resources */,
@@ -1434,6 +1446,11 @@
 			isa = PBXTargetDependency;
 			target = 2D02E47A1E0B4A5D006451C7 /* app-tvOS */;
 			targetProxy = 2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */;
+		};
+		F573B008226D5453008CF11F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = React;
+			targetProxy = F573B007226D5453008CF11F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

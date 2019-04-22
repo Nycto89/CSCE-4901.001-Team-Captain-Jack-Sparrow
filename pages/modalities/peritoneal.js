@@ -21,11 +21,13 @@ import SectionHeader from './modalityData/sectionheader';
 import Image from 'react-native-scalable-image';
 import Accordion from 'react-native-collapsible/Accordion';
 import PeritonealItem from './modalityData/PeritonealSection';
+import {AccordionList} from 'accordion-collapse-react-native';
 
 class Peritoneal extends Component {
 
   state = {
     activeSections: [],
+    fontVal: this.props.fontProp.fontVal
   };
 
   doesPhotoExist(v_photo) {
@@ -131,6 +133,17 @@ class Peritoneal extends Component {
   updateSections = activeSections => {
     this.setState({activeSections});
   };
+
+  //update accordion based on font size
+  componentWillUpdate(nextProps, nextState) {
+    if (nextState.fontVal !== nextProps.fontProp.fontVal)
+    {
+      this.updateSections([])                     //reset component
+      const newVal = nextProps.fontProp.fontVal;
+      this.setState({fontVal: newVal});
+    }
+    return;
+  }
 
 
   render() {
