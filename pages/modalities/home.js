@@ -26,7 +26,10 @@ class ModalityHome extends Component {
     const {navigate} = this.props.navigation;
 
     return (
-            <Swiper loop={false} dotColor= {this.props.themeProp.textColor} activeDotColor= '#4169E1' onIndexChanged={(swipe_index)=>{
+            <Swiper loop={false}
+              dotStyle={{height: 20, width: 20}}
+              activeDotStyle={{height: 20, width: 20}}
+              dotColor= {this.props.themeProp.textColor} activeDotColor= '#4169E1' onIndexChanged={(swipe_index)=>{
               setTimeout(()=>this.setState({swipe_index}),200)}}>
               <View style={[styles.slideDefault, {backgroundColor: this.props.themeProp.backgroundColor}]}>
               <View style={{flex: 0.2, justifyContent: 'flex-start', paddingTop: 0, marginBottom: 10}}>
