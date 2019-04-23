@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Alert, Text, Button, StyleSheet, ScrollView, FlatList, View} from 'react-native';
+import { Alert, Text, StyleSheet, FlatList, View} from 'react-native';
 import Permissions from 'react-native-permissions';
 import AndroidOpenSettings from 'react-native-android-open-settings'
 import {createOpenLink} from 'react-native-open-maps';
