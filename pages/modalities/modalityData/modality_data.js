@@ -65,8 +65,9 @@ var PeritonealData = [
 	},
 	{
 		heading: 'Where to Start',
-        text: 'Receiving a PD catheter requires outpatient surgery; patients usually go home on the same day. It may require healing within a few weeks, but the catheter may be used almost immediately.'
-	},
+        text: 'Receiving a PD catheter requires outpatient surgery; patients usually go home on the same day. It may require healing within a few weeks, but the catheter may be used almost immediately.',
+        photo: require('../../../images/stock_images/surgery_doc.jpg')
+    },
     {
         type: [
             {
@@ -158,7 +159,8 @@ var PeritonealData = [
 var InCenterData = [
     {
         heading: 'What is In-Center Hemodialysis?',
-        text: 'In-Center Hemodialysis is a procedure where you go to a dialysis clinic 3 days per week in order to have your blood cleaned of waste products and excess fluids. These treatments last anywhere from 3 to 5 hours for daytime hemodialysis or around 8 hours for nocturnal (night-time) hemodialysis.'
+        text: 'In-Center Hemodialysis is a procedure where you go to a dialysis clinic 3 days per week in order to have your blood cleaned of waste products and excess fluids. These treatments last anywhere from 3 to 5 hours for daytime hemodialysis or around 8 hours for nocturnal (night-time) hemodialysis.',
+        photo: require('../../../images/stock_images/center.png')
     },
     {
         heading: 'How does it Work?',
@@ -166,7 +168,8 @@ var InCenterData = [
     },
     {
         heading: 'The Routine for Hemodialysis',
-        text: '1) Go to dialysis center. Your weight will be checked to see how much fluid needs to be removed by dialysis.\n2) Wash access site to prevent infection.\n3) A dialysis center professional will take your blood pressure, pulse and temperature, then they’ll perform a physical assessment.\n4) A professional will place two needles in your access. Your access site is connected to the tubing on the hemodialysis machine and the treatment begins.\n\t You will be regularly monitored during your treatment to make sure you are tolerating it well.\n5) Sit back, relax, watch tv or do something else you enjoy while the professionals take care of you.\n6) At the end of treatment, your needles are removed and a pressure dressing is applied.\n7) Vitals are checked and weight recorded to determine how much fluid is removed.\n8) You’re now free to go home and resume your normal activities.\n'
+        text: '1) Go to dialysis center. Your weight will be checked to see how much fluid needs to be removed by dialysis.\n2) Wash access site to prevent infection.\n3) A dialysis center professional will take your blood pressure, pulse and temperature, then they’ll perform a physical assessment.\n4) A professional will place two needles in your access. Your access site is connected to the tubing on the hemodialysis machine and the treatment begins.\n\t You will be regularly monitored during your treatment to make sure you are tolerating it well.\n5) Sit back, relax, watch tv or do something else you enjoy while the professionals take care of you.\n6) At the end of treatment, your needles are removed and a pressure dressing is applied.\n7) Vitals are checked and weight recorded to determine how much fluid is removed.\n8) You’re now free to go home and resume your normal activities.\n',
+        photo: require('../../../images/stock_images/incenter_help.jpg')
     },
     {
         data: [
@@ -224,11 +227,13 @@ var InCenterData = [
 var NightData = [
     { 
         heading: 'What is Nocturnal Dialysis?',
-        text: 'Nocturnal or Overnight Dialysis is a slower, longer hemodialysis treatment that takes place at night while you sleep. This longer treatment is for six to eight hours, three times a week. This process requires that you sleep at the dialysis center overnight. Dialysis professionals who are skilled in performing hemodialysis, manage the treatments.'
+        text: 'Nocturnal or Overnight Dialysis is a slower, longer hemodialysis treatment that takes place at night while you sleep. This longer treatment is for six to eight hours, three times a week. This process requires that you sleep at the dialysis center overnight. Dialysis professionals who are skilled in performing hemodialysis, manage the treatments.',
+        photo: require('../../../images/stock_images/moon.jpg')
     },
     {
         heading: 'How does it Work?',
-        text: 'Before treatment can begin, you will need a surgical procedure that creates an access site under your skin. This site allows blood to flow from your body to the dialysis machine for filtering and then returns to your body cleaned. There are three types of hemodialysis access options: a fistula, graft or catheter. Fistula is considered the best option for people because it is your own blood vessels and has less risk of infection and clotting issues.'
+        text: 'Before treatment can begin, you will need a surgical procedure that creates an access site under your skin. This site allows blood to flow from your body to the dialysis machine for filtering and then returns to your body cleaned. There are three types of hemodialysis access options: a fistula, graft or catheter. Fistula is considered the best option for people because it is your own blood vessels and has less risk of infection and clotting issues.',
+        photo: require('../../../images/stock_images/alarm_clock.jpg')
     },
     {
         data: [
@@ -298,7 +303,8 @@ var NightData = [
 var HomeData = [
     {
         heading: 'What is Home Hemodialysis?',
-        text: 'Home Hemodialysis is a home dialysis option. Hemodialysis is a treatment that replaces the work of your own kidneys to remove wastes and extra fluid from your bloodstream. This is done using a special filter called a dialyzer or artificial kidney. You can do hemodialysis at home by yourself or with a care partner. This allows you to fit your treatments within a schedule. You along with your care partner will receive training at your local dialysis center in order to safely perform these treatments at home.'
+        text: 'Home Hemodialysis is a home dialysis option. Hemodialysis is a treatment that replaces the work of your own kidneys to remove wastes and extra fluid from your bloodstream. This is done using a special filter called a dialyzer or artificial kidney. You can do hemodialysis at home by yourself or with a care partner. This allows you to fit your treatments within a schedule. You along with your care partner will receive training at your local dialysis center in order to safely perform these treatments at home.',
+        photo: require('../../../images/stock_images/house.jpg')
     },
     {
         heading: 'How does it Work?',

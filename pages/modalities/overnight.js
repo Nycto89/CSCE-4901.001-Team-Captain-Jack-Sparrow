@@ -20,6 +20,7 @@ import SectionListItem from './modalityData/sectionlistitem';
 import SectionHeader from './modalityData/sectionheader';
 import {Collapse, CollapseHeader, CollapseBody} from 'accordion-collapse-react-native';
 import Accordion from 'react-native-collapsible/Accordion';
+import Image from 'react-native-scalable-image';
 
 
 class Overnight extends Component {

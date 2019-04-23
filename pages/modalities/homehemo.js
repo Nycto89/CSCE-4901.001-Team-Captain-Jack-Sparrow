@@ -19,6 +19,7 @@ import {connect} from 'react-redux';
 import SectionListItem from './modalityData/sectionlistitem';
 import SectionHeader from './modalityData/sectionheader';
 import Accordion from 'react-native-collapsible/Accordion';
+import Image from 'react-native-scalable-image';
 
 class HomeHemo extends Component {
 

@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -42,7 +43,6 @@
 		2DF0FFEE2056DD460020B375 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA31DF850E9000B6D8A /* libReact.a */; };
 		317EAA1E3B7F4F948BC3F9CD /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B30D15324784B7587B338E1 /* libRNVectorIcons.a */; };
 		3C3E29FBE38642C9BAF56DBA /* libRNVectorIcons-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A5C5CC9218847C5AF686C31 /* libRNVectorIcons-tvOS.a */; };
-		34840D1FB2C841C3ABF2ED6F /* libRNGeocoder.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E119DA13418D448FAD294F9F /* libRNGeocoder.a */; };
 		69429E8D7A294D3BA812D59D /* libReactNativePermissions.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19EF83F9D0974E97BD6FE04E /* libReactNativePermissions.a */; };
 		6DE124B83A364B26ABD8ABD0 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D44C6998B5D34CE5BB829E1C /* Foundation.ttf */; };
 		6F16777385214C749AF823C9 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F9185E2A11A04582AC64B5A7 /* MaterialCommunityIcons.ttf */; };
@@ -345,6 +345,13 @@
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = RNOpenAppSettings;
 		};
+		F5978B86226F8A2D003F2874 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1BF12ABE51FB4C90A4B8ADAD /* RNGeocoder.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BF8FCF941BFFB184000FCD37;
+			remoteInfo = RNGeocoder;
+		};
 		F5BF011D2258239A0078C167 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
@@ -372,13 +379,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = ED296FEE214C9CF800B7C4FE;
 			remoteInfo = "jsiexecutor-tvOS";
-		};
-		F594266422600DF800DB093B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F1B3E560533D4F2DB8A9631F /* RNGeocoder.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = BF8FCF941BFFB184000FCD37;
-			remoteInfo = RNGeocoder;
 		};
 		F5BF012B2258239A0078C167 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -443,6 +443,7 @@
 		14D14AB6FA624205BC316B59 /* Roboto_medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Roboto_medium.ttf; path = "../node_modules/native-base/Fonts/Roboto_medium.ttf"; sourceTree = "<group>"; };
 		19EC7A95F4004EC69BBC11F3 /* Roboto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Roboto.ttf; path = "../node_modules/native-base/Fonts/Roboto.ttf"; sourceTree = "<group>"; };
 		19EF83F9D0974E97BD6FE04E /* libReactNativePermissions.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libReactNativePermissions.a; sourceTree = "<group>"; };
+		1BF12ABE51FB4C90A4B8ADAD /* RNGeocoder.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNGeocoder.xcodeproj; path = "../node_modules/react-native-geocoder/ios/RNGeocoder.xcodeproj"; sourceTree = "<group>"; };
 		23A07B2D248C4C9AAFF737CC /* RNOpenAppSettings.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNOpenAppSettings.xcodeproj; path = "../node_modules/react-native-app-settings/ios/RNOpenAppSettings.xcodeproj"; sourceTree = "<group>"; };
 		25800A5107EA4C0C81F8774E /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		2B38D5E5C9384BFF92CB5C65 /* RNVectorIcons.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNVectorIcons.xcodeproj; path = "../node_modules/react-native-vector-icons/RNVectorIcons.xcodeproj"; sourceTree = "<group>"; };
@@ -478,9 +479,6 @@
 		F573AFD8226D5393008CF11F /* esrd_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = esrd_icon.png; path = app/esrd_icon.png; sourceTree = "<group>"; };
 		F59F4C4B226F6BB0009DE9A5 /* denton.gpx */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = denton.gpx; path = ../../denton.gpx; sourceTree = "<group>"; };
 		F9185E2A11A04582AC64B5A7 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
-		E119DA13418D448FAD294F9F /* libRNGeocoder.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNGeocoder.a; sourceTree = "<group>"; };
-		F1B3E560533D4F2DB8A9631F /* RNGeocoder.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNGeocoder.xcodeproj; path = "../node_modules/react-native-geocoder/ios/RNGeocoder.xcodeproj"; sourceTree = "<group>"; };
-		1BF12ABE51FB4C90A4B8ADAD /* RNGeocoder.xcodeproj */ = {isa = PBXFileReference; name = "RNGeocoder.xcodeproj"; path = "../node_modules/react-native-geocoder/ios/RNGeocoder.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -814,6 +812,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		F5978B5C226F8A2D003F2874 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F5978B87226F8A2D003F2874 /* libRNGeocoder.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		F5BF00F7225823990078C167 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
@@ -1036,6 +1042,10 @@
 				{
 					ProductGroup = F54D3B56226F57E500F69936 /* Products */;
 					ProjectRef = F54D3B55226F57E500F69936 /* RNGeocoder.xcodeproj */;
+				},
+				{
+					ProductGroup = F5978B5C226F8A2D003F2874 /* Products */;
+					ProjectRef = 1BF12ABE51FB4C90A4B8ADAD /* RNGeocoder.xcodeproj */;
 				},
 				{
 					ProductGroup = F5BF01252258239A0078C167 /* Products */;
@@ -1313,6 +1323,13 @@
 			remoteRef = F580EB1D226A9FEF007DC4BC /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		F5978B87226F8A2D003F2874 /* libRNGeocoder.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNGeocoder.a;
+			remoteRef = F5978B86226F8A2D003F2874 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		F5BF011E2258239A0078C167 /* libjsi.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1547,7 +1564,7 @@
 					"$(SRCROOT)/../node_modules/react-native-camera/ios/**",
 					"$(SRCROOT)..\node_modules\neact-native-app-settingsios",
 					"$(SRCROOT)..\node_modules\neact-native-permissionsios/**",
-					"$(SRCROOT)\..\node_modules\react-native-geocoder\ios\RNGeocoder",
+					"$(SRCROOT)..\node_modules\neact-native-geocoderiosRNGeocoder",
 				);
 				INFOPLIST_FILE = appTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -1584,7 +1601,7 @@
 					"$(SRCROOT)/../node_modules/react-native-camera/ios/**",
 					"$(SRCROOT)..\node_modules\neact-native-app-settingsios",
 					"$(SRCROOT)..\node_modules\neact-native-permissionsios/**",
-					"$(SRCROOT)\..\node_modules\react-native-geocoder\ios\RNGeocoder",
+					"$(SRCROOT)..\node_modules\neact-native-geocoderiosRNGeocoder",
 				);
 				INFOPLIST_FILE = appTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -1622,7 +1639,7 @@
 					"$(SRCROOT)/../node_modules/react-native-camera/ios/**",
 					"$(SRCROOT)..\node_modules\neact-native-app-settingsios",
 					"$(SRCROOT)..\node_modules\neact-native-permissionsios/**",
-					"$(SRCROOT)\..\node_modules\react-native-geocoder\ios\RNGeocoder",
+					"$(SRCROOT)..\node_modules\neact-native-geocoderiosRNGeocoder",
 				);
 				INFOPLIST_FILE = app/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1650,7 +1667,7 @@
 					"$(SRCROOT)/../node_modules/react-native-camera/ios/**",
 					"$(SRCROOT)..\node_modules\neact-native-app-settingsios",
 					"$(SRCROOT)..\node_modules\neact-native-permissionsios/**",
-					"$(SRCROOT)\..\node_modules\react-native-geocoder\ios\RNGeocoder",
+					"$(SRCROOT)..\node_modules\neact-native-geocoderiosRNGeocoder",
 				);
 				INFOPLIST_FILE = app/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1685,7 +1702,7 @@
 					"$(SRCROOT)/../node_modules/react-native-camera/ios/**",
 					"$(SRCROOT)..\node_modules\neact-native-app-settingsios",
 					"$(SRCROOT)..\node_modules\neact-native-permissionsios/**",
-					"$(SRCROOT)\..\node_modules\react-native-geocoder\ios\RNGeocoder",
+					"$(SRCROOT)..\node_modules\neact-native-geocoderiosRNGeocoder",
 				);
 				INFOPLIST_FILE = "app-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1730,7 +1747,7 @@
 					"$(SRCROOT)/../node_modules/react-native-camera/ios/**",
 					"$(SRCROOT)..\node_modules\neact-native-app-settingsios",
 					"$(SRCROOT)..\node_modules\neact-native-permissionsios/**",
-					"$(SRCROOT)\..\node_modules\react-native-geocoder\ios\RNGeocoder",
+					"$(SRCROOT)..\node_modules\neact-native-geocoderiosRNGeocoder",
 				);
 				INFOPLIST_FILE = "app-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1774,7 +1791,7 @@
 					"$(SRCROOT)/../node_modules/react-native-camera/ios/**",
 					"$(SRCROOT)..\node_modules\neact-native-app-settingsios",
 					"$(SRCROOT)..\node_modules\neact-native-permissionsios/**",
-					"$(SRCROOT)\..\node_modules\react-native-geocoder\ios\RNGeocoder",
+					"$(SRCROOT)..\node_modules\neact-native-geocoderiosRNGeocoder",
 				);
 				INFOPLIST_FILE = "app-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1818,7 +1835,7 @@
 					"$(SRCROOT)/../node_modules/react-native-camera/ios/**",
 					"$(SRCROOT)..\node_modules\neact-native-app-settingsios",
 					"$(SRCROOT)..\node_modules\neact-native-permissionsios/**",
-					"$(SRCROOT)\..\node_modules\react-native-geocoder\ios\RNGeocoder",
+					"$(SRCROOT)..\node_modules\neact-native-geocoderiosRNGeocoder",
 				);
 				INFOPLIST_FILE = "app-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
