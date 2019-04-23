@@ -306,11 +306,12 @@ var HomeData = [
     {
         heading: 'What is Home Hemodialysis?',
         text: 'Home Hemodialysis is a home dialysis option. Hemodialysis is a treatment that replaces the work of your own kidneys to remove wastes and extra fluid from your bloodstream. This is done using a special filter called a dialyzer or artificial kidney. You can do hemodialysis at home by yourself or with a care partner. This allows you to fit your treatments within a schedule. You along with your care partner will receive training at your local dialysis center in order to safely perform these treatments at home.',
-        photo: require('../../../images/stock_images/house.jpg')
+        photo: require('../../../images/stock_images/fam.jpg')
     },
     {
         heading: 'How does it Work?',
-        text: 'You will need surgery to create an access for hemodialysis. This access is quite literally, your lifeline; a way to reach your bloodstream and be able to clean your blood using the dialysis machine and return it safely back to your body. There are three types of access sites for home hemodialysis: fistula, graft or catheter. Fistula is considered the best option for people because it is your own blood vessels and has less risk of infection and clotting issues. Using a dialysis machine at home, you’ll perform treatments usually 4 to 5 times per week.'
+        text: 'You will need surgery to create an access for hemodialysis. This access is quite literally, your lifeline; a way to reach your bloodstream and be able to clean your blood using the dialysis machine and return it safely back to your body. There are three types of access sites for home hemodialysis: fistula, graft or catheter. Fistula is considered the best option for people because it is your own blood vessels and has less risk of infection and clotting issues. Using a dialysis machine at home, you’ll perform treatments usually 4 to 5 times per week.',
+        photo: require('../../../images/stock_images/house.jpg')
     },
     {
         data: [
