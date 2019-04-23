@@ -97,6 +97,7 @@ class clinicFinder extends Component{
     console.log('this.location: ');
     console.log('lat: '+this.location.lat);
     console.log('lng: '+this.location.lng);
+    console.log(this.location);
     try{
       const res = await Geocoder.geocodePosition(this.location);
       this.location = {
