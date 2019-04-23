@@ -11,7 +11,8 @@ export default class HomeCarousel extends Component {
         super()
         this.state = {
           images: [
-            require('app/images/home_carousel/kidneyhands.png')
+            require('app/images/home_carousel/kidneyhands.png'),
+            require('app/images/home_carousel/doctorpatient.png') 
           ],
         }
       }

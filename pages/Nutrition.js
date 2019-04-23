@@ -169,7 +169,12 @@ class Nutrition extends React.Component {
   onBarCodeRead = (scanResult) => {
     console.warn(scanResult.type);
     console.warn(scanResult.data);
-    this.setState({ cameraOpen : false });
+    console.warn(scanResult.data.slice(1));
+    const UPC = scanResult.data.slice(1);
+    // this.setState({ cameraOpen : false, text : UPC }, this.submitText());
+    this.setState({ cameraOpen : false});
+    this.getUSDAProductInfo(UPC);
+
     // if (scanResult.data != null) {
     //   if (!this.barcodeCodes.includes(scanResult.data)) {
     //       this.barcodeCodes.push(scanResult.data);
@@ -197,7 +202,7 @@ class Nutrition extends React.Component {
     return fetch(url)
       .then((response) => {
         if(response.ok){
-          // console.log(response);
+          console.log('USDA Response1: ' + JSON.stringify(response, null, 2));
           return response;
         }
         else{
@@ -245,7 +250,7 @@ class Nutrition extends React.Component {
         return fetch(url)
           .then((response) => {
             if(response.ok){
-              // console.log(response);
+              console.log('USDA Response2: ' + JSON.stringify(response, null, 2));
               return response;
             }
             else{
@@ -269,10 +274,7 @@ class Nutrition extends React.Component {
 
       } else {
         // this.setState({ displayData : {} });
-      }
-
-
-      
+      }      
   }
 
 }
