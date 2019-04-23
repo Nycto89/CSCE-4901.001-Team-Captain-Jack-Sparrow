@@ -11,8 +11,12 @@ export default class HomeCarousel extends Component {
         super()
         this.state = {
           images: [
+            require('app/images/home_carousel/doctorpatient.png'),
             require('app/images/home_carousel/kidneyhands.png'),
-            require('app/images/home_carousel/doctorpatient.png')
+            require('app/images/home_carousel/doctoroptions.png'),
+            require('app/images/home_carousel/kidneysblood.png'),
+              
+            
           ],
         }
       }
@@ -38,8 +42,8 @@ export default class HomeCarousel extends Component {
                         enableMomentum={true}
                         loop={true}
                         autoplay={true}
-                        autoplayDelay={500}
-                        autoplayInterval={3000}
+                        autoplayDelay={2000}
+                        autoplayInterval={8000}
                     />
                 </View>
         );
