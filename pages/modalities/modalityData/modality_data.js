@@ -57,12 +57,14 @@ var KidneyTransplant = [
 var PeritonealData = [
 	{
 		heading: 'What is Peritoneal Dialysis?',
-		text: 'Peritoneal Dialysis or PD is a home dialysis option. In PD, the inside lining of your own belly acts as a natural filter. A cleansing fluid called Dialysate, washes in and out of your abdominal cavity in cycles, which removes fluids and waste products.'
-	},
+        text: 'Peritoneal Dialysis or PD is a home dialysis option. In PD, the inside lining of your own belly acts as a natural filter. A cleansing fluid called Dialysate, washes in and out of your abdominal cavity in cycles, which removes fluids and waste products.',
+        photo: require('../../../images/stock_images/dialysis_center.jpg')
+    },
 	{
 		heading: 'How does Peritoneal Dialysis Work?',
-		text: 'A soft plastic tube is placed in your belly through surgery. Dialysate is moved in and out of your belly through this catheter. When the solution is inside your body, it draws excess fluids and waste products from your system and then is drained out through the catheter.'
-	},
+        text: 'A soft plastic tube is placed in your belly through surgery. Dialysate is moved in and out of your belly through this catheter. When the solution is inside your body, it draws excess fluids and waste products from your system and then is drained out through the catheter.',
+        photo: require('../../../images/stock_images/catheter.jpg')
+    },
 	{
 		heading: 'Where to Start',
         text: 'Receiving a PD catheter requires outpatient surgery; patients usually go home on the same day. It may require healing within a few weeks, but the catheter may be used almost immediately.',

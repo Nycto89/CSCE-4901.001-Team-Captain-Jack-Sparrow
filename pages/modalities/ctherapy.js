@@ -16,7 +16,7 @@ import {Content, List, ListItem} from 'native-base';
 import {modalityStyles} from './modalityData/modality_style';
 import {connect} from 'react-redux';
 import {Collapse, CollapseHeader, CollapseBody} from 'accordion-collapse-react-native';
-
+import Image from 'react-native-scalable-image';
 
 class Therapy extends Component {
 
@@ -32,6 +32,7 @@ class Therapy extends Component {
        <View style={[modalityStyles.container, {backgroundColor: this.props.themeProp.backgroundColor, paddingBottom: 550}]}>
         <Collapse>
         <CollapseHeader>
+        <Image width={Dimensions.get('window').width} style={{paddingBottom: 20}} source={require('../../images/stock_images/conservative_therapy.jpg')} />
       	<Text style={[modalityStyles.header, {color: this.props.themeProp.accentColor}]}>What is Conservative Therapy?</Text>
         <View style= {{
           backgroundColor: this.props.themeProp.accentColor,
