@@ -1,6 +1,7 @@
 const initialState = {
     themeType: false,
     backgroundColor: 'white',
+    borderColor: 'default',
     textColor: '#222222',
     sliderColor: 'black',
     accentColor: 'blue',
@@ -17,6 +18,7 @@ export default function(state = initialState, action) {
                 return {
                     themeType: true,
                     backgroundColor: '#222222',
+                    borderColor: '#111111',
                     textColor: 'white',
                     sliderColor: 'white',
                     accentColor: '#AACCFF',
@@ -27,8 +29,12 @@ export default function(state = initialState, action) {
                 console.log("CHANGE THEME TO LIGHT");
                 return {
                     themeType: false,
-                    backgroundColor: '#e5e5e5',
-                    textColor: '#222222'
+                    backgroundColor: 'white',
+                    bordercolor: 'default',
+                    textColor: '#222222',
+                    sliderColor: 'black',
+                    accentColor: 'blue',
+                    circleColor: '#AACCFF'
                 }
             }
             break;

@@ -4,6 +4,11 @@ import android.app.Application;
 
 import com.facebook.react.ReactApplication;
 import org.reactnative.camera.RNCameraPackage;
+import com.krazylabs.OpenAppSettingsPackage;
+import com.reactlibrary.RNReactLoggingPackage;
+import com.levelasquez.androidopensettings.AndroidOpenSettingsPackage;
+import com.devfd.RNGeocoder.RNGeocoderPackage;
+import com.agontuk.RNFusedLocation.RNFusedLocationPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.facebook.react.ReactNativeHost;
@@ -27,6 +32,11 @@ public class MainApplication extends Application implements ReactApplication {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
             new RNCameraPackage(),
+            new OpenAppSettingsPackage(),
+            new RNReactLoggingPackage(),
+            new AndroidOpenSettingsPackage(),
+            new RNGeocoderPackage(),
+            new RNFusedLocationPackage(),
             new VectorIconsPackage(),
             new RNGestureHandlerPackage()
       );
