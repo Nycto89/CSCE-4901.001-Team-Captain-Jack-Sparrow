@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
-import { Alert, Text, StyleSheet, FlatList, View} from 'react-native';
+import { Dimensions, Alert, Text, StyleSheet, FlatList, View} from 'react-native';
 import Permissions from 'react-native-permissions';
 import AndroidOpenSettings from 'react-native-android-open-settings'
 import {createOpenLink} from 'react-native-open-maps';
+import MapView, {Marker} from 'react-native-maps';
 import Geolocation from 'react-native-geolocation-service';
 import Geocoder from 'react-native-geocoder';
 import {IconButton, Colors} from 'react-native-paper';
-import {clinicLst} from '../clinicData/clinicLookupData';
 import {connect} from 'react-redux';
 import cheerio from 'cheerio-without-node-native';
 
 class clinicFinder extends Component{
   state = {ready: false};
   location = {};
+  clinicLst = [];
 
   ////////////////////////////////////////////////////////
   //FUNCTIONS//
@@ -74,7 +75,7 @@ class clinicFinder extends Component{
     );//end Geolocation
   });//end getCoords promise
   
-  doGeoCode = async () => new Promise(async (resolve, reject) =>{
+  doPhoneGeoCode = async () => new Promise(async (resolve, reject) =>{
     console.log('geoCoding...');
     console.log('this.location: ');
     console.log('lat: '+this.location.lat);
@@ -82,10 +83,15 @@ class clinicFinder extends Component{
     try{
       const res = await Geocoder.geocodePosition(this.location);
       this.location = {
+        lat: this.location.lat,
+        lng: this.location.lng,
         city: res[0].locality,
         state: res[0].adminArea,
         zipCode: res[0].postalCode
       };
+      console.log('location: ' + this.location);
+      console.log('lat: '+this.location.lat);
+      console.log('lng: '+this.location.lng);
       console.log('city: ' + this.location.city);
       console.log('state: ' + this.location.state);
       console.log('zipCode: ' + this.location.zipCode);
@@ -97,7 +103,7 @@ class clinicFinder extends Component{
       reject(err);
     };
   
-  });//end doGeoCode promise
+  });//end doPhoneGeoCode promise
   ////////////////////////////////////////////////////////
   //END FUNCTIONS//
   ////////////////////////////////////////////////////////
@@ -125,13 +131,16 @@ class clinicFinder extends Component{
         //if now authorized
         if(perms == 'authorized'){
          await this.getCoords().then(async () => {
-          await this.doGeoCode().then(async (response) => {
-            console.log('doGeoCode response: '+ response);
-            await getFinderData(response).then(()=>{
+          await this.doPhoneGeoCode().then(async (response) => {
+            console.log('doPhoneGeoCode response: '+ response);
+            await getFinderData(response, this.clinicLst).then((lst)=>{
+              this.clinicLst = lst;
+              console.log('clinicLst222222222222222222222222222: ');
+              console.log(this.clinicLst);
               console.log('setState({ready: true})');
               this.setState({ready: true});
             });//end getFinderData.then()
-          });//end doGeoCode.then()
+          });//end doPhoneGeoCode.then()
         })//end getCoords.then()
         .catch(error => {console.log("ERROR: " + error)});
         }//end if authed
@@ -142,13 +151,16 @@ class clinicFinder extends Component{
     });//end ifPerms NOT ALREADY authorized --> alertForPerms.then()
     else{//already authorized
       await this.getCoords().then(async () => {
-        await this.doGeoCode().then(async (response) => {
-          console.log('doGeoCode response: '+ {response});
-          await getFinderData(response).then(()=>{
+        await this.doPhoneGeoCode().then(async (response) => {
+          console.log('doPhoneGeoCode response: '+ {response});
+          await getFinderData(response, this.clinicLst).then((lst)=>{
+            this.clinicLst = lst;
+            console.log('clinicLst222222222222222222222222222: ');
+            console.log(this.clinicLst);
             console.log('setState({ready: true})');
             this.setState({ready: true});
           });//end getFinderData.then()
-        });//end doGeoCode.then()
+        });//end doPhoneGeoCode.then()
       })//end getCoords.then()
       .catch(error => {console.log("ERROR: " + error)});
     }//end already authorized
@@ -162,13 +174,16 @@ class clinicFinder extends Component{
       if(response != 'authorized'){
         this.location = {lat: 32.780907, lng: -96.797766};//set location to Dallas
         
-        await this.doGeoCode().then(async (response) => {
-          console.log('doGeoCode response: '+ {response});
-          await getFinderData(response).then(()=>{
+        await this.doPhoneGeoCode().then(async (response) => {
+          console.log('doPhoneGeoCode response: '+ {response});
+          await getFinderData(response, this.clinicLst).then((lst)=>{
+            this.clinicLst = lst;
+            console.log('clinicLst222222222222222222222222222: ');
+            console.log(this.clinicLst);
             console.log('setState({ready: true})');
             this.setState({ready: true});
           });//end getFinderData.then()
-        });//end doGeoCode.then()
+        });//end doPhoneGeoCode.then()
       }//end if still not authorized
     })//end permission check.then()
 
@@ -195,12 +210,34 @@ class clinicFinder extends Component{
         </View>
       )
     }
+
+    console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$here$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$');
+    console.log('render clinicLst: '+ this.clinicLst);
     return(
       <FlatList
         //removeClippedSubviews={false}
-        data = {clinicLst}
+        ListHeaderComponent = {()=>{
+          screenWidth = Dimensions.get('window').width;
+          return(
+          <View style = {{height: 300, width: screenWidth}}>
+            <MapView
+              style = {{...StyleSheet.absoluteFillObject}}
+              loadingEnabled={true}
+              initialRegion={{
+                latitude: 37.78825,
+                longitude: -122.4324,
+                latitudeDelta: 0.0922,
+                longitudeDelta: 0.0421,
+              }}
+            />
+          </View>
+        )}
+        }//end header
+        
+        data = {this.clinicLst}
         extraData={this.props}
         renderItem={({item})=>{
+          console.log({item});
           return(
             <View style={[styles.rowStyle, {backgroundColor: this.props.themeProp.backgroundColor, borderColor: this.props.themeProp.borderColor}]}>
               <View style={styles.listStyle}>
@@ -220,7 +257,7 @@ class clinicFinder extends Component{
           )//end return
         }}//end renderItem
         keyExtractor={(item, index) => item.name}
-      />//end FlatList
+      />
     );
   }//end render
 
@@ -275,7 +312,49 @@ const styles = StyleSheet.create({
 ////////////////////////////////////////////////////////////
 //FUNCTIONS//
 ////////////////////////////////////////////////////////////
-async function getFinderData(location){
+
+/*async function doAddrGeoCode(addr) {
+  console.log('geoCoding...');
+  console.log('addr: '+addr);
+  try{
+    const res = await Geocoder.geocodeAddress(addr);
+    rtnCoords = {
+      latitude: res[0].position.lat,
+      longitude: res[0].position.lng
+    }
+
+    return(rtnCoords);
+  }//end try
+  catch(err){
+    console.log('ERROR:' , err);
+    return(err);
+  };
+}//end doAddrGeoCode
+*/
+
+doAddrGeoCode = async (addr, i) => new Promise(async (resolve, reject) =>{
+  console.log('geoCoding...');
+  console.log('addr: '+addr);
+  try{
+    const res = await Geocoder.geocodeAddress(addr);
+    rtnCoords = [{
+      latitude: res[0].position.lat,
+      longitude: res[0].position.lng
+    }, i]
+
+    resolve(rtnCoords);
+  }//end try
+  catch(err){
+    console.log('ERROR:' , err);
+    reject(err);
+  };
+});//end doAddrGeoCode promise
+
+async function getFinderData(location, clinicLst){
+  //clear the list... maybe change this later to allow to skip getting clinic data if list already populated
+  clinicLst = [];
+  console.log(clinicLst);
+
   ////GET NUM PAGES////
   url = 'https://www.dialysisfinder.com/dialysis-centers/'+location.city+'/'+location.state+'/'+location.zipCode;
   console.log('getting clinicFinder data from website... ' + url);
@@ -301,8 +380,9 @@ async function getFinderData(location){
   var numClinics = 0;//num clinics added to list
   do{
     newClinicCIO = $('ul:first-of-type', 'div.all-dva-center-mobile');//select first 'ul' from each locatin div
-    newClinicCIO.each((i, elem)=>{//for each location 'ul', extract info & add to clinicList
+    newClinicCIO.each(async (i, elem)=>{//for each location 'ul', extract info & add to clinicList
       //console.log({elem});
+      console.log('begin .each()');
 
       tmpName = $('*', 'li:first-of-type > a:first-of-type', elem).text();//select name text
       if(tmpName != ''){
@@ -316,15 +396,34 @@ async function getFinderData(location){
           tmpSrvcLst.push($(elem).text());
         })
 
+        console.log({tmpAddr});
+        console.log({tmpName});
+        console.log({tmpSrvcLst});
+
         var newClinicOBJ = {'name': tmpName,
                             'addr': tmpAddr,
                             'srvcs': tmpSrvcLst,
-                            'id': ++numClinics};
-        //console.log({newClinicOBJ});
+                            'id': (numClinics + 1)};
+        console.log({newClinicOBJ});
 
         clinicLst.push(newClinicOBJ);
-      }
-    });//select child of first 'a' within that 'ul'
+        //get location coords
+        tmpLatLng = {};
+        await doAddrGeoCode(tmpAddr, numClinics++).then((res) => {
+
+          tmpLatLng = res[0];
+
+          clinicLst[res[1]].coords = tmpLatLng;
+
+        })
+        .catch(err => {
+          console.log(err);
+        });//end doAddrGeoCode.catch()
+        console.log('here2')
+      }//end if valid name
+      console.log('sucks to suck');
+      console.log('')
+    });//select child of first 'a' within that 'ul' end .each()
     
     //finished getting clinics on this page, get next page
     var n = url.lastIndexOf("page");
@@ -351,9 +450,9 @@ async function getFinderData(location){
   }while(pageNum <= numPages);
 
   console.log("Finished all pages");
-  //console.log({clinicLst});
+  console.log({clinicLst});
 
-  return numPages;
+  return clinicLst;
 }//end getFinderData
 /////////////////////////////////////////////////////////////
 //END FUNCTIONS//
