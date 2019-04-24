@@ -23,13 +23,13 @@ const { width, height } = Dimensions.get('window');
               <View style={styles.tileFlexVertical}>
                 <TouchableHighlight
                   onPress={ () => Actions.ModalityMainScreen()}>
-                  <Image source={require('../images/home_icons/kidney.png')} style={[styles.tile, this.iconTintStyle()]}/>
+                  <Image source={require('../images/home_icons/kidneyV2.png')} style={[styles.tile, this.iconTintStyle()]}/>
                 </TouchableHighlight>
               </View>
               <View style={styles.tileFlexVertical}>
                 <TouchableHighlight
                   onPress={ () => Actions.Nutrition()}>
-                  <Image source={require('../images/home_icons/geiger.png')} style={[styles.tile, this.iconTintStyle()]}/>
+                  <Image source={require('../images/home_icons/nutrition.png')} style={[styles.tile, this.iconTintStyle()]}/>
                 </TouchableHighlight>
               </View>
             </View>

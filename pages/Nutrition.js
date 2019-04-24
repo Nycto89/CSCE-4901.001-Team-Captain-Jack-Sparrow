@@ -65,7 +65,7 @@ class Nutrition extends React.Component {
             <View style={styles.resultValueView}>
               <Text style={{ fontSize : this.props.fontProp.fontVal,
                     textAlignVertical : 'center', 
-                            textAlign : 'center' , }}
+                            textAlign : 'center' }}
                             >{item.phosphorus.value}mg</Text>
             </View>         
           </View>
@@ -75,11 +75,12 @@ class Nutrition extends React.Component {
     else if( this.state.methodBarCode === true) {
       return (
         <View style={[styles.resultItemView, {
-
+            backgroundColor : '#C0C0C0'  
         }]}>
           <Text style={{ fontSize : this.props.fontProp.fontVal,
                 textAlignVertical : 'center', 
-                        textAlign : 'center',}}
+                        textAlign : 'center',
+                        }}
                         >{item.name} : Not listed</Text>
         </View>
       ) 
@@ -91,7 +92,8 @@ class Nutrition extends React.Component {
         <View style={{ alignItems : 'center',  marginBottom : 15 }}>
             <Text style={{ textAlignVertical : 'center', 
                             textAlign : 'center' ,
-                            fontSize : 25 }}
+                            fontSize : 25,
+                            color : this.props.themeProp.textColor }}
                             >Enter a serch term or scan a barcode to get started!</Text>
         </View>
     )
@@ -176,7 +178,7 @@ class Nutrition extends React.Component {
                 ListEmptyComponent={this._listEmptyComponent}
                 contentContainerStyle={styles.list}
                 initialNumToRender={this.state.foodData.length}
-                ListFooterComponent={USDACredit()}
+                ListFooterComponent={USDACredit(this.props.themeProp)}
                 removeClippedSubviews
               />
         </TouchableWithoutFeedback>
@@ -359,10 +361,10 @@ class Nutrition extends React.Component {
 
 
 
-const USDACredit = () => {
+const USDACredit = (props) => {
   return (
-    <View style={{flex:1,justifyContent: "center",alignItems: "center", marginTop: 15}}>
-      <Text style={{textAlignVertical: "center",textAlign: "center",}}>U.S. Department of Agriculture, Agricultural Research Service. 20xx. USDA National Nutrient Database for Standard Reference, Release . Nutrient Data Laboratory Home Page, http://www.ars.usda.gov/nutrientdata</Text>
+    <View style={{flex:1,justifyContent: "center",alignItems: "center", margin : 10, marginTop: 15}}>
+      <Text style={{textAlignVertical: "center",textAlign: "center", color: props.textColor}}>U.S. Department of Agriculture, Agricultural Research Service. 20xx. USDA National Nutrient Database for Standard Reference, Release . Nutrient Data Laboratory Home Page, http://www.ars.usda.gov/nutrientdata</Text>
     </View>
   )
 }
