@@ -169,17 +169,16 @@ class Nutrition extends React.Component {
           {/* <Button onPress={() => {console.log(JSON.stringify(this.state, null, 2))}  } title="Log State"/> */}
         </View>
         <TouchableWithoutFeedback onPress={ () => Keyboard.dismiss() }>
-          <View style={{flex : 1}}>
               <FlatList
                 keyExtractor={ (item) => item.ndbno }
                 data={ this.state.foodData.list ? this.state.foodData.list.item : [] }
                 renderItem={this.renderItem}
                 ListEmptyComponent={this._listEmptyComponent}
                 contentContainerStyle={styles.list}
+                initialNumToRender={this.state.foodData.length}
                 ListFooterComponent={USDACredit()}
                 removeClippedSubviews
               />
-          </View>
         </TouchableWithoutFeedback>
       </View>
     );
