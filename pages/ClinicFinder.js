@@ -219,7 +219,7 @@ class clinicFinder extends Component{
         ListHeaderComponent = {()=>{
           screenWidth = Dimensions.get('window').width;
           return(
-          <View style = {{height: 300, width: screenWidth}}>
+            <View style = {{height: 300, width: screenWidth}}>
             <MapView
               style = {{...StyleSheet.absoluteFillObject}}
               loadingEnabled={true}
@@ -229,8 +229,17 @@ class clinicFinder extends Component{
                 latitudeDelta: 0.0922,
                 longitudeDelta: 0.0421,
               }}
-            />
-          </View>
+            >
+              {this.clinicLst.map(marker => (
+                <Marker
+                  coordinate={marker.coords}
+                  title={marker.name}
+                  identifier = {marker.name}
+                  //description={marker.description}
+                />
+              ))}
+            </MapView>
+            </View>
         )}
         }//end header
         
