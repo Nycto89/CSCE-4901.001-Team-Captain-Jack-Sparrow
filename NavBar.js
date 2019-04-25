@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import {Animated, TouchableHighlight, Dimensions, 
-    Platform, StyleSheet, Text, 
-    View, Image, PanResponder } from 'react-native';
-
+import {TouchableHighlight, Text, View, Image} from 'react-native';
 import {Actions} from 'react-native-router-flux';
 import {connect} from 'react-redux';
 
@@ -14,20 +11,31 @@ class NavBar extends Component {
   
     render() {
       return (
-        <View  style={{ flex: 1, 
+        <View  style={{ 
             flexDirection: 'row',
             justifyContent: 'space-between',
             alignItems : 'center',
-            paddingTop: 20,
+            paddingTop: 5,
             marginTop: 20,
             height : 60,
             backgroundColor : this.props.themeProp.backgroundColor,
             borderRadius : 0,}}
             >
-            <DrawerIcon themeProps={this.props.themeProp}/>
-            <NavBarTitle text={this.props.title} themeProps={this.props.themeProp}/>
-            <HomeButton themeProps={this.props.themeProp}/>
-        </View>
+            
+            <View style={{flexDirection: 'row', flex: 1, justifyContent: 'flex-start' }}>
+                <DrawerIcon themeProps={this.props.themeProp}/>
+            </View>
+
+            <View style={{ flexDirection: 'row', justifyContent: 'center',}}>
+                <NavBarTitle text={this.props.title} themeProps={this.props.themeProp}/>
+            </View>
+
+            <View style={{ flexDirection: 'row', justifyContent : 'flex-end' , flex: 1 }}>
+                <HomeButton themeProps={this.props.themeProp}/>
+            </View>
+            
+        </View>    
+            
       );
     }
   }
