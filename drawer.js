@@ -8,7 +8,7 @@ import {connect} from 'react-redux';
 
 class DrawerMenu extends React.Component {
 
-    // componentDidMount() { Actions.refresh({key: 'Drawer', ref: this.refs.navigation}); }
+    componentDidMount() { Actions.refresh({key: 'Drawer', ref: this.refs.navigation}); }
 
     render() {
 
