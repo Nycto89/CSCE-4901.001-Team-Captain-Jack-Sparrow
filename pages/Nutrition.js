@@ -94,7 +94,7 @@ class Nutrition extends React.Component {
                             textAlign : 'center' ,
                             fontSize : 25,
                             color : this.props.themeProp.textColor }}
-                            >Enter a serch term or scan a barcode to get started!</Text>
+                            >Enter a search term or scan a barcode to get started!</Text>
         </View>
     )
   }
@@ -343,7 +343,7 @@ class Nutrition extends React.Component {
         }
 
     //Alert if there are no relevant results at all
-    if( this.state.foodData.list.item &&
+    else if( this.state.foodData.list.item &&
         !this.state.foodData.list.item.find( item => item.phosphorus )){
       Alert.alert(
         'No results',
