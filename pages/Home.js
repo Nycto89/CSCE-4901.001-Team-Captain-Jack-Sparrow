@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, View, Image, Text, TouchableHighlight, Dimensions, Linking} from 'react-native';
+import {StyleSheet, View, Image, Text, TouchableHighlight, Dimensions, Linking, Alert} from 'react-native';
 import {Actions} from 'react-native-router-flux';
 import {connect} from 'react-redux';
 
@@ -23,7 +23,7 @@ const { width, height } = Dimensions.get('window');
               <View style={styles.tileFlexVertical}>
                 <TouchableHighlight
                   onPress={ () => Actions.ModalityMainScreen()}>
-                  <Image source={require('../images/home_icons/treatment.png')} style={[styles.tile, this.iconTintStyle()]}/>
+                  <Image source={require('../images/home_icons/kidneyV2.png')} style={[styles.tile, this.iconTintStyle()]}/>
                 </TouchableHighlight>
               </View>
               <View style={styles.tileFlexVertical}>
@@ -37,8 +37,18 @@ const { width, height } = Dimensions.get('window');
             <View style={styles.tileFlexHorizontal} >
               <View style={styles.tileFlexVertical}>
                 <TouchableHighlight
-                  onPress={ () => Actions.CalendarPage()}>
-                  <Image source={require('../images/home_icons/calendar.png')} style={[styles.tile, this.iconTintStyle()]}/>
+                  onPress={ () => {
+                    Alert.alert(
+                      'Leaving App',
+                      'You are leaving the app and will be taken to https://www.esrdnetwork.org/.',
+                      [
+                        {text: 'Cancel'},
+                        {text: 'Continue', onPress: () => Linking.openURL('https://www.esrdnetwork.org/')}                      
+                      ],
+                      {cancelable: true},
+                    );
+                  }}>
+                  <Image source={require('../images/home_icons/ESRD.png')} style={[styles.tile, this.iconTintStyle()]}/>
                 </TouchableHighlight>
               </View>
               <View style={styles.tileFlexVertical}>
@@ -50,7 +60,7 @@ const { width, height } = Dimensions.get('window');
             </View>   
           </View>
 
-          <View style={[styles.tileFlexHorizontal, {backgroundColor : this.props.themeProp.backgroundColor}]} >
+          {/* <View style={[styles.tileFlexHorizontal, {backgroundColor : this.props.themeProp.backgroundColor}]} >
             <TouchableHighlight
               onPress={()=>{ Linking.openURL('https://www.esrdnetwork.org/')}}>
               <View style={{width : 265, height : 40,
@@ -62,7 +72,7 @@ const { width, height } = Dimensions.get('window');
                 </Text>
               </View>
             </TouchableHighlight>
-          </View>
+          </View> */}
         </View>
       );
     }

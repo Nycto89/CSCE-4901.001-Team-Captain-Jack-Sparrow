@@ -10,12 +10,10 @@ import { StyleSheet,
         TouchableOpacity,
         Dimensions,
         Modal,
-        Platform } from 'react-native';
-// import { List, ListItem } from 'react-native-elements'
-import { ActionSheet } from 'native-base';
+        Platform,
+        Alert } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import {connect} from 'react-redux';
-import cloneDeep from 'lodash/cloneDeep';
 
 import  { RNCamera }  from 'react-native-camera';
 
@@ -37,6 +35,7 @@ class Nutrition extends React.Component {
       text : '',
       foodData : {},
       loading : false,
+      methodBarCode : false,
 
       cameraOpen : false,
       cameraType: RNCamera.Constants.Type.back,
@@ -50,32 +49,57 @@ class Nutrition extends React.Component {
     this.setState({ cameraOpen : !cameraOpen });
   }
 
-  renderItem({item}){
+  renderItem = ({item, index}) => {
     // console.log(item);
     if( item.phosphorus ){
         return (
-          // <ListItem
-          //   title={item.item.name}
-          //   titleStyle={{ color: 'black' }}
-          //   badge={{ value : item.item.phosphorus.value, textStyle: { color: 'blue' } }}
-          // />
-          <Text>{item.name} : {item.phosphorus.value}mg</Text>
-
+          <View style={[styles.resultItemView, {
+            backgroundColor : index % 2 === 0 ? '#C0C0C0' : '#D3D3D3'
+          }]}>
+            <View style={styles.resultDescView}>
+              <Text style={{ fontSize : this.props.fontProp.fontVal,
+                    textAlignVertical : 'center', 
+                            textAlign : 'center' , }}
+                            >{item.name}</Text>
+            </View>
+            <View style={styles.resultValueView}>
+              <Text style={{ fontSize : this.props.fontProp.fontVal,
+                    textAlignVertical : 'center', 
+                            textAlign : 'center' }}
+                            >{item.phosphorus.value}mg</Text>
+            </View>         
+          </View>
         )
         
     } 
-    // else {
-    //   return <Text>{item.item.nbdno} : Not listed</Text>
-    // }
+    else if( this.state.methodBarCode === true) {
+      return (
+        <View style={[styles.resultItemView, {
+            backgroundColor : '#C0C0C0'  
+        }]}>
+          <Text style={{ fontSize : this.props.fontProp.fontVal,
+                textAlignVertical : 'center', 
+                        textAlign : 'center',
+                        }}
+                        >{item.name} : Not listed</Text>
+        </View>
+      ) 
+    }
   }
 
   _listEmptyComponent = () => {
     return (
-        <View>
-            <Text>No results.</Text>
+        <View style={{ alignItems : 'center',  marginBottom : 15 }}>
+            <Text style={{ textAlignVertical : 'center', 
+                            textAlign : 'center' ,
+                            fontSize : 25,
+                            color : this.props.themeProp.textColor }}
+                            >Enter a search term or scan a barcode to get started!</Text>
         </View>
     )
   }
+
+  
 
   prepareRatio = async () => {
     console.log('Preparing ratio...');
@@ -97,9 +121,7 @@ class Nutrition extends React.Component {
           <Modal>
             <View style={{ flex: 1, backgroundColor: "black", opacity: 0.9999 }}>
               <RNCamera
-                          ref={cam => {
-                            this.cam = cam;
-                          }}
+                          ref={cam => { this.cam = cam; }}
                           // onCameraReady={this.prepareRatio}
                           ratio={this.state.cameraRatio}
                           style={styles.preview}
@@ -149,44 +171,75 @@ class Nutrition extends React.Component {
           {/* <Button onPress={() => {console.log(JSON.stringify(this.state, null, 2))}  } title="Log State"/> */}
         </View>
         <TouchableWithoutFeedback onPress={ () => Keyboard.dismiss() }>
-          <View style={{flex : 1}}>
-            {/* <List> */}
               <FlatList
                 keyExtractor={ (item) => item.ndbno }
                 data={ this.state.foodData.list ? this.state.foodData.list.item : [] }
                 renderItem={this.renderItem}
                 ListEmptyComponent={this._listEmptyComponent}
                 contentContainerStyle={styles.list}
-                ListFooterComponent={USDACredit()}
+                initialNumToRender={this.state.foodData.length}
+                ListFooterComponent={USDACredit(this.props.themeProp)}
+                removeClippedSubviews
               />
-            {/* </List> */}
-          </View>
         </TouchableWithoutFeedback>
       </View>
     );
   }
 
-  onBarCodeRead = (scanResult) => {
-    console.warn(scanResult.type);
-    console.warn(scanResult.data);
-    console.warn(scanResult.data.slice(1));
-    const UPC = scanResult.data.slice(1);
-    // this.setState({ cameraOpen : false, text : UPC }, this.submitText());
-    this.setState({ cameraOpen : false});
-    this.getUSDAProductInfo(UPC);
+  onBarCodeRead = async (scanResult) => {
+    if (scanResult.data != null) {
+      await this.setState({ cameraOpen : false , methodBarCode : true });
 
-    // if (scanResult.data != null) {
-    //   if (!this.barcodeCodes.includes(scanResult.data)) {
-    //       this.barcodeCodes.push(scanResult.data);
-    //       console.warn('onBarCodeRead call');
-    //     }
-    // }
+      if(scanResult.type != "org.gs1.EAN-13" && scanResult.type != "org.iso.Code128"){
+        setTimeout(() => {
+          Alert.alert(
+            'Unsupported Barcode',
+            'Only UPC-A, or GTIN are supported.',
+            [
+              {text: 'OK', onPress: () => console.log('OK Pressed')},
+            ],
+            {cancelable: false},
+          );
+        }, 100)
+      } else {
+            // console.warn(scanResult.type);
+            // console.warn(scanResult.data);
+            // console.warn(scanResult.data.slice(1));
+
+            await this.setState({ text : scanResult.data });
+
+            let query;
+
+            if(scanResult.type == "org.gs1.EAN-13"){
+              //Remove leading 0 from UPC-A
+              query = scanResult.data.slice(1);
+            } else if( scanResult.type == "org.iso.Code128"){
+              //Make the GTIN 14 numbers, filling in beginning with 0s until length is 14
+              let fill_num = 14 - scanResult.data.length;
+              let fill_string = "0".repeat(fill_num);
+              query = fill_string.concat(scanResult.data);
+            }
+
+            this.getUSDAProductInfo(query);
+      }
+    } else {
+      setTimeout(() => {
+          Alert.alert(
+            'Read Error',
+            'Unable to read the barcode. Please try again or search manually.',
+            [
+              {text: 'OK', onPress: () => console.log('OK Pressed')},
+            ],
+            {cancelable: false},
+          );
+        }, 100)
+    }
     return;
   }
 
   submitText = () => {
 
-    this.getUSDAProductInfo(this.state.text);
+    this.setState({ methodBarCode : false } , () => this.getUSDAProductInfo(this.state.text));
 
   }
 
@@ -225,12 +278,6 @@ class Nutrition extends React.Component {
     // console.log(JSON.stringify(this.state.foodData, null, 2));
 
       if(foodDataCopy){
-
-      // if(this.state.foodData){
-      //   let foodDataCopy = cloneDeep(this.state.foodData);
-        // console.log(' COPY : ');
-        // console.log(JSON.stringify(foodDataCopy, null, 2));
-
         const reqNDOs = foodDataCopy.list.item.map( (item) => item.ndbno );
         console.log("NDBnos : " + reqNDOs);
 
@@ -262,27 +309,61 @@ class Nutrition extends React.Component {
           .then(responseJson => { 
             foodDataCopy.list.item.forEach( food => {
               let match = responseJson.foods.find( res => res.food.desc.ndbno === food.ndbno );
+              //The nutrient ID of phosphorus is 305
               food.phosphorus = match.food.nutrients.find( o => { return o.nutrient_id === '305' })
             })
            })
           .then( () => { this.setState({ foodData : foodDataCopy }, () => { 
                 console.log('Updating state...');
-                console.log(JSON.stringify(this.state.foodData, null, 2)) } )})
+                console.log(JSON.stringify(this.state.foodData, null, 2)); 
+                this.checkReturn(); } )})
           .catch((error) => {
             console.log(error);
           });
 
       } else {
         // this.setState({ displayData : {} });
-      }      
+      }
   }
 
+  checkReturn = () => {
+    //Alert if the item ws found but had no phosphorus value
+    if( this.state.methodBarCode === true && 
+        this.state.foodData.list.item && 
+        !this.state.foodData.list.item[0].phosphorus){
+          Alert.alert(
+            'Value not listed',
+            'The item scanned was found in the database, however no phosphorus value is provided. You may want to try a manual search for similiar items.',
+            [
+              {text: 'OK', onPress: () => console.log('OK Pressed')},
+              {text: 'Scan another item', onPress: () => {this.setState( { cameraOpen : true })}}
+            ],
+            {cancelable: true},
+          );
+        }
+
+    //Alert if there are no relevant results at all
+    else if( this.state.foodData.list.item &&
+        !this.state.foodData.list.item.find( item => item.phosphorus )){
+      Alert.alert(
+        'No results',
+        'Your search did not return any results. Please modify your search and try again. It may be helpful to be more specific.',
+        [
+          {text: 'OK'}
+        ],
+        {cancelable: true},
+      );
+    }
+
+  } 
 }
 
-const USDACredit = () => {
+
+
+const USDACredit = (props) => {
   return (
-    <View style={{flex:1,justifyContent: "center",alignItems: "center"}}>
-      <Text style={{textAlignVertical: "center",textAlign: "center",}}>U.S. Department of Agriculture, Agricultural Research Service. 20xx. USDA National Nutrient Database for Standard Reference, Release . Nutrient Data Laboratory Home Page, http://www.ars.usda.gov/nutrientdata</Text>
+    <View style={{flex:1,justifyContent: "center",alignItems: "center", margin : 10, marginTop: 15}}>
+      <Text style={{textAlignVertical: "center",textAlign: "center", color: props.textColor}}>U.S. Department of Agriculture, Agricultural Research Service. 20xx. USDA National Nutrient Database for Standard Reference, Release . Nutrient Data Laboratory Home Page, http://www.ars.usda.gov/nutrientdata</Text>
     </View>
   )
 }
@@ -297,10 +378,11 @@ const styles = StyleSheet.create({
   },
 
   textInput: {
-    height: 40, 
+    height: 45, 
     borderColor: 'gray', 
     borderWidth: 1,
-    backgroundColor : 'white'
+    backgroundColor : 'white',
+    paddingLeft : 5
 
   },
 
@@ -314,7 +396,7 @@ const styles = StyleSheet.create({
   textButton:{
     backgroundColor : 'lightgray',
     height : 40,
-    width : 120,
+    width : 140,
     justifyContent : 'center',
     alignItems : 'center'
   },
@@ -337,7 +419,6 @@ const styles = StyleSheet.create({
     justifyContent : 'center',
     alignItems : 'center'
   },
-
   list: {
 
   },
@@ -359,6 +440,20 @@ const styles = StyleSheet.create({
   },
   cameraView : {
     marginBottom : 80,
+  },
+  resultItemView: {
+    flexDirection : 'row',
+  },
+  resultDescView: {
+    flex : 3,
+    alignItems : 'center',
+    justifyContent : 'center'
+  },
+  resultValueView: {
+    flex : 1,
+    alignItems : 'center',
+    justifyContent : 'center',
+    // backgroundColor : 'pink'
   }
 
 });
