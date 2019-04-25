@@ -13,3 +13,10 @@ export const switchThemes = () => {
         type: "SWITCH_THEME"
     }
 };
+
+//SET VISITED
+export const setVisited = () => {
+    return {
+        type: "VISITED_ONCE"
+    }
+};
