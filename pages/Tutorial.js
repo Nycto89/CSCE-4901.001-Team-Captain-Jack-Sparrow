@@ -51,7 +51,7 @@ class Tutorial extends React.Component {
 
               <View style= {styles.tileFlexHorizontal}>
                   <View style= {styles.tileFlexVertical}>
-                    <Image source={require('../images/home_icons/treatment.png')} style={[styles.tile, this.iconTintStyle()]}/>
+                    <Image source={require('../images/home_icons/kidneyV2.png')} style={[styles.tile, this.iconTintStyle()]}/>
                     <Text style= {[styles.textStyle, {color:this.props.themeProp.textColor, fontWeight: 'bold', fontSize: this.props.fontProp.fontVal}]}>
 
                     Modalities</Text>
@@ -76,7 +76,7 @@ class Tutorial extends React.Component {
                         The app will ask for your permission to access the device's GPS and find dialysis clinics in your immediate area.</Text>
                   </View>
                 <View style= {[styles.tileFlexVertical, {marginBottom: 15}]}>
-                    <Image source={require('../images/home_icons/calendar.png')} style={[styles.tile, this.iconTintStyle()]}/>
+                    <Image source={require('../images/home_icons/ESRD.png')} style={[styles.tile, this.iconTintStyle()]}/>
                     <Text style= {[styles.textStyle, {color:this.props.themeProp.textColor, fontWeight: 'bold', fontSize: this.props.fontProp.fontVal}]}>
 
                     ESRD Link</Text>
