@@ -42,6 +42,9 @@
 		2DCD954D1E0B4F2C00145EB5 /* appTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* appTests.m */; };
 		2DF0FFEE2056DD460020B375 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA31DF850E9000B6D8A /* libReact.a */; };
 		317EAA1E3B7F4F948BC3F9CD /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B30D15324784B7587B338E1 /* libRNVectorIcons.a */; };
+		34840D1FB2C841C3ABF2ED6F /* libRNGeocoder.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E119DA13418D448FAD294F9F /* libRNGeocoder.a */; };
+		38ACB15C94574BC28340CB2E /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 80E0EE62113C4A80A6453F50 /* FontAwesome.ttf */; };
+		3B0E6903C278415EBA0EA189 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 61237B82E71A46AA90B3726D /* MaterialCommunityIcons.ttf */; };
 		3C3E29FBE38642C9BAF56DBA /* libRNVectorIcons-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A5C5CC9218847C5AF686C31 /* libRNVectorIcons-tvOS.a */; };
 		69429E8D7A294D3BA812D59D /* libReactNativePermissions.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19EF83F9D0974E97BD6FE04E /* libReactNativePermissions.a */; };
 		6DE124B83A364B26ABD8ABD0 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D44C6998B5D34CE5BB829E1C /* Foundation.ttf */; };
@@ -69,6 +72,7 @@
 		F573B006226D5394008CF11F /* esrd_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F573AFD8226D5393008CF11F /* esrd_icon.png */; };
 		F5978B1E226F879D003F2874 /* libRNGeocoder.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F54D3B80226F57E500F69936 /* libRNGeocoder.a */; };
 		F660D5C3ED0F444A8B63A4CE /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D19805EBBAF64C3990F0E5FB /* FontAwesome5_Brands.ttf */; };
+		71432C3F3C7547B5840D93AE /* libAirMaps.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C06764EA33624C33846C84D3 /* libAirMaps.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -479,6 +483,8 @@
 		F573AFD8226D5393008CF11F /* esrd_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = esrd_icon.png; path = app/esrd_icon.png; sourceTree = "<group>"; };
 		F59F4C4B226F6BB0009DE9A5 /* denton.gpx */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = denton.gpx; path = ../../denton.gpx; sourceTree = "<group>"; };
 		F9185E2A11A04582AC64B5A7 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
+		3E5345CAEF074948A5DC0E6D /* AirMaps.xcodeproj */ = {isa = PBXFileReference; name = "AirMaps.xcodeproj"; path = "../node_modules/react-native-maps/lib/ios/AirMaps.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		C06764EA33624C33846C84D3 /* libAirMaps.a */ = {isa = PBXFileReference; name = "libAirMaps.a"; path = "libAirMaps.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -515,6 +521,7 @@
 				CF0A23EAD1224697A8E2EF05 /* libRNCamera.a in Frameworks */,
 				9DEE7EC5A6C04A1BB3657648 /* libRNOpenAppSettings.a in Frameworks */,
 				69429E8D7A294D3BA812D59D /* libReactNativePermissions.a in Frameworks */,
+				71432C3F3C7547B5840D93AE /* libAirMaps.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -738,6 +745,7 @@
 				23A07B2D248C4C9AAFF737CC /* RNOpenAppSettings.xcodeproj */,
 				05CF1B0B21EA4154AE7E6E9E /* ReactNativePermissions.xcodeproj */,
 				1BF12ABE51FB4C90A4B8ADAD /* RNGeocoder.xcodeproj */,
+				3E5345CAEF074948A5DC0E6D /* AirMaps.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1429,6 +1437,24 @@
 				8FE3F0B4B1BF4F08A3FF5C9C /* rubicon-icon-font.ttf in Resources */,
 				17714270A26C40EC8D04152A /* SimpleLineIcons.ttf in Resources */,
 				EB58CDD0BE614A68947DE6A3 /* Zocial.ttf in Resources */,
+				A37D4478DF684F59BD62F82A /* AntDesign.ttf in Resources */,
+				886DFAD15D7F4C619FEF45D3 /* Entypo.ttf in Resources */,
+				18C1EE071F7D47D691519541 /* EvilIcons.ttf in Resources */,
+				4FECA05ACC47430392418F90 /* Feather.ttf in Resources */,
+				38ACB15C94574BC28340CB2E /* FontAwesome.ttf in Resources */,
+				C2253E308E3F4E8683272CEB /* FontAwesome5_Brands.ttf in Resources */,
+				5F0DA4ED7B884D079C93DD09 /* FontAwesome5_Regular.ttf in Resources */,
+				0EBB3479B92E40CC8E26C6BC /* FontAwesome5_Solid.ttf in Resources */,
+				4472A289E8DB4049B64019CD /* Foundation.ttf in Resources */,
+				0BAB61D53B9244539F43C47C /* Ionicons.ttf in Resources */,
+				3B0E6903C278415EBA0EA189 /* MaterialCommunityIcons.ttf in Resources */,
+				9C11B4F6C5D74BDDA72BA940 /* MaterialIcons.ttf in Resources */,
+				1094698A2BE04B7B8AEBEF11 /* Octicons.ttf in Resources */,
+				758C08BEDBE54939ADCD226E /* Roboto_medium.ttf in Resources */,
+				0A7A31F513BF416590F18479 /* Roboto.ttf in Resources */,
+				8FE3F0B4B1BF4F08A3FF5C9C /* rubicon-icon-font.ttf in Resources */,
+				3FEB0F20351742D39B2080E3 /* SimpleLineIcons.ttf in Resources */,
+				98E1CC1389724FD0A24EE012 /* Zocial.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1565,6 +1591,7 @@
 					"$(SRCROOT)..\node_modules\neact-native-app-settingsios",
 					"$(SRCROOT)..\node_modules\neact-native-permissionsios/**",
 					"$(SRCROOT)..\node_modules\neact-native-geocoderiosRNGeocoder",
+					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
 				);
 				INFOPLIST_FILE = appTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -1602,6 +1629,7 @@
 					"$(SRCROOT)..\node_modules\neact-native-app-settingsios",
 					"$(SRCROOT)..\node_modules\neact-native-permissionsios/**",
 					"$(SRCROOT)..\node_modules\neact-native-geocoderiosRNGeocoder",
+					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
 				);
 				INFOPLIST_FILE = appTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -1640,6 +1668,7 @@
 					"$(SRCROOT)..\node_modules\neact-native-app-settingsios",
 					"$(SRCROOT)..\node_modules\neact-native-permissionsios/**",
 					"$(SRCROOT)..\node_modules\neact-native-geocoderiosRNGeocoder",
+					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
 				);
 				INFOPLIST_FILE = app/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1648,7 +1677,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.clinic.example.app;
+				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.cfinder.app;
 				PRODUCT_NAME = app;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1668,6 +1697,7 @@
 					"$(SRCROOT)..\node_modules\neact-native-app-settingsios",
 					"$(SRCROOT)..\node_modules\neact-native-permissionsios/**",
 					"$(SRCROOT)..\node_modules\neact-native-geocoderiosRNGeocoder",
+					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
 				);
 				INFOPLIST_FILE = app/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1676,7 +1706,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.clinic.example.app;
+				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.cfinder.app;
 				PRODUCT_NAME = app;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1703,6 +1733,7 @@
 					"$(SRCROOT)..\node_modules\neact-native-app-settingsios",
 					"$(SRCROOT)..\node_modules\neact-native-permissionsios/**",
 					"$(SRCROOT)..\node_modules\neact-native-geocoderiosRNGeocoder",
+					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
 				);
 				INFOPLIST_FILE = "app-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1748,6 +1779,7 @@
 					"$(SRCROOT)..\node_modules\neact-native-app-settingsios",
 					"$(SRCROOT)..\node_modules\neact-native-permissionsios/**",
 					"$(SRCROOT)..\node_modules\neact-native-geocoderiosRNGeocoder",
+					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
 				);
 				INFOPLIST_FILE = "app-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1792,6 +1824,7 @@
 					"$(SRCROOT)..\node_modules\neact-native-app-settingsios",
 					"$(SRCROOT)..\node_modules\neact-native-permissionsios/**",
 					"$(SRCROOT)..\node_modules\neact-native-geocoderiosRNGeocoder",
+					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
 				);
 				INFOPLIST_FILE = "app-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1836,6 +1869,7 @@
 					"$(SRCROOT)..\node_modules\neact-native-app-settingsios",
 					"$(SRCROOT)..\node_modules\neact-native-permissionsios/**",
 					"$(SRCROOT)..\node_modules\neact-native-geocoderiosRNGeocoder",
+					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
 				);
 				INFOPLIST_FILE = "app-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
