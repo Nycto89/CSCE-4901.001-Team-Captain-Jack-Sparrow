@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {TouchableHighlight, Text, View, Image} from 'react-native';
+import {TouchableHighlight, Text, View, Image, Platform} from 'react-native';
 import {Actions} from 'react-native-router-flux';
 import {connect} from 'react-redux';
 
@@ -14,11 +14,19 @@ class NavBar extends Component {
         <View  style={{ 
             flexDirection: 'row',
             justifyContent: 'space-between',
-            alignItems : 'center',
-            paddingTop: 5,
-            marginTop: 20,
-            height : 60,
+            alignItems : 'center',        
             backgroundColor : this.props.themeProp.backgroundColor,
+            ...Platform.select({
+                ios : {
+                    paddingTop: 5,
+                    marginTop: 20,
+                    height : 60,
+                },
+                android : {
+                    paddingTop : 5,
+                    height : 60
+                }
+            }),
             borderRadius : 0,}}
             >
             
@@ -41,7 +49,7 @@ class NavBar extends Component {
   }
 
   function HomeButton(props){
-    if(Actions.currentScene === 'HomeScreen')
+    if(Actions.currentScene === 'HomeScreen' || Actions.currentScene === 'SettingsLightbox')
       return null;
     else
     return (
