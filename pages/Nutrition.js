@@ -63,7 +63,9 @@ class Nutrition extends React.Component {
         // Returns once the user has chosen to 'allow' or to 'not allow' access
         // Response is one of: 'authorized', 'denied', 'restricted', or 'undetermined'
         this.setState({ cameraPermission: response }, response => {
-          if( response === 'denied'){
+          if ( response === 'authorized' ){
+            this.setState({ cameraOpen : true });
+          } else {
             this.setState({ cameraOpen : false });
           }
         })
@@ -295,8 +297,8 @@ class Nutrition extends React.Component {
   onBarCodeRead = async (scanResult) => {
     if (scanResult.data != null) {
       await this.setState({ cameraOpen : false , methodBarCode : true });
-      console.warn(scanResult.type);
-      if(scanResult.type != "org.gs1.EAN-13" && scanResult.type != "org.iso.Code128"){
+      // console.warn(scanResult.type);
+      if(scanResult.type != "org.gs1.EAN-13" && scanResult.type != "org.iso.Code128" && scanResult.type != "EAN_13"){
         setTimeout(() => {
           Alert.alert(
             'Unsupported Barcode',
