@@ -62,7 +62,7 @@ class Nutrition extends React.Component {
       Permissions.request('camera').then(response => {
         // Returns once the user has chosen to 'allow' or to 'not allow' access
         // Response is one of: 'authorized', 'denied', 'restricted', or 'undetermined'
-        this.setState({ photoPermission: response }, response => {
+        this.setState({ cameraPermission: response }, response => {
           if( response === 'denied'){
             this.setState({ cameraOpen : false });
           }
