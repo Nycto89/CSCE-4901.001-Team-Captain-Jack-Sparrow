@@ -226,8 +226,8 @@ class clinicFinder extends Component{
               initialRegion={{
                 latitude: this.location.lat,
                 longitude: this.location.lng,
-                latitudeDelta: 2,
-                longitudeDelta: 2,
+                latitudeDelta: 1,
+                longitudeDelta: 1,
               }}
             >
               {this.clinicLst.map(marker => (

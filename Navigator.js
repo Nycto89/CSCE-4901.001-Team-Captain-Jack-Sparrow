@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Animated, TouchableHighlight, Dimensions, 
   Platform, StyleSheet, Text, 
-  View, Image, PanResponder } from 'react-native';
+  View, Image, PanResponder, YellowBox } from 'react-native';
 
 import HomeScreen from './pages/Home.js';
 import DrawerMenu from './drawer.js';
@@ -33,6 +33,9 @@ class MainNavigator extends Component {
       first: this.props.visitProp.visited,
     };
     console.log("prop " + this.props.visitProp.visited);
+
+    // Disables yellow box warnings for demo
+    //console.disableYellowBox = true;
 ;
   }
 

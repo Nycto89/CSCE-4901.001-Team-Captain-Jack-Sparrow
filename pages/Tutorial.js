@@ -31,13 +31,16 @@ class Tutorial extends React.Component {
         <ScrollView style={{backgroundColor: this.props.themeProp.backgroundColor}}>
 
           <View style = {[{alignItems: 'center', marginTop: 25}]}>
-            <Text style= {[styles.textStyle, 
-                          {color:this.props.themeProp.textColor, 
-                          fontSize: this.props.fontProp.fontVal + 5, 
-                          fontWeight: 'bold'}]}>
-            Welcome </Text> 
-            <Text style= {[styles.textStyle, {color:this.props.themeProp.textColor, fontSize: this.props.fontProp.fontVal}]}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec ligula ex. Vestibulum tempus sit amet augue volutpat suscipit. Donec condimentum dui quis lacus porta bibendum. Sed rutrum tincidunt sodales. Sed imperdiet blandit risus vel sollicitudin. Aliquam placerat dui id felis finibus posuere. Integer arcu eros, porttitor in orci euismod, accumsan tincidunt arcu. Praesent purus quam, congue sit amet sem nec, semper fermentum mi. Sed tincidunt placerat purus, interdum rutrum nulla. Praesent mattis elit pulvinar, consectetur turpis vitae, ullamcorper ipsum.</Text>
+              <Text style= {[styles.textStyle, 
+                            {color:this.props.themeProp.textColor, 
+                            fontSize: this.props.fontProp.fontVal + 5, 
+                            fontWeight: 'bold'}]}>
+              Welcome </Text> 
+              
+              <Text style= {[styles.textStyle, {color:this.props.themeProp.textColor, fontSize: this.props.fontProp.fontVal}]}>
+              And Thank You for using the ESRD app.
+              We are proud to provide this app to help educate on and assist those suffering from End Stage Renal Disease. This short tutorial will serve to explain what the icons on the home page are and the features they lead to. We hope this app can help make life easier for those suffering from ESRD.
+              </Text>
             </View>
 
             <View style = {[{alignItems: 'center', marginTop: 15}]}>
@@ -49,7 +52,6 @@ class Tutorial extends React.Component {
 
             Features </Text>
 
-              <View style= {styles.tileFlexHorizontal}>
                   <View style= {styles.tileFlexVertical}>
                     <Image source={require('../images/home_icons/kidneyV2.png')} style={[styles.tile, this.iconTintStyle()]}/>
                     <Text style= {[styles.textStyle, {color:this.props.themeProp.textColor, fontWeight: 'bold', fontSize: this.props.fontProp.fontVal}]}>
@@ -66,8 +68,7 @@ class Tutorial extends React.Component {
 
                     As phosphorus is not required no nutrition labels, the app lets you scan a barcode or enter a food item that searches the USDA's National Nutrient Database to learn the phosphorus content of that food.</Text>
                   </View>
-              </View>
-              <View style= {styles.tileFlexHorizontal}>
+
               <View style= {styles.tileFlexVertical}>
                     <Image source={require('../images/home_icons/map.png')} style={[styles.tile, this.iconTintStyle()]}/>
                     <Text style= {[styles.textStyle, {color:this.props.themeProp.textColor, fontWeight: 'bold', fontSize: this.props.fontProp.fontVal}]}>
@@ -75,6 +76,18 @@ class Tutorial extends React.Component {
                         <Text style= {[styles.textStyle, {color:this.props.themeProp.textColor, fontSize: this.props.fontProp.fontVal}]}>
                         The app will ask for your permission to access the device's GPS and find dialysis clinics in your immediate area.</Text>
                   </View>
+
+                  <View style= {styles.tileFlexHorizontal}>
+                      <Image source={require('../images/home_icons/nutrition.png')} style={[styles.tile, this.iconTintStyle()]}/>
+                      <Image source={require('../images/home_icons/map.png')} style={[styles.tile, this.iconTintStyle()]}/>
+                  </View>
+                  <View style= {styles.tileFlexVertical}>
+                    <Text style= {[styles.textStyle, {color:this.props.themeProp.textColor, fontWeight: 'bold', fontSize: this.props.fontProp.fontVal}]}>
+                        Privacy Policy</Text>
+                        <Text style= {[styles.textStyle, {color:this.props.themeProp.textColor, fontSize: this.props.fontProp.fontVal}]}>
+                        The app does not store or share any user or device data.</Text>
+                  </View>
+
                 <View style= {[styles.tileFlexVertical, {marginBottom: 15}]}>
                     <Image source={require('../images/home_icons/ESRD.png')} style={[styles.tile, this.iconTintStyle()]}/>
                     <Text style= {[styles.textStyle, {color:this.props.themeProp.textColor, fontWeight: 'bold', fontSize: this.props.fontProp.fontVal}]}>
@@ -85,7 +98,6 @@ class Tutorial extends React.Component {
                     A link to the website of the sponsors of the app, the End Stage Renal Disease Network. Will open in a new page</Text>
                   </View>
                 
-              </View>
             </View>
             <TouchableOpacity 
             style={[{backgroundColor: this.props.themeProp.textColor, height: this.props.fontProp.fontVal * 2, alignItems: 'center', justifyContent: 'space-around'} ]} 
@@ -114,7 +126,6 @@ const styles = StyleSheet.create({
 
   tileFlexHorizontal : {
     flexDirection : 'row',
-    flexWrap: 'wrap', 
     alignItems : 'center'
   },
 
