@@ -24,14 +24,24 @@ const { width, height } = Dimensions.get('window');
                 <TouchableHighlight
                   onPress={ () => Actions.ModalityMainScreen()}>
                   <Image source={require('../images/home_icons/kidneyV2.png')} style={[styles.tile, this.iconTintStyle()]}/>
+                  </TouchableHighlight>
+                  <TouchableHighlight
+                  onPress={ () => Actions.ModalityMainScreen()}>
+                  <Text style= {[styles.textStyle, {color:this.props.themeProp.textColor}]}> 
+                    Modalities</Text>
                 </TouchableHighlight>
               </View>
               <View style={styles.tileFlexVertical}>
                 <TouchableHighlight
                   onPress={ () => Actions.Nutrition()}>
                   <Image source={require('../images/home_icons/nutrition.png')} style={[styles.tile, this.iconTintStyle()]}/>
+                  </TouchableHighlight>
+                  <TouchableHighlight
+                  onPress={ () => Actions.Nutrition()}>
+                  <Text style= {[styles.textStyle, {color:this.props.themeProp.textColor}]}> 
+                    Phosphorus{"\n"}Checker</Text>
                 </TouchableHighlight>
-              </View>
+                </View>
             </View>
 
             <View style={styles.tileFlexHorizontal} >
@@ -49,12 +59,32 @@ const { width, height } = Dimensions.get('window');
                     );
                   }}>
                   <Image source={require('../images/home_icons/ESRD.png')} style={[styles.tile, this.iconTintStyle()]}/>
+                  </TouchableHighlight>
+                  <TouchableHighlight
+                  onPress={ () => {
+                    Alert.alert(
+                      'Leaving App',
+                      'You are leaving the app and will be taken to https://www.esrdnetwork.org/.',
+                      [
+                        {text: 'Cancel'},
+                        {text: 'Continue', onPress: () => Linking.openURL('https://www.esrdnetwork.org/')}                      
+                      ],
+                      {cancelable: true},
+                    );
+                  }}>
+                  <Text style= {[styles.textStyle, {color:this.props.themeProp.textColor}]}> 
+                    ESRD</Text>
                 </TouchableHighlight>
-              </View>
+             </View>
               <View style={styles.tileFlexVertical}>
                 <TouchableHighlight
                   onPress={ () => Actions.ClinicFinder()}>
                   <Image source={require('../images/home_icons/map.png')} style={[styles.tile, this.iconTintStyle()]}/>
+                  </TouchableHighlight>
+                  <TouchableHighlight
+                  onPress={ () => Actions.ClinicFinder()}>
+                  <Text style= {[styles.textStyle, {color:this.props.themeProp.textColor}]}> 
+                    Clinic{"\n"}Finder</Text>
                 </TouchableHighlight>
               </View>
             </View>   
@@ -89,7 +119,8 @@ const { width, height } = Dimensions.get('window');
 
     mainViewContainer : {
       flex : 1,
-      // backgroundColor : 'blue'
+      justifyContent : 'space-around',
+      backgroundColor : 'white'
     },
 
     picFlex: {
@@ -100,14 +131,15 @@ const { width, height } = Dimensions.get('window');
 
     tileFlexMain : {
       flex : 4,
-      alignItems : 'center',
-      justifyContent : 'space-around'
+      alignItems : 'center'
+
+      //justifyContent : 'space-around'
     }, 
 
     tileFlexHorizontal : {
       flex : 1,
       flexDirection : 'row',
-      justifyContent : 'space-around',
+      //justifyContent : 'space-around',
       alignItems : 'center'
     },
 
@@ -119,14 +151,22 @@ const { width, height } = Dimensions.get('window');
     },
 
     tile : {
-      height : height * (25/100),
-      width : width * (25 / 100),
+      height : height * (20/100),
+      width : width * (20/ 100),
       resizeMode : 'contain'
       // margin : 25,
       // padding : 55,
       // borderColor : 'black',
       // borderWidth : 3
+    },
+
+    textStyle: {
+      textAlign: 'center',
+      fontWeight: 'bold',
+      marginBottom: 10
+
     }
+    
     
   }); 
 

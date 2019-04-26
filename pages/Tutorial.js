@@ -66,7 +66,7 @@ class Tutorial extends React.Component {
                     Phosphorus Search</Text>
                     <Text style= {[styles.textStyle, {color:this.props.themeProp.textColor, fontSize: this.props.fontProp.fontVal}]}>
 
-                    As phosphorus is not required no nutrition labels, the app lets you scan a barcode or enter a food item that searches the USDA's National Nutrient Database to learn the phosphorus content of that food.</Text>
+                    As phosphorus is not required on nutrition labels, the app lets you scan a barcode or enter a food item that searches the USDA's National Nutrient Database to learn the phosphorus content of that food.</Text>
                   </View>
 
               <View style= {styles.tileFlexVertical}>
@@ -95,7 +95,7 @@ class Tutorial extends React.Component {
                     ESRD Link</Text>
                     <Text style= {[styles.textStyle, {color:this.props.themeProp.textColor, fontSize: this.props.fontProp.fontVal}]}>
 
-                    A link to the website of the sponsors of the app, the End Stage Renal Disease Network. Will open in a new page</Text>
+                    A link to the website of the sponsors of the app, the End Stage Renal Disease Network. Clicking the icon will send you to the ESRD website for more information.</Text>
                   </View>
                 
             </View>
@@ -103,7 +103,7 @@ class Tutorial extends React.Component {
             style={[{backgroundColor: this.props.themeProp.textColor, height: this.props.fontProp.fontVal * 2, alignItems: 'center', justifyContent: 'space-around'} ]} 
             onPress= {() => Actions.HomeScreen()}>
                     <Text style= {[styles.textStyle, {color:this.props.themeProp.backgroundColor, fontSize: this.props.fontProp.fontVal}]}>
-              HomeScreen</Text>
+              Go to Home Screen</Text>
             </TouchableOpacity>
 
         </ScrollView>
