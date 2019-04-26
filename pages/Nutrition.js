@@ -298,7 +298,7 @@ class Nutrition extends React.Component {
     if (scanResult.data != null) {
       await this.setState({ cameraOpen : false , methodBarCode : true });
       // console.warn(scanResult.type);
-      if(scanResult.type != "org.gs1.EAN-13" && scanResult.type != "org.iso.Code128" && scanResult.type != "EAN_13"){
+      if(scanResult.type != "org.gs1.EAN-13" && scanResult.type != "org.iso.Code128" && scanResult.type != "EAN_13" && scanResult.type != "CODE_128"){
         setTimeout(() => {
           Alert.alert(
             'Unsupported Barcode',
@@ -318,10 +318,10 @@ class Nutrition extends React.Component {
 
             let query;
 
-            if(scanResult.type == "org.gs1.EAN-13"){
+            if(scanResult.type == "org.gs1.EAN-13" || scanResult.type == "EAN_13"){
               //Remove leading 0 from UPC-A
               query = scanResult.data.slice(1);
-            } else if( scanResult.type == "org.iso.Code128"){
+            } else if( scanResult.type == "org.iso.Code128" || scanResult == "CODE_128"){
               // console.warn(scanResult.data.length);
               //Make the GTIN 14 numbers, filling in beginning with 0s until length is 14
               let fill_num = scanResult.data.length < 14 ? 14 - scanResult.data.length : 0;

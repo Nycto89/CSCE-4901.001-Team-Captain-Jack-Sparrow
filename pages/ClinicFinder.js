@@ -171,6 +171,9 @@ class clinicFinder extends Component{
             console.log('doPhoneGeoCode response: '+ response);
             await getFinderData(response, this.clinicLst).then((lst)=>{
               this.clinicLst = lst;
+              //this.state.filteredLst = lst;
+              //this.setState({filteredLst: newLSt})
+
               //console.log('clinicLst222222222222222222222222222: ');
               //console.log(this.clinicLst);
 
