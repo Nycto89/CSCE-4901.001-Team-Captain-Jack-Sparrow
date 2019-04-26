@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Dimensions, Alert, Text, StyleSheet, FlatList, View} from 'react-native';
+import { Platform, Dimensions, Alert, Text, StyleSheet, FlatList, View} from 'react-native';
 import Permissions from 'react-native-permissions';
 import AndroidOpenSettings from 'react-native-android-open-settings'
 import {createOpenLink} from 'react-native-open-maps';
@@ -14,6 +14,7 @@ class clinicFinder extends Component{
   state = {ready: false};
   location = {};
   clinicLst = [];
+  mapRef = null;
 
   ////////////////////////////////////////////////////////
   //FUNCTIONS//
@@ -38,8 +39,9 @@ class clinicFinder extends Component{
   });//end request permissions promise
 
   _alertForPerms = async () => new Promise((resolve, reject) => {
-    console.log('in alert...');
-    Alert.alert(
+    if(Platform.OS == 'android'){
+      console.log('in alert...');
+      Alert.alert(
       'Can we have access to your location?',
       'We need access to give you relevant clinic locations',
       [
@@ -53,7 +55,41 @@ class clinicFinder extends Component{
           : { text: 'Open Settings', onPress: ()=>{resolve('settings');} }
       ],
       {cancelable: false}
-    );//end alert
+      );//end alert
+    }//end if android
+    else if(Platform.OS == 'ios'){
+      if(this.state.perms != 'restricted'){
+        console.log('in alert...');
+        Alert.alert(
+        'Can we have access to your location?',
+        'We need access to give you relevant clinic locations',
+        [
+          {
+            text: 'Cancel',
+            onPress: () => {console.log('Cancel pressed...'); resolve('cancel');},
+            style: 'cancel'
+          },
+          (this.state.perms == ('undetermined'))
+            ? { text: 'OK', onPress: ()=>{resolve('OK');} }
+            : { text: 'Open Settings', onPress: ()=>{resolve('settings');} }
+        ],
+        {cancelable: false}
+        );
+      }//end if perms != 'restricted'
+      else{//else iOS restricted
+        Alert.alert(
+          'The Location Permission has been disabled on your device',
+          'The app will default to the Dallas Area...',
+          [
+            {
+              text: 'Cancel',
+              onPress: () => {console.log('Cancel pressed...'); resolve('cancel');},
+              style: 'cancel'
+            }
+          ]
+        );
+      }//end else iOS restricted
+    }//end else if iOS
   });//end alertForPerms promise
 
   getCoords = async () => new Promise(async (resolve, reject) => {
@@ -135,8 +171,23 @@ class clinicFinder extends Component{
             console.log('doPhoneGeoCode response: '+ response);
             await getFinderData(response, this.clinicLst).then((lst)=>{
               this.clinicLst = lst;
-              console.log('clinicLst222222222222222222222222222: ');
-              console.log(this.clinicLst);
+              //console.log('clinicLst222222222222222222222222222: ');
+              //console.log(this.clinicLst);
+
+              //zoom map once rendered
+              if(this.mapRef != null){
+                markerIDLst = this.clinicLst.map(loc => (loc.name));
+                console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$HERE$$$$$$$$$$$$$$$$$$$$$$$$$$$$$');
+                console.log({markerIDLst});
+                this.mapRef.fitToSuppliedMarkers(markerIDLst,  
+                  {edgePadding: {
+                  bottom: 0, right: 0, top: 5, left: 0,
+                  },
+                  animated: true
+                });//end fitToSuppliedMarkers()
+              }
+
+
               console.log('setState({ready: true})');
               this.setState({ready: true});
             });//end getFinderData.then()
@@ -155,8 +206,24 @@ class clinicFinder extends Component{
           console.log('doPhoneGeoCode response: '+ {response});
           await getFinderData(response, this.clinicLst).then((lst)=>{
             this.clinicLst = lst;
-            console.log('clinicLst222222222222222222222222222: ');
-            console.log(this.clinicLst);
+            //console.log('clinicLst222222222222222222222222222: ');
+            //console.log(this.clinicLst);
+
+            //zoom map once rendered
+            if(this.mapRef != null){
+              markerIDLst = this.clinicLst.map(loc => (loc.name));
+              console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$HERE$$$$$$$$$$$$$$$$$$$$$$$$$$$$$');
+              console.log({markerIDLst});
+              this.mapRef.fitToSuppliedMarkers(markerIDLst,  
+                {edgePadding: {
+                bottom: 0, right: 0, top: 5, left: 0,
+                },
+                animated: true
+              });//end fitToSuppliedMarkers()
+            }
+
+
+
             console.log('setState({ready: true})');
             this.setState({ready: true});
           });//end getFinderData.then()
@@ -178,8 +245,21 @@ class clinicFinder extends Component{
           console.log('doPhoneGeoCode response: '+ {response});
           await getFinderData(response, this.clinicLst).then((lst)=>{
             this.clinicLst = lst;
-            console.log('clinicLst222222222222222222222222222: ');
-            console.log(this.clinicLst);
+            //console.log('clinicLst222222222222222222222222222: ');
+            //console.log(this.clinicLst);
+
+            //zoom map once rendered
+            if(this.mapRef != null){
+              markerIDLst = this.clinicLst.map(loc => (loc.name));
+              console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$HERE$$$$$$$$$$$$$$$$$$$$$$$$$$$$$');
+              console.log({markerIDLst});
+              this.mapRef.fitToSuppliedMarkers(markerIDLst,  
+                {edgePadding: {
+                bottom: 0, right: 0, top: 5, left: 0,
+                },
+                animated: true
+              });//end fitToSuppliedMarkers()
+            }
             console.log('setState({ready: true})');
             this.setState({ready: true});
           });//end getFinderData.then()
@@ -196,7 +276,19 @@ class clinicFinder extends Component{
   //////RENDER//////
   render(){
     if(this.state.reload){
-      AndroidOpenSettings.appDetailsSettings();
+      if(Platform.OS == 'android') AndroidOpenSettings.appDetailsSettings();
+      else if(Platform.OS == 'ios'){
+        if(Permissions.canOpenSettings()){
+          Permissions.openSettings();
+        }
+        else{
+          return(
+            <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+              <Text style={{color: 'black', fontWeight: 'bold', fontSize: 30}}>Please open settings on your phone, and allow this app to acces your location... Then reload clinicFinder</Text>
+            </View>
+          )
+        }//end else can't open settings
+      }//ense else if iOS
       return(
         <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
           <Text style={{color: 'black', fontWeight: 'bold', fontSize: 30}}>Please restart clinicFinder for permission cahnges to take affect...</Text>
@@ -211,8 +303,8 @@ class clinicFinder extends Component{
       )
     }
 
-    console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$here$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$');
-    console.log('render clinicLst: '+ this.clinicLst);
+    //console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$here$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$');
+    //console.log('render clinicLst: '+ this.clinicLst);
     return(
       <FlatList
         //removeClippedSubviews={false}
@@ -221,9 +313,14 @@ class clinicFinder extends Component{
           return(
             <View style = {{height: 300, width: screenWidth}}>
             <MapView
+              onMapReady = {()=>{
+                markerIDLst = this.clinicLst.map(loc => (loc.name));
+                this.mapRef.fitToSuppliedMarkers(markerIDLst, {animated: true});
+              }}
+              ref = {ref => {this.mapRef = ref}}
               style = {{...StyleSheet.absoluteFillObject}}
               loadingEnabled={true}
-              initialRegion={{
+              region={{
                 latitude: this.location.lat,
                 longitude: this.location.lng,
                 latitudeDelta: 1,
@@ -235,6 +332,7 @@ class clinicFinder extends Component{
                   coordinate={marker.coords}
                   title={marker.name}
                   identifier = {marker.name}
+                  key = {(marker.id).toString(10)}
                   //description={marker.description}
                 />
               ))}
@@ -246,7 +344,7 @@ class clinicFinder extends Component{
         data = {this.clinicLst}
         extraData={this.props}
         renderItem={({item})=>{
-          console.log({item});
+          //console.log({item});
           return(
             <View style={[styles.rowStyle, {backgroundColor: this.props.themeProp.backgroundColor, borderColor: this.props.themeProp.borderColor}]}>
               <View style={styles.listStyle}>
@@ -265,7 +363,7 @@ class clinicFinder extends Component{
             </View>
           )//end return
         }}//end renderItem
-        keyExtractor={(item, index) => item.name}
+        keyExtractor={(item, index) => (item.id).toString(10)}
       />
     );
   }//end render
@@ -362,7 +460,7 @@ doAddrGeoCode = async (addr, i) => new Promise(async (resolve, reject) =>{
 async function getFinderData(location, clinicLst){
   //clear the list... maybe change this later to allow to skip getting clinic data if list already populated
   clinicLst = [];
-  console.log(clinicLst);
+  //console.log(clinicLst);
 
   ////GET NUM PAGES////
   url = 'https://www.dialysisfinder.com/dialysis-centers/'+location.city+'/'+location.state+'/'+location.zipCode;
@@ -405,15 +503,15 @@ async function getFinderData(location, clinicLst){
           tmpSrvcLst.push($(elem).text());
         })
 
-        console.log({tmpAddr});
-        console.log({tmpName});
-        console.log({tmpSrvcLst});
+        //console.log({tmpAddr});
+        //console.log({tmpName});
+        //console.log({tmpSrvcLst});
 
         var newClinicOBJ = {'name': tmpName,
                             'addr': tmpAddr,
                             'srvcs': tmpSrvcLst,
                             'id': (numClinics + 1)};
-        console.log({newClinicOBJ});
+        //console.log({newClinicOBJ});
 
         clinicLst.push(newClinicOBJ);
         //get location coords
@@ -428,10 +526,10 @@ async function getFinderData(location, clinicLst){
         .catch(err => {
           console.log(err);
         });//end doAddrGeoCode.catch()
-        console.log('here2')
+        //console.log('here2')
       }//end if valid name
-      console.log('sucks to suck');
-      console.log('')
+      //console.log('sucks to suck');
+      //console.log('')
     });//select child of first 'a' within that 'ul' end .each()
     
     //finished getting clinics on this page, get next page
@@ -459,7 +557,7 @@ async function getFinderData(location, clinicLst){
   }while(pageNum <= numPages);
 
   console.log("Finished all pages");
-  console.log({clinicLst});
+  //console.log({clinicLst});
 
   return clinicLst;
 }//end getFinderData
