@@ -174,20 +174,6 @@ class clinicFinder extends Component{
               //console.log('clinicLst222222222222222222222222222: ');
               //console.log(this.clinicLst);
 
-              //zoom map once rendered
-              if(this.mapRef != null){
-                markerIDLst = this.clinicLst.map(loc => (loc.name));
-                console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$HERE$$$$$$$$$$$$$$$$$$$$$$$$$$$$$');
-                console.log({markerIDLst});
-                this.mapRef.fitToSuppliedMarkers(markerIDLst,  
-                  {edgePadding: {
-                  bottom: 0, right: 0, top: 5, left: 0,
-                  },
-                  animated: true
-                });//end fitToSuppliedMarkers()
-              }
-
-
               console.log('setState({ready: true})');
               this.setState({ready: true});
             });//end getFinderData.then()
@@ -208,21 +194,6 @@ class clinicFinder extends Component{
             this.clinicLst = lst;
             //console.log('clinicLst222222222222222222222222222: ');
             //console.log(this.clinicLst);
-
-            //zoom map once rendered
-            if(this.mapRef != null){
-              markerIDLst = this.clinicLst.map(loc => (loc.name));
-              console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$HERE$$$$$$$$$$$$$$$$$$$$$$$$$$$$$');
-              console.log({markerIDLst});
-              this.mapRef.fitToSuppliedMarkers(markerIDLst,  
-                {edgePadding: {
-                bottom: 0, right: 0, top: 5, left: 0,
-                },
-                animated: true
-              });//end fitToSuppliedMarkers()
-            }
-
-
 
             console.log('setState({ready: true})');
             this.setState({ready: true});
@@ -248,18 +219,6 @@ class clinicFinder extends Component{
             //console.log('clinicLst222222222222222222222222222: ');
             //console.log(this.clinicLst);
 
-            //zoom map once rendered
-            if(this.mapRef != null){
-              markerIDLst = this.clinicLst.map(loc => (loc.name));
-              console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$HERE$$$$$$$$$$$$$$$$$$$$$$$$$$$$$');
-              console.log({markerIDLst});
-              this.mapRef.fitToSuppliedMarkers(markerIDLst,  
-                {edgePadding: {
-                bottom: 0, right: 0, top: 5, left: 0,
-                },
-                animated: true
-              });//end fitToSuppliedMarkers()
-            }
             console.log('setState({ready: true})');
             this.setState({ready: true});
           });//end getFinderData.then()
@@ -303,11 +262,9 @@ class clinicFinder extends Component{
       )
     }
 
-    //console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$here$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$');
-    //console.log('render clinicLst: '+ this.clinicLst);
     return(
       <FlatList
-        //removeClippedSubviews={false}
+        removeClippedSubviews={true}
         ListHeaderComponent = {()=>{
           screenWidth = Dimensions.get('window').width;
           return(
@@ -315,17 +272,17 @@ class clinicFinder extends Component{
             <MapView
               onMapReady = {()=>{
                 markerIDLst = this.clinicLst.map(loc => (loc.name));
-                this.mapRef.fitToSuppliedMarkers(markerIDLst, {animated: true});
-              }}
-              ref = {ref => {this.mapRef = ref}}
+                this.mapRef.fitToSuppliedMarkers(markerIDLst,  
+                  {edgePadding: {
+                  bottom: 25, right: 25, top: 100, left: 25,
+                  },
+                  animated: true
+                });//end fitToSuppliedMarkers()
+              }}//end onMapReady
+              ref={ref => {this.mapRef = ref;}}
+              moveOnMarkerPress={false}
               style = {{...StyleSheet.absoluteFillObject}}
               loadingEnabled={true}
-              region={{
-                latitude: this.location.lat,
-                longitude: this.location.lng,
-                latitudeDelta: 1,
-                longitudeDelta: 1,
-              }}
             >
               {this.clinicLst.map(marker => (
                 <Marker
