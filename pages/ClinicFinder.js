@@ -224,10 +224,10 @@ class clinicFinder extends Component{
               style = {{...StyleSheet.absoluteFillObject}}
               loadingEnabled={true}
               initialRegion={{
-                latitude: 37.78825,
-                longitude: -122.4324,
-                latitudeDelta: 0.0922,
-                longitudeDelta: 0.0421,
+                latitude: this.location.lat,
+                longitude: this.location.lng,
+                latitudeDelta: 2,
+                longitudeDelta: 2,
               }}
             >
               {this.clinicLst.map(marker => (
