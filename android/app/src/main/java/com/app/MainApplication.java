@@ -5,6 +5,7 @@ import android.app.Application;
 import com.facebook.react.ReactApplication;
 import com.krazylabs.OpenAppSettingsPackage;
 import org.reactnative.camera.RNCameraPackage;
+import com.airbnb.android.react.maps.MapsPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.facebook.react.ReactNativeHost;
@@ -33,6 +34,7 @@ public class MainApplication extends Application implements ReactApplication {
             new OpenAppSettingsPackage(),
             new RNCameraPackage(),
             new RNGeocoderPackage(),
+            new MapsPackage(),
             new VectorIconsPackage(),
             new RNGestureHandlerPackage(),
             new RNFusedLocationPackage(),

@@ -15,8 +15,6 @@ export default class HomeCarousel extends Component {
             require('app/images/home_carousel/kidneyhands.png'),
             require('app/images/home_carousel/doctoroptions.png'),
             require('app/images/home_carousel/kidneysblood.png'),
-              
-            
           ],
         }
       }

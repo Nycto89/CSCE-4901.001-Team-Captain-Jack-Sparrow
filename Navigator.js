@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Animated, TouchableHighlight, Dimensions, 
   Platform, StyleSheet, Text, 
-  View, Image, PanResponder } from 'react-native';
+  View, Image, PanResponder, YellowBox } from 'react-native';
 
 import HomeScreen from './pages/Home.js';
 import DrawerMenu from './drawer.js';
@@ -9,12 +9,16 @@ import ModalityHome from './pages/modalities/home';
 import CalendarPage from './pages/Calendar.js';
 import ClinicFinder from './pages/ClinicFinder.js';
 import Nutrition from './pages/Nutrition.js';
+import Tutorial from './pages/Tutorial.js';
 import Transplant from './pages/modalities/transplant';
 import Peritoneal from './pages/modalities/peritoneal';
 import Incenter from './pages/modalities/incenter';
 import Overnight from './pages/modalities/overnight';
 import HomeHemo from './pages/modalities/homehemo';
 import Therapy from './pages/modalities/ctherapy';
+
+import {connect} from 'react-redux';
+
 
 import SettingsModal from './modals/SettingsModal';
 import SettingsLightbox from './lightboxes/SettingLightbox';
@@ -27,11 +31,24 @@ class MainNavigator extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      
+      first: this.props.visitProp.visited,
     };
+    console.log("prop " + this.props.visitProp.visited);
+
+    // Disables yellow box warnings for demo
+    //console.disableYellowBox = true;
+;
   }
 
+  componentDidMount() {
+    console.log("Navigator 1 " + JSON.stringify(this.state.first))
+    //this.state.first = true; 
+    //console.log("Navigator 2 " + JSON.stringify(this.state.first))
+
+ }
+
   render() {
+    console.log("\nRender=== " + this.props.visitProp.visited);
     return (
         // <AppContainer/>
         <Router 
@@ -64,9 +81,15 @@ class MainNavigator extends Component {
                       component={HomeScreen} 
                       title="App Home" 
                       drawer
-                      init
-                      initial                      
-                      />                  
+                      initial = {this.state.first}
+                      />   
+                  <Scene key="Tutorial" 
+                      component={Tutorial} 
+                      title="Tutorial" 
+                      drawer
+                      hideNavBar={!this.state.first}
+                      initial = {!this.state.first}
+                      />                    
                   <Scene key="ModalityMainScreen"
                       component={ModalityHome}
                       title="Modalities"
@@ -148,7 +171,7 @@ class MainNavigator extends Component {
       <View>
         {/* <TouchableHighlight> */}
         <TouchableHighlight onPress={() => {Actions.get('Drawer').ref.toggle()}}>
-          <Image style={{ height: 25, width: 15, marginLeft: 5 }} source={require('./images/menu_burger.png')} />
+          <Image style={{ height: 25, width: 15, marginLeft: 5, tintColor: 'white' }} source={require('./images/menu_burger_2.png')} />
         </TouchableHighlight>
       </View>
     )
@@ -166,11 +189,18 @@ class MainNavigator extends Component {
       // centering for Android
      flex: 1,
      textAlign: 'center',
-     color: '#AACCFF'
+     color: 'white'
     },
     routerScene: {
       // paddingTop : 0
     },
   });
 
-  export default MainNavigator
+//  export default MainNavigator
+
+function mapStateToProps(state) {
+  return {
+    visitProp: state.visitProps
+  };
+}
+  export default connect(mapStateToProps)(MainNavigator);

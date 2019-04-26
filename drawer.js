@@ -23,7 +23,7 @@ class DrawerMenu extends React.Component {
                                 <Text style={{color: this.props.themeProp.textColor}}>Appointments</Text>
                             </ListItem>*/}
                             <ListItem onPress={() => Actions.ClinicFinder()}>
-                                <Text style={{color: this.props.themeProp.textColor}}>Find a clinic</Text>
+                                <Text style={{color: this.props.themeProp.textColor}}>Find a Clinic</Text>
                             </ListItem>
                             <ListItem onPress={() => Actions.Nutrition()}>
                                 <Text style={{color: this.props.themeProp.textColor}}>Phosphorus Search</Text>
@@ -52,6 +52,9 @@ class DrawerMenu extends React.Component {
                             <ListItem onPress={() => Actions.SettingsLightbox()}>
                                 <Text style={{color: this.props.themeProp.textColor}}>Settings</Text>
                             </ListItem>
+                            <ListItem onPress={() => Actions.Tutorial()}>
+                                <Text style={{color: this.props.themeProp.textColor}}>Tutorial</Text>
+                            </ListItem>
                         </List>
                     </Content>
                 </View>
@@ -66,7 +69,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center', 
         alignItems: 'flex-start',
         paddingLeft : 10,
-        ...Platform.select({ ios: { top: 0, paddingTop: 64}, android: { top: 40, } }),
+        ...Platform.select({ ios: { top: 0, paddingTop: 64}, android: { top: 40, marginBottom: 50} }),
         },
     homeText: {
       fontWeight: 'bold'

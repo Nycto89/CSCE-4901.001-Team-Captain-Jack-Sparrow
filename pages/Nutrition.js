@@ -320,10 +320,15 @@ class Nutrition extends React.Component {
               //Remove leading 0 from UPC-A
               query = scanResult.data.slice(1);
             } else if( scanResult.type == "org.iso.Code128"){
+              // console.warn(scanResult.data.length);
               //Make the GTIN 14 numbers, filling in beginning with 0s until length is 14
-              let fill_num = 14 - scanResult.data.length;
+              let fill_num = scanResult.data.length < 14 ? 14 - scanResult.data.length : 0;
               let fill_string = "0".repeat(fill_num);
               query = fill_string.concat(scanResult.data);
+              if(scanResult.data.length == 16){
+                query = scanResult.data.slice(2);
+              }
+              
             }
 
             this.getUSDAProductInfo(query);
