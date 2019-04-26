@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Platform, Dimensions, Alert, Text, StyleSheet, FlatList, View} from 'react-native';
+import { Platform, Dimensions, Alert, ActivityIndicator, Text, StyleSheet, FlatList, View} from 'react-native';
+import {SearchBar} from 'react-native-elements';
 import Permissions from 'react-native-permissions';
 import AndroidOpenSettings from 'react-native-android-open-settings'
 import {createOpenLink} from 'react-native-open-maps';
@@ -15,6 +16,9 @@ class clinicFinder extends Component{
   location = {};
   clinicLst = [];
   mapRef = null;
+  searchBar = null;
+  text = '';
+  timeout;
 
   ////////////////////////////////////////////////////////
   //FUNCTIONS//
@@ -140,6 +144,31 @@ class clinicFinder extends Component{
     };
   
   });//end doPhoneGeoCode promise
+
+  searchFilterFunc = input => {
+    console.log('in filter func...');
+    console.log({input});
+    this.setState({searchVal: input});
+
+    newLst = this.clinicLst.filter(clinic => {
+      clinicName = clinic.name.toUpperCase();
+      clinicMods = clinic.srvcs.toString();
+      clinicMods = clinicMods.toUpperCase();
+
+      //console.log({clinicName});
+      //console.log({clinicMods});
+      
+      clinicData = clinicName+clinicMods;
+      searchData = input.toUpperCase();
+
+      //console.log({clinicData});
+      //console.log({searchData});
+
+      return clinicData.indexOf(searchData) > -1
+    });
+
+    this.setState({filteredLst: newLst});
+  };//end searchFilterFunc
   ////////////////////////////////////////////////////////
   //END FUNCTIONS//
   ////////////////////////////////////////////////////////
@@ -148,6 +177,7 @@ class clinicFinder extends Component{
   /////////////////COMPONENT DID MOUNT////////////////////
   /////////////////////////////////////////////////////////
   async componentDidMount(){
+    console.log('here2...');
     //check if authorized
     await Permissions.check('location').then(response =>{
       //console.log({response});
@@ -171,6 +201,7 @@ class clinicFinder extends Component{
             console.log('doPhoneGeoCode response: '+ response);
             await getFinderData(response, this.clinicLst).then((lst)=>{
               this.clinicLst = lst;
+              this.state.filteredLst = lst;
               //console.log('clinicLst222222222222222222222222222: ');
               //console.log(this.clinicLst);
 
@@ -192,6 +223,7 @@ class clinicFinder extends Component{
           console.log('doPhoneGeoCode response: '+ {response});
           await getFinderData(response, this.clinicLst).then((lst)=>{
             this.clinicLst = lst;
+            this.state.filteredLst = lst;
             //console.log('clinicLst222222222222222222222222222: ');
             //console.log(this.clinicLst);
 
@@ -216,6 +248,7 @@ class clinicFinder extends Component{
           console.log('doPhoneGeoCode response: '+ {response});
           await getFinderData(response, this.clinicLst).then((lst)=>{
             this.clinicLst = lst;
+            this.state.filteredLst = lst;
             //console.log('clinicLst222222222222222222222222222: ');
             //console.log(this.clinicLst);
 
@@ -230,6 +263,17 @@ class clinicFinder extends Component{
   }
   ////////////////////////////////////////////////////////
   /////////////////end componentDidMount()////////////////
+  ////////////////////////////////////////////////////////
+
+  ////////////////////////////////////////////////////////
+  /////////////////COMPONENT DID UPDATE///////////////////
+  ////////////////////////////////////////////////////////
+  componentDidUpdate(){
+    if((this.clinicLst.length)&&(this.state.searchVal != '')&&(this.state.searchVal))
+    this.searchBar.focus();
+  }
+  ////////////////////////////////////////////////////////
+  /////////////////end componentDidUpdate()///////////////
   ////////////////////////////////////////////////////////
 
   //////RENDER//////
@@ -258,6 +302,7 @@ class clinicFinder extends Component{
       return(
         <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
           <Text>Please wait while we find clinics near you...</Text>
+          <ActivityIndicator size='large'/>
         </View>
       )
     }
@@ -268,15 +313,15 @@ class clinicFinder extends Component{
         ListHeaderComponent = {()=>{
           screenWidth = Dimensions.get('window').width;
           return(
-            <View style = {{height: 300, width: screenWidth}}>
+            <View style = {{height: 350, width: screenWidth}}>
             <MapView
               onMapReady = {()=>{
                 markerIDLst = this.clinicLst.map(loc => (loc.name));
                 this.mapRef.fitToSuppliedMarkers(markerIDLst,  
                   {edgePadding: {
-                  bottom: 25, right: 25, top: 100, left: 25,
+                  bottom: 25, right: 25, top: 250, left: 25,
                   },
-                  animated: true
+                  animated: false
                 });//end fitToSuppliedMarkers()
               }}//end onMapReady
               ref={ref => {this.mapRef = ref;}}
@@ -284,7 +329,7 @@ class clinicFinder extends Component{
               style = {{...StyleSheet.absoluteFillObject}}
               loadingEnabled={true}
             >
-              {this.clinicLst.map(marker => (
+              {this.state.filteredLst.map(marker => (
                 <Marker
                   onCalloutPress={createOpenLink({query:(marker.addr)})}//end onCalloutPress
                   coordinate={marker.coords}
@@ -295,11 +340,23 @@ class clinicFinder extends Component{
                 />
               ))}
             </MapView>
+            <SearchBar
+              ref={searchRef => {this.searchBar = searchRef;}}
+              placeholder="Type Here..."        
+              lightTheme        
+              round        
+              onChangeText={input => {
+                this.searchFilterFunc(input)
+                //this.searchBar.focus();
+              }}//end onChangeText
+              autoCorrect={false} 
+              value={this.state.searchVal}
+            />
             </View>
         )}
         }//end header
         
-        data = {this.clinicLst}
+        data = {this.state.filteredLst}
         extraData={this.props}
         renderItem={({item})=>{
           //console.log({item});
@@ -377,26 +434,6 @@ const styles = StyleSheet.create({
 ////////////////////////////////////////////////////////////
 //FUNCTIONS//
 ////////////////////////////////////////////////////////////
-
-/*async function doAddrGeoCode(addr) {
-  console.log('geoCoding...');
-  console.log('addr: '+addr);
-  try{
-    const res = await Geocoder.geocodeAddress(addr);
-    rtnCoords = {
-      latitude: res[0].position.lat,
-      longitude: res[0].position.lng
-    }
-
-    return(rtnCoords);
-  }//end try
-  catch(err){
-    console.log('ERROR:' , err);
-    return(err);
-  };
-}//end doAddrGeoCode
-*/
-
 doAddrGeoCode = async (addr, i) => new Promise(async (resolve, reject) =>{
   console.log('geoCoding...');
   console.log('addr: '+addr);
