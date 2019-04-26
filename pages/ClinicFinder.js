@@ -286,6 +286,7 @@ class clinicFinder extends Component{
             >
               {this.clinicLst.map(marker => (
                 <Marker
+                  onCalloutPress={createOpenLink({query:(marker.addr)})}//end onCalloutPress
                   coordinate={marker.coords}
                   title={marker.name}
                   identifier = {marker.name}
