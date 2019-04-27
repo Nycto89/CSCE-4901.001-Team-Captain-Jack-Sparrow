@@ -371,7 +371,88 @@ class clinicFinder extends Component{
               loadingEnabled={true}
               provider={MapView.PROVIDER_GOOGLE}
             >
-              {this.markerLst}
+            {[
+              <Marker
+                onCalloutPress={createOpenLink({query:('4309 Mesa Drive, Denton, TX 76207')})}//end onCalloutPress
+                coordinate={{ latitude: 33.2349017, longitude: -97.17822629999999 }}
+                title={'DaVita Renal Center Of North Denton'}
+                identifier = {'DaVita Renal Center Of North Denton'}
+                key = {'1'}
+                //description={marker.description}
+              />,
+              <Marker
+                onCalloutPress={createOpenLink({query:('3118 Los Colinas, Denton, TX 76207')})}//end onCalloutPress
+                coordinate={{ latitude: 33.233335000000004, longitude: -97.1766268 }}
+                title={'Accesscare Of North Texas Dialysis Center'}
+                identifier = {'Accesscare Of North Texas Dialysis Center'}
+                key = {'2'}
+                //description={marker.description}
+              />,
+              <Marker
+                onCalloutPress={createOpenLink({query:('3305 Unicorn Lake Blvd, Denton, TX 76210')})}//end onCalloutPress
+                coordinate={{ latitude: 33.173286499999996, longitude: -97.0958198 }}
+                title={'Physicians Dialysis Denton'}
+                identifier = {'Physicians Dialysis Denton'}
+                key = {'3'}
+                //description={marker.description}
+              />,
+              <Marker
+                onCalloutPress={createOpenLink({query:('3400 Corinth Pkwy., Corinth, TX 76208')})}//end onCalloutPress
+                coordinate={{ latitude: 33.152678, longitude: -97.05644530000001 }}
+                title={'Liberty Dialysis- Lake Lewisville/corinth'}
+                identifier = {'Liberty Dialysis- Lake Lewisville/corinth'}
+                key = {'4'}
+                //description={marker.description}
+              />,
+              <Marker
+                onCalloutPress={createOpenLink({query:('2700 Village Pkwy, Highland Village, TX 75077')})}//end onCalloutPress
+                coordinate={{ latitude: 33.0782992, longitude: -97.0790016 }}
+                title={'DaVita Highland Village Dialysis'}
+                identifier = {'DaVita Highland Village Dialysis'}
+                key = {'5'}
+                //description={marker.description}
+              />,
+              <Marker
+                onCalloutPress={createOpenLink({query:('101 E Southwest Pkwy #110, Lewisville, TX 75067')})}//end onCalloutPress
+                coordinate={{ latitude: 33.02013, longitude: -96.9916851 }}
+                title={'Liberty Dialysis South Lewisville'}
+                identifier = {'Liberty Dialysis South Lewisville'}
+                key = {'6'}
+                //description={marker.description}
+              />,
+              <Marker
+                onCalloutPress={createOpenLink({query:('4941 Long Prairie Rd, Flower Mound, TX 75028')})}//end onCalloutPress
+                coordinate={{ latitude: 33.0520023, longitude: -97.0751815 }}
+                title={'DaVita Renal Center Of Flower Mound'}
+                identifier = {'DaVita Renal Center Of Flower Mound'}
+                key = {'7'}
+                //description={marker.description}
+              />,
+              <Marker
+                onCalloutPress={createOpenLink({query:('785 Cross Timbers Road Suite 145, Flower Mound, TX 75028')})}//end onCalloutPress
+                coordinate={{ latitude: 33.0415091, longitude: -97.039115 }}
+                title={'US Renal Care Flower Mound'}
+                identifier = {'US Renal Care Flower Mound'}
+                key = {'8'}
+                //description={marker.description}
+              />,
+              <Marker
+                onCalloutPress={createOpenLink({query:('1600 Waters Ridge Dr Ste B, Lewisville, TX 75057')})}//end onCalloutPress
+                coordinate={{ latitude: 33.0232375, longitude: -96.97560299999999 }}
+                title={'DaVita Renal Center Of Lewisville'}
+                identifier = {'DaVita Renal Center Of Lewisville'}
+                key = {'9'}
+                //description={marker.description}
+              />,
+              <Marker
+                onCalloutPress={createOpenLink({query:('10850 Frisco St Ste 300, Frisco, TX 75033')})}//end onCalloutPress
+                coordinate={{ latitude: 33.1680707, longitude: -96.83283879999999 }}
+                title={'DaVita Renal Center Of Frisco'}
+                identifier = {'DaVita Renal Center Of Frisco'}
+                key = {'10'}
+                //description={marker.description}
+              />
+            ]}
             </MapView>
             <SearchBar
               ref={searchRef => {this.searchBar = searchRef;}}
