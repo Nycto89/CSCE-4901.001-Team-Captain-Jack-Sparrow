@@ -329,6 +329,7 @@ class clinicFinder extends Component{
               moveOnMarkerPress={false}
               style = {{...StyleSheet.absoluteFillObject}}
               loadingEnabled={true}
+              provider={MapView.PROVIDER_GOOGLE}
             >
               {this.state.filteredLst.map(marker => {
                 console.log('creating markers.................................');

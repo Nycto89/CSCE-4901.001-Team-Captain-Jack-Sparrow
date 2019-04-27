@@ -11,9 +11,9 @@
 
 #import <Foundation/Foundation.h>
 
-@class GMSIndoorLevel;
+NS_ASSUME_NONNULL_BEGIN;
 
-NS_ASSUME_NONNULL_BEGIN
+@class GMSIndoorLevel;
 
 /**
  * Describes a building which contains levels.
@@ -38,4 +38,4 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-NS_ASSUME_NONNULL_END
+NS_ASSUME_NONNULL_END;
