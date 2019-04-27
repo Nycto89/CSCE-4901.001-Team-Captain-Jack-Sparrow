@@ -13,6 +13,10 @@
  * permissions and limitations under the License.
  */
 
+#if !defined(__has_feature) || !__has_feature(objc_arc)
+#error "This file requires ARC support."
+#endif
+
 #import "GoogleMapsDemos/Samples/CustomMarkersViewController.h"
 
 #import <GoogleMaps/GoogleMaps.h>
@@ -73,14 +77,10 @@ static CGFloat randf() {
     double delayInSeconds = (i * 0.25);
     dispatch_time_t popTime =
         dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-    __weak typeof(self) weakSelf = self;
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void) {
-      typeof(self) strongSelf = weakSelf;
-      if (strongSelf) {
-        GMSVisibleRegion region = [strongSelf->_mapView.projection visibleRegion];
-        GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] initWithRegion:region];
-        [strongSelf addMarkerInBounds:bounds];
-      }
+      GMSVisibleRegion region = [_mapView.projection visibleRegion];
+      GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] initWithRegion:region];
+      [self addMarkerInBounds:bounds];
     });
   }
 }

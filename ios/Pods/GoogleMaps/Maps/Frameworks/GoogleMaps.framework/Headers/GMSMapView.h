@@ -35,7 +35,7 @@
 @class GMSOverlay;
 @class GMSProjection;
 
-NS_ASSUME_NONNULL_BEGIN
+NS_ASSUME_NONNULL_BEGIN;
 
 /** Delegate for events on GMSMapView. */
 @protocol GMSMapViewDelegate<NSObject>
@@ -47,8 +47,7 @@ NS_ASSUME_NONNULL_BEGIN
  * tapping on the "My Location" button) or by being updated explicitly via the camera or a
  * zero-length animation on layer.
  *
- * @param mapView The map view that was tapped.
- * @param gesture If YES, this is occurring due to a user gesture.
+ * @param gesture If YES, this is occuring due to a user gesture.
 */
 - (void)mapView:(GMSMapView *)mapView willMove:(BOOL)gesture;
 
@@ -183,14 +182,6 @@ NS_ASSUME_NONNULL_BEGIN
  *         camera to move such that it is centered on the user location.
  */
 - (BOOL)didTapMyLocationButtonForMapView:(GMSMapView *)mapView;
-
-/**
- * Called when the My Location Dot is tapped.
- *
- * @param mapView The map view that was tapped.
- * @param location The location of the user when the location dot was tapped.
- */
-- (void)mapView:(GMSMapView *)mapView didTapMyLocation:(CLLocationCoordinate2D)location;
 
 /**
  * Called when tiles have just been requested or labels have just started rendering.
@@ -443,12 +434,7 @@ typedef NS_ENUM(NSUInteger, GMSMapViewPaddingAdjustmentBehavior) {
  * If not nil, constrains the camera target so that gestures cannot cause it to leave the specified
  * bounds.
  */
-@property(nonatomic, strong, nullable) GMSCoordinateBounds *cameraTargetBounds;
-
-/**
- * Convenience initializer that builds and returns a GMSMapView, with a frame and camera target.
- */
-- (instancetype)initWithFrame:(CGRect)frame camera:(GMSCameraPosition *)camera;
+@property(nonatomic, nullable) GMSCoordinateBounds *cameraTargetBounds;
 
 /**
  * Builds and returns a GMSMapView, with a frame and camera target.
@@ -517,4 +503,4 @@ extern NSString *const kGMSAccessibilityCompass;
  */
 extern NSString *const kGMSAccessibilityMyLocation;
 
-NS_ASSUME_NONNULL_END
+NS_ASSUME_NONNULL_END;
