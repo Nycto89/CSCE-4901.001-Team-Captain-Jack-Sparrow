@@ -335,7 +335,7 @@ class clinicFinder extends Component{
       }//ense else if iOS
       return(
         <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-          <Text style={{color: 'black', fontWeight: 'bold', fontSize: 30}}>Please restart clinicFinder for permission cahnges to take affect...</Text>
+          <Text style={{color: 'black', fontWeight: 'bold', fontSize: 30}}>Please restart clinicFinder for permission changes to take affect...</Text>
         </View>
       )
     }
