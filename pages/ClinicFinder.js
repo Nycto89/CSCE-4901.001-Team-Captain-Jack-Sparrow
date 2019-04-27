@@ -15,6 +15,7 @@ class clinicFinder extends Component{
   state = {ready: false};
   location = {};
   clinicLst = [];
+  markerLst = [];
   mapRef = null;
   searchBar = null;
   text = '';
@@ -202,8 +203,21 @@ class clinicFinder extends Component{
             await getFinderData(response, this.clinicLst).then((lst)=>{
               this.clinicLst = lst;
               this.state.filteredLst = lst;
-              //console.log('clinicLst222222222222222222222222222: ');
-              //console.log(this.clinicLst);
+              this.markerLst = lst.map(marker => {
+                console.log('creating markers.................................');
+                console.log({marker});
+                return(
+                <Marker
+                  onCalloutPress={createOpenLink({query:(marker.addr)})}//end onCalloutPress
+                  coordinate={marker.coords}
+                  title={marker.name}
+                  identifier = {marker.name}
+                  key = {(marker.id).toString(10)}
+                  //description={marker.description}
+                />
+              )})//end lst.map()
+              console.log('this.markerLst.length...');
+              console.log(this.markerLst.length);
 
               console.log('setState({ready: true})');
               this.setState({ready: true});
@@ -224,8 +238,21 @@ class clinicFinder extends Component{
           await getFinderData(response, this.clinicLst).then((lst)=>{
             this.clinicLst = lst;
             this.state.filteredLst = lst;
-            //console.log('clinicLst222222222222222222222222222: ');
-            //console.log(this.clinicLst);
+            this.markerLst = lst.map(marker => {
+              console.log('creating markers.................................');
+              console.log({marker});
+              return(
+              <Marker
+                onCalloutPress={createOpenLink({query:(marker.addr)})}//end onCalloutPress
+                coordinate={marker.coords}
+                title={marker.name}
+                identifier = {marker.name}
+                key = {(marker.id).toString(10)}
+                //description={marker.description}
+              />
+            )})//end lst.map()
+            console.log('this.markerLst.length...');
+            console.log(this.markerLst.length);
 
             console.log('setState({ready: true})');
             this.setState({ready: true});
@@ -249,8 +276,21 @@ class clinicFinder extends Component{
           await getFinderData(response, this.clinicLst).then((lst)=>{
             this.clinicLst = lst;
             this.state.filteredLst = lst;
-            //console.log('clinicLst222222222222222222222222222: ');
-            //console.log(this.clinicLst);
+            this.markerLst = lst.map(marker => {
+              console.log('creating markers.................................');
+              console.log({marker});
+              return(
+              <Marker
+                onCalloutPress={createOpenLink({query:(marker.addr)})}//end onCalloutPress
+                coordinate={marker.coords}
+                title={marker.name}
+                identifier = {marker.name}
+                key = {(marker.id).toString(10)}
+                //description={marker.description}
+              />
+            )})//end lst.map()
+            console.log('this.markerLst.length...');
+            console.log(this.markerLst.length);
 
             console.log('setState({ready: true})');
             this.setState({ready: true});
@@ -331,19 +371,7 @@ class clinicFinder extends Component{
               loadingEnabled={true}
               provider={MapView.PROVIDER_GOOGLE}
             >
-              {this.state.filteredLst.map(marker => {
-                console.log('creating markers.................................');
-                console.log({marker});
-                return(
-                <Marker
-                  onCalloutPress={createOpenLink({query:(marker.addr)})}//end onCalloutPress
-                  coordinate={marker.coords}
-                  title={marker.name}
-                  identifier = {marker.name}
-                  key = {(marker.id).toString(10)}
-                  //description={marker.description}
-                />
-              )})}
+              {this.markerLst}
             </MapView>
             <SearchBar
               ref={searchRef => {this.searchBar = searchRef;}}
