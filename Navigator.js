@@ -36,7 +36,7 @@ class MainNavigator extends Component {
     console.log("prop " + this.props.visitProp.visited);
 
     // Disables yellow box warnings for demo
-    //console.disableYellowBox = true;
+    console.disableYellowBox = true;
 ;
   }
 
