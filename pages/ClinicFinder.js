@@ -183,7 +183,7 @@ class clinicFinder extends Component{
       //console.log({response});
       this.setState({perms: response});
 
-      console.log(this.state);
+      //console.log(this.state);
     })
 
     //if not already authorized, tell why you want auth
@@ -238,7 +238,7 @@ class clinicFinder extends Component{
     //check perms again... if authed, we already did stuff... if not go to default loc
     await Permissions.check('location').then(async (response) =>{
       this.state.perms = response;
-      console.log(this.state);
+      //console.log(this.state);
 
       //if still not authed... go to default location
       if(response != 'authorized'){
@@ -278,6 +278,7 @@ class clinicFinder extends Component{
 
   //////RENDER//////
   render(){
+    console.log('in render...............................................');
     if(this.state.reload){
       if(Platform.OS == 'android') AndroidOpenSettings.appDetailsSettings();
       else if(Platform.OS == 'ios'){
@@ -330,6 +331,7 @@ class clinicFinder extends Component{
               loadingEnabled={true}
             >
               {this.state.filteredLst.map(marker => {
+                console.log('creating markers.................................');
                 console.log({marker});
                 return(
                 <Marker
