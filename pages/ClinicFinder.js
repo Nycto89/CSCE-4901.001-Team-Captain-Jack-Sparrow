@@ -329,7 +329,9 @@ class clinicFinder extends Component{
               style = {{...StyleSheet.absoluteFillObject}}
               loadingEnabled={true}
             >
-              {this.state.filteredLst.map(marker => (
+              {this.state.filteredLst.map(marker => {
+                console.log({marker});
+                return(
                 <Marker
                   onCalloutPress={createOpenLink({query:(marker.addr)})}//end onCalloutPress
                   coordinate={marker.coords}
@@ -338,7 +340,7 @@ class clinicFinder extends Component{
                   key = {(marker.id).toString(10)}
                   //description={marker.description}
                 />
-              ))}
+              )})}
             </MapView>
             <SearchBar
               ref={searchRef => {this.searchBar = searchRef;}}
