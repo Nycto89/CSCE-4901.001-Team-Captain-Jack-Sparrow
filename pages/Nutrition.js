@@ -16,6 +16,7 @@ import { Actions } from 'react-native-router-flux';
 import {connect} from 'react-redux';
 
 import  { RNCamera }  from 'react-native-camera';
+import BarcodeMask from 'react-native-barcode-mask';
 import Permissions from 'react-native-permissions';
 import AndroidOpenSettings from 'react-native-android-open-settings'
 
@@ -273,9 +274,11 @@ class Nutrition extends React.Component {
                       barcodeFinderBorderWidth={2}
                       defaultTouchToFocus
                     >
+                    <BarcodeMask edgeColor={'#62B1F6'} width={300} height={300}/>
                   <View style={styles.cameraView}>
                     <Button onPress={ () => this.setState({ cameraOpen : false })} title="Cancel"></Button>
                   </View>
+                  
                 </RNCamera>
               </View>
           </Modal>
