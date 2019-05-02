@@ -152,20 +152,22 @@ class Nutrition extends React.Component {
     // console.log(item);
     if( item.phosphorus ){
         return (
-          <View style={[styles.resultItemView, {
-            backgroundColor : index % 2 === 0 ? '#C0C0C0' : '#D3D3D3'
-          }]}>
-            <View style={styles.resultDescView}>
-              <Text style={{ fontSize : this.props.fontProp.fontVal,
+          <View style={[styles.resultItemView, {backgroundColor: this.props.themeProp.backgroundColor, borderColor: this.props.themeProp.textColor}]}>
+            <View style={[styles.resultDescView, {backgroundColor: this.props.themeProp.backgroundColor, borderColor: this.props.themeProp.borderColor}]}>
+              <Text style={{ color : this.props.themeProp.textColor,
+                    fontSize : this.props.fontProp.fontVal,
+                    paddingBottom: 15,
+                    paddingTop: 15,
                     textAlignVertical : 'center', 
                             textAlign : 'center' , }}
                             >{item.name}</Text>
             </View>
-            <View style={styles.resultValueView}>
-              <Text style={{ fontSize : this.props.fontProp.fontVal,
+            <View style={[styles.resultValueView,{backgroundColor: this.props.themeProp.backgroundColor, borderColor: this.props.themeProp.borderColor}]}>
+              <Text style={{ color : this.props.themeProp.textColor,
+                    fontSize : this.props.fontProp.fontVal,
                     textAlignVertical : 'center', 
                             textAlign : 'center' }}
-                            >{item.phosphorus.value}mg</Text>
+                            >{item.phosphorus.value}</Text>
             </View>         
           </View>
         )
@@ -173,10 +175,9 @@ class Nutrition extends React.Component {
     } 
     else if( this.state.methodBarCode === true) {
       return (
-        <View style={[styles.resultItemView, {
-            backgroundColor : '#C0C0C0'  
-        }]}>
-          <Text style={{ fontSize : this.props.fontProp.fontVal,
+        <View style={[styles.resultItemView, {backgroundColor: this.props.themeProp.backgroundColor, borderColor: this.props.themeProp.textColor}]}>
+          <Text style={{ color : this.props.themeProp.textColor,
+                fontSize : this.props.fontProp.fontVal,
                 textAlignVertical : 'center', 
                         textAlign : 'center',
                         }}
@@ -198,7 +199,42 @@ class Nutrition extends React.Component {
     )
   }
 
-  
+  renderHeader = () => {
+    console.log(this.state.foodData.list);
+    if (this.state.foodData.list != undefined)
+      console.log(this.state.foodData.list.item);
+    if (this.state.foodData.list == undefined || this.state.foodData.list.item == [])
+    {
+      console.log(this.state.foodData)
+      console.log("NO HEADER")
+      return;
+    }
+    else
+    {
+      console.log("HEADER")
+      return(
+        
+        <View style={[styles.resultItemView, {backgroundColor: this.props.themeProp.backgroundColor, borderColor: this.props.themeProp.textColor}]}>
+          <View style={styles.resultDescView}>
+            <Text style={{ color : this.props.themeProp.textColor,
+                  fontSize : this.props.fontProp.fontVal,
+                  textAlignVertical : 'center', 
+                          textAlign : 'center' , }}
+                          >Item Name</Text>
+          </View>
+          <View style={styles.resultValueView}>
+            <Text style={{ color : this.props.themeProp.textColor,
+                  fontSize : this.props.fontProp.fontVal,
+                  paddingBottom: 15,
+                  textAlignVertical : 'center', 
+                          textAlign : 'center' }}
+                          >Phosphorus (mg)</Text>
+          </View>         
+        </View>
+
+      );
+    }
+  }
 
   prepareRatio = async () => {
     console.log('Preparing ratio...');
@@ -250,20 +286,19 @@ class Nutrition extends React.Component {
                     value={this.state.text}
                     clearTextOnFocus
                     placeholder={'Search for a food item...'}
-                    placeholderColor={'gray'}
-
+                    placeholderColor={'grey'}
                     onSubmitEditing={this.submitText}
                     />
           <View style={styles.textButtonsView}>
-            <TouchableOpacity style={styles.textButton} onPress={() => this.setState({text: ""})}>
-              <Text style={styles.buttonText}>Clear</Text>
+            <TouchableOpacity style={[styles.textButton, {backgroundColor: this.props.themeProp.accentColor, borderColor: this.props.themeProp.accentColor}]} onPress={() => this.setState({text: ""})}>
+              <Text style={[styles.buttonText, {color: this.props.themeProp.backgroundColor,}]}>Clear</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.textButton} onPress={() => { Keyboard.dismiss(); this.submitText(); }}>
-              <Text style={styles.buttonText}>Submit</Text>
+            <TouchableOpacity style={[styles.textButton, {backgroundColor: this.props.themeProp.accentColor, borderColor: this.props.themeProp.accentColor}]} onPress={() => { Keyboard.dismiss(); this.submitText(); }}>
+              <Text style={[styles.buttonText, {color: this.props.themeProp.backgroundColor,}]}>Submit</Text>
             </TouchableOpacity>
           </View>
           <View style={styles.scanButtonView}>
-            <TouchableOpacity style={styles.scanButton} onPress={() => {
+            <TouchableOpacity style={[styles.scanButton, {backgroundColor: this.props.themeProp.accentColor, borderColor: this.props.themeProp.accentColor}]} onPress={() => {
 
               // console.warn( this.state.cameraPermission );
               if( this.state.cameraPermission === 'authorized' ){
@@ -273,12 +308,14 @@ class Nutrition extends React.Component {
               }
     
               }}>
-              <Text style={styles.buttonText}>Scan Barcode</Text>
+              <Text style={[styles.buttonText, {color: this.props.themeProp.backgroundColor,}]}>Scan Barcode</Text>
             </TouchableOpacity>
           </View>
           {/* <Button onPress={() => {console.log(JSON.stringify(this.state, null, 2))}  } title="Log State"/> */}
         </View>
+        {this.renderHeader()}
         <TouchableWithoutFeedback onPress={ () => Keyboard.dismiss() }>
+              {/*HEADER HERE!!!*/}
               <FlatList
                 keyExtractor={ (item) => item.ndbno }
                 data={ this.state.foodData.list ? this.state.foodData.list.item : [] }
@@ -511,12 +548,12 @@ const styles = StyleSheet.create({
   },
 
   textInputContainer: {
-    margin : 15
+    margin: 15,
   },
 
   textInput: {
     height: 45, 
-    borderColor: 'gray', 
+    borderColor: '#222222', 
     borderWidth: 1,
     backgroundColor : 'white',
     paddingLeft : 5
@@ -528,6 +565,7 @@ const styles = StyleSheet.create({
     justifyContent : 'space-around',
     alignItems : 'center',
     margin : 10,
+    paddingTop: 20
   },
 
   textButton:{
@@ -535,7 +573,9 @@ const styles = StyleSheet.create({
     height : 40,
     width : 140,
     justifyContent : 'center',
-    alignItems : 'center'
+    alignItems : 'center',
+    borderRadius: 20,
+    borderWidth: 3,
   },
 
   buttonText:{
@@ -554,7 +594,9 @@ const styles = StyleSheet.create({
     height : 45,
     width : 300,
     justifyContent : 'center',
-    alignItems : 'center'
+    alignItems : 'center',
+    borderRadius: 20,
+    borderWidth: 3
   },
   list: {
 
@@ -580,14 +622,15 @@ const styles = StyleSheet.create({
   },
   resultItemView: {
     flexDirection : 'row',
+    borderWidth: 1
   },
   resultDescView: {
     flex : 3,
     alignItems : 'center',
-    justifyContent : 'center'
+    justifyContent : 'center',
   },
   resultValueView: {
-    flex : 1,
+    flex : 3,
     alignItems : 'center',
     justifyContent : 'center',
     // backgroundColor : 'pink'
