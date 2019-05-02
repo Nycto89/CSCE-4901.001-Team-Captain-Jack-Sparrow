@@ -16,6 +16,8 @@ import { Actions } from 'react-native-router-flux';
 import {connect} from 'react-redux';
 
 import  { RNCamera }  from 'react-native-camera';
+import Permissions from 'react-native-permissions';
+import AndroidOpenSettings from 'react-native-android-open-settings'
 
 // For future use, this is the link to app settings if user does not allow camera access
 // Linking.openURL('app-settings:')
@@ -45,9 +47,106 @@ class Nutrition extends React.Component {
     }
   }
 
-  toggleCamera(){
-    this.setState({ cameraOpen : !cameraOpen });
+  // Check the status of a single permission
+  componentDidMount() {
+    Permissions.check('camera').then(response => {
+      // Response is one of: 'authorized', 'denied', 'restricted', or 'undetermined'
+      this.setState({ cameraPermission: response }, () => {
+        // console.warn( response );
+      })
+    })
   }
+
+    // Request permission to access photos
+    requestPermission = () => {
+      Permissions.request('camera').then(response => {
+        // Returns once the user has chosen to 'allow' or to 'not allow' access
+        // Response is one of: 'authorized', 'denied', 'restricted', or 'undetermined'
+        this.setState({ cameraPermission: response }, response => {
+          if ( response === 'authorized' ){
+            this.setState({ cameraOpen : true });
+          } else {
+            this.setState({ cameraOpen : false });
+          }
+        })
+      })
+    }
+
+    alertForCameraPermission = () => {
+      if(Platform.OS === 'ios' && this.state.cameraPermission === 'restricted'){
+        Alert.alert(
+          'The Camera permission has been disabled for this device',
+          'Unable to use the camera',
+          [
+            {
+              text: 'Ok', style: 'cancel',
+            }
+          ]
+        )
+      }
+      else if(Platform.OS === 'ios'){
+        if(Permissions.canOpenSettings()){
+          Alert.alert(
+            'Can we access your camera?',
+            'We need access to capture barcodes',
+            [
+              {
+                text: 'Deny', onPress: () => console.log('Permission denied'), style: 'cancel',
+              },
+              this.state.cameraPermission === 'undetermined' 
+                ? { text: 'OK', onPress: this.requestPermission }
+                : { text: 'Open Settings', onPress: () => { Permissions.openSettings(); }},
+            ],
+          )
+        } else if( this.state.cameraPermission === 'denied' ){
+          Alert.alert(
+            'Camera access required',
+            'Please navigate to app settings and allow this app to access the camera',
+            [
+              {
+                text: 'Ok', style: 'cancel',
+              },
+            ],
+          )
+        }
+      }else if (Platform.OS === 'android'){
+        Alert.alert(
+          'Can we access your camera?',
+          'We need access to capture barcodes',
+          [
+            {
+              text: 'Deny', onPress: () => console.log('Permission denied'), style: 'cancel',
+            },
+            this.state.cameraPermission === 'undetermined' || this.state.cameraPermission === 'denied'
+              ? { text: 'OK', onPress: this.requestPermission }
+              : { text: 'Open Settings', onPress: () => {
+                AndroidOpenSettings.appDetailsSettings();
+                Actions.HomeScreen({ type : "reset" });
+              }},
+          ],
+        )
+      }
+
+      Alert.alert(
+        'Can we access your camera?',
+        'We need access to capture barcodes',
+        [
+          {
+            text: 'Deny', onPress: () => console.log('Permission denied'), style: 'cancel',
+          },
+          this.state.cameraPermission == 'undetermined'
+            ? { text: 'OK', onPress: this.requestPermission }
+            : { text: 'Open Settings', onPress: () => {
+              if( Platform.OS == 'ios'){
+                Permissions.openSettings()
+              } else if (Platform.OS == 'android'){
+                AndroidOpenSettings.appDetailsSettings()
+              }
+              Actions.HomeScreen({ type : "reset" });
+            }},
+        ],
+      )
+    }
 
   renderItem = ({item, index}) => {
     // console.log(item);
@@ -117,27 +216,27 @@ class Nutrition extends React.Component {
   render() {
     return (
       <View style={[styles.mainContainer, {backgroundColor : this.props.themeProp.backgroundColor}]}>
-        {this.state.cameraOpen && 
+        {this.state.cameraOpen && this.state.cameraPermission === 'authorized' &&
           <Modal>
             <View style={{ flex: 1, backgroundColor: "black", opacity: 0.9999 }}>
               <RNCamera
-                          ref={cam => { this.cam = cam; }}
-                          // onCameraReady={this.prepareRatio}
-                          ratio={this.state.cameraRatio}
-                          style={styles.preview}
-                          type={this.state.cameraType}
-                          flashMode={this.state.flashMode}
-                          permissionDialogTitle={'Permission to use camera'}
-                          permissionDialogMessage={'We need your permission to use your camera'}
-                          captureAudio={false}
-                          onBarCodeRead={this.onBarCodeRead}
-                          barcodeFinderVisible={this.state.barcodeFinderVisible}
-                          barcodeFinderWidth={280}
-                          barcodeFinderHeight={220}
-                          barcodeFinderBorderColor="white"
-                          barcodeFinderBorderWidth={2}
-                          defaultTouchToFocus
-                        >
+                      ref={cam => { this.cam = cam; }}
+                      // onCameraReady={this.prepareRatio}
+                      ratio={this.state.cameraRatio}
+                      style={styles.preview}
+                      type={this.state.cameraType}
+                      flashMode={this.state.flashMode}
+                      // permissionDialogTitle={'Permission to use camera'}
+                      // permissionDialogMessage={'We need your permission to use your camera'}
+                      captureAudio={false}
+                      onBarCodeRead={this.onBarCodeRead}
+                      barcodeFinderVisible={this.state.barcodeFinderVisible}
+                      barcodeFinderWidth={280}
+                      barcodeFinderHeight={220}
+                      barcodeFinderBorderColor="white"
+                      barcodeFinderBorderWidth={2}
+                      defaultTouchToFocus
+                    >
                   <View style={styles.cameraView}>
                     <Button onPress={ () => this.setState({ cameraOpen : false })} title="Cancel"></Button>
                   </View>
@@ -164,7 +263,16 @@ class Nutrition extends React.Component {
             </TouchableOpacity>
           </View>
           <View style={styles.scanButtonView}>
-            <TouchableOpacity style={styles.scanButton} onPress={() => this.setState( { cameraOpen : true })}>
+            <TouchableOpacity style={styles.scanButton} onPress={() => {
+
+              // console.warn( this.state.cameraPermission );
+              if( this.state.cameraPermission === 'authorized' ){
+                this.setState({ cameraOpen : true })
+              } else {
+                this.alertForCameraPermission();
+              }
+    
+              }}>
               <Text style={styles.buttonText}>Scan Barcode</Text>
             </TouchableOpacity>
           </View>
@@ -189,8 +297,8 @@ class Nutrition extends React.Component {
   onBarCodeRead = async (scanResult) => {
     if (scanResult.data != null) {
       await this.setState({ cameraOpen : false , methodBarCode : true });
-
-      if(scanResult.type != "org.gs1.EAN-13" && scanResult.type != "org.iso.Code128"){
+      // console.warn(scanResult.type);
+      if(scanResult.type != "org.gs1.EAN-13" && scanResult.type != "org.iso.Code128" && scanResult.type != "EAN_13" && scanResult.type != "CODE_128"){
         setTimeout(() => {
           Alert.alert(
             'Unsupported Barcode',
@@ -210,14 +318,19 @@ class Nutrition extends React.Component {
 
             let query;
 
-            if(scanResult.type == "org.gs1.EAN-13"){
+            if(scanResult.type == "org.gs1.EAN-13" || scanResult.type == "EAN_13"){
               //Remove leading 0 from UPC-A
               query = scanResult.data.slice(1);
-            } else if( scanResult.type == "org.iso.Code128"){
+            } else if( scanResult.type == "org.iso.Code128" || scanResult == "CODE_128"){
+              // console.warn(scanResult.data.length);
               //Make the GTIN 14 numbers, filling in beginning with 0s until length is 14
-              let fill_num = 14 - scanResult.data.length;
+              let fill_num = scanResult.data.length < 14 ? 14 - scanResult.data.length : 0;
               let fill_string = "0".repeat(fill_num);
               query = fill_string.concat(scanResult.data);
+              if(scanResult.data.length == 16){
+                query = scanResult.data.slice(2);
+              }
+              
             }
 
             this.getUSDAProductInfo(query);
@@ -265,7 +378,30 @@ class Nutrition extends React.Component {
         })
       .then(response => response.json())
       // .then(responseJson => { console.dir(responseJson); return responseJson })
-      .then( responseJson => this.getNutrients(responseJson))
+      .then( responseJson => {
+        if( responseJson.errors && responseJson.errors.error && responseJson.errors.error[0].status == 400 ){
+          Alert.alert(
+            'No results',
+            'Your search did not return any results. Please modify your search and try again.',
+            [
+              {text: 'OK'}
+            ],
+            {cancelable: true},
+          );
+          // console.warn(responseJson);
+          return;
+        } else if ( responseJson.list ){
+          this.getNutrients(responseJson)
+        } else {
+          Alert.alert(
+            'Error',
+            'There was an issue contacting the USDA database.',
+            [
+              {text: 'OK'}
+            ],
+            {cancelable: false})
+        }
+      })
       // .then(responseJson => { this.setState({ foodData : responseJson }, function() {this.getNutrients()})})
       .catch((error) => {
         console.log(error);

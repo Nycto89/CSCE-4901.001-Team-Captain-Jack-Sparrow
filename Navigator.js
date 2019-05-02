@@ -23,8 +23,9 @@ import {connect} from 'react-redux';
 import SettingsModal from './modals/SettingsModal';
 import SettingsLightbox from './lightboxes/SettingLightbox';
 
-import { Router, Scene, Actions, Stack, Drawer, Modal, Lightbox} from 'react-native-router-flux';
+import { Router, Scene, Actions, Stack, Drawer, Modal, Lightbox } from 'react-native-router-flux';
 
+import NavBarCustom from './NavBar';
 
 class MainNavigator extends Component {
   constructor(props) {
@@ -50,7 +51,12 @@ class MainNavigator extends Component {
     console.log("\nRender=== " + this.props.visitProp.visited);
     return (
         // <AppContainer/>
-        <Router navigationBarStyle={styles.navBar} sceneStyle={styles.routerScene} titleStyle={styles.navBarTitleStyle}>
+        <Router 
+            navBar={NavBarCustom}
+            navigationBarStyle={styles.navBar} 
+            sceneStyle={styles.routerScene} 
+            titleStyle={styles.navBarTitleStyle}
+            >
           <Lightbox key="lightbox">
           {/* <Modal key="modal" hideNavBar> */}
             <Stack key="root">
@@ -142,22 +148,22 @@ class MainNavigator extends Component {
         </Router>
     )
   }
+
 }
-
-
-  //Home icon
-  const HomeButton = () => {
-    // if(Actions.currentScene === 'HomeScreen')
-    //   return null;
-    // else
-    return (
-      <View>
-        <TouchableHighlight onPress={() => Actions.HomeScreen({ type : "reset" })}>
-          <Image style={{ height: 30, width: 30, marginRight: 20, tintColor: 'white'}} source={require('./images/HOME.png')} />
-        </TouchableHighlight>
-      </View>
-    )
-  }
+  
+ //Home icon
+ function HomeButton(){
+  // if(Actions.currentScene === 'HomeScreen')
+  //   return null;
+  // else
+  return (
+    <View>
+      <TouchableHighlight onPress={() => Actions.HomeScreen({ type : "reset" })}>
+        <Image style={{ height: 30, width: 30, marginRight: 20, tintColor: '#AACCFF'}} source={require('./images/HOME.png')} />
+      </TouchableHighlight>
+    </View>
+  )
+}
 
   //Hamburger drawer icon
   const DrawerIcon = () => {
@@ -170,6 +176,8 @@ class MainNavigator extends Component {
       </View>
     )
   }
+
+
 
 
 
