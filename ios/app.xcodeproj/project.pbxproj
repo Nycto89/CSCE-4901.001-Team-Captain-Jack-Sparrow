@@ -67,6 +67,7 @@
 		F573B005226D5394008CF11F /* esrd_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F573AFD8226D5393008CF11F /* esrd_icon.png */; };
 		F573B006226D5394008CF11F /* esrd_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F573AFD8226D5393008CF11F /* esrd_icon.png */; };
 		F5978B1E226F879D003F2874 /* libRNGeocoder.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F54D3B80226F57E500F69936 /* libRNGeocoder.a */; };
+		F5E5A53A227A9A6A00739677 /* ESRD_TEXAS.png in Resources */ = {isa = PBXBuildFile; fileRef = F5E5A50B227A9A6900739677 /* ESRD_TEXAS.png */; };
 		F617DF443C48472DA41BA7EE /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1EE032A299C447148A2D08AE /* MaterialIcons.ttf */; };
 		FDE0A8B459A74A80B6A37EE9 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 134230DAE0384E7A86CFF379 /* SimpleLineIcons.ttf */; };
 /* End PBXBuildFile section */
@@ -508,6 +509,7 @@
 		F54D3B55226F57E500F69936 /* RNGeocoder.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNGeocoder.xcodeproj; path = "../node_modules/react-native-geocoder/ios/RNGeocoder.xcodeproj"; sourceTree = "<group>"; };
 		F573AFD8226D5393008CF11F /* esrd_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = esrd_icon.png; path = app/esrd_icon.png; sourceTree = "<group>"; };
 		F59F4C4B226F6BB0009DE9A5 /* denton.gpx */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = denton.gpx; path = ../../denton.gpx; sourceTree = "<group>"; };
+		F5E5A50B227A9A6900739677 /* ESRD_TEXAS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ESRD_TEXAS.png; sourceTree = SOURCE_ROOT; };
 		F5EC50B72272179B00A3984F /* AIRDummyView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AIRDummyView.m; sourceTree = "<group>"; };
 		F5EC50B82272179B00A3984F /* AIRGoogleMapWMSTile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AIRGoogleMapWMSTile.h; sourceTree = "<group>"; };
 		F5EC50B92272179B00A3984F /* AIRGoogleMapPolyline.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AIRGoogleMapPolyline.h; sourceTree = "<group>"; };
@@ -787,6 +789,7 @@
 		13B07FAE1A68108700A75B9A /* app */ = {
 			isa = PBXGroup;
 			children = (
+				F5E5A50B227A9A6900739677 /* ESRD_TEXAS.png */,
 				F5EC514622721AAB00A3984F /* AirMaps */,
 				F5EC50B62272179B00A3984F /* AirGoogleMaps */,
 				F573AFD8226D5393008CF11F /* esrd_icon.png */,
@@ -1751,6 +1754,7 @@
 				3B0E6903C278415EBA0EA189 /* (null) in Resources */,
 				14C64D7247AF4B9098745964 /* AntDesign.ttf in Resources */,
 				B8945AA43806426B8E812741 /* Entypo.ttf in Resources */,
+				F5E5A53A227A9A6A00739677 /* ESRD_TEXAS.png in Resources */,
 				068612C4A70B4F5A9FEE0641 /* EvilIcons.ttf in Resources */,
 				83AC05C378F94B3CB33E7FBA /* Feather.ttf in Resources */,
 				845563AFBEF64B318BEC2C92 /* FontAwesome.ttf in Resources */,

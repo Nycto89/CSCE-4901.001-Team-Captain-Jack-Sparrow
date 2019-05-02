@@ -35,7 +35,7 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="esrd_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="NS2-0z-Pug">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ESRD_TEXAS.png" translatesAutoresizingMaskIntoConstraints="NO" id="NS2-0z-Pug">
                     <rect key="frame" x="67" y="147" width="240" height="250"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
@@ -52,6 +52,6 @@
         </view>
     </objects>
     <resources>
-        <image name="esrd_icon.png" width="297" height="309"/>
+        <image name="ESRD_TEXAS.png" width="423" height="431"/>
     </resources>
 </document>
