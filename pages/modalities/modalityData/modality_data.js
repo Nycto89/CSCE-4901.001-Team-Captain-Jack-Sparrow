@@ -58,12 +58,12 @@ var PeritonealData = [
 	{
 		heading: 'What is Peritoneal Dialysis?',
         text: 'Peritoneal Dialysis or PD is a home dialysis option. In PD, the inside lining of your own belly acts as a natural filter. A cleansing fluid called Dialysate, washes in and out of your abdominal cavity in cycles, which removes fluids and waste products.',
-        photo: require('../../../images/stock_images/dialysis_center.jpg')
+        photo: require('../../../images/stock_images/catheter.jpg')
     },
 	{
 		heading: 'How does Peritoneal Dialysis Work?',
         text: 'A soft plastic tube is placed in your belly through surgery. Dialysate is moved in and out of your belly through this catheter. When the solution is inside your body, it draws excess fluids and waste products from your system and then is drained out through the catheter.',
-        photo: require('../../../images/stock_images/catheter.jpg')
+        photo: require('../../../images/stock_images/peritoneal.png')
     },
 	{
 		heading: 'Where to Start',

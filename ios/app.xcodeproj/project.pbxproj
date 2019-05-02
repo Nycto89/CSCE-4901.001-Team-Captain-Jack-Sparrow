@@ -123,6 +123,7 @@
 		F5C8116D2274CDB500C8CB45 /* AIRMapOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = F5C8114E2274CDB400C8CB45 /* AIRMapOverlay.m */; };
 		F5C8116E2274CDB500C8CB45 /* AIRMapOverlayRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = F5C8114F2274CDB400C8CB45 /* AIRMapOverlayRenderer.m */; };
 		F5C8116F2274CDB500C8CB45 /* RCTConvert+AirMap.m in Sources */ = {isa = PBXBuildFile; fileRef = F5C811512274CDB400C8CB45 /* RCTConvert+AirMap.m */; };
+		F5E5A53A227A9A6A00739677 /* ESRD_TEXAS.png in Resources */ = {isa = PBXBuildFile; fileRef = F5E5A50B227A9A6900739677 /* ESRD_TEXAS.png */; };
 		F617DF443C48472DA41BA7EE /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1EE032A299C447148A2D08AE /* MaterialIcons.ttf */; };
 		FDE0A8B459A74A80B6A37EE9 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 134230DAE0384E7A86CFF379 /* SimpleLineIcons.ttf */; };
 /* End PBXBuildFile section */
@@ -664,6 +665,7 @@
 		F5C811502274CDB400C8CB45 /* AIRMapCalloutSubview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AIRMapCalloutSubview.h; sourceTree = "<group>"; };
 		F5C811512274CDB400C8CB45 /* RCTConvert+AirMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RCTConvert+AirMap.m"; sourceTree = "<group>"; };
 		F9185E2A11A04582AC64B5A7 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
+		F5E5A50B227A9A6900739677 /* ESRD_TEXAS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ESRD_TEXAS.png; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1771,6 +1773,7 @@
 				3B0E6903C278415EBA0EA189 /* (null) in Resources */,
 				14C64D7247AF4B9098745964 /* AntDesign.ttf in Resources */,
 				B8945AA43806426B8E812741 /* Entypo.ttf in Resources */,
+				F5E5A53A227A9A6A00739677 /* ESRD_TEXAS.png in Resources */,
 				068612C4A70B4F5A9FEE0641 /* EvilIcons.ttf in Resources */,
 				83AC05C378F94B3CB33E7FBA /* Feather.ttf in Resources */,
 				845563AFBEF64B318BEC2C92 /* FontAwesome.ttf in Resources */,
