@@ -46,8 +46,6 @@
 		4DD9995854944AEE8632490A /* FontAwesome5_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 272F5338FB164C97BB943F67 /* FontAwesome5_Regular.ttf */; };
 		69429E8D7A294D3BA812D59D /* libReactNativePermissions.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19EF83F9D0974E97BD6FE04E /* libReactNativePermissions.a */; };
 		6BAA946AEA104614BF1F5639 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 29911F3D64174780829AFA12 /* MaterialCommunityIcons.ttf */; };
-		6DE124B83A364B26ABD8ABD0 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D44C6998B5D34CE5BB829E1C /* Foundation.ttf */; };
-		6F16777385214C749AF823C9 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F9185E2A11A04582AC64B5A7 /* MaterialCommunityIcons.ttf */; };
 		744CF210FE2D42538DF9A472 /* FontAwesome5_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0A0D1DB9143B4BC895A73C01 /* FontAwesome5_Solid.ttf */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		834BC123074849DB88147BAC /* libRNGestureHandler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 13814F2BA2E54BA3BEE82B3D /* libRNGestureHandler.a */; };
@@ -664,8 +662,8 @@
 		F5C8114F2274CDB400C8CB45 /* AIRMapOverlayRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AIRMapOverlayRenderer.m; sourceTree = "<group>"; };
 		F5C811502274CDB400C8CB45 /* AIRMapCalloutSubview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AIRMapCalloutSubview.h; sourceTree = "<group>"; };
 		F5C811512274CDB400C8CB45 /* RCTConvert+AirMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RCTConvert+AirMap.m"; sourceTree = "<group>"; };
-		F9185E2A11A04582AC64B5A7 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		F5E5A50B227A9A6900739677 /* ESRD_TEXAS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ESRD_TEXAS.png; sourceTree = SOURCE_ROOT; };
+		F9185E2A11A04582AC64B5A7 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1044,6 +1042,7 @@
 				2ED081A0F3B2450697B38708 /* libRNCamera.a */,
 				D1EBC68922D44B7B8DE84CC9 /* libRNOpenAppSettings.a */,
 				19EF83F9D0974E97BD6FE04E /* libReactNativePermissions.a */,
+				F5E5A50B227A9A6900739677 /* ESRD_TEXAS.png */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
