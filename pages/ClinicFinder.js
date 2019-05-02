@@ -155,11 +155,12 @@ class clinicFinder extends Component{
       clinicName = clinic.name.toUpperCase();
       clinicMods = clinic.srvcs.toString();
       clinicMods = clinicMods.toUpperCase();
+      clinicAddr = clinic.addr.toUpperCase();
 
       //console.log({clinicName});
       //console.log({clinicMods});
       
-      clinicData = clinicName+clinicMods;
+      clinicData = clinicName+clinicMods+clinicAddr;
       searchData = input.toUpperCase();
 
       //console.log({clinicData});
@@ -167,6 +168,19 @@ class clinicFinder extends Component{
 
       return clinicData.indexOf(searchData) > -1
     });
+    this.markerLst = newLst.map(marker => {
+      console.log('creating markers.................................');
+      console.log({marker});
+      return(
+      <Marker
+        onCalloutPress={createOpenLink({query:(marker.addr)})}//end onCalloutPress
+        coordinate={marker.coords}
+        title={marker.name}
+        identifier = {marker.name}
+        key = {(marker.id).toString(10)}
+        //description={marker.description}
+      />
+    )})
 
     this.setState({filteredLst: newLst});
   };//end searchFilterFunc
@@ -369,7 +383,6 @@ class clinicFinder extends Component{
               moveOnMarkerPress={false}
               style = {{...StyleSheet.absoluteFillObject}}
               loadingEnabled={true}
-              provider={MapView.PROVIDER_GOOGLE}
             >
             {this.markerLst}
             </MapView>
