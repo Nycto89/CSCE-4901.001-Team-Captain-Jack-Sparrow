@@ -23,8 +23,7 @@ _location = {};
 _requestPermission = async () => new Promise((resolve, reject) => {
     console.log('making request...');
     console.log(_location);
-    Permissions.request('location',
-    ).then(async (response) => {
+    Permissions.request('location').then(async (response) => {
         console.log('got response');
         if(response === 'authorized'){
         console.log('access authorized...');
@@ -43,52 +42,52 @@ _alertForPerms = async () => new Promise((resolve, reject) => {
     if(Platform.OS == 'android'){
         console.log('in alert...');
         Alert.alert(
-        'Can we have access to your location?',
-        'We need access to give you relevant clinic locations',
-        [
-        {
-            text: 'Cancel',
-            onPress: () => {console.log('Cancel pressed...'); resolve('cancel');},
-            style: 'cancel'
-        },
-        ((_state.perms == ('undetermined'))|| (_state.perms == ('denied')))
-            ? { text: 'OK', onPress: ()=>{resolve('OK');} }
-            : { text: 'Open Settings', onPress: ()=>{resolve('settings');} }
-        ],
-        {cancelable: false}
+            'Can we have access to your location?',
+            'We need access to give you relevant clinic locations',
+            [
+                {
+                    text: 'Cancel',
+                    onPress: () => {console.log('Cancel pressed...'); resolve('cancel');},
+                    style: 'cancel'
+                },
+                
+                ((_state.perms == ('undetermined'))|| (_state.perms == ('denied')))
+                    ? { text: 'OK', onPress: ()=>{resolve('OK');} }
+                    : { text: 'Open Settings', onPress: ()=>{resolve('settings');} }
+            ],
+            {cancelable: false}
         );//end alert
     }//end if android
     else if(Platform.OS == 'ios'){
         if(_state.perms != 'restricted'){
-        console.log('in alert...');
-        Alert.alert(
-        'Can we have access to your location?',
-        'We need access to give you relevant clinic locations',
-        [
-            {
-            text: 'Cancel',
-            onPress: () => {console.log('Cancel pressed...'); resolve('cancel');},
-            style: 'cancel'
-            },
-            (_state.perms == ('undetermined'))
-            ? { text: 'OK', onPress: ()=>{resolve('OK');} }
-            : { text: 'Open Settings', onPress: ()=>{resolve('settings');} }
-        ],
-        {cancelable: false}
-        );
+            console.log('in alert...');
+            Alert.alert(
+                'Can we have access to your location?',
+                'We need access to give you relevant clinic locations',
+                [
+                    {
+                        text: 'Cancel',
+                        onPress: () => {console.log('Cancel pressed...'); resolve('cancel');},
+                        style: 'cancel'
+                    },
+                    
+                    (_state.perms == ('undetermined'))
+                    ? { text: 'OK', onPress: ()=>{resolve('OK');} }
+                    : { text: 'Open Settings', onPress: ()=>{resolve('settings');} }
+                ],
+                {cancelable: false}
+            );//end alert
         }//end if perms != 'restricted'
         else{//else iOS restricted
-        Alert.alert(
-            'The Location Permission has been disabled on your device',
-            'The app will default to the Dallas Area...',
-            [
-            {
-                text: 'Cancel',
-                onPress: () => {console.log('Cancel pressed...'); resolve('cancel');},
-                style: 'cancel'
-            }
-            ]
-        );
+            Alert.alert(
+                'The Location Permission has been disabled on your device',
+                'The app will default to the Dallas Area...',
+                [{
+                    text: 'Cancel',
+                    onPress: () => {console.log('Cancel pressed...'); resolve('cancel');},
+                    style: 'cancel'
+                }]
+            );//end alert
         }//end else iOS restricted
     }//end else if iOS
 });//end alertForPerms promise
@@ -339,8 +338,7 @@ export function* mkeClinicLst(){
                         [{
                             text: 'OK',
                             onPress: () => {console.log('OK pressed...');},
-                        }],
-                        {cancelable: true}
+                        }]
                     );//end alert
                 }//end else can't open settings
             }//ense else if iOS
