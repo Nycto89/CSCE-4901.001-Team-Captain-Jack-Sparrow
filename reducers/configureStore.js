@@ -11,7 +11,7 @@ import rootSaga from '../sagas/rootSaga'
 const persistConfig = {
     key: 'root',
     storage,
-    // blacklist: ['navigation'] // navigation will not be persisted
+    blacklist: ['clinicDataProps'] // clinicDataProps will not be persisted
   }
 
   const persistedReducer = persistReducer(persistConfig, allReducers);

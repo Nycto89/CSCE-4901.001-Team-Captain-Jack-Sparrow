@@ -1,5 +1,5 @@
 //redux-saga imports
-import {takeEvery, call, put} from 'redux-saga/effects'
+import {takeLeading, call, put} from 'redux-saga/effects'
 
 //clinicFinder imports
 import {Platform, Alert} from 'react-native';
@@ -409,5 +409,5 @@ export function* requestClinics(){
 
 export default function* watchRequestClinics() {
     console.log('in saga');
-    yield takeEvery("GET_CLINICS", requestClinics);
+    yield takeLeading("GET_CLINICS", requestClinics);
   }
