@@ -9,10 +9,12 @@ import Geolocation from 'react-native-geolocation-service';
 import Geocoder from 'react-native-geocoder';
 import {IconButton, Colors} from 'react-native-paper';
 import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {getClinics} from '../actions/index'
 import cheerio from 'cheerio-without-node-native';
 
 class clinicFinder extends Component{
-  state = {ready: false};
+  state = {ready: false, refreshing: false};
   location = {};
   clinicLst = [];
   markerLst = [];
@@ -201,7 +203,21 @@ class clinicFinder extends Component{
   ////////////////////////////////////////////////////////
   /////////////////COMPONENT DID UPDATE///////////////////
   ////////////////////////////////////////////////////////
-  componentDidUpdate(){
+  static getDerivedStateFromProps(nextProps, prevState){
+    console.log('b4 update');
+    console.log('this.state: '+this.state);
+    console.log('this.props: '+this.props);
+    console.log({prevState});
+    console.log({nextProps});
+    //if received new clinic lst... update filteredLst
+    if((prevState.clinicLst != nextProps.clinicLst)){
+      console.log('here');
+      return {...prevState,filteredLst: nextProps.clinicLst};
+    }
+    return null;
+  }
+  
+  componentDidUpdate(prevProps, prevState){
     if((this.props.clinicLst.length)&&(this.state.searchVal != '')&&(this.state.searchVal))
     this.searchBar.focus();
   }
@@ -259,45 +275,53 @@ class clinicFinder extends Component{
         key = {(marker.id).toString(10)}
         //description={marker.description}
       />
-    )})
+    )})//end generate markerLst
     return(
       <FlatList
+        onRefresh={() => {
+          this.setState({refreshing: true},
+          ()=>{
+            this.props.getClinics();
+            this.state.refreshing = false;
+          });
+        }}
+        refreshing={this.state.refreshing}
         removeClippedSubviews={true}
         ListHeaderComponent = {()=>{
           screenWidth = Dimensions.get('window').width;
           return(
             <View style = {{height: 350, width: screenWidth}}>
-            <MapView
-              onMapReady = {()=>{
-                markerIDLst = this.state.filteredLst.map(loc => (loc.name));
-                this.mapRef.fitToSuppliedMarkers(markerIDLst,  
-                  {edgePadding: {
-                  bottom: 25, right: 25, top: 250, left: 25,
-                  },
-                  animated: false
-                });//end fitToSuppliedMarkers()
-              }}//end onMapReady
-              ref={ref => {this.mapRef = ref;}}
-              moveOnMarkerPress={false}
-              style = {{...StyleSheet.absoluteFillObject}}
-              loadingEnabled={true}
-            >
-            {this.markerLst}
-            </MapView>
-            <SearchBar
-              ref={searchRef => {this.searchBar = searchRef;}}
-              placeholder="Type Here..."        
-              lightTheme        
-              round        
-              onChangeText={input => {
-                this.searchFilterFunc(input)
-                //this.searchBar.focus();
-              }}//end onChangeText
-              autoCorrect={false} 
-              value={this.state.searchVal}
-            />
+              <MapView
+                onMapReady = {()=>{
+                  markerIDLst = this.state.filteredLst.map(loc => (loc.name));
+                  this.mapRef.fitToSuppliedMarkers(markerIDLst,  
+                    {edgePadding: {
+                    bottom: 25, right: 25, top: 250, left: 25,
+                    },
+                    animated: false
+                  });//end fitToSuppliedMarkers()
+                }}//end onMapReady
+                ref={ref => {this.mapRef = ref;}}
+                moveOnMarkerPress={false}
+                style = {{...StyleSheet.absoluteFillObject}}
+                loadingEnabled={true}
+              >
+                {this.markerLst}
+              </MapView>
+              <SearchBar
+                ref={searchRef => {this.searchBar = searchRef;}}
+                placeholder="Type to filter list. Pull down to reload"        
+                lightTheme        
+                round        
+                onChangeText={input => {
+                  this.searchFilterFunc(input)
+                  //this.searchBar.focus();
+                }}//end onChangeText
+                autoCorrect={false} 
+                value={this.state.searchVal}
+              />
             </View>
-        )}
+          )}
         }//end header
         
         data = {this.state.filteredLst}
@@ -544,4 +568,9 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(clinicFinder);
+//allow this component to request clinic data
+function mapDispatchToProps(dispatch){
+  return bindActionCreators({getClinics: getClinics}, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(clinicFinder);
