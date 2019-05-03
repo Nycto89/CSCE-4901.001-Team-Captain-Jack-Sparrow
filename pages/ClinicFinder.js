@@ -73,11 +73,13 @@ class clinicFinder extends Component{
     console.log('this.state: '+this.state);
     console.log('this.props: '+this.props);
     console.log({prevState});
+    console.log('prevState.refreshing: '+prevState.refreshing);
     console.log({nextProps});
+    console.log('END NEXT PROPS');
     //if received new clinic lst... update filteredLst
-    if((prevState.clinicLst != nextProps.clinicLst)){
+    if((prevState.refreshing) && (prevState.filteredLst != nextProps.clinicLst)){
       console.log('here');
-      return {...prevState,filteredLst: nextProps.clinicLst};
+      return {...prevState, refreshing: false, filteredLst: nextProps.clinicLst};
     }
     return null;
   }
@@ -125,8 +127,10 @@ class clinicFinder extends Component{
 
 
     //if no filteredLst... make it
-    if(!this.state.filteredLst)
+    if(!this.state.filteredLst){
+      console.log('make filteredLst...');
       this.state.filteredLst = this.props.clinicLst;
+    }
     //generate markerLst
     this.markerLst = this.state.filteredLst.map(marker => {
       console.log('creating markers.................................');
@@ -147,7 +151,7 @@ class clinicFinder extends Component{
           this.setState({refreshing: true},
           ()=>{
             this.props.getClinics();
-            this.state.refreshing = false;
+            //this.state.refreshing = false;
           });
         }}
         refreshing={this.state.refreshing}

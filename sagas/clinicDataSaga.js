@@ -314,13 +314,13 @@ export function* mkeClinicLst(){
                     console.log('done making clinicLst... push to store');
                     //this.setState({ready: true});
                     action = {type: "LIST_READY", payload: _clinicLst};
-                    console.log({action});
+                    //console.log({action});
                     return action;
                 }
                 catch(error){
                     console.log("ERROR: " + error);
                     action = {type: "DATA_ERROR"};
-                    console.log({action});
+                    //console.log({action});
                     return action;
                 }//end .catch()
             }//end if authed
@@ -358,13 +358,13 @@ export function* mkeClinicLst(){
             console.log('done making clinicLst... push to store');
             //this.setState({ready: true});
             action = {type: "LIST_READY", payload: _clinicLst};
-            console.log({action});
+            //console.log({action});
             return action;
         }
         catch(error){
             console.log("ERROR: " + error);
             action = {type: "DATA_ERROR"};
-            console.log({action});
+            //console.log({action});
             return action;
         }//end .catch()
     }//end already authorized
@@ -383,7 +383,7 @@ export function* mkeClinicLst(){
         console.log('done making clinicLst... push to store');
         //this.setState({ready: true});
         action = {type: "LIST_READY", payload: _clinicLst};
-        console.log({action});
+        //console.log({action});
         return action;
     }//end if still not authorized
 
@@ -400,7 +400,7 @@ export function* requestClinics(){
     res = yield call(mkeClinicLst);
     //res = 15;
     yield console.log('after mkeClinicLst');
-    yield console.log({res});
+    //yield console.log({res});
     
     yield put(res);
 }
