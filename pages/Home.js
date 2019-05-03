@@ -31,10 +31,14 @@ const { width, height } = Dimensions.get('window');
             <View style={styles.tileFlexHorizontal}>
               <View style={styles.tileFlexVertical}>
                 <TouchableHighlight
+                  underlayColor = {'transparent'}
+                  activeOpacity = {.8}
                   onPress={ () => Actions.ModalityMainScreen()}>
                   <Image source={require('../images/home_icons/kidneyV3.png')} style={[styles.tile, this.iconTintStyle()]}/>
                   </TouchableHighlight>
                   <TouchableHighlight
+                  underlayColor = {'transparent'}
+                  activeOpacity = {.8}
                   onPress={ () => Actions.ModalityMainScreen()}>
                   <Text style= {[styles.textStyle, {color:this.props.themeProp.textColor}]}> 
                     Modalities</Text>
@@ -42,10 +46,14 @@ const { width, height } = Dimensions.get('window');
               </View>
               <View style={styles.tileFlexVertical}>
                 <TouchableHighlight
+                  underlayColor = {'transparent'}
+                  activeOpacity = {.8}
                   onPress={ () => Actions.Nutrition()}>
                   <Image source={require('../images/home_icons/nutrition.png')} style={[styles.tile, this.iconTintStyle()]}/>
                   </TouchableHighlight>
                   <TouchableHighlight
+                  underlayColor = {'transparent'}
+                  activeOpacity = {.8}
                   onPress={ () => Actions.Nutrition()}>
                   <Text style= {[styles.textStyle, {color:this.props.themeProp.textColor}]}> 
                     Phosphorus{"\n"}Checker</Text>
@@ -56,6 +64,8 @@ const { width, height } = Dimensions.get('window');
             <View style={styles.tileFlexHorizontal} >
               <View style={styles.tileFlexVertical}>
                 <TouchableHighlight
+                  underlayColor = {'transparent'}
+                  activeOpacity = {.8}
                   onPress={ () => {
                     Alert.alert(
                       'Leaving App',
@@ -70,6 +80,8 @@ const { width, height } = Dimensions.get('window');
                   <Image source={require('../images/home_icons/ESRD.png')} style={[styles.tile, this.iconTintStyle()]}/>
                   </TouchableHighlight>
                   <TouchableHighlight
+                  underlayColor = {'transparent'}
+                  activeOpacity = {.8}
                   onPress={ () => {
                     Alert.alert(
                       'Leaving App',
@@ -87,10 +99,14 @@ const { width, height } = Dimensions.get('window');
              </View>
               <View style={styles.tileFlexVertical}>
                 <TouchableHighlight
+                  underlayColor = {'transparent'}
+                  activeOpacity = {.8}
                   onPress={ () => Actions.ClinicFinder()}>
                   <Image source={require('../images/home_icons/map.png')} style={[styles.tile, this.iconTintStyle()]}/>
                   </TouchableHighlight>
                   <TouchableHighlight
+                  underlayColor = {'transparent'}
+                  activeOpacity = {.8}
                   onPress={ () => Actions.ClinicFinder()}>
                   <Text style= {[styles.textStyle, {color:this.props.themeProp.textColor}]}> 
                     Clinic{"\n"}Finder</Text>
@@ -140,7 +156,8 @@ const { width, height } = Dimensions.get('window');
 
     tileFlexMain : {
       flex : 4,
-      alignItems : 'center'
+      alignItems : 'center',
+      paddingBottom : 10
 
       //justifyContent : 'space-around'
     }, 

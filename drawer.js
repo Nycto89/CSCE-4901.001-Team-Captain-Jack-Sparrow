@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center', 
         alignItems: 'flex-start',
         paddingLeft : 10,
-        ...Platform.select({ ios: { top: 0, paddingTop: 64}, android: { top: 40, marginBottom: 50} }),
+        ...Platform.select({ ios: { top: 0, paddingTop: 64}, android: { paddingTop: 20, paddingBottom: 30} }),
         },
     homeText: {
       fontWeight: 'bold'

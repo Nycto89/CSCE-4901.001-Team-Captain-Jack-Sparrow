@@ -204,17 +204,9 @@ class Nutrition extends React.Component {
     console.log(this.state.foodData.list);
     if (this.state.foodData.list != undefined)
       console.log(this.state.foodData.list.item);
-    if (this.state.foodData.list == undefined || this.state.foodData.list.item == [])
-    {
-      console.log(this.state.foodData)
-      console.log("NO HEADER")
-      return;
-    }
-    else
-    {
-      console.log("HEADER")
+
+    if( this.state.foodData.list && this.state.foodData.list.item && this.state.foodData.list.item.length > 0){
       return(
-        
         <View style={[styles.resultItemView, {backgroundColor: this.props.themeProp.backgroundColor, borderColor: this.props.themeProp.textColor}]}>
           <View style={styles.resultDescView}>
             <Text style={{ color : this.props.themeProp.textColor,
@@ -232,9 +224,40 @@ class Nutrition extends React.Component {
                           >Phosphorus (mg)</Text>
           </View>         
         </View>
-
       );
     }
+
+    // if (this.state.foodData.list == undefined || this.state.foodData.list.item == [])
+    // {
+    //   console.log(this.state.foodData)
+    //   console.log("NO HEADER")
+    //   return;
+    // }
+    // else
+    // {
+    //   console.log("HEADER")
+    //   return(
+        
+    //     <View style={[styles.resultItemView, {backgroundColor: this.props.themeProp.backgroundColor, borderColor: this.props.themeProp.textColor}]}>
+    //       <View style={styles.resultDescView}>
+    //         <Text style={{ color : this.props.themeProp.textColor,
+    //               fontSize : this.props.fontProp.fontVal,
+    //               textAlignVertical : 'center', 
+    //                       textAlign : 'center' , }}
+    //                       >Item Name</Text>
+    //       </View>
+    //       <View style={styles.resultValueView}>
+    //         <Text style={{ color : this.props.themeProp.textColor,
+    //               fontSize : this.props.fontProp.fontVal,
+    //               paddingBottom: 15,
+    //               textAlignVertical : 'center', 
+    //                       textAlign : 'center' }}
+    //                       >Phosphorus (mg)</Text>
+    //       </View>         
+    //     </View>
+
+    //   );
+    // }
   }
 
   prepareRatio = async () => {
