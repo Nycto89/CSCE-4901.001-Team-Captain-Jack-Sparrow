@@ -58,96 +58,90 @@ class Nutrition extends React.Component {
     })
   }
 
-    // Request permission to access photos
-    requestPermission = () => {
-      Permissions.request('camera').then(response => {
-        // Returns once the user has chosen to 'allow' or to 'not allow' access
-        // Response is one of: 'authorized', 'denied', 'restricted', or 'undetermined'
-        this.setState({ cameraPermission: response }, response => {
-          if ( response === 'authorized' ){
-            this.setState({ cameraOpen : true });
-          } else {
-            this.setState({ cameraOpen : false });
-          }
-        })
-      })
+  //try to open settings on iOS
+  openiOSSettings = () => {
+    if(Permissions.canOpenSettings()){
+      Permissions.openSettings();
     }
-
-    alertForCameraPermission = () => {
-      if(Platform.OS === 'ios' && this.state.cameraPermission === 'restricted'){
+    else{//else can't open settings
         Alert.alert(
-          'The Camera permission has been disabled for this device',
-          'Unable to use the camera',
-          [
-            {
-              text: 'Ok', style: 'cancel',
-            }
-          ]
-        )
-      }
-      else if(Platform.OS === 'ios'){
-        if(Permissions.canOpenSettings()){
-          Alert.alert(
-            'Can we access your camera?',
-            'We need access to capture barcodes',
-            [
-              {
-                text: 'Deny', onPress: () => console.log('Permission denied'), style: 'cancel',
-              },
-              this.state.cameraPermission === 'undetermined' 
-                ? { text: 'OK', onPress: this.requestPermission }
-                : { text: 'Open Settings', onPress: () => { Permissions.openSettings(); }},
-            ],
-          )
-        } else if( this.state.cameraPermission === 'denied' ){
-          Alert.alert(
-            'Camera access required',
+            'We can\'t open the settings page for you...',
             'Please navigate to app settings and allow this app to access the camera',
-            [
-              {
-                text: 'Ok', style: 'cancel',
-              },
-            ],
-          )
-        }
-      }else if (Platform.OS === 'android'){
-        Alert.alert(
-          'Can we access your camera?',
-          'We need access to capture barcodes',
-          [
-            {
-              text: 'Deny', onPress: () => console.log('Permission denied'), style: 'cancel',
-            },
-            this.state.cameraPermission === 'undetermined' || this.state.cameraPermission === 'denied'
-              ? { text: 'OK', onPress: this.requestPermission }
-              : { text: 'Open Settings', onPress: () => {
-                AndroidOpenSettings.appDetailsSettings();
-                Actions.HomeScreen({ type : "reset" });
-              }},
-          ],
-        )
-      }
+            [{
+                text: 'OK',
+                onPress: () => {console.log('OK pressed...');},
+                style: 'cancel'
+            }]
+        );//end alert
+    }//end else can't open settings
+  }
 
+  // Request permission to access photos
+  requestPermission = () => {
+    Permissions.request('camera').then(response => {
+      // Returns once the user has chosen to 'allow' or to 'not allow' access
+      // Response is one of: 'authorized', 'denied', 'restricted', or 'undetermined'
+      this.setState({ cameraPermission: response }, response => {
+        if ( response === 'authorized' ){
+          this.setState({ cameraOpen : true });
+        } else {
+          this.setState({ cameraOpen : false });
+        }
+      })
+    })
+  }
+
+  alertForCameraPermission = () => {
+    if(Platform.OS === 'ios' && this.state.cameraPermission === 'restricted'){
+      Alert.alert(
+        'The Camera permission has been disabled for this device',
+        'Unable to use the camera',
+        [{
+            text: 'Cancel', style: 'cancel',
+        }]
+      )//end alert
+    }//end if iOS restricted
+    else if(Platform.OS === 'ios'){//else if iOS NOT restricted
       Alert.alert(
         'Can we access your camera?',
         'We need access to capture barcodes',
         [
           {
-            text: 'Deny', onPress: () => console.log('Permission denied'), style: 'cancel',
+            text: 'Cancel', 
+            onPress: () => console.log('Cancel pressed...'), 
+            style: 'cancel'
           },
-          this.state.cameraPermission == 'undetermined'
+          
+          (this.state.cameraPermission === 'undetermined')
             ? { text: 'OK', onPress: this.requestPermission }
-            : { text: 'Open Settings', onPress: () => {
-              if( Platform.OS == 'ios'){
-                Permissions.openSettings()
-              } else if (Platform.OS == 'android'){
-                AndroidOpenSettings.appDetailsSettings()
-              }
-              Actions.HomeScreen({ type : "reset" });
-            }},
+            : { text: 'Open Settings', onPress: this.openiOSSettings },
         ],
+        {cancelable: false}
+      )//end alert
+    }else if (Platform.OS === 'android'){
+      Alert.alert(
+        'Can we access your camera?',
+        'We need access to capture barcodes',
+        [
+          {
+            text: 'Cancel',
+            onPress: () => console.log('Cancel pressed...'),
+            style: 'cancel'
+          },
+
+          ((this.state.cameraPermission === 'undetermined') || (this.state.cameraPermission === 'denied'))
+            ? { text: 'OK', onPress: this.requestPermission }
+            : { text: 'Open Settings',
+                onPress: () => {
+                  AndroidOpenSettings.appDetailsSettings();
+                  Actions.HomeScreen({ type : "reset" });
+                }
+              },
+        ],
+        {cancelable: false}
       )
-    }
+    }//end else if android
+  }//end alertForCameraPermission
 
   renderItem = ({item, index}) => {
     // console.log(item);
@@ -310,7 +304,8 @@ class Nutrition extends React.Component {
                 this.alertForCameraPermission();
               }
     
-              }}>
+              }}//end onPress()
+            >
               <Text style={[styles.buttonText, {color: this.props.themeProp.backgroundColor,}]}>Scan Barcode</Text>
             </TouchableOpacity>
           </View>
