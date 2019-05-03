@@ -20,3 +20,10 @@ export const setVisited = () => {
         type: "VISITED_ONCE"
     }
 };
+
+//GET CLINICS
+export const getClinics = () => {
+    return {
+        type: "GET_CLINICS"
+    }
+};

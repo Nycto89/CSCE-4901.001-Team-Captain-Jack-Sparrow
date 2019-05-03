@@ -11,6 +11,7 @@ const initialState = {
 export default function(state = initialState, action) {
     switch(action.type)
     {
+        //case "SWITCH_THEME":
         case "SWITCH_THEME":
             if (state.themeType === false)
             {

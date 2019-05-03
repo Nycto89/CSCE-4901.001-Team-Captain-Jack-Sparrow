@@ -151,7 +151,7 @@ class clinicFinder extends Component{
     console.log({input});
     this.setState({searchVal: input});
 
-    newLst = this.clinicLst.filter(clinic => {
+    newLst = this.props.clinicLst.filter(clinic => {
       clinicName = clinic.name.toUpperCase();
       clinicMods = clinic.srvcs.toString();
       clinicMods = clinicMods.toUpperCase();
@@ -168,7 +168,7 @@ class clinicFinder extends Component{
 
       return clinicData.indexOf(searchData) > -1
     });
-    this.markerLst = newLst.map(marker => {
+    /*this.markerLst = newLst.map(marker => {
       console.log('creating markers.................................');
       console.log({marker});
       return(
@@ -180,7 +180,7 @@ class clinicFinder extends Component{
         key = {(marker.id).toString(10)}
         //description={marker.description}
       />
-    )})
+    )})*/
 
     this.setState({filteredLst: newLst});
   };//end searchFilterFunc
@@ -191,132 +191,8 @@ class clinicFinder extends Component{
   ////////////////////////////////////////////////////////
   /////////////////COMPONENT DID MOUNT////////////////////
   /////////////////////////////////////////////////////////
-  async componentDidMount(){
-    console.log('here2...');
-    //check if authorized
-    await Permissions.check('location').then(response =>{
-      //console.log({response});
-      this.setState({perms: response});
-
-      //console.log(this.state);
-    })
-
-    //if not already authorized, tell why you want auth
-    if(this.state.perms != 'authorized') await this._alertForPerms().then(async (response) => {
-      console.log({response});
-      
-      //if not cancel... formal request for perms
-      if(response == 'OK') await this._requestPermission().then(async (perms) =>{
-        console.log('after request...');
-
-        //if now authorized
-        if(perms == 'authorized'){
-         await this.getCoords().then(async () => {
-          await this.doPhoneGeoCode().then(async (response) => {
-            console.log('doPhoneGeoCode response: '+ response);
-            await getFinderData(response, this.clinicLst).then((lst)=>{
-              this.clinicLst = lst;
-              this.state.filteredLst = lst;
-              this.markerLst = lst.map(marker => {
-                console.log('creating markers.................................');
-                console.log({marker});
-                return(
-                <Marker
-                  onCalloutPress={createOpenLink({query:(marker.addr)})}//end onCalloutPress
-                  coordinate={marker.coords}
-                  title={marker.name}
-                  identifier = {marker.name}
-                  key = {(marker.id).toString(10)}
-                  //description={marker.description}
-                />
-              )})//end lst.map()
-              console.log('this.markerLst.length...');
-              console.log(this.markerLst.length);
-
-              //console.log('clinicLst222222222222222222222222222: ');
-              //console.log(this.clinicLst);
-
-              console.log('setState({ready: true})');
-              this.setState({ready: true});
-            });//end getFinderData.then()
-          });//end doPhoneGeoCode.then()
-        })//end getCoords.then()
-        .catch(error => {console.log("ERROR: " + error)});
-        }//end if authed
-      });//end requestPermission.then()
-      else if(response == 'settings'){//else user wants to open settings...        
-        this.setState({reload: true});
-      }//end else if 'settings'
-    });//end ifPerms NOT ALREADY authorized --> alertForPerms.then()
-    else{//already authorized
-      await this.getCoords().then(async () => {
-        await this.doPhoneGeoCode().then(async (response) => {
-          console.log('doPhoneGeoCode response: '+ {response});
-          await getFinderData(response, this.clinicLst).then((lst)=>{
-            this.clinicLst = lst;
-            this.state.filteredLst = lst;
-            this.markerLst = lst.map(marker => {
-              console.log('creating markers.................................');
-              console.log({marker});
-              return(
-              <Marker
-                onCalloutPress={createOpenLink({query:(marker.addr)})}//end onCalloutPress
-                coordinate={marker.coords}
-                title={marker.name}
-                identifier = {marker.name}
-                key = {(marker.id).toString(10)}
-                //description={marker.description}
-              />
-            )})//end lst.map()
-            console.log('this.markerLst.length...');
-            console.log(this.markerLst.length);
-
-            console.log('setState({ready: true})');
-            this.setState({ready: true});
-          });//end getFinderData.then()
-        });//end doPhoneGeoCode.then()
-      })//end getCoords.then()
-      .catch(error => {console.log("ERROR: " + error)});
-    }//end already authorized
-
-    //check perms again... if authed, we already did stuff... if not go to default loc
-    await Permissions.check('location').then(async (response) =>{
-      this.state.perms = response;
-      //console.log(this.state);
-
-      //if still not authed... go to default location
-      if(response != 'authorized'){
-        this.location = {lat: 32.780907, lng: -96.797766};//set location to Dallas
-        
-        await this.doPhoneGeoCode().then(async (response) => {
-          console.log('doPhoneGeoCode response: '+ {response});
-          await getFinderData(response, this.clinicLst).then((lst)=>{
-            this.clinicLst = lst;
-            this.state.filteredLst = lst;
-            this.markerLst = lst.map(marker => {
-              console.log('creating markers.................................');
-              console.log({marker});
-              return(
-              <Marker
-                onCalloutPress={createOpenLink({query:(marker.addr)})}//end onCalloutPress
-                coordinate={marker.coords}
-                title={marker.name}
-                identifier = {marker.name}
-                key = {(marker.id).toString(10)}
-                //description={marker.description}
-              />
-            )})//end lst.map()
-            console.log('this.markerLst.length...');
-            console.log(this.markerLst.length);
-
-            console.log('setState({ready: true})');
-            this.setState({ready: true});
-          });//end getFinderData.then()
-        });//end doPhoneGeoCode.then()
-      }//end if still not authorized
-    })//end permission check.then()
-
-    console.log('after alert');
+  componentDidMount(){
+    console.log('clinicLst length: '+this.props.clinicLst.length);
   }
   ////////////////////////////////////////////////////////
   /////////////////end componentDidMount()////////////////
@@ -326,7 +202,7 @@ class clinicFinder extends Component{
   /////////////////COMPONENT DID UPDATE///////////////////
   ////////////////////////////////////////////////////////
   componentDidUpdate(){
-    if((this.clinicLst.length)&&(this.state.searchVal != '')&&(this.state.searchVal))
+    if((this.props.clinicLst.length)&&(this.state.searchVal != '')&&(this.state.searchVal))
     this.searchBar.focus();
   }
   ////////////////////////////////////////////////////////
@@ -336,6 +212,7 @@ class clinicFinder extends Component{
   //////RENDER//////
   render(){
     console.log('in render...............................................');
+
     if(this.state.reload){
       if(Platform.OS == 'android') AndroidOpenSettings.appDetailsSettings();
       else if(Platform.OS == 'ios'){
@@ -356,7 +233,7 @@ class clinicFinder extends Component{
         </View>
       )
     }
-    if(!this.state.ready){
+    if(!this.props.clinicLst.length){
       return(
         <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
           <Text>Please wait while we find clinics near you...</Text>
@@ -365,6 +242,24 @@ class clinicFinder extends Component{
       )
     }
 
+
+    //if no filteredLst... make it
+    if(!this.state.filteredLst)
+      this.state.filteredLst = this.props.clinicLst;
+    //generate markerLst
+    this.markerLst = this.state.filteredLst.map(marker => {
+      console.log('creating markers.................................');
+      console.log({marker});
+      return(
+      <Marker
+        onCalloutPress={createOpenLink({query:(marker.addr)})}//end onCalloutPress
+        coordinate={marker.coords}
+        title={marker.name}
+        identifier = {marker.name}
+        key = {(marker.id).toString(10)}
+        //description={marker.description}
+      />
+    )})
     return(
       <FlatList
         removeClippedSubviews={true}
@@ -374,7 +269,7 @@ class clinicFinder extends Component{
             <View style = {{height: 350, width: screenWidth}}>
             <MapView
               onMapReady = {()=>{
-                markerIDLst = this.clinicLst.map(loc => (loc.name));
+                markerIDLst = this.state.filteredLst.map(loc => (loc.name));
                 this.mapRef.fitToSuppliedMarkers(markerIDLst,  
                   {edgePadding: {
                   bottom: 25, right: 25, top: 250, left: 25,
@@ -641,10 +536,11 @@ async function getFinderData(location, clinicLst){
 ///////////////////////////////////////////////////////
 
 //allow these global props to affect this component
-function mapStateToProps(state) {
+function mapStateToProps(state) {  
   return {
-  fontProp: state.fontProps,
-  themeProp: state.themeProps
+    fontProp: state.fontProps,
+    themeProp: state.themeProps,
+    clinicLst: state.clinicDataProps.clinicLst
   };
 }
 

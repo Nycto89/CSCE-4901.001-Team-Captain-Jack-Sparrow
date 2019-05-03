@@ -39,7 +39,8 @@
     "react-redux": "^6.0.1",
     "react-router-dom": "^4.3.1",
     "redux": "^4.0.1",
-    "redux-persist": "^5.10.0"
+    "redux-persist": "^5.10.0",
+    "redux-saga": "^1.0.2"
   },
   "devDependencies": {
     "babel-core": "^7.0.0-bridge.0",

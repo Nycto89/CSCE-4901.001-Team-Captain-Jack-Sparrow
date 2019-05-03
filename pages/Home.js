@@ -2,12 +2,21 @@ import React, {Component} from 'react';
 import {StyleSheet, View, Image, Text, TouchableHighlight, Dimensions, Linking, Alert} from 'react-native';
 import {Actions} from 'react-native-router-flux';
 import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {getClinics} from '../actions/index'
 
 import HomeCarousel from '../carousel';
 
 const { width, height } = Dimensions.get('window');
 
   class HomeScreen extends React.Component {
+
+    componentDidMount(){
+      console.log('clinicLst.length: '+this.props.clinicProps.clinicLst.length);
+
+      if(!this.props.clinicProps.clinicLst.length)
+        this.props.getClinics();
+    }
 
     render() {
 
@@ -172,10 +181,15 @@ const { width, height } = Dimensions.get('window');
 
   function mapStateToProps(state) {
     return {
-      themeProp: state.themeProps
+      themeProp: state.themeProps,
+      clinicProps: state.clinicDataProps
     };
   }
 
+  function mapDispatchToProps(dispatch){
+    return bindActionCreators({getClinics: getClinics}, dispatch);
+  }
 
-  export default connect(mapStateToProps)(HomeScreen);
+
+  export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);
   
