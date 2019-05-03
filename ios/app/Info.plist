@@ -40,7 +40,7 @@
 	<key>NSCameraUsageDescription</key>
 	<string>Permission needed to use the camera</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string/>
+	<string>Permission needed to show relevant clinic locations and show user's location on the map<string/>
 	<key>UIAppFonts</key>
 	<array>
 		<string>AntDesign.ttf</string>

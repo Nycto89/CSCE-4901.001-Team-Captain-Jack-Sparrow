@@ -172,8 +172,11 @@ class clinicFinder extends Component{
                 }}//end onMapReady
                 ref={ref => {this.mapRef = ref;}}
                 moveOnMarkerPress={false}
-                style = {{...StyleSheet.absoluteFillObject}}
+                showsUserLocation={true}
+                showsMyLocationButton={true}
+                showsCompass={true}
                 loadingEnabled={true}
+                style = {{...StyleSheet.absoluteFillObject}}
               >
                 {this.markerLst}
               </MapView>
