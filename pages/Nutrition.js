@@ -301,7 +301,8 @@ class Nutrition extends React.Component {
           </Modal>
         }
         <View style={styles.textInputContainer}>
-          <TextInput style={styles.textInput}
+          <TextInput 
+            style={styles.textInput}
                     onChangeText={(text) => this.setState({text})}
                     value={this.state.text}
                     clearTextOnFocus

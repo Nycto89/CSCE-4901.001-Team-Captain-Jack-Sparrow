@@ -31,6 +31,7 @@ const { width, height } = Dimensions.get('window');
             <View style={styles.tileFlexHorizontal}>
               <View style={styles.tileFlexVertical}>
                 <TouchableHighlight
+                  style={{paddingVertical: 0, paddingHorizontal: 60}}
                   underlayColor = {'transparent'}
                   activeOpacity = {.8}
                   onPress={ () => Actions.ModalityMainScreen()}>
@@ -46,6 +47,7 @@ const { width, height } = Dimensions.get('window');
               </View>
               <View style={styles.tileFlexVertical}>
                 <TouchableHighlight
+                  style={{paddingVertical: 0, paddingHorizontal: 60}}
                   underlayColor = {'transparent'}
                   activeOpacity = {.8}
                   onPress={ () => Actions.Nutrition()}>
@@ -64,6 +66,7 @@ const { width, height } = Dimensions.get('window');
             <View style={styles.tileFlexHorizontal} >
               <View style={styles.tileFlexVertical}>
                 <TouchableHighlight
+                  style={{paddingVertical: 0, paddingHorizontal: 60}}
                   underlayColor = {'transparent'}
                   activeOpacity = {.8}
                   onPress={ () => {
@@ -99,6 +102,7 @@ const { width, height } = Dimensions.get('window');
              </View>
               <View style={styles.tileFlexVertical}>
                 <TouchableHighlight
+                  style={{paddingVertical: 0, paddingHorizontal: 60}}
                   underlayColor = {'transparent'}
                   activeOpacity = {.8}
                   onPress={ () => Actions.ClinicFinder()}>

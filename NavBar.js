@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {TouchableHighlight, Text, View, Image, Platform, StyleSheet, Dimensions} from 'react-native';
+import {TouchableHighlight, TouchableWithoutFeedback, Text, View, Image, Platform, StyleSheet, Dimensions} from 'react-native';
 import {Actions} from 'react-native-router-flux';
 import {connect} from 'react-redux';
 
@@ -16,38 +16,38 @@ class NavBar extends Component {
         <View>
             <StatusBarBackground/>
             <View  style={{ 
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                alignItems : 'center',        
-                backgroundColor : this.props.themeProp.backgroundColor,
-                // ...Platform.select({
-                //     ios : {
-                //         paddingTop: 5,
-                //         marginTop: 20,
-                //         height : 50,
-                //     },
-                //     android : {
-                //         paddingTop : 5,
-                //         height : 60
-                //     }
-                // }),
-                paddingTop : 5,
-                height : 60,
-                borderRadius : 0,}}
-                >
-                <StatusBarBackground/>
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              alignItems : 'center',        
+              backgroundColor : this.props.themeProp.backgroundColor,
+              // ...Platform.select({
+              //     ios : {
+              //         paddingTop: 5,
+              //         marginTop: 20,
+              //         height : 50,
+              //     },
+              //     android : {
+              //         paddingTop : 5,
+              //         height : 60
+              //     }
+              // }),
+              paddingTop : 5,
+              height : 60,
+              borderRadius : 0,}}
+            >
+              <StatusBarBackground/>
                 
-                <View style={{flexDirection: 'row', flex: 1, justifyContent: 'flex-start', paddingLeft : 10 }}>
-                    <DrawerIcon themeProps={this.props.themeProp}/>
-                </View>
+              <View style={{flexDirection: 'row', flex: 1, justifyContent: 'flex-start', paddingLeft : 10 }}>
+                  <DrawerIcon themeProps={this.props.themeProp}/>
+              </View>
 
-                <View style={{ flexDirection: 'row', justifyContent: 'center',}}>
-                    <NavBarTitle text={this.props.title} themeProps={this.props.themeProp}/>
-                </View>
+              <View style={{ flexDirection: 'row', justifyContent: 'center',}}>
+                  <NavBarTitle text={this.props.title} themeProps={this.props.themeProp}/>
+              </View>
 
-                <View style={{ flexDirection: 'row', justifyContent : 'flex-end' , flex: 1 }}>
-                    <HomeButton themeProps={this.props.themeProp}/>
-                </View>
+              <View style={{ flexDirection: 'row', justifyContent : 'flex-end' , flex: 1 }}>
+                  <HomeButton themeProps={this.props.themeProp}/>
+              </View>
                 
             </View>    
         </View>
@@ -64,54 +64,59 @@ class NavBar extends Component {
 
   function HomeButton(props){
     if(Actions.currentScene === 'HomeScreen' || 
-     (Actions.currentScene === 'SettingsLightbox' && Actions.prevScene === 'HomeScreen'))
+      (Actions.currentScene === 'SettingsLightbox' && Actions.prevScene === 'HomeScreen'))
       return null;
-    else
-    return (
-        <View style={{ }}>
-            <TouchableHighlight onPress={() => Actions.HomeScreen({ type : "reset" })}>
-                <Image style={{ height: 30, width: 30, marginRight: 20, tintColor : props.themeProps.textColor }} source={require('./images/HOME.png')} />
-            </TouchableHighlight>
-        </View>
-    )
+    else{
+      return (
+          <View style={{ }}>
+              <TouchableHighlight
+                underlayColor = {'transparent'}
+                activeOpacity = {.8}
+                onPress={() => Actions.HomeScreen({ type : "reset" })}
+              >
+                  <Image style={{ height: 30, width: 30, marginRight: 20, tintColor : props.themeProps.textColor }} source={require('./images/HOME.png')} />
+              </TouchableHighlight>
+          </View>
+      )//end return
     }
+  }
 
-    function NavBarTitle(props){
+  function NavBarTitle(props){
     return(
         <View style={{ }}>
             <Text style={{ color : props.themeProps.textColor, fontSize : 20, fontWeight : '800' }}>{props.text}</Text>  
         </View>
     )
-    }
+  }
 
-    //Hamburger drawer icon
-    function DrawerIcon(props){
-        return (
-        <View style={{ }}>
-            <TouchableHighlight onPress={() => {Actions.drawerOpen() }}>
-                <Image style={{ height: 25, width: 15, marginLeft: 5, tintColor : props.themeProps.textColor }} source={require('./images/menu_burger.png')} />
-            </TouchableHighlight>
-        </View>
-        )
-    }
+  //Hamburger drawer icon
+  function DrawerIcon(props){
+    return (
+    <View style={{ }}>
+        <TouchableHighlight onPress={() => {Actions.drawerOpen() }}>
+            <Image style={{ height: 25, width: 15, marginLeft: 5, tintColor : props.themeProps.textColor }} source={require('./images/menu_burger.png')} />
+        </TouchableHighlight>
+    </View>
+    )
+  }
     
-    function isIphoneX() {
-        const dim = Dimensions.get('window');
-        return (
-          // This has to be iOS
-          Platform.OS === 'ios' &&
-          // Check either, iPhone X or XR
-          (isIPhoneXSize(dim) || isIPhoneXrSize(dim))
-        );
-      }
+  function isIphoneX() {
+    const dim = Dimensions.get('window');
+    return (
+      // This has to be iOS
+      Platform.OS === 'ios' &&
+      // Check either, iPhone X or XR
+      (isIPhoneXSize(dim) || isIPhoneXrSize(dim))
+    );
+  }
       
-      function isIPhoneXSize(dim) {
-        return dim.height == 812 || dim.width == 812;
-      }
-      
-      function isIPhoneXrSize(dim) {
-        return dim.height == 896 || dim.width == 896;
-      }
+  function isIPhoneXSize(dim) {
+    return dim.height == 812 || dim.width == 812;
+  }
+  
+  function isIPhoneXrSize(dim) {
+    return dim.height == 896 || dim.width == 896;
+  }
 
 //   export default NavBar;
 
