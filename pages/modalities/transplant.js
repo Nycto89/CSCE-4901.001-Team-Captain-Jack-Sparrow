@@ -6,22 +6,14 @@
  * @flow
  */
 
-import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, 
-ScrollView, Dimensions, ListView, 
-SectionList, FlatList} from 'react-native';
-import {Button} from 'native-base';
-import {DrawerActions} from 'react-navigation';
-import ModalityHome from './home';
-import {Actions} from 'react-native-router-flux';
-import {Content, List, ListItem} from 'native-base';
-import {KidneyTransplant} from './modalityData/modality_data';
-import {modalityStyles} from './modalityData/modality_style';
-import {connect} from 'react-redux';
-import SectionListItem from './modalityData/sectionlistitem';
-import SectionHeader from './modalityData/sectionheader';
-import Image from 'react-native-scalable-image';
+import React from 'react';
+import { Dimensions, FlatList, ScrollView, Text, View } from 'react-native';
 import Accordion from 'react-native-collapsible/Accordion';
+import Image from 'react-native-scalable-image';
+import { connect } from 'react-redux';
+import { KidneyTransplant } from './modalityData/modality_data';
+import { modalityStyles } from './modalityData/modality_style';
+import SectionListItem from './modalityData/sectionlistitem';
 
 class Transplant extends React.Component {
 
@@ -35,72 +27,69 @@ class Transplant extends React.Component {
   };
 
   doesPhotoExist(v_photo) {
-    if (v_photo === undefined)
-    {
+    if (v_photo === undefined) {
       //do nothing
     }
     else {
-    return (<Image width={Dimensions.get('window').width} style={{paddingBottom: 20}} source={v_photo} />);
+      return (<Image width={Dimensions.get('window').width} style={{ paddingBottom: 20 }} source={v_photo} />);
     }
   }
 
   doesIconExist(v_icon) {
-    if (v_icon === undefined)
-    {
+    if (v_icon === undefined) {
       //do nothing
     }
     else {
-    return (<Image width={90} height={90} style={{top: 20, paddingBottom: 20, tintColor: this.props.themeProp.textColor}} source={v_icon} />);
+      return (<Image width={90} height={90} style={{ top: 20, paddingBottom: 20, tintColor: this.props.themeProp.textColor }} source={v_icon} />);
     }
   }
 
-  doesHeadingExist(v_heading){
-    if (v_heading === undefined)
-    {
+  doesHeadingExist(v_heading) {
+    if (v_heading === undefined) {
       //do nothing
     }
     else {
-    return (v_heading);
+      return (v_heading);
     }
   }
 
-  isList(data){
-    if (data === undefined)
-    {
+  isList(data) {
+    if (data === undefined) {
       //do nothing
     }
-    else
-    {
-    return (<FlatList
-            data={data}
-            renderItem= {({item, index}) => {
-                          return(<SectionListItem item={item} index={index}>
-                            
-                            </SectionListItem>);
-                    }}/>);
+    else {
+      return (<FlatList
+        data={data}
+        renderItem={({ item, index }) => {
+          return (<SectionListItem item={item} index={index}>
+
+          </SectionListItem>);
+        }} />);
     }
   }
 
   renderHeader = section => {
     fontS = (1.5 * this.props.fontProp.fontVal);
     fontS = (fontS > 60) ? 60 : fontS;
-    return(
+    return (
       <View>
-      <View style= {{
-        shadowColor: this.props.themeProp.textColor,
-        shadowOffset: {height: 2},
-        shadowRadius: 5,
-        shadowOpacity: 0.5
-            }}>
-            {this.doesPhotoExist(section.photo)}
-      </View>
+        <View style={{
+          shadowColor: this.props.themeProp.textColor,
+          shadowOffset: { height: 2 },
+          shadowRadius: 5,
+          shadowOpacity: 0.5
+        }}>
+          {this.doesPhotoExist(section.photo)}
+        </View>
         <Text style={
           [modalityStyles.header,
-          {fontSize: fontS,
-            color: this.props.themeProp.accentColor}]}
+          {
+            fontSize: fontS,
+            color: this.props.themeProp.accentColor
+          }]}
         >
           {this.doesHeadingExist(section.heading)}</Text>
-        <View style= {{
+        <View style={{
           backgroundColor: this.props.themeProp.accentColor,
           height: 1,
           width: (Dimensions.get('window').width) - 100,
@@ -112,27 +101,26 @@ class Transplant extends React.Component {
   };
 
   renderContent = section => {
-    return(
+    return (
       <View>
-      {this.isList(section.data)}
-      <Text style={[modalityStyles.important_txt, {fontSize: this.props.fontProp.fontVal, overflow: 'hidden', lineHeight: 50, color: this.props.themeProp.textColor}]}>
-        {section.text}
-      </Text>
+        {this.isList(section.data)}
+        <Text style={[modalityStyles.important_txt, { fontSize: this.props.fontProp.fontVal, overflow: 'hidden', lineHeight: 50, color: this.props.themeProp.textColor }]}>
+          {section.text}
+        </Text>
       </View>
     );
   };
 
   updateSections = activeSections => {
-    this.setState({activeSections});
+    this.setState({ activeSections });
   };
 
   //update accordion based on font size
   componentWillUpdate(nextProps, nextState) {
-    if (nextState.fontVal !== nextProps.fontProp.fontVal)
-    {
+    if (nextState.fontVal !== nextProps.fontProp.fontVal) {
       this.updateSections([])                     //reset component
       const newVal = nextProps.fontProp.fontVal;
-      this.setState({fontVal: newVal});
+      this.setState({ fontVal: newVal });
     }
     return;
   }
@@ -142,17 +130,17 @@ class Transplant extends React.Component {
 
     return (
       <View>
-      <ScrollView>
-      <View style={[modalityStyles.container, {backgroundColor: this.props.themeProp.backgroundColor}]} >
-          <Accordion
-            sections={KidneyTransplant}
-            activeSections={this.state.activeSections}
-            renderHeader={this.renderHeader}
-            renderContent={this.renderContent}
-            onChange={this.updateSections}
-          />
-        </View>
-      </ScrollView>
+        <ScrollView>
+          <View style={[modalityStyles.container, { backgroundColor: this.props.themeProp.backgroundColor }]} >
+            <Accordion
+              sections={KidneyTransplant}
+              activeSections={this.state.activeSections}
+              renderHeader={this.renderHeader}
+              renderContent={this.renderContent}
+              onChange={this.updateSections}
+            />
+          </View>
+        </ScrollView>
       </View>
     );
   }
@@ -161,8 +149,8 @@ class Transplant extends React.Component {
 
 function mapStateToProps(state) {
   return {
-  fontProp: state.fontProps,
-  themeProp: state.themeProps
+    fontProp: state.fontProps,
+    themeProp: state.themeProps
   };
 }
 

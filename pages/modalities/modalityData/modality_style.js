@@ -1,4 +1,4 @@
-import {StyleSheet, Dimensions} from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 
 const modalityStyles = StyleSheet.create({
   container: {
@@ -49,4 +49,4 @@ const modalityStyles = StyleSheet.create({
   },
 });
 
-export {modalityStyles};
+export { modalityStyles };

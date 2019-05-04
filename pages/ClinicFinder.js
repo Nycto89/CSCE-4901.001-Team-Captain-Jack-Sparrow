@@ -1,20 +1,17 @@
 import React, { Component } from 'react';
-import { Platform, Dimensions, Alert, ActivityIndicator, Text, StyleSheet, FlatList, View} from 'react-native';
-import {SearchBar} from 'react-native-elements';
+import { ActivityIndicator, Dimensions, FlatList, Platform, StyleSheet, Text, View } from 'react-native';
+import AndroidOpenSettings from 'react-native-android-open-settings';
+import { SearchBar } from 'react-native-elements';
+import MapView, { Marker } from 'react-native-maps';
+import { createOpenLink } from 'react-native-open-maps';
+import { IconButton } from 'react-native-paper';
 import Permissions from 'react-native-permissions';
-import AndroidOpenSettings from 'react-native-android-open-settings'
-import {createOpenLink} from 'react-native-open-maps';
-import MapView, {Marker} from 'react-native-maps';
-import Geolocation from 'react-native-geolocation-service';
-import Geocoder from 'react-native-geocoder';
-import {IconButton, Colors} from 'react-native-paper';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import {getClinics} from '../actions/index'
-import cheerio from 'cheerio-without-node-native';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { getClinics } from '../actions/index';
 
-class clinicFinder extends Component{
-  state = {ready: false, refreshing: false};
+class clinicFinder extends Component {
+  state = { ready: false, refreshing: false };
   location = {};
   clinicLst = [];
   markerLst = [];
@@ -28,8 +25,8 @@ class clinicFinder extends Component{
   ////////////////////////////////////////////////////////
   searchFilterFunc = input => {
     console.log('in filter func...');
-    console.log({input});
-    this.setState({searchVal: input});
+    console.log({ input });
+    this.setState({ searchVal: input });
 
     newLst = this.props.clinicLst.filter(clinic => {
       clinicName = clinic.name.toUpperCase();
@@ -39,8 +36,8 @@ class clinicFinder extends Component{
 
       //console.log({clinicName});
       //console.log({clinicMods});
-      
-      clinicData = clinicName+clinicMods+clinicAddr;
+
+      clinicData = clinicName + clinicMods + clinicAddr;
       searchData = input.toUpperCase();
 
       //console.log({clinicData});
@@ -49,7 +46,7 @@ class clinicFinder extends Component{
       return clinicData.indexOf(searchData) > -1
     });
 
-    this.setState({filteredLst: newLst});
+    this.setState({ filteredLst: newLst });
   };//end searchFilterFunc
   ////////////////////////////////////////////////////////
   //END FUNCTIONS//
@@ -58,8 +55,8 @@ class clinicFinder extends Component{
   ////////////////////////////////////////////////////////
   /////////////////COMPONENT DID MOUNT////////////////////
   /////////////////////////////////////////////////////////
-  componentDidMount(){
-    console.log('clinicLst length: '+this.props.clinicLst.length);
+  componentDidMount() {
+    console.log('clinicLst length: ' + this.props.clinicLst.length);
   }
   ////////////////////////////////////////////////////////
   /////////////////end componentDidMount()////////////////
@@ -68,151 +65,154 @@ class clinicFinder extends Component{
   ////////////////////////////////////////////////////////
   /////////////////COMPONENT DID UPDATE///////////////////
   ////////////////////////////////////////////////////////
-  static getDerivedStateFromProps(nextProps, prevState){
+  static getDerivedStateFromProps(nextProps, prevState) {
     console.log('b4 update');
-    console.log('this.state: '+this.state);
-    console.log('this.props: '+this.props);
-    console.log({prevState});
-    console.log('prevState.refreshing: '+prevState.refreshing);
-    console.log({nextProps});
+    console.log('this.state: ' + this.state);
+    console.log('this.props: ' + this.props);
+    console.log({ prevState });
+    console.log('prevState.refreshing: ' + prevState.refreshing);
+    console.log({ nextProps });
     console.log('END NEXT PROPS');
     //if received new clinic lst... update filteredLst
-    if((prevState.refreshing) && (prevState.filteredLst != nextProps.clinicLst)){
+    if ((prevState.refreshing) && (prevState.filteredLst != nextProps.clinicLst)) {
       console.log('here');
-      return {...prevState, refreshing: false, filteredLst: nextProps.clinicLst};
+      return { ...prevState, refreshing: false, filteredLst: nextProps.clinicLst };
     }
     return null;
   }
-  
-  componentDidUpdate(prevProps, prevState){
-    if((this.props.clinicLst.length)&&(this.state.searchVal != '')&&(this.state.searchVal))
-    this.searchBar.focus();
+
+  componentDidUpdate(prevProps, prevState) {
+    if ((this.props.clinicLst.length) && (this.state.searchVal != '') && (this.state.searchVal))
+      this.searchBar.focus();
   }
   ////////////////////////////////////////////////////////
   /////////////////end componentDidUpdate()///////////////
   ////////////////////////////////////////////////////////
 
   //////RENDER//////
-  render(){
+  render() {
     console.log('in render...............................................');
 
-    if(this.state.reload){
-      if(Platform.OS == 'android') AndroidOpenSettings.appDetailsSettings();
-      else if(Platform.OS == 'ios'){
-        if(Permissions.canOpenSettings()){
+    if (this.state.reload) {
+      if (Platform.OS == 'android') AndroidOpenSettings.appDetailsSettings();
+      else if (Platform.OS == 'ios') {
+        if (Permissions.canOpenSettings()) {
           Permissions.openSettings();
         }
-        else{
-          return(
-            <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-              <Text style={{color: 'black', fontWeight: 'bold', fontSize: 30}}>Please open settings on your phone, and allow this app to acces your location... Then reload clinicFinder</Text>
+        else {
+          return (
+            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+              <Text style={{ color: 'black', fontWeight: 'bold', fontSize: 30 }}>Please open settings on your phone, and allow this app to acces your location... Then reload clinicFinder</Text>
             </View>
           )
         }//end else can't open settings
       }//ense else if iOS
-      return(
-        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-          <Text style={{color: 'black', fontWeight: 'bold', fontSize: 30}}>Please restart clinicFinder for permission changes to take affect...</Text>
+      return (
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+          <Text style={{ color: 'black', fontWeight: 'bold', fontSize: 30 }}>Please restart clinicFinder for permission changes to take affect...</Text>
         </View>
       )
     }
-    if(!this.props.clinicLst.length){
-      return(
-        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+    if (!this.props.clinicLst.length) {
+      return (
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
           <Text>Please wait while we find clinics near you...</Text>
-          <ActivityIndicator size='large'/>
+          <ActivityIndicator size='large' />
         </View>
       )
     }
 
 
     //if no filteredLst... make it
-    if(!this.state.filteredLst){
+    if (!this.state.filteredLst) {
       console.log('make filteredLst...');
       this.state.filteredLst = this.props.clinicLst;
     }
     //generate markerLst
     this.markerLst = this.state.filteredLst.map(marker => {
       console.log('creating markers.................................');
-      console.log({marker});
-      return(
-      <Marker
-        onCalloutPress={createOpenLink({query:(marker.addr)})}//end onCalloutPress
-        coordinate={marker.coords}
-        title={marker.name}
-        identifier = {marker.name}
-        key = {(marker.id).toString(10)}
+      console.log({ marker });
+      return (
+        <Marker
+          onCalloutPress={createOpenLink({ query: (marker.addr) })}//end onCalloutPress
+          coordinate={marker.coords}
+          title={marker.name}
+          identifier={marker.name}
+          key={(marker.id).toString(10)}
         //description={marker.description}
-      />
-    )})//end generate markerLst
-    return(
+        />
+      )
+    })//end generate markerLst
+    return (
       <FlatList
         onRefresh={() => {
-          this.setState({refreshing: true},
-          ()=>{
-            this.props.getClinics();
-            //this.state.refreshing = false;
-          });
+          this.setState({ refreshing: true },
+            () => {
+              this.props.getClinics();
+              //this.state.refreshing = false;
+            });
         }}
         refreshing={this.state.refreshing}
         removeClippedSubviews={true}
-        ListHeaderComponent = {()=>{
+        ListHeaderComponent={() => {
           screenWidth = Dimensions.get('window').width;
-          return(
-            <View style = {{height: 350, width: screenWidth}}>
+          return (
+            <View style={{ height: 350, width: screenWidth }}>
               <MapView
-                onMapReady = {()=>{
+                onMapReady={() => {
                   markerIDLst = this.state.filteredLst.map(loc => (loc.name));
-                  this.mapRef.fitToSuppliedMarkers(markerIDLst,  
-                    {edgePadding: {
-                    bottom: 25, right: 25, top: 250, left: 25,
-                    },
-                    animated: false
-                  });//end fitToSuppliedMarkers()
+                  this.mapRef.fitToSuppliedMarkers(markerIDLst,
+                    {
+                      edgePadding: {
+                        bottom: 25, right: 25, top: 250, left: 25,
+                      },
+                      animated: false
+                    });//end fitToSuppliedMarkers()
                 }}//end onMapReady
-                ref={ref => {this.mapRef = ref;}}
+                ref={ref => { this.mapRef = ref; }}
                 moveOnMarkerPress={false}
                 showsUserLocation={true}
                 showsMyLocationButton={true}
                 showsCompass={true}
                 loadingEnabled={true}
-                style = {{...StyleSheet.absoluteFillObject}}
+                style={{ ...StyleSheet.absoluteFillObject }}
               >
                 {this.markerLst}
               </MapView>
               <SearchBar
-                ref={searchRef => {this.searchBar = searchRef;}}
-                placeholder="Type to filter list. Pull down to reload"        
-                lightTheme        
-                round        
+                ref={searchRef => { this.searchBar = searchRef; }}
+                placeholder="Type to filter list. Pull down to reload"
+                lightTheme
+                round
                 onChangeText={input => {
                   this.searchFilterFunc(input)
                   //this.searchBar.focus();
                 }}//end onChangeText
-                autoCorrect={false} 
+                autoCorrect={false}
                 value={this.state.searchVal}
               />
             </View>
-          )}
+          )
+        }
         }//end header
-        
-        data = {this.state.filteredLst}
+
+        data={this.state.filteredLst}
         extraData={this.props}
-        renderItem={({item})=>{
+        renderItem={({ item }) => {
           //console.log({item});
-          return(
-            <View style={[styles.rowStyle, {backgroundColor: this.props.themeProp.backgroundColor, borderColor: this.props.themeProp.borderColor}]}>
+          return (
+            <View style={[styles.rowStyle, { backgroundColor: this.props.themeProp.backgroundColor, borderColor: this.props.themeProp.borderColor }]}>
               <View style={styles.listStyle}>
-                <Text style={[styles.nameStyle, {color: this.props.themeProp.textColor}]}>{item.name}</Text>
-                <Text style={[styles.modalityStyle, {color: this.props.themeProp.textColor}]}>Modalities: {item.srvcs.toString()}</Text>
-                <Text style={[styles.addrStyle, {color: this.props.themeProp.accentColor}]}>{item.addr}</Text>
+                <Text style={[styles.nameStyle, { color: this.props.themeProp.textColor }]}>{item.name}</Text>
+                <Text style={[styles.modalityStyle, { color: this.props.themeProp.textColor }]}>Modalities: {item.srvcs.toString()}</Text>
+                <Text style={[styles.addrStyle, { color: this.props.themeProp.accentColor }]}>{item.addr}</Text>
               </View>
               <View style={styles.buttonStyle}>
                 <IconButton
                   icon={"explore"}
                   size={30}
                   color={this.props.themeProp.textColor}
-                  onPress={createOpenLink({query:(item.addr)})}
+                  onPress={createOpenLink({ query: (item.addr) })}
                 />
               </View>
             </View>
@@ -226,14 +226,14 @@ class clinicFinder extends Component{
 }//end class ScrollViewTEST
 
 const styles = StyleSheet.create({
-  rowStyle:{
+  rowStyle: {
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
     borderWidth: 1,
   },
-  
-  listStyle:{
+
+  listStyle: {
     alignSelf: 'flex-start',
     flexDirection: 'column',
     justifyContent: 'space-between',
@@ -246,7 +246,7 @@ const styles = StyleSheet.create({
     width: 300
   },
 
-  buttonStyle:{
+  buttonStyle: {
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
@@ -254,20 +254,20 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100
   },
-  
-  nameStyle:{
+
+  nameStyle: {
     fontWeight: 'bold',
     fontSize: 15,
     color: '#ffffff'
   },
 
-  modalityStyle:{
+  modalityStyle: {
     borderStyle: 'dashed',
     borderBottomWidth: StyleSheet.hairlineWidth,
     marginBottom: 5
   },
 
-  addrStyle:{
+  addrStyle: {
   }
 })//end styles
 
@@ -276,7 +276,7 @@ const styles = StyleSheet.create({
 ///////////////////////////////////////////////////////
 
 //allow these global props to affect this component
-function mapStateToProps(state) {  
+function mapStateToProps(state) {
   return {
     fontProp: state.fontProps,
     themeProp: state.themeProps,
@@ -285,8 +285,8 @@ function mapStateToProps(state) {
 }
 
 //allow this component to request clinic data
-function mapDispatchToProps(dispatch){
-  return bindActionCreators({getClinics: getClinics}, dispatch);
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ getClinics: getClinics }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(clinicFinder);

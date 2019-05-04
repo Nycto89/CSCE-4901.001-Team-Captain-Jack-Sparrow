@@ -8,13 +8,11 @@ const initialState = {
     circleColor: '#AACCFF',
 }
 
-export default function(state = initialState, action) {
-    switch(action.type)
-    {
+export default function (state = initialState, action) {
+    switch (action.type) {
         //case "SWITCH_THEME":
         case "SWITCH_THEME":
-            if (state.themeType === false)
-            {
+            if (state.themeType === false) {
                 console.log("CHANGE THEME TO DARK");
                 return {
                     themeType: true,

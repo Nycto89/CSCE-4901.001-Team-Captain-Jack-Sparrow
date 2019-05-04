@@ -12,7 +12,7 @@ var KidneyTransplant = [
                 photo: require('../../../images/healthy.png')
             }
         ],
-        title: "Benefits"      
+        title: "Benefits"
     },
     {
         data: [
@@ -85,7 +85,7 @@ var PeritonealData = [
                 description: 'Once the catheter site is healed, patients will be allowed to take showers'
             }
         ],
-        title: "Benefits"      
+        title: "Benefits"
     },
     {
         data: [
@@ -132,7 +132,7 @@ var InCenterData = [
                 description: 'You will have regular visits from a nephrologist, dietician and social worker'
             }
         ],
-        title: "Benefits"      
+        title: "Benefits"
     },
     {
         data: [
@@ -196,7 +196,7 @@ var NightData = [
                 description: 'The environment is much quieter and relaxed than daytime hemodialysis'
             }
         ],
-        title: "Benefits"      
+        title: "Benefits"
     },
     {
         data: [
@@ -267,7 +267,7 @@ var HomeData = [
                 photo: require('../../../images/nurse_call.png')
             }
         ],
-        title: "Benefits"      
+        title: "Benefits"
     },
     {
         data: [
@@ -289,8 +289,8 @@ var HomeData = [
     }
 ];
 
-export {KidneyTransplant};
-export {PeritonealData};
-export {NightData};
-export {InCenterData};
-export {HomeData};
+export { KidneyTransplant };
+export { PeritonealData };
+export { NightData };
+export { InCenterData };
+export { HomeData };

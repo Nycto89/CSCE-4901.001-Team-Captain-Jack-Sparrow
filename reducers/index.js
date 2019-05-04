@@ -1,8 +1,8 @@
-import {combineReducers} from 'redux';
+import { combineReducers } from 'redux';
+import clinicDataReducer from './reducer-clinicData';
+import visitReducer from './reducer-first';
 import fontReducer from './reducer-fontSize';
 import themeReducer from './reducer-Theme';
-import visitReducer from './reducer-first';
-import clinicDataReducer from './reducer-clinicData';
 
 const allReducers = combineReducers({
    fontProps: fontReducer,

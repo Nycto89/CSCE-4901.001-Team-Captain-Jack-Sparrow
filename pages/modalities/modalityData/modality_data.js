@@ -1,18 +1,18 @@
 var KidneyTransplant = [
     {
-            heading: 'What Does it Mean to Have a Transplant?',
-            text: 'A healthy kidney is placed inside your body to perform the work your own kidneys can no longer do. These kidneys can last between 12 to 15 years on average. During this time, dialysis isn’t needed.',
-            photo: require('../../../images/stock_images/giving.jpg')
+        heading: 'What Does it Mean to Have a Transplant?',
+        text: 'A healthy kidney is placed inside your body to perform the work your own kidneys can no longer do. These kidneys can last between 12 to 15 years on average. During this time, dialysis isn’t needed.',
+        photo: require('../../../images/stock_images/giving.jpg')
     },
     {
-            heading: 'Where do the Kidneys Come From?',
-            text: 'Donated kidneys may come from someone who passed away OR from a living donor. A healthy person who donates a kidney can live a normal life with the kidney they have left. The wait list for deceased donor kidneys is three to five years. Kidneys from living donors can be transplanted faster. The operations are done on the same day and can be scheduled at a convenient time for both the patient and the donor.',
-            photo: require('../../../images/stock_images/long_queue_outdoors.jpg')
+        heading: 'Where do the Kidneys Come From?',
+        text: 'Donated kidneys may come from someone who passed away OR from a living donor. A healthy person who donates a kidney can live a normal life with the kidney they have left. The wait list for deceased donor kidneys is three to five years. Kidneys from living donors can be transplanted faster. The operations are done on the same day and can be scheduled at a convenient time for both the patient and the donor.',
+        photo: require('../../../images/stock_images/long_queue_outdoors.jpg')
     },
     {
-            heading: 'Getting a Transplant',
-            text: '1) Ask your nephrologist or healthcare provider to refer you to a transplant center for evaluation OR contact a transplant center in your area.\n2) The transplant center professionals will provide a complete physical exam, review your health records and conduct testing and x-rays to evaluate your ability to receive surgery.\n3) Find a living donor or join the waiting list for a deceased donor kidney. If you are on the waitlist, you may have to be on dialysis during this time.\n4) Next step: Transplant \nSurgery!',
-            photo: require('../../../images/stock_images/woman-doctor.jpg')
+        heading: 'Getting a Transplant',
+        text: '1) Ask your nephrologist or healthcare provider to refer you to a transplant center for evaluation OR contact a transplant center in your area.\n2) The transplant center professionals will provide a complete physical exam, review your health records and conduct testing and x-rays to evaluate your ability to receive surgery.\n3) Find a living donor or join the waiting list for a deceased donor kidney. If you are on the waitlist, you may have to be on dialysis during this time.\n4) Next step: Transplant \nSurgery!',
+        photo: require('../../../images/stock_images/woman-doctor.jpg')
     },
     {
         data: [
@@ -27,7 +27,7 @@ var KidneyTransplant = [
                 icon: require('../../../images/healthy.png')
             }
         ],
-        heading: "Benefits"      
+        heading: "Benefits"
     },
     {
         data: [
@@ -55,26 +55,26 @@ var KidneyTransplant = [
 ];
 
 var PeritonealData = [
-	{
-		heading: 'What is Peritoneal Dialysis?',
+    {
+        heading: 'What is Peritoneal Dialysis?',
         text: 'Peritoneal Dialysis or PD is a home dialysis option. In PD, the inside lining of your own belly acts as a natural filter. A cleansing fluid called Dialysate, washes in and out of your abdominal cavity in cycles, which removes fluids and waste products.',
         photo: require('../../../images/stock_images/catheter.jpg')
     },
-	{
-		heading: 'How does Peritoneal Dialysis Work?',
+    {
+        heading: 'How does Peritoneal Dialysis Work?',
         text: 'A soft plastic tube is placed in your belly through surgery. Dialysate is moved in and out of your belly through this catheter. When the solution is inside your body, it draws excess fluids and waste products from your system and then is drained out through the catheter.',
         photo: require('../../../images/stock_images/peritoneal.png')
     },
-	{
-		heading: 'Where to Start',
+    {
+        heading: 'Where to Start',
         text: 'Receiving a PD catheter requires outpatient surgery; patients usually go home on the same day. It may require healing within a few weeks, but the catheter may be used almost immediately.',
         photo: require('../../../images/stock_images/surgery_doc.jpg')
     },
     {
         type: [
             {
-               name:  'Continuous Ambulatory Peritoneal Dialysis (CAPD)',
-               description: 'A “continuous”, machine-free dialysis where exchanges of dialysate are done 4 to 5 times a day while the patient is awake and doing normal activities. Each exchange takes about 30 minutes. The fluid containing the wastes removed from your body is drained out and replaced by fresh dialysate.'
+                name: 'Continuous Ambulatory Peritoneal Dialysis (CAPD)',
+                description: 'A “continuous”, machine-free dialysis where exchanges of dialysate are done 4 to 5 times a day while the patient is awake and doing normal activities. Each exchange takes about 30 minutes. The fluid containing the wastes removed from your body is drained out and replaced by fresh dialysate.'
             },
             {
                 name: 'Automated Peritoneal Dialysis (APD)',
@@ -128,7 +128,7 @@ var PeritonealData = [
                 description: 'Once the catheter site is healed, patients will be allowed to take showers'
             }
         ],
-        heading: "Benefits"      
+        heading: "Benefits"
     },
     {
         data: [
@@ -189,7 +189,7 @@ var InCenterData = [
                 description: 'You will have regular visits from a nephrologist, dietician and social worker'
             }
         ],
-        heading: "Benefits"      
+        heading: "Benefits"
     },
     {
         data: [
@@ -227,7 +227,7 @@ var InCenterData = [
 ];
 
 var NightData = [
-    { 
+    {
         heading: 'What is Nocturnal Dialysis?',
         text: 'Nocturnal or Overnight Dialysis is a slower, longer hemodialysis treatment that takes place at night while you sleep. This longer treatment is for six to eight hours, three times a week. This process requires that you sleep at the dialysis center overnight. Dialysis professionals who are skilled in performing hemodialysis, manage the treatments.',
         photo: require('../../../images/stock_images/moon.jpg')
@@ -263,7 +263,7 @@ var NightData = [
                 description: 'The environment is much quieter and relaxed than daytime hemodialysis'
             }
         ],
-        heading: "Benefits"      
+        heading: "Benefits"
     },
     {
         data: [
@@ -344,7 +344,7 @@ var HomeData = [
                 icon: require('../../../images/nurse_call.png')
             }
         ],
-        heading: "Benefits"      
+        heading: "Benefits"
     },
     {
         data: [
@@ -366,8 +366,8 @@ var HomeData = [
     }
 ];
 
-export {KidneyTransplant};
-export {PeritonealData};
-export {NightData};
-export {InCenterData};
-export {HomeData};
+export { KidneyTransplant };
+export { PeritonealData };
+export { NightData };
+export { InCenterData };
+export { HomeData };

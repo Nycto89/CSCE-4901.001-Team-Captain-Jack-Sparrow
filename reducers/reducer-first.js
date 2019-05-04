@@ -2,9 +2,8 @@ const initialState = {
     visited: false
 }
 
-export default function(state = initialState, action) {
-    switch(action.type)
-    {
+export default function (state = initialState, action) {
+    switch (action.type) {
         case "VISITED_ONCE":
             console.log("Visited Once ");
             return {

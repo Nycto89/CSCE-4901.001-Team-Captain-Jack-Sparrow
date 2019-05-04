@@ -1,20 +1,20 @@
 
-import { createStore, applyMiddleware } from 'redux';
-import { persistStore, persistReducer } from 'redux-persist';
+import { applyMiddleware, createStore } from 'redux';
+import { persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web and AsyncStorage for react-native
-
+import createSagaMiddleware from 'redux-saga';
+import rootSaga from '../sagas/rootSaga';
 import allReducers from './index';
 
-import createSagaMiddleware from 'redux-saga'
-import rootSaga from '../sagas/rootSaga'
+
 
 const persistConfig = {
-    key: 'root',
-    storage,
-    blacklist: ['clinicDataProps'] // clinicDataProps will not be persisted
-  }
+  key: 'root',
+  storage,
+  blacklist: ['clinicDataProps'] // clinicDataProps will not be persisted
+}
 
-  const persistedReducer = persistReducer(persistConfig, allReducers);
+const persistedReducer = persistReducer(persistConfig, allReducers);
 
 //   export default () => {
 //     let store = createStore(persistedReducer)
@@ -22,7 +22,7 @@ const persistConfig = {
 //     return { store, persistor }
 //   }
 
-  const sagaMiddleware = createSagaMiddleware();
-  export const store = createStore(persistedReducer, applyMiddleware(sagaMiddleware));
-  sagaMiddleware.run(rootSaga);
-  export const persistor = persistStore(store);
+const sagaMiddleware = createSagaMiddleware();
+export const store = createStore(persistedReducer, applyMiddleware(sagaMiddleware));
+sagaMiddleware.run(rootSaga);
+export const persistor = persistStore(store);
