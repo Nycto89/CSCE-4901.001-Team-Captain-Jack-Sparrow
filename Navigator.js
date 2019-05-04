@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import DrawerMenu from './drawer.js';
 import SettingsLightbox from './lightboxes/SettingLightbox';
 import NavBarCustom from './NavBar';
-import CalendarPage from './pages/Calendar.js';
 import ClinicFinder from './pages/ClinicFinder.js';
 import HomeScreen from './pages/Home.js';
 import Therapy from './pages/modalities/ctherapy';
@@ -77,10 +76,6 @@ class MainNavigator extends Component {
                   title="Modalities"
                   renderBackButton={() => (null)}
                   panHandlers={null}
-                />
-                <Scene key="CalendarPage"
-                  component={CalendarPage}
-                  title="Calendar"
                 />
                 <Scene key="ClinicFinder"
                   component={ClinicFinder}
