@@ -190,7 +190,7 @@ class Nutrition extends React.Component {
   }
 
   renderHeader = () => {
-    if (this.state.foodData.list != undefined)
+    //if (this.state.foodData.list != undefined)
 
     if (this.state.foodData.list && this.state.foodData.list.item && this.state.foodData.list.item.length > 0) {
       return (
