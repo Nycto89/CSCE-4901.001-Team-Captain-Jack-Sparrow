@@ -13,6 +13,7 @@ const modalityStyles = StyleSheet.create({
     fontSize: 30,
     paddingBottom: 15,
     fontFamily: 'Verdana',
+    /*fontWeight: "bold",*/
     marginTop: 15,
     paddingLeft: 20
   },
