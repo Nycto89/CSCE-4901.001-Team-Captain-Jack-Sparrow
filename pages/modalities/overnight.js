@@ -55,7 +55,6 @@ class Overnight extends Component {
       //do nothing
     }
     else {
-      console.log(data.length);
       return (<FlatList
         data={data}
         renderItem={({ item, index }) => {
@@ -127,8 +126,6 @@ class Overnight extends Component {
   render() {
 
     const { navigate } = this.props.navigation;
-
-    console.log(this.props.navigation)
 
     return (
       <View>

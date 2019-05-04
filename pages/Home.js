@@ -12,8 +12,6 @@ const { width, height } = Dimensions.get('window');
 class HomeScreen extends React.Component {
 
   componentDidMount() {
-    console.log('clinicLst.length: ' + this.props.clinicProps.clinicLst.length);
-
     if (!this.props.clinicProps.clinicLst.length)
       this.props.getClinics();
   }

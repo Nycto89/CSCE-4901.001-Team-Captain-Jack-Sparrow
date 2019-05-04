@@ -30,22 +30,13 @@ class MainNavigator extends Component {
     this.state = {
       first: this.props.visitProp.visited,
     };
-    console.log("prop " + this.props.visitProp.visited);
 
     // Disables yellow box warnings for demo
     //console.disableYellowBox = true;
     ;
   }
 
-  componentDidMount() {
-    console.log("Navigator 1 " + JSON.stringify(this.state.first))
-    //this.state.first = true; 
-    //console.log("Navigator 2 " + JSON.stringify(this.state.first))
-
-  }
-
   render() {
-    console.log("\nRender=== " + this.props.visitProp.visited);
     return (
       // <AppContainer/>
       <Router
@@ -59,12 +50,6 @@ class MainNavigator extends Component {
           <Stack key="root">
             <Drawer
               key="Drawer"
-              onExit={() => {
-                console.log('Drawer closed');
-              }}
-              onEnter={() => {
-                console.log('Drawer opened');
-              }}
               contentComponent={DrawerMenu}
               // drawerIcon={DrawerIcon}
               drawerImage={require('./images/menu_burger.png')}

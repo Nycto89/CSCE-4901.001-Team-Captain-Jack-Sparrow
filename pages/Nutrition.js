@@ -57,7 +57,7 @@ class Nutrition extends React.Component {
         'Please navigate to app settings and allow this app to access the camera',
         [{
           text: 'OK',
-          onPress: () => { console.log('OK pressed...'); },
+          onPress: () => { },
           style: 'cancel'
         }]
       );//end alert
@@ -96,7 +96,7 @@ class Nutrition extends React.Component {
         [
           {
             text: 'Cancel',
-            onPress: () => console.log('Cancel pressed...'),
+            onPress: () => {},
             style: 'cancel'
           },
 
@@ -113,7 +113,7 @@ class Nutrition extends React.Component {
         [
           {
             text: 'Cancel',
-            onPress: () => console.log('Cancel pressed...'),
+            onPress: () => {},
             style: 'cancel'
           },
 
@@ -133,7 +133,6 @@ class Nutrition extends React.Component {
   }//end alertForCameraPermission
 
   renderItem = ({ item, index }) => {
-    // console.log(item);
     if (item.phosphorus) {
       return (
         <View style={[styles.resultItemView, { backgroundColor: this.props.themeProp.backgroundColor, borderColor: this.props.themeProp.textColor }]}>
@@ -191,9 +190,7 @@ class Nutrition extends React.Component {
   }
 
   renderHeader = () => {
-    console.log(this.state.foodData.list);
     if (this.state.foodData.list != undefined)
-      console.log(this.state.foodData.list.item);
 
     if (this.state.foodData.list && this.state.foodData.list.item && this.state.foodData.list.item.length > 0) {
       return (
@@ -220,50 +217,16 @@ class Nutrition extends React.Component {
         </View>
       );
     }
-
-    // if (this.state.foodData.list == undefined || this.state.foodData.list.item == [])
-    // {
-    //   console.log(this.state.foodData)
-    //   console.log("NO HEADER")
-    //   return;
-    // }
-    // else
-    // {
-    //   console.log("HEADER")
-    //   return(
-
-    //     <View style={[styles.resultItemView, {backgroundColor: this.props.themeProp.backgroundColor, borderColor: this.props.themeProp.textColor}]}>
-    //       <View style={styles.resultDescView}>
-    //         <Text style={{ color : this.props.themeProp.textColor,
-    //               fontSize : this.props.fontProp.fontVal,
-    //               textAlignVertical : 'center', 
-    //                       textAlign : 'center' , }}
-    //                       >Item Name</Text>
-    //       </View>
-    //       <View style={styles.resultValueView}>
-    //         <Text style={{ color : this.props.themeProp.textColor,
-    //               fontSize : this.props.fontProp.fontVal,
-    //               paddingBottom: 15,
-    //               textAlignVertical : 'center', 
-    //                       textAlign : 'center' }}
-    //                       >Phosphorus (mg)</Text>
-    //       </View>         
-    //     </View>
-
-    //   );
-    // }
   }
 
   prepareRatio = async () => {
-    console.log('Preparing ratio...');
-    console.log(this.cam);
     if (Platform.OS === 'android' && this.cam) {
       const ratios = await this.cam.getSupportedRatiosAsync();
 
       // See if the current device has your desired ratio, otherwise get the maximum supported one
       // Usually the last element of "ratios" is the maximum supported ratio
       const ratio = ratios.find((ratio) => ratio === DESIRED_RATIO) || ratios[ratios.length - 1];
-      this.setState({ cameraRatio: ratio }, () => { console.log(JSON.stringify(this.state, null, 2)) });
+      this.setState({ cameraRatio: ratio }, () => { });
     }
   }
 
@@ -363,7 +326,7 @@ class Nutrition extends React.Component {
             'Unsupported Barcode',
             'Only UPC-A, or GTIN are supported.',
             [
-              { text: 'OK', onPress: () => console.log('OK Pressed') },
+              { text: 'OK', onPress: () => {} },
             ],
             { cancelable: false },
           );
@@ -400,7 +363,7 @@ class Nutrition extends React.Component {
           'Read Error',
           'Unable to read the barcode. Please try again or search manually.',
           [
-            { text: 'OK', onPress: () => console.log('OK Pressed') },
+            { text: 'OK', onPress: () => {} },
           ],
           { cancelable: false },
         );
@@ -423,15 +386,12 @@ class Nutrition extends React.Component {
     url += '&offset=0&api_key=';
     url += API_KEY;
 
-    console.log('URL produced: ' + url);
     return fetch(url)
       .then((response) => {
         if (response.ok) {
-          console.log('USDA Response1: ' + JSON.stringify(response, null, 2));
           return response;
         }
         else {
-          console.log(`Request rejected with status ${response.status}`);
           throw Error(`Search Request rejected with status ${response.status}`);
         }
       })
@@ -463,18 +423,13 @@ class Nutrition extends React.Component {
       })
       // .then(responseJson => { this.setState({ foodData : responseJson }, function() {this.getNutrients()})})
       .catch((error) => {
-        console.log(error);
       });
   }
 
   getNutrients(foodDataCopy) {
-    console.log("Getting Nutrients...");
-    // console.log('Current state in getNutrients : ');
-    // console.log(JSON.stringify(this.state.foodData, null, 2));
 
     if (foodDataCopy) {
       const reqNDOs = foodDataCopy.list.item.map((item) => item.ndbno);
-      console.log("NDBnos : " + reqNDOs);
 
       let url = 'https://api.nal.usda.gov/ndb/V2/reports?';
 
@@ -488,16 +443,12 @@ class Nutrition extends React.Component {
       url += 'type=b&format=json&api_key=';
       url += API_KEY;
 
-      console.log('url created : ' + url);
       return fetch(url)
         .then((response) => {
           if (response.ok) {
-            console.log('USDA Response2: ' + JSON.stringify(response, null, 2));
             return response;
           }
           else {
-            console.log(`Nutrition Request rejected with status ${response.status}`);
-            // throw Error(`Request rejected with status ${response.status}`);
           }
         })
         .then(response => response.json())
@@ -510,13 +461,10 @@ class Nutrition extends React.Component {
         })
         .then(() => {
           this.setState({ foodData: foodDataCopy }, () => {
-            console.log('Updating state...');
-            console.log(JSON.stringify(this.state.foodData, null, 2));
             this.checkReturn();
           })
         })
         .catch((error) => {
-          console.log(error);
         });
 
     } else {
@@ -533,7 +481,7 @@ class Nutrition extends React.Component {
         'Value not listed',
         'The item scanned was found in the database, however no phosphorus value is provided. You may want to try a manual search for similiar items.',
         [
-          { text: 'OK', onPress: () => console.log('OK Pressed') },
+          { text: 'OK', onPress: () => {} },
           { text: 'Scan another item', onPress: () => { this.setState({ cameraOpen: true }) } }
         ],
         { cancelable: true },

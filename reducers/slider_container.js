@@ -17,7 +17,6 @@ class FontSlider extends Component {
 
   getFontProp = () => {
     return this.props.fontProp.map((fontPropety) => {
-      console.log("VALUE: " + fontPropety.fontVal);
       return (fontPropety.fontVal);
     })
   }
@@ -41,10 +40,7 @@ class FontSlider extends Component {
   }
 
   render() {
-
     const { value } = this.state;
-    console.log(this.props);
-
     return (
       <View>
         <Slider

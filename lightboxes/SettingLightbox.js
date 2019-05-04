@@ -41,15 +41,12 @@ class SettingsLightbox extends React.Component {
   }
 
   getVal(val) {
-    console.log(val);
   }
 
   toggleColorSwitch = (value) => {
-    console.log('toggling...');
     this.setState(() => {
       this.props.switchThemes();
     });
-    console.log('Color switch is: ' + this.props.themeProp.themeType)
   }
 
   render() {

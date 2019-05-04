@@ -22,12 +22,9 @@ class DrawerMenu extends React.Component {
     }
 
     toggleCollapse() {
-        console.log('toggle');
-        console.log('isCollapsed: ' + this.state.isCollapsed);
         this.spin();
         if (this.state.isCollapsed) this.setState({ isCollapsed: false });
         else this.setState({ isCollapsed: true });
-        console.log('done toggling...');
     }
 
     componentDidMount() { Actions.refresh({ key: 'Drawer', ref: this.refs.navigation }); }

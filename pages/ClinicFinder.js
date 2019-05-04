@@ -24,8 +24,6 @@ class clinicFinder extends Component {
   //FUNCTIONS//
   ////////////////////////////////////////////////////////
   searchFilterFunc = input => {
-    console.log('in filter func...');
-    console.log({ input });
     this.setState({ searchVal: input });
 
     newLst = this.props.clinicLst.filter(clinic => {
@@ -34,14 +32,8 @@ class clinicFinder extends Component {
       clinicMods = clinicMods.toUpperCase();
       clinicAddr = clinic.addr.toUpperCase();
 
-      //console.log({clinicName});
-      //console.log({clinicMods});
-
       clinicData = clinicName + clinicMods + clinicAddr;
       searchData = input.toUpperCase();
-
-      //console.log({clinicData});
-      //console.log({searchData});
 
       return clinicData.indexOf(searchData) > -1
     });
@@ -53,29 +45,11 @@ class clinicFinder extends Component {
   ////////////////////////////////////////////////////////
 
   ////////////////////////////////////////////////////////
-  /////////////////COMPONENT DID MOUNT////////////////////
-  /////////////////////////////////////////////////////////
-  componentDidMount() {
-    console.log('clinicLst length: ' + this.props.clinicLst.length);
-  }
-  ////////////////////////////////////////////////////////
-  /////////////////end componentDidMount()////////////////
-  ////////////////////////////////////////////////////////
-
-  ////////////////////////////////////////////////////////
   /////////////////COMPONENT DID UPDATE///////////////////
   ////////////////////////////////////////////////////////
   static getDerivedStateFromProps(nextProps, prevState) {
-    console.log('b4 update');
-    console.log('this.state: ' + this.state);
-    console.log('this.props: ' + this.props);
-    console.log({ prevState });
-    console.log('prevState.refreshing: ' + prevState.refreshing);
-    console.log({ nextProps });
-    console.log('END NEXT PROPS');
     //if received new clinic lst... update filteredLst
     if ((prevState.refreshing) && (prevState.filteredLst != nextProps.clinicLst)) {
-      console.log('here');
       return { ...prevState, refreshing: false, filteredLst: nextProps.clinicLst };
     }
     return null;
@@ -91,8 +65,6 @@ class clinicFinder extends Component {
 
   //////RENDER//////
   render() {
-    console.log('in render...............................................');
-
     if (this.state.reload) {
       if (Platform.OS == 'android') AndroidOpenSettings.appDetailsSettings();
       else if (Platform.OS == 'ios') {
@@ -125,13 +97,10 @@ class clinicFinder extends Component {
 
     //if no filteredLst... make it
     if (!this.state.filteredLst) {
-      console.log('make filteredLst...');
       this.state.filteredLst = this.props.clinicLst;
     }
     //generate markerLst
     this.markerLst = this.state.filteredLst.map(marker => {
-      console.log('creating markers.................................');
-      console.log({ marker });
       return (
         <Marker
           onCalloutPress={createOpenLink({ query: (marker.addr) })}//end onCalloutPress
@@ -199,7 +168,6 @@ class clinicFinder extends Component {
         data={this.state.filteredLst}
         extraData={this.props}
         renderItem={({ item }) => {
-          //console.log({item});
           return (
             <View style={[styles.rowStyle, { backgroundColor: this.props.themeProp.backgroundColor, borderColor: this.props.themeProp.borderColor }]}>
               <View style={styles.listStyle}>

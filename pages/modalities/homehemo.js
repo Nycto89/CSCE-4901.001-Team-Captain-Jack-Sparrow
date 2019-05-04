@@ -54,7 +54,6 @@ class HomeHemo extends Component {
       //do nothing
     }
     else {
-      console.log(data.length);
       return (<FlatList
         data={data}
         renderItem={({ item, index }) => {
@@ -127,8 +126,6 @@ class HomeHemo extends Component {
   render() {
 
     const { navigate } = this.props.navigation;
-
-    console.log(this.props.navigation)
 
     return (
       <View>
