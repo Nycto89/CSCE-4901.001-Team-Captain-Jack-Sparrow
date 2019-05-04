@@ -92,7 +92,7 @@ class Incenter extends Component {
       </View>
         <Text style={
           [modalityStyles.header,
-          {fontSize: fontS, fontWeight: "bold",
+          {fontSize: fontS,
           color: this.props.themeProp.accentColor}]}
         >
           {this.doesHeadingExist(section.heading)}

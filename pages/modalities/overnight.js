@@ -80,6 +80,8 @@ class Overnight extends Component {
 
 
   renderHeader = section => {
+    fontS = (1.5 * this.props.fontProp.fontVal);
+    fontS = (fontS > 60) ? 60 : fontS;
     return(
       <View>
       <View style= {{
@@ -90,7 +92,12 @@ class Overnight extends Component {
             }}>
             {this.doesPhotoExist(section.photo)}
       </View>
-        <Text style={[modalityStyles.header, {color: this.props.themeProp.accentColor}]}>{this.doesHeadingExist(section.heading)}</Text>
+        <Text style={
+          [modalityStyles.header,
+          {fontSize: fontS,
+          color: this.props.themeProp.accentColor}]}
+        >
+          {this.doesHeadingExist(section.heading)}</Text>
         <View style= {{
           backgroundColor: this.props.themeProp.accentColor,
           height: 1,

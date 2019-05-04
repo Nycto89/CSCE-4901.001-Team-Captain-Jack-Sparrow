@@ -21,7 +21,8 @@ import Image from 'react-native-scalable-image';
 class Therapy extends Component {
 
   render() {
-
+    fontS = (1.5 * this.props.fontProp.fontVal);
+    fontS = (fontS > 60) ? 60 : fontS;
     const {navigate} = this.props.navigation;
 
     console.log(this.props.navigation)
@@ -33,7 +34,13 @@ class Therapy extends Component {
         <Collapse>
         <CollapseHeader>
         <Image width={Dimensions.get('window').width} style={{paddingBottom: 20}} source={require('../../images/stock_images/conservative_therapy.jpg')} />
-      	<Text style={[modalityStyles.header, {color: this.props.themeProp.accentColor}]}>What is Conservative Therapy?</Text>
+      	<Text style={
+          [modalityStyles.header,
+          {fontSize: fontS,
+          color: this.props.themeProp.accentColor}]}
+        >
+          What is Conservative Therapy?
+        </Text>
         <View style= {{
           backgroundColor: this.props.themeProp.accentColor,
           height: 1,
