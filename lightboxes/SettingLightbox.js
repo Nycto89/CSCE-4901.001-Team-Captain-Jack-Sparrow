@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, Animated, Dimensions, Button, Slider} from 'react-native';
+import { View, Text, StyleSheet, Animated, Dimensions, Button} from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import Lightbox from './BaseLightbox';
 import FontSlider from '../reducers/slider_container';
