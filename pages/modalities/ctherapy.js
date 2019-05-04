@@ -55,9 +55,9 @@ class Therapy extends Component {
                   discomfort and pain from kidney failure. However, choosing conservative
                   therapy is an important decision that should be discussed between you,
           your doctor and your loved ones. {'\n'} People who choose conservative
-                  therapy can live between a few months or sometimes more than a year.
-                  The time frame differs depending on your medical conditions, how much
-                  kidney function remains and your diet and amount of fluids.  However,
+                          therapy can live between a few months or sometimes more than a year.
+                          The time frame differs depending on your medical conditions, how much
+                          kidney function remains and your diet and amount of fluids.  However,
           without dialysis, a person with ESRD will die a natural death. {'\n'}
                   If you decide on this option, talk to your doctor about ways to reduce
                   pain and symptoms of kidney failure such as swelling or shortness of
