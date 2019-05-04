@@ -1,3 +1,0 @@
-var clinicLst = [];
-
-export {clinicLst};

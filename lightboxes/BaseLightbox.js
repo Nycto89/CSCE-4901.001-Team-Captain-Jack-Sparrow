@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, StyleSheet, Animated, Dimensions, Button } from 'react-native';
+import React, { Component } from 'react';
+import { Animated, Button, Dimensions, StyleSheet, View } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 
@@ -50,7 +50,7 @@ class BaseLightbox extends Component {
         }}
       >
         {children}
-        <Button style={{ paddingTop : 50 }} title="Close" onPress={this.closeModal} />
+        <Button style={{ paddingTop: 50 }} title="Close" onPress={this.closeModal} />
       </View>
     );
   };
@@ -78,8 +78,8 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(state) {
   return {
-  fontProp: state.fontProps,
-  themeProp: state.themeProps
+    fontProp: state.fontProps,
+    themeProp: state.themeProps
   };
 }
 export default connect(mapStateToProps)(BaseLightbox);
