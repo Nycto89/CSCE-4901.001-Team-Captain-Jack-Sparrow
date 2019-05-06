@@ -44,6 +44,7 @@
 		3C3E29FBE38642C9BAF56DBA /* libRNVectorIcons-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A5C5CC9218847C5AF686C31 /* libRNVectorIcons-tvOS.a */; };
 		3C653FD0FE564E2F90A913E7 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 421CA81F606841C8B7E186D7 /* Octicons.ttf */; };
 		4DD9995854944AEE8632490A /* FontAwesome5_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 272F5338FB164C97BB943F67 /* FontAwesome5_Regular.ttf */; };
+		5AB772772280C68A00A61956 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AB772762280C68A00A61956 /* Default-568h@2x.png */; };
 		69429E8D7A294D3BA812D59D /* libReactNativePermissions.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19EF83F9D0974E97BD6FE04E /* libReactNativePermissions.a */; };
 		6BAA946AEA104614BF1F5639 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 29911F3D64174780829AFA12 /* MaterialCommunityIcons.ttf */; };
 		744CF210FE2D42538DF9A472 /* FontAwesome5_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0A0D1DB9143B4BC895A73C01 /* FontAwesome5_Solid.ttf */; };
@@ -519,6 +520,7 @@
 		421CA81F606841C8B7E186D7 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/native-base/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		4D9C279961DF445C99E5124E /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
 		5392BCBC2A1C6F3231D389F6 /* Pods-app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-app.debug.xcconfig"; path = "Target Support Files/Pods-app/Pods-app.debug.xcconfig"; sourceTree = "<group>"; };
+		5AB772762280C68A00A61956 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		61E8FAAC631B44669396F316 /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
 		642DFA9BF7FA4C12BA6B47D5 /* rubicon-icon-font.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "rubicon-icon-font.ttf"; path = "../node_modules/native-base/Fonts/rubicon-icon-font.ttf"; sourceTree = "<group>"; };
@@ -964,6 +966,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				5AB772762280C68A00A61956 /* Default-568h@2x.png */,
 				F5C811122274CDB400C8CB45 /* AirMaps */,
 				F5C810C62274CDA900C8CB45 /* AirGoogleMaps */,
 				F59F4C4B226F6BB0009DE9A5 /* denton.gpx */,
@@ -1303,11 +1306,11 @@
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
-						DevelopmentTeam = BKD4LCBC55;
+						DevelopmentTeam = 9X5S947MQT;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						DevelopmentTeam = BKD4LCBC55;
+						DevelopmentTeam = 9X5S947MQT;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -1316,12 +1319,12 @@
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = BKD4LCBC55;
+						DevelopmentTeam = 9X5S947MQT;
 						ProvisioningStyle = Automatic;
 					};
 					2D02E48F1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = BKD4LCBC55;
+						DevelopmentTeam = 9X5S947MQT;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 2D02E47A1E0B4A5D006451C7;
 					};
@@ -1766,6 +1769,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				5AB772772280C68A00A61956 /* Default-568h@2x.png in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				F573B005226D5394008CF11F /* esrd_icon.png in Resources */,
 				38ACB15C94574BC28340CB2E /* (null) in Resources */,
@@ -2008,7 +2012,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = BKD4LCBC55;
+				DEVELOPMENT_TEAM = 9X5S947MQT;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -2042,7 +2046,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
-				DEVELOPMENT_TEAM = BKD4LCBC55;
+				DEVELOPMENT_TEAM = 9X5S947MQT;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
@@ -2071,10 +2075,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5392BCBC2A1C6F3231D389F6 /* Pods-app.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
-				DEVELOPMENT_TEAM = BKD4LCBC55;
+				DEVELOPMENT_TEAM = 9X5S947MQT;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"HAVE_GOOGLE_MAPS=1",
@@ -2118,9 +2121,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 130807389AD0823F49BF6A81 /* Pods-app.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = BKD4LCBC55;
+				DEVELOPMENT_TEAM = 9X5S947MQT;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"COCOAPODS=1",
@@ -2170,7 +2172,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = BKD4LCBC55;
+				DEVELOPMENT_TEAM = 9X5S947MQT;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				HEADER_SEARCH_PATHS = (
@@ -2209,7 +2211,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = BKD4LCBC55;
+				DEVELOPMENT_TEAM = 9X5S947MQT;
 				GCC_NO_COMMON_BLOCKS = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2245,7 +2247,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = BKD4LCBC55;
+				DEVELOPMENT_TEAM = 9X5S947MQT;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				HEADER_SEARCH_PATHS = (
@@ -2283,7 +2285,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = BKD4LCBC55;
+				DEVELOPMENT_TEAM = 9X5S947MQT;
 				GCC_NO_COMMON_BLOCKS = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
