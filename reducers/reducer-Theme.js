@@ -1,3 +1,5 @@
+import { StatusBar } from 'react-native';
+
 const initialState = {
     themeType: false,
     backgroundColor: 'white',
@@ -13,6 +15,7 @@ export default function (state = initialState, action) {
         //case "SWITCH_THEME":
         case "SWITCH_THEME":
             if (state.themeType === false) {
+                StatusBar.setBarStyle('light-content', true);
                 return {
                     themeType: true,
                     backgroundColor: '#222222',
@@ -24,6 +27,7 @@ export default function (state = initialState, action) {
                 }
             }
             else {
+                StatusBar.setBarStyle('dark-content', true);
                 return {
                     themeType: false,
                     backgroundColor: 'white',
