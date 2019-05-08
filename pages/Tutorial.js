@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dimensions, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Dimensions, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View, StatusBar } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -19,10 +19,13 @@ class Tutorial extends React.Component {
   }
 
   componentWillMount() {
-    if (this.props.visitProp.visited === this.state.visited)
+    if (this.props.visitProp.visited === this.state.visited){
+      StatusBar.setBarStyle('light-content', true);
       this.setState(() => {
         this.props.setVisited();
       });
+    }
+      
 
   }
 
@@ -62,7 +65,7 @@ class Tutorial extends React.Component {
 
               Modalities</Text>
             <Text style={[styles.textStyle, { color: this.props.themeProp.textColor, fontSize: this.props.fontProp.fontVal }]}>
-              Selecting this feature will give you the option to read up on different treatment modalities, their potential benefits, and considerations to take into consideration when deciding. </Text>
+              Selecting this feature will give you the option to read up on different treatment modalities, their potential benefits, and considerations when deciding a treatment route. </Text>
           </View>
           <View style={styles.tileFlexVertical}>
             <Image source={require('../images/home_icons/nutrition.png')} style={[styles.tile, this.iconTintStyle()]} />
@@ -70,7 +73,7 @@ class Tutorial extends React.Component {
               Phosphorus Search</Text>
             <Text style={[styles.textStyle, { color: this.props.themeProp.textColor, fontSize: this.props.fontProp.fontVal }]}>
 
-              As phosphorus is not required on nutrition labels, the app lets you scan a barcode or enter a food item that searches the USDA's National Nutrient Database to learn the phosphorus content of that food.</Text>
+              As phosphorus is not required on nutrition labels, this lets you scan a barcode or enter a food item that searches the USDA's National Nutrient Database to learn the phosphorus content of that food.</Text>
           </View>
 
           <View style={styles.tileFlexVertical}>

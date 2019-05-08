@@ -159,8 +159,7 @@ const styles = StyleSheet.create({
   tileFlexMain: {
     flex: 4,
     alignItems: 'center',
-    paddingBottom: 10
-
+    paddingBottom: 20,
     //justifyContent : 'space-around'
   },
 

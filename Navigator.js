@@ -60,7 +60,7 @@ class MainNavigator extends Component {
               <Scene key="MainScene" >
                 <Scene key="HomeScreen"
                   component={HomeScreen}
-                  title="App Home"
+                  title="Home"
                   drawer
                   initial={this.state.first}
                 />

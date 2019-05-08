@@ -192,7 +192,7 @@ class Nutrition extends React.Component {
   renderHeader = () => {
     //if (this.state.foodData.list != undefined)
 
-    if (this.state.foodData.list && this.state.foodData.list.item && this.state.foodData.list.item.length > 0) {
+    if (this.state.foodData.list && this.state.foodData.list.item && this.state.foodData.list.item.find( item => item.phosphorus )) {
       return (
         <View style={[styles.resultItemView, { backgroundColor: this.props.themeProp.backgroundColor, borderColor: this.props.themeProp.textColor }]}>
           <View style={styles.resultDescView}>
@@ -529,7 +529,8 @@ const styles = StyleSheet.create({
     borderColor: '#222222',
     borderWidth: 1,
     backgroundColor: 'white',
-    paddingLeft: 5
+    paddingLeft: 15,
+    borderRadius : 10
 
   },
 

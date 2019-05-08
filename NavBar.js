@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Dimensions, Image, Platform, StyleSheet, Text, TouchableHighlight, View } from 'react-native';
+import { Dimensions, Image, Platform, StyleSheet, Text, TouchableHighlight, View, StatusBar } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 
-const STATUSBAR_SIZE = isIphoneX() ? 50 : 20;
+const STATUSBAR_SIZE = isIphoneX() ? 40 : 20;
 
 class NavBar extends Component {
 
@@ -14,7 +14,10 @@ class NavBar extends Component {
   render() {
     return (
       <View>
-        <StatusBarBackground />
+        {/* This first view adjusts for the statusbar */}
+        <View style={{height : (Platform.OS === 'ios') ? STATUSBAR_SIZE : 0, backgroundColor: this.props.themeProp.backgroundColor}}>
+
+        </View>
         <View style={{
           flexDirection: 'row',
           justifyContent: 'space-between',
@@ -36,7 +39,6 @@ class NavBar extends Component {
           borderRadius: 0,
         }}
         >
-          <StatusBarBackground />
 
           <View style={{ flexDirection: 'row', flex: 1, justifyContent: 'flex-start', paddingLeft: 10 }}>
             <DrawerIcon themeProps={this.props.themeProp} />
@@ -47,7 +49,10 @@ class NavBar extends Component {
           </View>
 
           <View style={{ flexDirection: 'row', justifyContent: 'flex-end', flex: 1 }}>
-            <HomeButton themeProps={this.props.themeProp} />
+            {/* {Actions.currentScene !== 'HomeScreen' && (Actions.currentScene !== 'SettingsLightbox' && Actions.prevScene !== 'HomeScreen')
+              && */}
+              <HomeButton themeProps={this.props.themeProp} />
+            {/* } */}
           </View>
 
         </View>
@@ -55,13 +60,13 @@ class NavBar extends Component {
     );
   }
 }
-function StatusBarBackground(props) {
-  return (
-    <View style={[styles.statusBarBackground, props.color || {}]}>
-      {/* This part is just so you can change the color of the status bar from the parents by passing it as a prop */}
-    </View>
-  );
-}
+// function StatusBarBackground(props) {
+//   return (
+//     <View style={[styles.statusBarBackground, props.themeProps.backgroundColor|| {}]}>
+//       {/* This part is just so you can change the color of the status bar from the parents by passing it as a prop */}
+//     </View>
+//   );
+// }
 
 function HomeButton(props) {
   if (Actions.currentScene === 'HomeScreen' ||
@@ -94,7 +99,10 @@ function NavBarTitle(props) {
 function DrawerIcon(props) {
   return (
     <View style={{}}>
-      <TouchableHighlight onPress={() => { Actions.drawerOpen() }}>
+      <TouchableHighlight 
+          underlayColor={'transparent'}
+          activeOpacity={.8}
+          onPress={() => { Actions.drawerOpen() }}>
         <Image style={{ height: 25, width: 15, marginLeft: 5, tintColor: props.themeProps.textColor }} source={require('./images/menu_burger.png')} />
       </TouchableHighlight>
     </View>
@@ -124,7 +132,7 @@ function isIPhoneXrSize(dim) {
 const styles = StyleSheet.create({
   statusBarBackground: {
     height: (Platform.OS === 'ios') ? STATUSBAR_SIZE : 0, //this is just to test if the platform is iOS to give it a height of 18, else, no height (Android apps have their own status bar)
-    backgroundColor: (98, 98, 98),
+    // backgroundColor: (98, 98, 98),
   }
 
 })
