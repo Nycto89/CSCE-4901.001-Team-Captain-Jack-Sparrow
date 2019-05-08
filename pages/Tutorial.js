@@ -20,7 +20,6 @@ class Tutorial extends React.Component {
 
   componentDidMount() {
     if (this.props.visitProp.visited === this.state.visited){
-      //StatusBar.setBarStyle('light-content', true);
       this.setState(() => {
         this.props.setVisited();
       });

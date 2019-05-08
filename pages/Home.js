@@ -29,7 +29,7 @@ class HomeScreen extends React.Component {
           <View style={styles.tileFlexHorizontal}>
             <View style={styles.tileFlexVertical}>
               <TouchableHighlight
-                style={{ paddingVertical: 0, paddingHorizontal: 60 }}
+                style={{ paddingVertical: 0, paddingHorizontal: '30%' }}
                 underlayColor={'transparent'}
                 activeOpacity={.8}
                 onPress={() => Actions.ModalityMainScreen()}>
@@ -45,7 +45,7 @@ class HomeScreen extends React.Component {
             </View>
             <View style={styles.tileFlexVertical}>
               <TouchableHighlight
-                style={{ paddingVertical: 0, paddingHorizontal: 60 }}
+                style={{ paddingVertical: 0, paddingHorizontal: '30%' }}
                 underlayColor={'transparent'}
                 activeOpacity={.8}
                 onPress={() => Actions.Nutrition()}>
@@ -64,7 +64,7 @@ class HomeScreen extends React.Component {
           <View style={styles.tileFlexHorizontal} >
             <View style={styles.tileFlexVertical}>
               <TouchableHighlight
-                style={{ paddingVertical: 0, paddingHorizontal: 60 }}
+                style={{ paddingVertical: 0, paddingHorizontal: '30%' }}
                 underlayColor={'transparent'}
                 activeOpacity={.8}
                 onPress={() => {
@@ -100,7 +100,7 @@ class HomeScreen extends React.Component {
             </View>
             <View style={styles.tileFlexVertical}>
               <TouchableHighlight
-                style={{ paddingVertical: 0, paddingHorizontal: 60 }}
+                style={{ paddingVertical: 0, paddingHorizontal: '30%' }}
                 underlayColor={'transparent'}
                 activeOpacity={.8}
                 onPress={() => Actions.ClinicFinder()}>
