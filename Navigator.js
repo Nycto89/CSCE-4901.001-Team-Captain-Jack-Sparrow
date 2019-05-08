@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Image, StyleSheet, TouchableHighlight, View } from 'react-native';
+import { Image, Platform, StatusBar, StyleSheet, TouchableHighlight, View } from 'react-native';
 import { Actions, Drawer, Lightbox, Router, Scene, Stack } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import DrawerMenu from './drawer.js';
@@ -33,6 +33,17 @@ class MainNavigator extends Component {
     // Disables yellow box warnings for demo
     //console.disableYellowBox = true;
     ;
+  }
+
+  componentDidMount(){
+    if(Platform.OS == 'ios'){
+      if(!this.props.themeProp){//if on light theme, set status bar light
+        StatusBar.setBarStyle('light-content', true);
+      }
+      else{
+        StatusBar.setBarStyle('dark-content', true);
+      }
+    }
   }
 
   render() {
@@ -177,7 +188,8 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(state) {
   return {
-    visitProp: state.visitProps
+    visitProp: state.visitProps,
+    themeProp: state.themeProps.themeType
   };
 }
 export default connect(mapStateToProps)(MainNavigator);
