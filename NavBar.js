@@ -100,6 +100,7 @@ function DrawerIcon(props) {
   return (
     <View style={{}}>
       <TouchableHighlight 
+          style = {{paddingHorizontal: "5%"}}
           underlayColor={'transparent'}
           activeOpacity={.8}
           onPress={() => { Actions.drawerOpen() }}>
