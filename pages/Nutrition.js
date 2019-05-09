@@ -208,7 +208,7 @@ class Nutrition extends React.Component {
             <Text style={{
               color: this.props.themeProp.textColor,
               fontSize: this.props.fontProp.fontVal,
-              paddingBottom: 15,
+              // paddingBottom: 15,
               textAlignVertical: 'center',
               textAlign: 'center'
             }}
@@ -274,15 +274,15 @@ class Nutrition extends React.Component {
             onSubmitEditing={this.submitText}
           />
           <View style={styles.textButtonsView}>
-            <TouchableOpacity style={[styles.textButton, { backgroundColor: this.props.themeProp.accentColor, borderColor: this.props.themeProp.accentColor }]} onPress={() => this.setState({ text: "" })}>
+            <TouchableOpacity style={[styles.textButton, { backgroundColor: this.props.themeProp.textColor, borderColor: this.props.themeProp.textColor }]} onPress={() => this.setState({ text: "" })}>
               <Text style={[styles.buttonText, { color: this.props.themeProp.backgroundColor, }]}>Clear</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={[styles.textButton, { backgroundColor: this.props.themeProp.accentColor, borderColor: this.props.themeProp.accentColor }]} onPress={() => { Keyboard.dismiss(); this.submitText(); }}>
+            <TouchableOpacity style={[styles.textButton, { backgroundColor: this.props.themeProp.textColor, borderColor: this.props.themeProp.textColor }]} onPress={() => { Keyboard.dismiss(); this.submitText(); }}>
               <Text style={[styles.buttonText, { color: this.props.themeProp.backgroundColor, }]}>Submit</Text>
             </TouchableOpacity>
           </View>
           <View style={styles.scanButtonView}>
-            <TouchableOpacity style={[styles.scanButton, { backgroundColor: this.props.themeProp.accentColor, borderColor: this.props.themeProp.accentColor }]} onPress={() => {
+            <TouchableOpacity style={[styles.scanButton, { backgroundColor: this.props.themeProp.textColor, borderColor: this.props.themeProp.textColor }]} onPress={() => {
 
               // console.warn( this.state.cameraPermission );
               if (this.state.cameraPermission === 'authorized') {
