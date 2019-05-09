@@ -21,8 +21,6 @@ import Tutorial from './pages/Tutorial.js';
 
 
 
-
-
 class MainNavigator extends Component {
   constructor(props) {
     super(props);
