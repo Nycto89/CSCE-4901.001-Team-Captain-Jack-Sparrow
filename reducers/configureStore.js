@@ -8,8 +8,6 @@ import rootSaga from '../sagas/rootSaga';
 import allReducers from './index';
 
 function setStatusBar(){
-  console.log('persisted_darkTheme: ');
-  console.log(store.getState());
   if(Platform.OS == 'ios'){
     let darkTheme = store.getState().themeProps.themeType;
     if(darkTheme) StatusBar.setBarStyle('light-content', true);
