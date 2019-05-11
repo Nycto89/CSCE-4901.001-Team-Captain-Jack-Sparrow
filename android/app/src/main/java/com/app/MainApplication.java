@@ -1,4 +1,4 @@
-package com.esrd.app;
+package com.esrd.app.release;
 
 import android.app.Application;
 
