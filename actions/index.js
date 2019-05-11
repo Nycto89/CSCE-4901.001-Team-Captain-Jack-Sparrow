@@ -22,8 +22,14 @@ export const setVisited = () => {
 };
 
 //GET CLINICS
-export const getClinics = () => {
-    return {
-        type: "GET_CLINICS"
-    }
+export const getClinics = (loc = null) => {
+    if(loc === null)
+        return {
+            type: "GET_CLINICS"
+        }
+    else
+        return{
+            type: "GET_CLINICS",
+            loc: loc
+        }
 };
