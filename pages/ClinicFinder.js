@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { ActivityIndicator, Dimensions, FlatList, Platform, StyleSheet, Text, View } from 'react-native';
+import { Animated, Easing, ActivityIndicator, Dimensions, FlatList, Platform, StyleSheet, Text, View } from 'react-native';
 import AndroidOpenSettings from 'react-native-android-open-settings';
 import { SearchBar } from 'react-native-elements';
+import AwesomeButton from "react-native-really-awesome-button/src/themes/rick";
 import MapView, { Marker } from 'react-native-maps';
 import { createOpenLink } from 'react-native-open-maps';
 import { IconButton } from 'react-native-paper';
@@ -11,20 +12,47 @@ import { bindActionCreators } from 'redux';
 import { getClinics } from '../actions/index';
 
 class clinicFinder extends Component {
-  state = { ready: false, refreshing: false };
-  location = {};
-  clinicLst = [];
+  state = { ready: false, refreshing: false, foundClinicInRegion: true, mapMargin: 1, fadeVal: new Animated.Value(0)};
   markerLst = [];
   mapRef = null;
   searchBar = null;
-  text = '';
-  timeout;
+
+  //animation handling follows
+  discreteFadeVal = 0;
+  fadeIn(){
+    this.state.fadeVal.setValue(0);
+    this.discreteFadeVal = 1;
+    Animated.timing(
+      this.state.fadeVal,
+      {
+        toValue: 1,
+        duration: 300,
+        easing: Easing.linear,
+        useNativeDriver: true
+      }
+    ).start();
+  }//end fadeIn()
+  fadeOut(){
+    this.state.fadeVal.setValue(1);
+    this.discreteFadeVal = 0;
+    Animated.timing(
+      this.state.fadeVal,
+      {
+        toValue: 0,
+        duration: 300,
+        easing: Easing.out(Easing.linear),
+        useNativeDriver: true
+      }
+    ).start();
+  }//end fadeOut()
+  //end animation handling
 
   ////////////////////////////////////////////////////////
-  //FUNCTIONS//
+  //HELPER FUNCTIONS//
   ////////////////////////////////////////////////////////
   searchFilterFunc = input => {
-    this.setState({ searchVal: input });
+    console.log('\nfilter...');
+    //this.setState({ searchVal: input, userPan: false });
 
     newLst = this.props.clinicLst.filter(clinic => {
       clinicName = clinic.name.toUpperCase();
@@ -38,19 +66,63 @@ class clinicFinder extends Component {
       return clinicData.indexOf(searchData) > -1
     });
 
-    this.setState({ filteredLst: newLst });
+    this.setState({filteredLst: newLst, searchVal: input});
   };//end searchFilterFunc
+
+  clinicInRegion(clinic, region){
+    lat = clinic.coords.latitude;
+    lng = clinic.coords.longitude;
+
+    //scaling factors used... actually tests if clinic is within the box centered on same spot,
+    //but whose length and width are 70% of actual map region
+    latInReg = ((lat < region.latitude+(.35*region.latitudeDelta))&&(lat > region.latitude-(.35*region.latitudeDelta)));
+    lngInReg = ((lng < region.longitude+(.35*region.longitudeDelta))&&(lng > region.longitude-(.35*region.longitudeDelta)));
+
+    if(latInReg && lngInReg)
+      return true;
+    else
+      return false;
+  }
+
+  determineNeedButton(region){
+    /*
+    this.state.currlatitude = region.latitude;
+    this.state.currlongitude = region.longitude;
+    this.state.currlatitudeDelta = region.latitudeDelta;
+    this.state.currlongitudeDelta = region.longitudeDelta;
+    */
+    //update buttonSearchLoc
+    this.state.buttonSearchLoc = {lat: region.latitude, lng: region.longitude}
+
+    //if a clinic in filteredLst is in the curr region, set to true
+    this.state.foundClinicInRegion = (this.state.filteredLst.findIndex((clinic) => {return this.clinicInRegion(clinic, region)}) !== -1);
+
+    console.log('discreteVal: '+this.discreteFadeVal);
+    console.log('foundClinicInRegion: '+this.state.foundClinicInRegion);
+
+    if(this.state.foundClinicInRegion){
+      if(this.discreteFadeVal == 1) this.fadeOut();
+    }
+    else if(this.discreteFadeVal == 0) this.fadeIn();
+  }
+
+  async searchNewArea(loc){//loc should be in form acceptable for geocoding... current implementation is {lat: [double], lng: [double]}
+    this.props.getClinics(loc);
+
+    this.state.mapCam = await this.mapRef.getCamera();
+    this.setState({refreshing: true});
+  }
   ////////////////////////////////////////////////////////
-  //END FUNCTIONS//
+  //END HELPER FUNCTIONS//
   ////////////////////////////////////////////////////////
 
   ////////////////////////////////////////////////////////
-  /////////////////COMPONENT DID UPDATE///////////////////
+  ///////////FUNC CALLED WHEN ABOUT TO RENDER/////////////
   ////////////////////////////////////////////////////////
   static getDerivedStateFromProps(nextProps, prevState) {
     //if received new clinic lst... update filteredLst
     if ((prevState.refreshing) && (prevState.filteredLst != nextProps.clinicLst)) {
-      return { ...prevState, refreshing: false, filteredLst: nextProps.clinicLst };
+      return { ...prevState, refreshing: false, filteredLst: nextProps.clinicLst, foundClinicInRegion: true};
     }
     return null;
   }
@@ -60,41 +132,23 @@ class clinicFinder extends Component {
       this.searchBar.focus();
   }
   ////////////////////////////////////////////////////////
-  /////////////////end componentDidUpdate()///////////////
+  ///////////////END FUNC CALLED AFTER RENDER/////////////
   ////////////////////////////////////////////////////////
 
   //////RENDER//////
   render() {
-    if (this.state.reload) {
-      if (Platform.OS == 'android') AndroidOpenSettings.appDetailsSettings();
-      else if (Platform.OS == 'ios') {
-        if (Permissions.canOpenSettings()) {
-          Permissions.openSettings();
-        }
-        else {
-          return (
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-              <Text style={{ color: 'black', fontWeight: 'bold', fontSize: 30 }}>Please open settings on your phone, and allow this app to acces your location... Then reload clinicFinder</Text>
-            </View>
-          )
-        }//end else can't open settings
-      }//ense else if iOS
-      return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-          <Text style={{ color: 'black', fontWeight: 'bold', fontSize: 30 }}>Please restart clinicFinder for permission changes to take affect...</Text>
-        </View>
-      )
-    }
-    if (!this.props.clinicLst.length) {
+    if (!this.props.clinicLst.length) {//if clinicLst empty
       return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
           <Text>Please wait while we find clinics near you...</Text>
           <ActivityIndicator size='large' />
         </View>
       )
-    }
+    }//end if clinicLst empty
 
-
+    //////////////////////////////
+    //MAKE MAP LISTS//
+    //////////////////////////////
     //if no filteredLst... make it
     if (!this.state.filteredLst) {
       this.state.filteredLst = this.props.clinicLst;
@@ -108,36 +162,47 @@ class clinicFinder extends Component {
           title={marker.name}
           identifier={marker.name}
           key={(marker.id).toString(10)}
-        //description={marker.description}
         />
       )
     })//end generate markerLst
+    //////////////////////////////
+    //END MAKE MAP LISTS//
+    //////////////////////////////
+
+    //if clinicLst NOT empty
     return (
       <FlatList
         onRefresh={() => {
-          this.setState({ refreshing: true },
+          this.setState({ refreshing: true, foundClinicInRegion: true },
             () => {
               this.props.getClinics();
               //this.state.refreshing = false;
             });
-        }}
+        }}//end on refresh
         refreshing={this.state.refreshing}
         removeClippedSubviews={true}
         ListHeaderComponent={() => {
           screenWidth = Dimensions.get('window').width;
           return (
-            <View style={{ height: 350, width: screenWidth }}>
+            <View style={{ height: 350, width: screenWidth }} pointerEvents={"box-none"}>
               <MapView
+                style={{flex: 1, marginBottom: this.state.mapMargin}}
+                onLayout={() => {if(!this.state.foundClinicInRegion) this.mapRef.setCamera(this.state.mapCam, 0);}}
                 onMapReady={() => {
-                  markerIDLst = this.state.filteredLst.map(loc => (loc.name));
-                  this.mapRef.fitToSuppliedMarkers(markerIDLst,
+                  if(this.state.foundClinicInRegion){
+                    console.log('fitting to markers...');
+                    markerIDLst = this.state.filteredLst.map(loc => (loc.name));
+                    this.mapRef.fitToSuppliedMarkers(markerIDLst,
                     {
                       edgePadding: {
                         bottom: 25, right: 25, top: 250, left: 25,
                       },
                       animated: false
                     });//end fitToSuppliedMarkers()
+                  }
                 }}//end onMapReady
+                //initialRegion={(!this.state.userPan) ? null : {latitude: this.state.currlatitude+.018, longitude: this.state.currlongitude, latitudeDelta: this.state.currlatitudeDelta+.018, longitudeDelta: this.state.currlongitudeDelta}}
+                onRegionChange={region => this.determineNeedButton(region)}
                 ref={ref => { this.mapRef = ref; }}
                 moveOnMarkerPress={false}
                 showsUserLocation={true}
@@ -150,20 +215,33 @@ class clinicFinder extends Component {
               </MapView>
               <SearchBar
                 ref={searchRef => { this.searchBar = searchRef; }}
-                placeholder="Type to filter list. Pull down to reload"
+                placeholder="Type to filter list. Pull to use GPS"
                 lightTheme
                 round
                 onChangeText={input => {
                   this.searchFilterFunc(input)
-                  //this.searchBar.focus();
                 }}//end onChangeText
                 autoCorrect={false}
                 value={this.state.searchVal}
               />
+              <Animated.View
+                style={{alignSelf: "center", marginTop: "1%",
+                        flexDirection: "row", justifyContent: "center", alignItems: "center",
+                        opacity: this.state.fadeVal}}
+              >
+                <AwesomeButton
+                  raiseLevel={2}
+                  height={25}
+                  type = "secondary"
+                  onPress={() => {/*do nothing if button invisible*/if(this.discreteFadeVal) this.searchNewArea(this.state.buttonSearchLoc);}}
+                  disables={false}
+                >
+                  <Text> Search This Area </Text>
+                </AwesomeButton>
+              </Animated.View>
             </View>
-          )
-        }
-        }//end header
+          )//end return
+        }}//end header
 
         data={this.state.filteredLst}
         extraData={this.props}

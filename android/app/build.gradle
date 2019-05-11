@@ -98,11 +98,11 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
-        applicationId "com.esrd.app"
+        applicationId "com.esrd.app.release"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 2
-        versionName "0.0.0.2"
+        versionCode 3
+        versionName "1.0.0.3"
         missingDimensionStrategy 'react-native-camera', 'general'
     }
     splits {

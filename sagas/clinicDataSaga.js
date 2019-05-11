@@ -224,60 +224,81 @@ async function getFinderData(location, clinicLst) {
     return clinicLst;
 }//end getFinderData
 
-export function* mkeClinicLst() {
-    _state.perms = yield Permissions.check('location');
+export function* mkeClinicLst(loc = null) {//if loc passed in, should be of form {lat: [double], lng: [double]}
+    if(loc === null){//if no location passed in... get gps location or use default (dallas)
+        _state.perms = yield Permissions.check('location');
 
-    //if not already authorized, tell why you want auth
-    if (_state.perms != 'authorized') {
-        response = yield _alertForPerms();
+        //if not already authorized, tell why you want auth
+        if (_state.perms != 'authorized') {
+            response = yield _alertForPerms();
 
-        //if not cancel... formal request for perms
-        if (response == 'OK') {
-            perms = yield _requestPermission();
+            //if not cancel... formal request for perms
+            if (response == 'OK') {
+                perms = yield _requestPermission();
 
-            //if now authorized
-            if (perms == 'authorized') {
-                try {
-                    yield getCoords();
-                    response = yield doPhoneGeoCode();
-                    lst = yield getFinderData(response, _clinicLst);
-                    _clinicLst = lst;
+                //if now authorized
+                if (perms == 'authorized') {
+                    try {
+                        yield getCoords();
+                        response = yield doPhoneGeoCode();
+                        lst = yield getFinderData(response, _clinicLst);
+                        _clinicLst = lst;
 
-                    //this.setState({ready: true});
-                    action = { type: "LIST_READY", payload: _clinicLst };
-                    return action;
-                }
-                catch (error) {
-                    action = { type: "DATA_ERROR" };
-                    return action;
-                }//end .catch()
-            }//end if authed
-        }//end requestPermission.then()
-        else if (response == 'settings') {//else user wants to open settings...        
-            if (Platform.OS == 'android') AndroidOpenSettings.appDetailsSettings();
-            else if (Platform.OS == 'ios') {
-                if (Permissions.canOpenSettings()) {
-                    Permissions.openSettings();
-                }
-                else {//else can't open settings
-                    Alert.alert(
-                        'We can\'t open the settings page for you...',
-                        'Please open settings on your phone, and allow this app to acces your location... Then reload clinicFinder',
-                        [{
-                            text: 'OK',
-                            onPress: () => {  },
-                        }]
-                    );//end alert
-                }//end else can't open settings
-            }//ense else if iOS
+                        //this.setState({ready: true});
+                        action = { type: "LIST_READY", payload: _clinicLst };
+                        return action;
+                    }
+                    catch (error) {
+                        action = { type: "DATA_ERROR" };
+                        return action;
+                    }//end .catch()
+                }//end if authed
+            }//end requestPermission.then()
+            else if (response == 'settings') {//else user wants to open settings...        
+                if (Platform.OS == 'android') AndroidOpenSettings.appDetailsSettings();
+                else if (Platform.OS == 'ios') {
+                    if (Permissions.canOpenSettings()) {
+                        Permissions.openSettings();
+                    }
+                    else {//else can't open settings
+                        Alert.alert(
+                            'We can\'t open the settings page for you...',
+                            'Please open settings on your phone, and allow this app to acces your location... Then reload clinicFinder',
+                            [{
+                                text: 'OK',
+                                onPress: () => {  },
+                            }]
+                        );//end alert
+                    }//end else can't open settings
+                }//ense else if iOS
 
 
-            //this.setState({reload: true});
-        }//end else if 'settings'
-    }//end ifPerms NOT ALREADY authorized --> alertForPerms.then()
-    else {//already authorized
-        try {
-            yield getCoords();
+                //this.setState({reload: true});
+            }//end else if 'settings'
+        }//end ifPerms NOT ALREADY authorized --> alertForPerms.then()
+        else {//already authorized
+            try {
+                yield getCoords();
+                response = yield doPhoneGeoCode();
+                lst = yield getFinderData(response, _clinicLst);
+                _clinicLst = lst;
+
+                //this.setState({ready: true});
+                action = { type: "LIST_READY", payload: _clinicLst };
+                return action;
+            }
+            catch (error) {
+                action = { type: "DATA_ERROR" };
+                return action;
+            }//end .catch()
+        }//end already authorized
+
+        //check perms again... if authed, we already did stuff... if not go to default loc
+        _state.perms = yield Permissions.check('location');
+        //if still not authed... go to default location
+        if (response != 'authorized') {
+            _location = { lat: 32.780907, lng: -96.797766 };//set location to Dallas
+
             response = yield doPhoneGeoCode();
             lst = yield getFinderData(response, _clinicLst);
             _clinicLst = lst;
@@ -285,18 +306,10 @@ export function* mkeClinicLst() {
             //this.setState({ready: true});
             action = { type: "LIST_READY", payload: _clinicLst };
             return action;
-        }
-        catch (error) {
-            action = { type: "DATA_ERROR" };
-            return action;
-        }//end .catch()
-    }//end already authorized
-
-    //check perms again... if authed, we already did stuff... if not go to default loc
-    _state.perms = yield Permissions.check('location');
-    //if still not authed... go to default location
-    if (response != 'authorized') {
-        _location = { lat: 32.780907, lng: -96.797766 };//set location to Dallas
+        }//end if still not authorized
+    }//end if no location passed in
+    else{//else a location was passed... no need for permissions... gps... etc
+        _location = loc;//set location to passed loc (objs of form {lat: [double], lng: [double]} )
 
         response = yield doPhoneGeoCode();
         lst = yield getFinderData(response, _clinicLst);
@@ -305,7 +318,7 @@ export function* mkeClinicLst() {
         //this.setState({ready: true});
         action = { type: "LIST_READY", payload: _clinicLst };
         return action;
-    }//end if still not authorized
+    }
 }//end mkeClinicLst
 
 
@@ -313,10 +326,14 @@ export function* mkeClinicLst() {
 ////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////SAGA FUNCTIONS///////////////////////////////
 ////////////////////////////////////////////////////////////////////////////
-export function* requestClinics() {
-    res = yield call(mkeClinicLst);
+export function* requestClinics(saga_action) {
+    let redux_action;
+    if(saga_action.loc)//if a location was passed... pass that to mkeClinicLst
+        redux_action = yield call(mkeClinicLst, saga_action.loc);
+    else//else no location passed... so let it get gps location
+        redux_action = yield call(mkeClinicLst);
 
-    yield put(res);
+    yield put(redux_action);
 }
 
 export default function* watchRequestClinics() {
