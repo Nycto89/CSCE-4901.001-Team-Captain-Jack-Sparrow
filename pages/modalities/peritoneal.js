@@ -172,8 +172,8 @@ class Peritoneal extends Component {
                 saveToLocalByLongPress={false}
                 renderIndicator={ () =>  null }
                 renderHeader={ () => (
-                  <View style={{justifyContent : 'center', alignItems : 'center', marginTop : 30}}>
-                    <Text style={{ color : 'white', marginTop : 30 }}>Double tap or swipe down to close</Text>
+                  <View style={{justifyContent : 'center', alignItems : 'center', paddingTop : 30}}>
+                    <Text style={{ color : 'white', marginTop : 30, fontSize : 20 }}>Double tap or swipe down to close</Text>
                   </View>
                 )}
               />
