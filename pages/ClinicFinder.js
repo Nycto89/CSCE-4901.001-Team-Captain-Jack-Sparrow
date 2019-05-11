@@ -66,7 +66,8 @@ class clinicFinder extends Component {
       return clinicData.indexOf(searchData) > -1
     });
 
-    this.setState({filteredLst: newLst, searchVal: input});
+    console.log('after filter... about to update...');
+    this.setState({filteredLst: newLst, searchVal: input, foundClinicInRegion: true});
   };//end searchFilterFunc
 
   clinicInRegion(clinic, region){
@@ -187,9 +188,9 @@ class clinicFinder extends Component {
             <View style={{ height: 350, width: screenWidth }} pointerEvents={"box-none"}>
               <MapView
                 style={{flex: 1, marginBottom: this.state.mapMargin}}
-                onLayout={() => {if(!this.state.foundClinicInRegion) this.mapRef.setCamera(this.state.mapCam, 0);}}
+                onLayout={() => {if((!this.state.foundClinicInRegion)) this.mapRef.setCamera(this.state.mapCam, 0);}}
                 onMapReady={() => {
-                  if(this.state.foundClinicInRegion){
+                  if((this.state.foundClinicInRegion)||(this.state.searchVal != '')){
                     console.log('fitting to markers...');
                     markerIDLst = this.state.filteredLst.map(loc => (loc.name));
                     this.mapRef.fitToSuppliedMarkers(markerIDLst,
