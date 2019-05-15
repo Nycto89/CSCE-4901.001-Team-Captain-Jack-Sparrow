@@ -1,4 +1,4 @@
-package com.app;
+package com.esrd.app.release;
 
 import android.app.Application;
 
@@ -24,7 +24,8 @@ public class MainApplication extends Application implements ReactApplication {
   private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
     @Override
     public boolean getUseDeveloperSupport() {
-      return BuildConfig.DEBUG;
+      return false;
+      //return BuildConfig.DEBUG;
     }
 
     @Override

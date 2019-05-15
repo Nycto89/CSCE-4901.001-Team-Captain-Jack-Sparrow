@@ -1,4 +1,4 @@
-package com.app;
+package com.esrd.app.release;
 
 import com.facebook.react.ReactActivity;
 

@@ -7,7 +7,7 @@
  */
 
 import React, { Component } from 'react';
-import { Dimensions, FlatList, ScrollView, Text, View } from 'react-native';
+import { Dimensions, FlatList, ScrollView, Text, View, TouchableHighlight, Modal } from 'react-native';
 import Accordion from 'react-native-collapsible/Accordion';
 import Image from 'react-native-scalable-image';
 import { connect } from 'react-redux';
@@ -16,19 +16,36 @@ import { modalityStyles } from './modalityData/modality_style';
 import PeritonealItem from './modalityData/PeritonealSection';
 import SectionListItem from './modalityData/sectionlistitem';
 
+import ImageViewer from 'react-native-image-zoom-viewer';
+// import Modal from 'app/modals/BaseModal';
+
 class Peritoneal extends Component {
 
   state = {
     activeSections: [],
-    fontVal: this.props.fontProp.fontVal
+    fontVal: this.props.fontProp.fontVal,
+    showZoomModal: false,
+    imagesToZoom: []
   };
+
+  openZoomPhoto( img ) {
+    this.setState(({ showZoomModal: true , imagesToZoom : [ { url : '' , props : { source : img } } ] } )
+    );
+  }
 
   doesPhotoExist(v_photo) {
     if (v_photo === undefined) {
       //do nothing
     }
     else {
-      return (<Image width={Dimensions.get('window').width} style={{ paddingBottom: 20 }} source={v_photo} />);
+      // return (<Image width={Dimensions.get('window').width} style={{ paddingBottom: 20 }} source={v_photo} />);
+      return ( <TouchableHighlight
+                  underlayColor={'transparent'}
+                  activeOpacity={.8}
+                  onPress={() => this.openZoomPhoto(v_photo)}>
+                    <Image width={Dimensions.get('window').width} style={{ paddingBottom: 20 }} source={v_photo} />
+                </TouchableHighlight>)
+      
     }
   }
 
@@ -144,17 +161,36 @@ class Peritoneal extends Component {
 
     return (
       <View>
-        <ScrollView>
-          <View style={[modalityStyles.container, { backgroundColor: this.props.themeProp.backgroundColor }]}>
-            <Accordion
-              sections={PeritonealData}
-              activeSections={this.state.activeSections}
-              renderHeader={this.renderHeader}
-              renderContent={this.renderContent}
-              onChange={this.updateSections}
-            />
-          </View>
-        </ScrollView>
+        {this.state.showZoomModal &&
+          <Modal>
+            <View style={{ flex: 1, backgroundColor: "black", opacity: 0.9999 }}>
+              <ImageViewer 
+                imageUrls={this.state.imagesToZoom}
+                onDoubleClick={ () => this.setState( { showZoomModal : false } ) }
+                onSwipeDown={ () => this.setState( { showZoomModal : false } ) }
+                enableSwipeDown={true}
+                saveToLocalByLongPress={false}
+                renderIndicator={ () =>  null }
+                renderHeader={ () => (
+                  <View style={{justifyContent : 'center', alignItems : 'center', paddingTop : 30}}>
+                    <Text style={{ color : 'white', marginTop : 30, fontSize : 20 }}>Double tap or swipe down to close</Text>
+                  </View>
+                )}
+              />
+            </View>
+          </Modal>
+        }
+          <ScrollView>
+            <View style={[modalityStyles.container, { backgroundColor: this.props.themeProp.backgroundColor }]}>
+              <Accordion
+                sections={PeritonealData}
+                activeSections={this.state.activeSections}
+                renderHeader={this.renderHeader}
+                renderContent={this.renderContent}
+                onChange={this.updateSections}
+              />
+            </View>
+          </ScrollView>
       </View>
     );
   }
